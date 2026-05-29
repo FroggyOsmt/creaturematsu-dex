@@ -117,7 +117,7 @@ To attract customers, he places public signs outside his yard. If nobody still c
 `,
     reference: "This creature does not have a direct reference to *Osomatsu-san*.",
 
-    extras: {
+    extras:  {
   action: ["A039-A.png", "A039-B.png"],
       sheet: [
     {
