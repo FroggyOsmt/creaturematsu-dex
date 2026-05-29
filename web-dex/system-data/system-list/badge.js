@@ -84,7 +84,7 @@ __Syndata enables:__
 
 <p>The Badge acts as the **external trigger** that activates this system.</p>
 
-[img]images/systems/badge transform A.png[/img]
+[img]images/systems/badge-transform-a.png[/img]
 `
     },
 
@@ -99,7 +99,7 @@ __Syndata enables:__
 
 <p>Because of this restriction, the Badge system is designed for temporary transformations rather than permanent evolution.</p>
 
-[img]images/systems/badge transform b.png[/img]
+[img]images/systems/badge-transform-b.png[/img]
 `
     },
 
