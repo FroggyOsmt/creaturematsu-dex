@@ -121,8 +121,8 @@ To attract customers, he places public signs outside his yard. If nobody still c
   action: ["A039-A.png", "A039-B.png"],
       sheet: [
     {
-      src: "",
-      caption: ""
+      src: "rechoro.png",
+      caption: "Concept art of Rechoro – Full Body & Detail Sheet."
     },
   ],
   log: "",
