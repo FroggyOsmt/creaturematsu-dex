@@ -1,0 +1,59 @@
+.lore-link {
+  color: #F7CC9B;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  text-decoration: underline;
+}
+
+.lore-link:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.lore-link .md-italic {
+  transition: color 0.2s ease;
+}
+
+.lore-link:hover .md-italic {
+  color: #ffffff;
+}
+
+.external-link {
+  color: #F7CC9B;
+}
+
+.dex-bullet-list {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.dex-bullet-list li {
+  margin: 3px 0;
+  line-height: 1.3;
+  position: relative;
+  padding-left: 10px;
+  
+}
+
+.dex-bullet-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 0.9em;
+}
+
+/* MATSU COLOR */
+
+.matsu-text {
+  -webkit-text-stroke: 0px #FFE2C1;
+  paint-order: stroke fill;
+}
+
+.matsu-text-oso { color: #F8888E; }
+.matsu-text-kara { color: #8193E4; }
+.matsu-text-choro { color: #B8EE6E; }
+.matsu-text-ichi { color: #B09CD2; }
+.matsu-text-jyushi { color: #F5E66E; }
+.matsu-text-todo { color: #F8AEE1; }

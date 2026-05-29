@@ -1,0 +1,52 @@
+{
+  "CreatureMatsu Full Creature": {
+    "scope": "javascript",
+    "prefix": "cmatsu",
+    "body": [
+      "{",
+      "  id: \"$1\",",
+      "  name: \"$2\",",
+      "  matsu: \"${3|oso,kara,choro,ichi,jyushi,todo|}\",",
+      "  category: \"${4|OSO,KARA,CHORO,ICHI,JYUSHI,TODO|}'S VARIATION${5|S,S 2,S 3,S 4,S 5|}\",",
+      "  pillar: \"${6|VARIATIONS,VARIATIONS 2,VARIATIONS 3,VARIATIONS 4,VARIATIONS 5,VARIATIONS 6|}\",",
+      "  size: \"$7\",",
+      "",
+      "  drDescription: \"$8\",",
+      "  description: \"$9\",",
+      "",
+      "  functionText: \"$10\",",
+      "  nameOrigin: \"$11\",",
+      "  generalOrigin: `",
+      "      • A",
+      "      • B",
+      "  `,",
+      "  reference: `",
+      "      • A",
+      "      • B",
+      "  `,",
+      "",
+      
+"  extras: {",
+"",
+"    action: [\"A$1-A.png\", \"A$1-B.png\"],",
+"",
+"    sheet: [{",
+"      src: \"\",",
+"      caption: \"\",",
+"    }],",
+"",
+"    log:",
+" [${12| ,title: \"\"\\,\n text:` \n\n <p>Example</p>\n\n <p>Example</p>\n\n <p>Example</p>\n`|}],",
+"",
+"    funFact: \"$13\"",
+"  },",
+"",
+      "  image: \"c$1.png\",",
+      "  icon: \"icon_$1.png\"",
+      "},"
+
+    ],
+    "description": "Full CreatureMatsu creature object"
+  }
+}
+

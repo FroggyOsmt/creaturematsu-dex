@@ -1,0 +1,220 @@
+.detail-left-column {
+ width: 321px;
+  display: flex;
+  flex-direction: column;
+gap: 10px;
+	  align-items: center;
+}
+
+/* IMAGE CREATURE */
+
+.detail-image-card {
+  width: 100%;              /* 🔥 el borde ocupa todo */
+  background: #FEE1C0;
+  border-radius: 12px;
+  padding: 10px;
+  box-sizing: border-box;
+
+  display: flex;
+  justify-content: center;  /* centra la imagen */
+}
+
+.detail-image-inner {
+width: 225px;
+
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.detail-creature-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  object-position: center;
+  display: block;
+      aspect-ratio: 1;
+}
+
+/* INFO */
+
+.detail-info-grid {
+  row-gap: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.info-row {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 8px;
+}
+
+.info-row.matsu-row {
+    max-width: 115px;
+}
+
+.full-row {
+  grid-column: span 2;
+}
+
+.info-label {
+  background: #EFB775;
+  color: #A56243;
+
+  font-family: "CreatureFont", sans-serif;
+  font-weight: bold;
+  font-size: 13px;
+padding: 7px 8px;
+  border-radius: 8px 0 0 8px;
+  white-space: nowrap;
+min-width: 38px;
+    display: flex;
+    justify-content: center;
+}
+
+/* INFO */
+
+.info-value {
+  font-family: "CreatureFont", sans-serif;
+  font-size: 13px;
+  padding: 7px 9px;
+  border-radius: 0 8px 8px 0;
+  white-space: nowrap;
+  color: #EFB775;
+}
+
+.category-name,
+.pillar-name,
+.size-name {
+  background: #5F2F21;
+  color: #EFB775;
+ /*border: 2px solid #EFB775;
+  border-left: none;*/
+
+  font-family: "CreatureFont", sans-serif;
+  font-weight: bold;
+    font-size: 13px;
+
+    padding: 5px 10px 5px 9px;
+  border-radius: 0 8px 8px 0;
+  white-space: nowrap;
+
+  text-align: center;
+    height: 19px;
+}
+
+/* MATSU COLORS */
+
+.matsu-oso { background: #F8888E; }
+.matsu-kara { background: #8193E4; }
+.matsu-choro { background: #B8EE6E; }
+.matsu-ichi { background: #B09CD2;  }
+.matsu-jyushi { background: #F5E66E;  }
+.matsu-todo { background: #F8AEE1; }
+
+.info-value-matsu,
+.matsu-oso,
+.matsu-kara,
+.matsu-choro,
+.matsu-ichi,
+.matsu-jyushi,
+.matsu-todo {
+  color: white;
+  border-radius: 0 8px 8px 0;
+min-width: 47px;
+    height: 15px;
+    font-size: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+.category-name {
+    min-width: calc(85px + 19px);
+  overflow: hidden;
+  white-space: nowrap;
+      display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pillar-name,
+.size-name {
+ min-width: 248px;
+    text-align: left;
+	display: flex;
+    align-items: center;
+}
+
+/* DESCRIPTIONS */
+
+.text-card-row {
+  grid-column: span 2;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-radius: 0;
+  overflow: visible;
+  gap: 0;
+      align-items: flex-start;
+}
+
+.text-card-label {
+  width: fit-content;
+  max-width: 100%;
+  box-sizing: border-box;
+
+    border-radius: 8px 8px 0px 0px;
+  padding: 7px 10px;
+
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.text-card-value {
+  width: 100%;
+  min-height: 76px;
+  box-sizing: border-box;
+  background: #5F2F21;
+  color: #EFB775;
+  border-radius: 0px 8px 8px 8px;
+  padding: 10px 12px;
+  white-space: normal;
+  line-height: 1.25;
+    white-space: pre-line;
+  text-align: left;
+  font-size: 11px;
+  
+}
+
+.text-card-value p {
+  margin: 0 0 0;
+}
+
+.detail-text-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+      margin-top: 8px;
+          width: 100%;
+}
+
+.dr-text {
+  font-style: italic;
+    min-height: 40px;
+}
+
+.dr-text::before {
+  content: "“";
+}
+
+.dr-text::after {
+  content: "”";
+}

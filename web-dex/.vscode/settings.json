@@ -1,0 +1,72 @@
+{
+    "textmarker.defaultHighlightOpacity": 0.25,
+    "textmarker.commandsOnContextMenu": {
+        "saveAllHighlights": true,
+        "unhighlight": true,
+        "clearAllHighlight": true
+    },
+    "textmarker.highlightColors": [
+        "red",
+        "blue",
+        "green",
+        "purple",
+        "yellow",
+        "pink"
+    ],
+    "textmarker.savedHighlights": [
+        {
+            "pattern": {
+                "type": "string",
+                "expression": "  // ==================================================\r\n  // 🔴 OSO\r\n  // ==================================================",
+                "ignoreCase": false,
+                "wholeMatch": false
+            },
+            "color": "red"
+        },
+        {
+            "pattern": {
+                "type": "string",
+                "expression": "  // ==================================================\r\n  // 🔵 KARA\r\n  // ==================================================",
+                "ignoreCase": false,
+                "wholeMatch": false
+            },
+            "color": "blue"
+        },
+        {
+            "pattern": {
+                "type": "string",
+                "expression": "  // ==================================================\r\n  // 🟢 CHORO\r\n  // ==================================================",
+                "ignoreCase": false,
+                "wholeMatch": false
+            },
+            "color": "green"
+        },
+        {
+            "pattern": {
+                "type": "string",
+                "expression": "  // ==================================================\r\n  // 🟣 ICHI\r\n  // ==================================================",
+                "ignoreCase": false,
+                "wholeMatch": false
+            },
+            "color": "purple"
+        },
+        {
+            "pattern": {
+                "type": "string",
+                "expression": "  // ==================================================\r\n  // 🟡 JYUSHI\r\n  // ==================================================",
+                "ignoreCase": false,
+                "wholeMatch": false
+            },
+            "color": "yellow"
+        },
+        {
+            "pattern": {
+                "type": "string",
+                "expression": "  // ==================================================\r\n  // 🩷 TODO\r\n  // ==================================================",
+                "ignoreCase": false,
+                "wholeMatch": false
+            },
+            "color": "pink"
+        }
+    ]
+}

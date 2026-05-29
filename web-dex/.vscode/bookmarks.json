@@ -1,0 +1,214 @@
+{
+	"files": [
+		{
+			"path": "creature-data/first-pillar/elemental.js",
+			"bookmarks": [
+				{
+					"line": 3,
+					"column": 55,
+					"label": "✅🔴 OSO"
+				},
+				{
+					"line": 46,
+					"column": 0,
+					"label": "✅🔵 KARA"
+				},
+				{
+					"line": 88,
+					"column": 0,
+					"label": "✅🟢 CHORO"
+				},
+				{
+					"line": 130,
+					"column": 0,
+					"label": "✅🟣 ICHI"
+				},
+				{
+					"line": 173,
+					"column": 0,
+					"label": "✅🟡 JYUSHI"
+				},
+				{
+					"line": 216,
+					"column": 0,
+					"label": "✅🩷 TODO"
+				}
+			]
+		},
+		{
+			"path": "creature-data/first-pillar/status.js",
+			"bookmarks": [
+				{
+					"line": 3,
+					"column": 2,
+					"label": "✅🔴 OSO"
+				},
+				{
+					"line": 58,
+					"column": 2,
+					"label": "✅🔵 KARA"
+				},
+				{
+					"line": 115,
+					"column": 2,
+					"label": "✅🟢 CHORO"
+				},
+				{
+					"line": 176,
+					"column": 2,
+					"label": "✅🟣 ICHI"
+				},
+				{
+					"line": 230,
+					"column": 2,
+					"label": "✅🟡 JYUSHI"
+				},
+				{
+					"line": 283,
+					"column": 3,
+					"label": "✅🩷 TODO"
+				}
+			]
+		},
+		{
+			"path": "creature-data/first-pillar/tool.js",
+			"bookmarks": [
+				{
+					"line": 3,
+					"column": 0,
+					"label": "✅🔴 OSO"
+				},
+				{
+					"line": 41,
+					"column": 0,
+					"label": "✅🔵 KARA"
+				},
+				{
+					"line": 79,
+					"column": 0,
+					"label": "✅🟢 CHORO"
+				},
+				{
+					"line": 122,
+					"column": 0,
+					"label": "✅🟣 ICHI"
+				},
+				{
+					"line": 162,
+					"column": 0,
+					"label": "✅🟡 JYUSHI"
+				},
+				{
+					"line": 204,
+					"column": 0,
+					"label": "✅🩷 TODO"
+				}
+			]
+		},
+		{
+			"path": "creature-data/first-pillar/craft.js",
+			"bookmarks": [
+				{
+					"line": 3,
+					"column": 2,
+					"label": "✅🔴 OSO"
+				},
+				{
+					"line": 55,
+					"column": 2,
+					"label": "✅🔵 KARA"
+				},
+				{
+					"line": 100,
+					"column": 0,
+					"label": "✅🟢 CHORO"
+				},
+				{
+					"line": 150,
+					"column": 0,
+					"label": "✅🟣 ICHI"
+				},
+				{
+					"line": 204,
+					"column": 0,
+					"label": "✅🟡 JYUSHI"
+				},
+				{
+					"line": 243,
+					"column": 0,
+					"label": "✅🩷 TODO"
+				}
+			]
+		},
+		{
+			"path": "creature-data/first-pillar/combat.js",
+			"bookmarks": [
+				{
+					"line": 3,
+					"column": 0,
+					"label": "✅🔴 OSO"
+				},
+				{
+					"line": 45,
+					"column": 0,
+					"label": "✅🔵 KARA"
+				},
+				{
+					"line": 87,
+					"column": 0,
+					"label": "✅🟢 CHORO"
+				},
+				{
+					"line": 138,
+					"column": 0,
+					"label": "✅🟣 ICHI"
+				},
+				{
+					"line": 183,
+					"column": 0,
+					"label": "✅🟡 JYUSHI"
+				},
+				{
+					"line": 232,
+					"column": 0,
+					"label": "✅🩷 TODO"
+				}
+			]
+		},
+		{
+			"path": "creature-data/first-pillar/worker.js",
+			"bookmarks": [
+				{
+					"line": 3,
+					"column": 0,
+					"label": "✅🔴 OSO"
+				},
+				{
+					"line": 44,
+					"column": 0,
+					"label": "✅🔵 KARA"
+				},
+				{
+					"line": 92,
+					"column": 0,
+					"label": "✅🟢 CHORO"
+				},
+				{
+					"line": 141,
+					"column": 0,
+					"label": "✅🟣 ICHI"
+				},
+				{
+					"line": 186,
+					"column": 0,
+					"label": "✅🟡 JYUSHI"
+				},
+				{
+					"line": 231,
+					"column": 0,
+					"label": "✅🩷 TODO"
+				}
+			]
+		}
+	]
+}

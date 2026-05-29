@@ -1,0 +1,252 @@
+.left-drawer {
+  position: fixed;
+  left: -260px;
+  width: 260px;
+  height: calc(100vh - 1px);
+  background-image: url("../images/sidebar.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  border-right: 3px solid #EFB775;
+  border-top: 3px solid #EFB775;
+  border-bottom: 3px solid #EFB775;
+  border-radius: 0 16px 16px 0;
+  box-sizing: border-box;
+  z-index: 9999;
+    overflow: visible;
+  transition: left 0.3s ease;
+  user-select: none;
+
+    
+}
+
+.left-drawer button {
+  user-select: none;
+}
+
+.left-drawer.open {
+    box-shadow: 4px 0 12px #25060C;
+  left: 0;
+}
+
+
+.left-tab {
+  position: absolute;
+    position: absolute;
+  right: -35px;
+  top: 300px;
+ width: 35px;
+  height: 140px;
+  background: #EFB775;
+
+  border-left: none;
+  border-radius: 12px 0px 0px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-weight: bold;
+    color: #773421;
+  cursor: pointer;
+    box-shadow: -5px  0 12px -4px #25060C;
+      z-index: 1;
+}
+
+.left-drawer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background-image: url("../images/sidebar.png");
+  background-position: center;
+    border-radius: inherit;
+
+  z-index: 2;
+  pointer-events: none;
+}
+
+/*.left-drawer::after {
+  content: "";
+  position: absolute;
+ 
+  top: 7px;        
+  left: 50%;
+  transform: translateX(-50%);
+  width: 250px;     
+  height: 150px;
+  background-image: url("../images/creature-logo.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+
+    pointer-events: none;
+  z-index: 2;
+}
+*/
+
+.left-drawer-content {
+    position: relative;
+  z-index: 2;
+  height: 100%;
+  padding: 22px;
+ padding-top: 14px;
+ padding-bottom: 14px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.left-logo {
+    height: 130px;
+
+   background-image: url("../images/creature-logo.png");
+   background-size: contain;
+   background-repeat: no-repeat;
+   background-position: center;
+
+   pointer-events: none;
+}
+
+.left-drawer-content button {
+    background: #EFB775;
+    color: #773421;
+    border: 3px solid #5F2F21;
+    border-radius: 10px;
+    padding: 12px;
+    font-family: inherit;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+
+transition:
+    transform 0.12s ease,
+    filter 0.12s ease;
+}
+
+.left-drawer-content button:hover {
+  transform: scale(1.05);
+  background: #FFE2C1;
+}
+
+@media (max-width: 768px) {
+	
+  .left-tab {
+	 top: 200px !important;
+   right: -25px !important;
+   width: 23px !important;
+ }
+}
+
+/* ===== ABOUT AUTOR ===== */
+
+.left-drawer-content .author-sidebar-btn {
+  width: 40%;
+  padding: 5px 8px;
+  font-size: 12px;
+  border-radius: 7px;
+  border-width: 2px;
+  background: #FFE2C1;
+  color: #773421;
+}
+
+.left-drawer-content .author-sidebar-btn:hover {
+  transform: scale(1.05);
+  background: #ffffff;
+}
+
+/* ===== FOOTER ===== */
+
+.left-footer {
+  margin-top: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+
+      gap: 7px;
+}
+
+/* ===== SOCIALS ===== */
+
+.left-socials {
+  display: flex;
+  gap: 8px;
+}
+
+.left-social-btn {
+      width: 41px;
+    height: 41px;
+    background: #FFE2C1;
+    border: 3px solid #FFE2C1;
+    border-radius: 11px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+
+  transition:
+    transform 0.12s ease,
+    filter 0.12s ease;
+}
+
+.left-social-btn:hover {
+  transform: scale(1.08);
+  filter: brightness(1.06);
+}
+
+.left-social-btn img {
+      width: 36px;
+    height: 36px;
+
+  object-fit: contain;
+}
+
+/* ===== VERSION ===== */
+
+.left-version {
+  font-style: italic;
+      text-align: center;
+  color: #FFE2C1;
+  font-size: 15px;
+}
+
+/* ===== COMING SOON ===== */
+
+.coming-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.coming-btn span {
+  display: inline-block;
+  transition: opacity 0.15s ease;
+}
+
+.coming-btn::after {
+  content: "COMING SOON";
+
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+
+  transition: opacity 0.15s ease;
+
+  color: #773421;
+}
+
+.coming-btn:hover span {
+  opacity: 0;
+}
+
+.coming-btn:hover::after {
+  opacity: 1;
+}

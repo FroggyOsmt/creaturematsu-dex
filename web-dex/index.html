@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CreatureMatsu Dex</title>
+  <link rel="icon" type="image/png" href="images/icon.png">
+<link rel="stylesheet" href="css/splash-screen.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/sidebar.css">
+<link rel="stylesheet" href="css/left-detail.css">
+<link rel="stylesheet" href="css/grid.css">
+<link rel="stylesheet" href="css/card.css">
+<link rel="stylesheet" href="css/detail.css">
+<link rel="stylesheet" href="css/left-column.css">
+<link rel="stylesheet" href="css/right-column.css">
+<link rel="stylesheet" href="creature-data/creature-style.css">
+<link rel="stylesheet" href="css/extra-icon.css">
+<link rel="stylesheet" href="css/about-popup.css">
+<link rel="stylesheet" href="character-data/character-popup.css">
+<link rel="stylesheet" href="character-data/characters.css">
+<link rel="stylesheet" href="system-data/system-popup.css">
+<link rel="stylesheet" href="system-data/system.css">
+<link rel="stylesheet" href="css/author.css">
+</head>
+<body>
+ 
+   <!-- SPLASH SCREEN -->
+  <div id="splashScreen">
+    <img src="images/creature-logo.png" class="splash-logo">
+
+      <div id="splashTip">
+    Initializing bio-creatures...
+  </div>
+
+  <img src="images/loading.gif" class="splash-loader">
+</div>
+
+<div class="app-container">
+
+<!-- 🔥 SIDEBAR (afuera del layout) -->
+<div class="left-drawer" id="leftDrawer">
+
+  <div class="left-tab" id="leftTab">HOME</div>
+
+  <div class="left-drawer-content">
+
+    <div class="left-logo"></div>
+
+    <button onclick="openAboutPopup()">
+      About
+    </button>
+
+<button onclick="openCharacterPopupFromSidebar()">
+  Character
+</button>
+
+<button onclick="openSystemPopupFromSidebar()">
+  System
+</button>
+
+
+<button class="coming-btn">
+  <span>Pillar Map</span>
+</button>
+
+<!-- <button onclick="window.location.href='pillar-map/pillar-map.html'">
+  <span>Pillar Map</span>
+</button> -->
+
+<button class="coming-btn">
+  <span>Others</span>
+</button>
+
+
+<!-- FOOTER -->
+    <div class="left-footer">
+
+<button class="author-sidebar-btn" onclick="openAuthorPopup()">
+  About Author
+</button>
+
+      <div class="left-socials">
+
+        <a href="https://discord.gg/duMSGXMmh3"
+           target="_blank"
+           class="left-social-btn">
+          <img src="images/socials/discord.png">
+        </a>
+
+        <a href="https://www.instagram.com/creature_matsu/"
+           target="_blank"
+           class="left-social-btn">
+          <img src="images/socials/instagram.png">
+        </a>
+
+        <a href="https://www.instagram.com/froggy.osmt/"
+           target="_blank"
+           class="left-social-btn">
+          <img src="images/socials/frog.png">
+        </a>
+
+      </div>
+
+<button class="report-sidebar-btn"
+onclick="window.open('https://forms.gle/jkJUgkrt3kSRptXdA', '_blank')">
+  Report a Problem
+</button>
+
+      <div class="left-version"></div>
+
+    </div>
+
+  </div>
+
+</div>
+  
+<!-- DEX MAIN -->
+
+<div class="slider" id="slider">
+  <section class="page home-page">
+
+    <div class="home-top-row">
+      <div class="home-top-left"></div>
+
+      <div class="title-wrapper">
+        <div class="title-card">
+          <div class="title-text">CreatureMatsu Dex</div>
+          <img src="images/cmatsu.png" class="title-icon">
+        </div>
+      </div>
+
+      <div class="search-wrapper">
+       <input id="searchInput" class="creature-search" type="text" placeholder="Search creature...">
+
+<button id="filterBtn" class="filter-btn">
+  <img src="images/filter-icon.png" class="filter-icon" alt="Filter">
+</button>
+
+<div id="filterPanel" class="filter-panel hidden">
+
+  <div class="filter-section-title">MATSU</div>
+
+  <label class="filter-option">
+    <input type="checkbox" value="oso" class="matsu-filter">
+    <img src="images/mark-off.png" class="check-img" alt="">
+    <span>OSO</span>
+  </label>
+
+  <label class="filter-option">
+    <input type="checkbox" value="kara" class="matsu-filter">
+    <img src="images/mark-off.png" class="check-img" alt="">
+    <span>KARA</span>
+  </label>
+
+  <label class="filter-option">
+    <input type="checkbox" value="choro" class="matsu-filter">
+    <img src="images/mark-off.png" class="check-img" alt="">
+    <span>CHORO</span>
+  </label>
+
+  <label class="filter-option">
+    <input type="checkbox" value="ichi" class="matsu-filter">
+    <img src="images/mark-off.png" class="check-img" alt="">
+    <span>ICHI</span>
+  </label>
+
+  <label class="filter-option">
+    <input type="checkbox" value="jyushi" class="matsu-filter">
+    <img src="images/mark-off.png" class="check-img" alt="">
+    <span>JYUSHI</span>
+  </label>
+
+  <label class="filter-option">
+    <input type="checkbox" value="todo" class="matsu-filter">
+    <img src="images/mark-off.png" class="check-img" alt="">
+    <span>TODO</span>
+  </label>
+
+  <div class="filter-divider"></div>
+
+  <div class="filter-section-title">PILLAR</div>
+
+  <label class="filter-option">
+    <input type="checkbox" value="sextuplets" class="pillar-filter">
+    <img src="images/mark-off.png" class="check-img" alt="">
+    <span>SEXTUPLETS</span>
+  </label>
+
+  <label class="filter-option">
+    <input type="checkbox" value="origins" class="pillar-filter">
+    <img src="images/mark-off.png" class="check-img" alt="">
+    <span>ORIGINS</span>
+  </label>
+
+  <!--
+  <label class="filter-option">
+    <input type="checkbox" value="variations" class="pillar-filter">
+    <img src="images/mark-off.png" class="check-img" alt="">
+    <span>VARIATIONS</span>
+  </label>
+  -->
+
+  <!--
+  <label class="filter-option">
+    <input type="checkbox" value="variations2" class="pillar-filter">
+    <img src="images/mark-off.png" class="check-img" alt="">
+    <span>VARIATIONS 2</span>
+  </label>
+  -->
+
+  <!--
+  <label class="filter-option">
+    <input type="checkbox" value="variations3" class="pillar-filter">
+    <img src="images/mark-off.png" class="check-img" alt="">
+    <span>VARIATIONS 3</span>
+  </label>
+  -->
+
+    <!--
+  <label class="filter-option">
+    <input type="checkbox" value="variations4" class="pillar-filter">
+    <img src="images/mark-off.png" class="check-img" alt="">
+    <span>VARIATIONS 4</span>
+  </label>
+  -->
+
+  <!--
+  <label class="filter-option">
+    <input type="checkbox" value="variations5" class="pillar-filter">
+    <img src="images/mark-off.png" class="check-img" alt="">
+    <span>VARIATIONS 5</span>
+  </label>
+  -->
+  
+  <!--
+  <label class="filter-option">
+    <input type="checkbox" value="variations6" class="pillar-filter">
+    <img src="images/mark-off.png" class="check-img" alt="">
+    <span>VARIATIONS 6</span>
+  </label>
+  -->
+
+  <div class="filter-divider"></div>
+
+  <button id="applyFilterBtn" class="apply-filter-btn">OK</button>
+
+</div>
+
+      </div>
+    </div>
+
+    <div class="dex-area">
+      <div class="side-bar left-bar"></div>
+      <div class="grid" id="grid"></div>
+      <div class="side-bar right-bar"></div>
+    </div>
+
+    <div id="noCreatureFound" class="no-creature-found">
+  No Creature Found
+</div>
+
+  </section>
+
+<!-- DETAIL CONTENT (RIGHT) -->    
+
+<section class="page detail-page">
+  <button class="back-button-pc" id="backButtonPC" onclick="closeDetail()">
+    BACK
+  </button>
+
+  <div class="detail-content" id="detailContent"></div>
+</section>
+
+  </div>
+</div>
+
+<script src="js/splash.js"></script>
+<script src="version.js"></script>
+<script src="creature-data/sextuplets.js"></script>
+<script src="creature-data/first-pillar/elemental.js"></script>
+<script src="creature-data/first-pillar/status.js"></script>
+<script src="creature-data/first-pillar/tool.js"></script>
+<script src="creature-data/first-pillar/craft.js"></script>
+<script src="creature-data/first-pillar/combat.js"></script>
+<script src="creature-data/first-pillar/worker.js"></script>
+<script src="creature-data/dex.js"></script>
+<script src="script.js"></script>
+<script src="js/extra-detail.js"></script>
+<script src="js/left-side.js"></script>
+<script src="js/about-popup.js"></script>
+<script src="character-data/character-popup.js"></script>
+<script src="character-data/character-list/sextuplets.js"></script>
+<script src="character-data/character-list/drleezar.js"></script>
+<script src="character-data/character-list/louise.js"></script>
+<script src="character-data/character-list/teseo.js"></script>
+<script src="character-data/characters.js"></script>
+<script src="system-data/system-popup.js"></script>
+<script src="system-data/system-list/pillar.js"></script>
+<script src="system-data/system-list/badge.js"></script>
+<script src="system-data/system-list/matsunian-language.js"></script>
+<script src="system-data/system.js"></script>
+<script src="link.js"></script>
+<script src="js/author.js"></script>
+<script src="js/audio.js"></script>
+
+<div class="character-popup" id="characterPopup">
+  <div class="character-popup-box">
+
+    <div class="character-popup-header">
+      CHARACTER
+      <button class="character-close-btn" onclick="closeCharacterPopup()">
+        BACK
+      </button>
+    </div>
+
+    <div class="character-popup-content">
+  <button class="character-entry-btn" data-character="sextuplets">SEXTUPLETS</button>
+  <button class="character-entry-btn" data-character="drleezar">DR. LEEZAR</button>
+  <button class="character-entry-btn" data-character="louise">LOUISE</button>
+  <button class="character-entry-btn" data-character="teseo">TESEO</button>
+</div>
+
+  </div>
+</div>
+
+<div class="system-popup" id="systemPopup">
+  <div class="system-popup-box">
+
+    <div class="system-popup-header">
+      SYSTEM
+      <button class="system-close-btn" onclick="closeSystemPopup()">
+        BACK
+      </button>
+    </div>
+
+    <div class="system-popup-content">
+      <button class="system-entry-btn" data-system="pillar">PILLAR</button>
+      <button class="system-entry-btn" data-system="badge">BADGE</button>
+      <button class="system-entry-btn" data-system="matsunian-language">MATSUNIAN LANGUAGE</button>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

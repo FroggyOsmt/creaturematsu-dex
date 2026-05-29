@@ -1,0 +1,40 @@
+:root {
+  --side-bar-width: 30px;
+  --side-bar-image: url("../images/bar-x2.png");
+
+  --left-bar-x: center;
+  --right-bar-x: center;
+  --bar-y: top;
+}
+
+.side-bar {
+  width: var(--side-bar-width);
+
+  background-image: var(--side-bar-image);
+  background-repeat: repeat-y;
+  background-size: var(--side-bar-width) auto;
+
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+
+  flex-shrink: 0;
+}
+
+.left-bar {
+  background-position: var(--left-bar-x) var(--bar-y);
+}
+
+.right-bar {
+  background-position: var(--right-bar-x) var(--bar-y);
+}
+
+@media (max-width: 768px) {
+  .side-bar {
+    width: 22.5px !important;
+
+    background-image: url("../images/bar.png") !important;
+    background-size: 22.5px auto !important;
+    background-position: center top !important;
+    background-repeat: repeat-y !important;
+  }
+}

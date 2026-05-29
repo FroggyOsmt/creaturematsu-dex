@@ -1,0 +1,164 @@
+.author-popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(37, 6, 12, 0.72);
+  z-index: 20000;
+
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  padding: 18px;
+  box-sizing: border-box;
+}
+
+.author-popup.active {
+  display: flex;
+}
+
+.author-popup-box {
+      width: min(500px, 92vw);
+  max-height: 82vh;
+
+  background: #4E2D24;
+  border: 3px solid #EFB775;
+  border-radius: 14px;
+
+  box-shadow: 0 0 18px rgba(37, 6, 12, 0.75);
+  overflow: hidden;
+}
+
+.author-popup-header {
+  background: #EFB775;
+  color: #773421;
+
+  padding: 10px 12px;
+
+  font-weight: bold;
+  font-size: 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.author-close-btn {
+  background: #773421;
+  color: #FFE2C1;
+  border: 2px solid #5F2F21;
+  border-radius: 8px;
+
+  padding: 5px 10px;
+
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.author-close-btn:hover {
+  background: #5F2F21;
+}
+
+.author-popup-content {
+  padding: 14px;
+  overflow-y: auto;
+  max-height: calc(82vh - 52px);
+}
+
+.author-card {
+  background: #FFE2C1;
+  color: #773421;
+
+  border-radius: 12px;
+
+  padding: 14px;
+
+  font-size: 15px;
+  line-height: 1.45;
+
+  text-align: center;
+}
+
+.author-card p {
+  margin: 0 0 12px;
+}
+
+.author-card p:last-child {
+  margin-bottom: 0;
+}
+
+.author-thanks {
+  font-weight: bold;
+  text-align: center;
+}
+
+/* ICONO FROGGY - estilo base */
+.author-frog-icon {
+  display: block;
+  width: var(--author-frog-icon-size);
+  height: var(--author-frog-icon-size);
+  object-fit: contain;
+  image-rendering: pixelated;
+  margin: 0px auto 0;
+}
+
+.author-frog-btn {
+  display: block;
+  margin: 8px auto 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+    transition: filter 0.18s ease;
+}
+
+.author-frog-btn:hover {
+    filter:
+    drop-shadow(0 0 2px #ffffff)
+    drop-shadow(0 0 2px #ffffff);
+}
+
+.ribbit-hop {
+  animation: ribbitHop 0.45s ease;
+}
+
+@keyframes ribbitHop {
+  0% { transform: translateY(0) scale(1); }
+  35% { transform: translateY(-6px) scale(1); }
+  40% { transform: translateY(-2px) scale(1); }
+  80% { transform: translateY(0px) scale(1); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+/* ESTILO MÓVIL */
+@media (max-width: 768px) {
+  .author-frog-icon {
+    width: calc(var(--author-frog-icon-size) * 1.4); /* ajusta según se vea bien */
+    height: auto; /* mantiene proporción original de 497x349 */
+    object-fit: contain;
+    image-rendering: pixelated;
+    margin: 8px auto 0;
+  }
+
+  .author-card {
+    font-size: 14px !important;
+  }
+}
+
+/* REPORT */
+/* !!! TEMPORAL !!! */
+.left-drawer-content .report-sidebar-btn {
+    display: block;
+    padding: 4px 5px;
+    background: #FFE2C1;
+    color: #773421;
+    border: 2px solid #5F2F21;
+    border-radius: 5px;
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 9px;
+    cursor: pointer;
+}
+
+.left-drawer-content .report-sidebar-btn:hover {
+  background: #ffb0c9;
+}

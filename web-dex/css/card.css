@@ -1,0 +1,57 @@
+.card {
+  background: #FFE2C1;
+  border-radius: 8px;
+  padding: 4px;
+  text-align: center;
+  cursor: pointer;
+  width: fit-content;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.card img {
+  width: var(--icon-size, 70px);
+  height: var(--icon-size, 70px);
+  aspect-ratio: 1 / 1;
+  display: block;
+  margin: 0 auto;
+  object-fit: contain;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+.card p {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 4px 0 0;
+  color: #A56243;
+}
+
+/* ==== LEFT - RIGHT ==== */
+
+.card.keyboard-target {
+  animation: keyboardCardFlash 0.45s ease !important;
+}
+
+@keyframes keyboardCardFlash {
+  0% {
+    background: #ffffff;
+    transform: scale(1.08);
+    box-shadow: 0 0 14px rgba(255, 255, 255, 0.95);
+  }
+
+  100% {
+    background: #FFE2C1;
+    transform: scale(1);
+    box-shadow: none;
+  }
+}
+
+/* ==== MOBILE ==== */
+
+@media (max-width: 768px) {
+
+  .card p {
+    font-size: 11px;
+  }
+}
