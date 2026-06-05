@@ -1,4 +1,4 @@
-md# MatsuDex Source
+# MatsuDex Source
 
 This document is the internal source reference for the CreatureMatsu Dex project.
 
