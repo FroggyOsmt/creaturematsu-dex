@@ -129,15 +129,6 @@ transition:
   background: #FFE2C1;
 }
 
-@media (max-width: 768px) {
-	
-  .left-tab {
-	 top: 200px !important;
-   right: -25px !important;
-   width: 23px !important;
- }
-}
-
 /* ===== ABOUT AUTOR ===== */
 
 .left-drawer-content .author-sidebar-btn {
@@ -249,4 +240,28 @@ transition:
 
 .coming-btn:hover::after {
   opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .left-drawer {
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    overflow: hidden !important;
+  }
+
+  .left-drawer-content {
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+
+    padding-bottom: calc(14px + env(safe-area-inset-bottom)) !important;
+    -webkit-overflow-scrolling: touch;
+  }
+	
+  .left-tab {
+	 top: 200px !important;
+   right: -25px !important;
+   width: 23px !important;
+ }
 }
