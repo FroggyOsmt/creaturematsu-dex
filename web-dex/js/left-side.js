@@ -32,7 +32,7 @@ document.addEventListener(
   (event) => {
     if (!drawer.classList.contains("open")) return;
 
-    /* El sidebar puede recibir toque */
+    /* El sidebar puede recibir toque*/
     if (drawer.contains(event.target)) return;
 
     /* Character/System pueden scrollear */
