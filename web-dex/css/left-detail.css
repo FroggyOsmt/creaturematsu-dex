@@ -294,7 +294,7 @@ transition:
   }
 }
 
-/* Bloquea la pantalla principal cuando el sidebar está abierto */
+/* Bloquea la pantalla principal cuando el sidebar está abierto*/
 html.drawer-locked,
 body.drawer-locked {
   overflow: hidden !important;
