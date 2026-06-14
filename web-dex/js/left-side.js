@@ -1,11 +1,17 @@
 const drawer = document.getElementById("leftDrawer");
 const tab = document.getElementById("leftTab");
 
-function syncDrawerLock() {
-  const isOpen = drawer.classList.contains("open");
+function isMobileSidebarMode() {
+  return window.matchMedia("(max-width: 768px)").matches;
+}
 
-  document.documentElement.classList.toggle("drawer-locked", isOpen);
-  document.body.classList.toggle("drawer-locked", isOpen);
+function syncDrawerLock() {
+  const shouldLock =
+    drawer.classList.contains("open") &&
+    isMobileSidebarMode();
+
+  document.documentElement.classList.toggle("drawer-locked", shouldLock);
+  document.body.classList.toggle("drawer-locked", shouldLock);
 }
 
 function isAllowedPopupScroll(target) {
@@ -27,18 +33,17 @@ tab.addEventListener("click", () => {
   syncDrawerLock();
 });
 
+window.addEventListener("resize", syncDrawerLock);
+
 document.addEventListener(
   "touchmove",
   (event) => {
     if (!drawer.classList.contains("open")) return;
+    if (!isMobileSidebarMode()) return;
 
-    /* El sidebar puede recibir toque*/
     if (drawer.contains(event.target)) return;
-
-    /* Character/System pueden scrollear */
     if (isAllowedPopupScroll(event.target)) return;
 
-    /* El fondo principal queda bloqueado */
     event.preventDefault();
   },
   { passive: false }

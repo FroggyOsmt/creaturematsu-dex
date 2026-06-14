@@ -247,13 +247,13 @@ transition:
     height: 100vh !important;
     height: 100svh !important;
     max-height: 100svh !important;
-    overflow: visible !important; /* deja ver HOME */
+    overflow: visible !important;
   }
 
   .left-drawer-content {
     height: 100% !important;
     max-height: 100% !important;
-    overflow: hidden !important; /* no se mueve arriba/abajo */
+    overflow: hidden !important;
 
     padding-top: 10px !important;
     padding-bottom: calc(10px + env(safe-area-inset-bottom)) !important;
@@ -292,27 +292,27 @@ transition:
   .left-tab {
     z-index: 10001 !important;
   }
-}
 
-/* Bloquea la pantalla principal cuando el sidebar está abierto*/
-html.drawer-locked,
-body.drawer-locked {
-  overflow: hidden !important;
-  overscroll-behavior: none !important;
-}
+  /* Bloquea la pantalla principal SOLO en móvil */
+  html.drawer-locked,
+  body.drawer-locked {
+    overflow: hidden !important;
+    overscroll-behavior: none !important;
+  }
 
-body.drawer-locked .app-container,
-body.drawer-locked .slider,
-body.drawer-locked .home-page {
-  overflow: hidden !important;
-  overscroll-behavior: none !important;
-}
+  body.drawer-locked .app-container,
+  body.drawer-locked .slider,
+  body.drawer-locked .home-page {
+    overflow: hidden !important;
+    overscroll-behavior: none !important;
+  }
 
-/* Permitir scroll dentro de About, Character y System */
-.about-bg,
-.about-content,
-.characters-bg,
-.system-page-bg {
-  touch-action: pan-y !important;
-  -webkit-overflow-scrolling: touch;
+  /* Permitir scroll dentro de About, Character y System */
+  .about-bg,
+  .about-content,
+  .characters-bg,
+  .system-page-bg {
+    touch-action: pan-y !important;
+    -webkit-overflow-scrolling: touch;
+  }
 }
