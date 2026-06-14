@@ -266,8 +266,6 @@ transition:
   }
 
   .left-drawer-content button {
-    padding: 10px !important;
-    font-size: 16px !important;
     flex-shrink: 0 !important;
   }
 
@@ -301,4 +299,20 @@ html.drawer-locked,
 body.drawer-locked {
   overflow: hidden !important;
   overscroll-behavior: none !important;
+}
+
+body.drawer-locked .app-container,
+body.drawer-locked .slider,
+body.drawer-locked .home-page {
+  overflow: hidden !important;
+  overscroll-behavior: none !important;
+}
+
+/* Permitir scroll dentro de About, Character y System */
+.about-bg,
+.about-content,
+.characters-bg,
+.system-page-bg {
+  touch-action: pan-y !important;
+  -webkit-overflow-scrolling: touch;
 }
