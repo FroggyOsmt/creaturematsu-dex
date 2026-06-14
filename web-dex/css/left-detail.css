@@ -258,10 +258,4 @@ transition:
     padding-bottom: calc(14px + env(safe-area-inset-bottom)) !important;
     -webkit-overflow-scrolling: touch;
   }
-	
-  .left-tab {
-	 top: 200px !important;
-   right: -25px !important;
-   width: 23px !important;
- }
 }
