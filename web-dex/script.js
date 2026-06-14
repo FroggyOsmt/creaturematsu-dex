@@ -261,7 +261,10 @@ detailContent.innerHTML = `
 
 <div class="detail-nav-pc">
   ${prevCreature ? `
-    <div class="detail-nav-card">◀ #${prevCreature.id} - ${prevCreature.name}</div>
+    <div class="detail-nav-card detail-nav-prev">
+      <img src="images/arrow-left1.png" class="detail-nav-icon" alt="">
+      <span>#${prevCreature.id} - ${prevCreature.name}</span>
+    </div>
   ` : ""}
 
   ${prevCreature && nextCreature ? `
@@ -269,7 +272,10 @@ detailContent.innerHTML = `
   ` : ""}
 
   ${nextCreature ? `
-    <div class="detail-nav-card">#${nextCreature.id} - ${nextCreature.name} ▶</div>
+    <div class="detail-nav-card detail-nav-next">
+      <span>#${nextCreature.id} - ${nextCreature.name}</span>
+      <img src="images/arrow-right1.png" class="detail-nav-icon" alt="">
+    </div>
   ` : ""}
 </div>
 </div>
@@ -283,7 +289,8 @@ detailContent.innerHTML = `
   <div class="detail-nav-mobile-card">
     ${prevCreature ? `
       <button class="detail-nav-mobile-btn" onclick="openDetailById('${prevCreature.id}')">
-        ◀ #${prevCreature.id}
+        <img src="images/arrow-left1.png" class="detail-nav-mobile-icon" alt="">
+        <span>#${prevCreature.id}</span>
       </button>
     ` : ""}
 
@@ -293,7 +300,8 @@ detailContent.innerHTML = `
 
     ${nextCreature ? `
       <button class="detail-nav-mobile-btn" onclick="openDetailById('${nextCreature.id}')">
-        #${nextCreature.id} ▶
+        <span>#${nextCreature.id}</span>
+        <img src="images/arrow-right1.png" class="detail-nav-mobile-icon" alt="">
       </button>
     ` : ""}
   </div>
