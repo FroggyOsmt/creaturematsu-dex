@@ -246,16 +246,20 @@ transition:
   .left-drawer {
     height: 100dvh !important;
     max-height: 100dvh !important;
-    overflow: hidden !important;
+    overflow: visible !important; /* importante: no cortar HOME */
   }
 
   .left-drawer-content {
-    height: 100dvh !important;
+    height: 100% !important;
     max-height: 100dvh !important;
     overflow-y: auto !important;
     overflow-x: hidden !important;
 
     padding-bottom: calc(14px + env(safe-area-inset-bottom)) !important;
     -webkit-overflow-scrolling: touch;
+  }
+
+  .left-tab {
+    z-index: 10001 !important;
   }
 }
