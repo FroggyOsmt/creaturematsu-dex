@@ -376,8 +376,6 @@ z-index: 99999999;
   height: var(--extra-gallery-arrow-icon-size, 34px);
   aspect-ratio: 1 / 1;
   object-fit: contain;
-  image-rendering: pixelated;
-  image-rendering: crisp-edges;
   display: block;
 }
 

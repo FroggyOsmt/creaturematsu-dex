@@ -262,8 +262,6 @@ display: none;
   height: var(--back-icon-size, 29px);
   aspect-ratio: 1 / 1;
   object-fit: contain;
-  image-rendering: pixelated;
-  image-rendering: crisp-edges;
   display: block !important;
 }
 
