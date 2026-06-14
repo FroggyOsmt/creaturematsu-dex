@@ -244,22 +244,61 @@ transition:
 
 @media (max-width: 768px) {
   .left-drawer {
-    height: 100dvh !important;
-    max-height: 100dvh !important;
-    overflow: visible !important; /* importante: no cortar HOME */
+    height: 100vh !important;
+    height: 100svh !important;
+    max-height: 100svh !important;
+    overflow: visible !important; /* deja ver HOME */
   }
 
   .left-drawer-content {
     height: 100% !important;
-    max-height: 100dvh !important;
-    overflow-y: auto !important;
-    overflow-x: hidden !important;
+    max-height: 100% !important;
+    overflow: hidden !important; /* no se mueve arriba/abajo */
 
-    padding-bottom: calc(14px + env(safe-area-inset-bottom)) !important;
-    -webkit-overflow-scrolling: touch;
+    padding-top: 10px !important;
+    padding-bottom: calc(10px + env(safe-area-inset-bottom)) !important;
+    gap: 10px !important;
+  }
+
+  .left-logo {
+    height: 110px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .left-drawer-content button {
+    padding: 10px !important;
+    font-size: 16px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .left-footer {
+    margin-top: auto !important;
+    gap: 6px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .left-social-btn {
+    width: 38px !important;
+    height: 38px !important;
+  }
+
+  .left-social-btn img {
+    width: 33px !important;
+    height: 33px !important;
+  }
+
+  .left-version {
+    font-size: 13px !important;
   }
 
   .left-tab {
     z-index: 10001 !important;
   }
+}
+
+/* Bloquea la pantalla principal cuando el sidebar está abierto */
+html.drawer-locked,
+body.drawer-locked {
+  overflow: hidden !important;
+  overscroll-behavior: none !important;
 }
