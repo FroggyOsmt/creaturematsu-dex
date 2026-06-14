@@ -8,6 +8,20 @@ function syncDrawerLock() {
   document.body.classList.toggle("drawer-locked", isOpen);
 }
 
+function isAllowedPopupScroll(target) {
+  return target.closest(
+    ".about-bg, " +
+    ".about-content, " +
+    ".about-popup-overlay, " +
+    ".characters-bg, " +
+    ".system-page-bg, " +
+    ".character-popup, " +
+    ".system-popup, " +
+    ".characters-popup-overlay, " +
+    ".system-page-overlay"
+  );
+}
+
 tab.addEventListener("click", () => {
   drawer.classList.toggle("open");
   syncDrawerLock();
@@ -18,9 +32,14 @@ document.addEventListener(
   (event) => {
     if (!drawer.classList.contains("open")) return;
 
-    if (!drawer.contains(event.target)) {
-      event.preventDefault();
-    }
+    /* El sidebar puede recibir toque */
+    if (drawer.contains(event.target)) return;
+
+    /* Character/System pueden scrollear */
+    if (isAllowedPopupScroll(event.target)) return;
+
+    /* El fondo principal queda bloqueado */
+    event.preventDefault();
   },
   { passive: false }
 );
