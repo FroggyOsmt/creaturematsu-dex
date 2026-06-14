@@ -129,15 +129,6 @@ transition:
   background: #FFE2C1;
 }
 
-@media (max-width: 768px) {
-	
-  .left-tab {
-	 top: 200px !important;
-   right: -25px !important;
-   width: 23px !important;
- }
-}
-
 /* ===== ABOUT AUTOR ===== */
 
 .left-drawer-content .author-sidebar-btn {
@@ -249,4 +240,79 @@ transition:
 
 .coming-btn:hover::after {
   opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .left-drawer {
+    height: 100vh !important;
+    height: 100svh !important;
+    max-height: 100svh !important;
+    overflow: visible !important; /* deja ver HOME */
+  }
+
+  .left-drawer-content {
+    height: 100% !important;
+    max-height: 100% !important;
+    overflow: hidden !important; /* no se mueve arriba/abajo */
+
+    padding-top: 10px !important;
+    padding-bottom: calc(10px + env(safe-area-inset-bottom)) !important;
+    gap: 10px !important;
+  }
+
+  .left-logo {
+    height: 110px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .left-drawer-content button {
+    flex-shrink: 0 !important;
+  }
+
+  .left-footer {
+    margin-top: auto !important;
+    gap: 6px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .left-social-btn {
+    width: 38px !important;
+    height: 38px !important;
+  }
+
+  .left-social-btn img {
+    width: 33px !important;
+    height: 33px !important;
+  }
+
+  .left-version {
+    font-size: 13px !important;
+  }
+
+  .left-tab {
+    z-index: 10001 !important;
+  }
+}
+
+/* Bloquea la pantalla principal cuando el sidebar está abierto*/
+html.drawer-locked,
+body.drawer-locked {
+  overflow: hidden !important;
+  overscroll-behavior: none !important;
+}
+
+body.drawer-locked .app-container,
+body.drawer-locked .slider,
+body.drawer-locked .home-page {
+  overflow: hidden !important;
+  overscroll-behavior: none !important;
+}
+
+/* Permitir scroll dentro de About, Character y System */
+.about-bg,
+.about-content,
+.characters-bg,
+.system-page-bg {
+  touch-action: pan-y !important;
+  -webkit-overflow-scrolling: touch;
 }
