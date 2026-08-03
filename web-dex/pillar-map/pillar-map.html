@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    @font-face {
+      font-family: "CreatureFont";
+      src: url("../fonts/hp_simplified_rg.ttf") format("truetype");
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    * {
+      font-family: "CreatureFont", sans-serif;
+    }
+  </style>
+
+  <link rel="stylesheet" href="pillar-map.css">
+  <link rel="stylesheet" href="details/pillar-detail.css">
+  <link rel="stylesheet" href="details/detail-info.css">
+  <link rel="stylesheet" href="details/category-detail.css">
+  <link rel="stylesheet" href="details/markdown.css?v=20260803-image-zoom">
+</head>
+
+<body class="pillar-page">
+
+  <main class="pillar-slider">
+
+    <!-- PÁGINA PRINCIPAL -->
+    <section class="page home-page active">
+
+      <div class="pillar-map-wrap">
+
+    <div class="pillar-roof">
+      <svg class="pillar-roof-svg" viewBox="0 0 620 145" preserveAspectRatio="none" aria-hidden="true">
+    <path
+      d="
+      M312 19
+      Q314 19 317 20
+      L610 110
+      C613 111 616 112 616 117
+      V138
+      C616 142 613 142 609 142
+      H11C7 142 4 142 4 138
+      V117C4 112 7 111 10 110
+      L305 20
+      Q308 19 310 19 Z
+      "
+    />
+  </svg>
+
+      <a
+        class="pillar-roof-title"
+        href="../index.html"
+        aria-label="Back to home"
+        data-tooltip="BACK TO HOME"
+      >
+        CREATUREMATSU
+      </a>
+    </div>
+
+    <!-- DECORATION CARD TOP -->
+    <div class="pillar-deco-card pillar-deco-top"></div>
+
+    <!-- PILLAR BUTTONS -->
+    <nav class="pillar-buttons">
+      <button data-pillar="1">PILLAR 1</button>
+      <button data-pillar="2">PILLAR 2</button>
+      <button data-pillar="3" disabled>PILLAR 3</button>
+      <button data-pillar="4" disabled>PILLAR 4</button>
+      <button data-pillar="5" disabled>PILLAR 5</button>
+      
+      <!--  <button data-pillar="6">PILLAR 6</button>  -->
+
+      <nav class="pillar-buttons-6"></nav>
+    </nav>
+
+    <!-- MAP -->
+    <section class="pillar-columns">
+
+      <!-- PILLAR 1 -->
+      <div class="pillar-column pillar-1">
+
+        <button
+          class="pillar-drum-btn"
+          data-category="worker"
+          data-drum-code="1F"
+        >
+          <img src="column-drums/1F.png" class="pillar-drum" alt="Worker">
+        </button>
+
+        <button
+          class="pillar-drum-btn"
+          data-category="combat"
+          data-drum-code="1E"
+        >
+          <img src="column-drums/1E.png" class="pillar-drum" alt="Combat">
+        </button>
+
+        <button
+          class="pillar-drum-btn"
+          data-category="craft"
+          data-drum-code="1D"
+        >
+          <img src="column-drums/1D.png" class="pillar-drum" alt="Craft">
+        </button>
+
+        <button
+          class="pillar-drum-btn"
+          data-category="tool"
+          data-drum-code="1C"
+        >
+          <img src="column-drums/1C.png" class="pillar-drum" alt="Tool">
+        </button>
+
+        <button
+          class="pillar-drum-btn"
+          data-category="status"
+          data-drum-code="1B"
+        >
+          <img src="column-drums/1B.png" class="pillar-drum" alt="Status">
+        </button>
+
+        <button
+          class="pillar-drum-btn"
+          data-category="elemental"
+          data-drum-code="1A"
+        >
+          <img src="column-drums/1A.png" class="pillar-drum" alt="Elemental">
+        </button>
+
+      </div>
+
+      <!-- PILLAR 2 -->
+      <div class="pillar-column pillar-2">
+
+        <button
+          type="button"
+          class="pillar-drum-btn"
+          data-drum-code="2F"
+          aria-disabled="true"
+          tabindex="-1"
+        >
+          <img src="column-drums/2F.png" class="pillar-drum" alt="2F">
+        </button>
+
+        <button
+          type="button"
+          class="pillar-drum-btn"
+          data-drum-code="2E"
+          aria-disabled="true"
+          tabindex="-1"
+        >
+          <img src="column-drums/2E.png" class="pillar-drum" alt="2E">
+        </button>
+
+        <button
+          type="button"
+          class="pillar-drum-btn"
+          data-drum-code="2D"
+          aria-disabled="true"
+          tabindex="-1"
+        >
+          <img src="column-drums/2D.png" class="pillar-drum" alt="2D">
+        </button>
+
+        <button
+          type="button"
+          class="pillar-drum-btn"
+          data-drum-code="2C"
+          aria-disabled="true"
+          tabindex="-1"
+        >
+          <img src="column-drums/2C.png" class="pillar-drum" alt="2C">
+        </button>
+
+        <button
+          type="button"
+          class="pillar-drum-btn"
+          data-drum-code="2B"
+          aria-disabled="true"
+          tabindex="-1"
+        >
+          <img src="column-drums/2B.png" class="pillar-drum" alt="2B">
+        </button>
+
+        <button
+          type="button"
+          class="pillar-drum-btn"
+          data-drum-code="2A"
+          aria-disabled="true"
+          tabindex="-1"
+        >
+          <img src="column-drums/2A.png" class="pillar-drum" alt="2A">
+        </button>
+
+      </div>
+
+      <!-- PILLAR 3 -->
+      <div class="pillar-column pillar-3">
+        <img src="column-drums/top-unknown.png" class="pillar-unknown" alt="Unknown">
+        <img src="column-drums/mid-unknown.png" class="pillar-unknown" alt="Unknown">
+        <img src="column-drums/mid-unknown.png" class="pillar-unknown" alt="Unknown">
+        <img src="column-drums/mid-unknown.png" class="pillar-unknown" alt="Unknown">
+        <img src="column-drums/mid-unknown.png" class="pillar-unknown" alt="Unknown">
+        <img src="column-drums/bottom-unknown.png" class="pillar-unknown" alt="Unknown">
+      </div>
+
+      <!-- PILLAR 4 -->
+      <div class="pillar-column pillar-4">
+        <img src="column-drums/top-unknown.png" class="pillar-unknown" alt="Unknown">
+        <img src="column-drums/mid-unknown.png" class="pillar-unknown" alt="Unknown">
+        <img src="column-drums/mid-unknown.png" class="pillar-unknown" alt="Unknown">
+        <img src="column-drums/mid-unknown.png" class="pillar-unknown" alt="Unknown">
+        <img src="column-drums/mid-unknown.png" class="pillar-unknown" alt="Unknown">
+        <img src="column-drums/bottom-unknown.png" class="pillar-unknown" alt="Unknown">
+      </div>
+
+      <!-- PILLAR 5 -->
+      <div class="pillar-column pillar-5">
+        <img src="column-drums/top-unknown.png" class="pillar-unknown" alt="Unknown">
+        <img src="column-drums/mid-unknown.png" class="pillar-unknown" alt="Unknown">
+        <img src="column-drums/mid-unknown.png" class="pillar-unknown" alt="Unknown">
+        <img src="column-drums/mid-unknown.png" class="pillar-unknown" alt="Unknown">
+        <img src="column-drums/mid-unknown.png" class="pillar-unknown" alt="Unknown">
+        <img src="column-drums/bottom-unknown.png" class="pillar-unknown" alt="Unknown">
+      </div>
+
+      <!-- PILLAR 6 -->
+      <div class="pillar-column pillar-6">
+        <img src="column-drums/top-unknown.png" class="pillar-unknown" alt="Unknown">
+        <img src="column-drums/mid-unknown.png" class="pillar-unknown" alt="Unknown">
+        <img src="column-drums/mid-unknown.png" class="pillar-unknown" alt="Unknown">
+        <img src="column-drums/mid-unknown.png" class="pillar-unknown" alt="Unknown">
+        <img src="column-drums/mid-unknown.png" class="pillar-unknown" alt="Unknown">
+        <img src="column-drums/bottom-unknown.png" class="pillar-unknown" alt="Unknown">
+      </div>
+
+    </section>
+
+    <div class="pillar-wall"></div>
+
+    <!-- DECORATION CARD BOTTOM -->
+    <div class="pillar-deco-card pillar-deco-bottom"></div>
+
+     </div>
+
+    </section>
+
+    <section class="page detail-page" aria-hidden="true">
+
+      <button
+        type="button"
+        class="pillar-detail-back"
+        data-detail-back
+      >
+        BACK
+      </button>
+
+      <div class="detail-content">
+        <!-- Próximamente: información del pilar o tambor -->
+      </div>
+
+    </section>
+
+  </main>
+
+<script src="pillar-map.js"></script>
+
+<script src="pillars/origins.js"></script>
+<script src="pillars/novice.js"></script>
+
+<script src="pillars/categories/origins/1-elemental.js"></script>
+<script src="pillars/categories/origins/2-status.js"></script>
+<script src="pillars/categories/origins/3-tool.js"></script>
+<script src="pillars/categories/origins/4-craft.js"></script>
+<script src="pillars/categories/origins/5-combat.js"></script>
+<script src="pillars/categories/origins/6-worker.js"></script>
+
+<script src="details/markdown.js?v=20260803-image-zoom"></script>
+<script src="details/category-detail.js"></script>
+<script src="details/detail-info.js"></script>
+<script src="details/pillar-detail.js"></script>
+<script src="../js/audio.js"></script>
+
+</body>
+
+</html>

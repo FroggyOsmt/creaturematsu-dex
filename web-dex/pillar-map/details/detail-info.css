@@ -1,0 +1,603 @@
+/* ========================================
+   LARGE DETAIL HEADER
+======================================== */
+
+.pillar-detail-preview {
+  width: min(700px, 90%);
+      margin: 0px auto;
+    margin-bottom: 20px;
+  padding: 15px;
+
+  background: #FFE2C1;
+  border: 4px solid #A5643C;
+  border-radius: 15px;
+
+  box-sizing: border-box;
+
+  color: #7A3A25;
+  text-align: center;
+    flex: 0 0 auto;
+}
+
+.pillar-detail-type {
+  margin-bottom: 6px;
+
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 2px;
+
+  opacity: 0.75;
+}
+
+.pillar-detail-title {
+  margin: 0;
+
+  font-size: 36px;
+  line-height: 1;
+}
+
+.pillar-detail-category {
+  margin-top: 6px;
+
+  color: #A56243;
+  font-size: 15px;
+  font-weight: bold;
+  font-style: italic;
+}
+
+/* ========================================
+   DETAIL INFORMATION — DESKTOP
+======================================== */
+
+.detail-info {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  height: 100%;
+
+  min-height: 0;
+}
+
+
+/* ========================================
+   TWO COLUMNS
+======================================== */
+
+.detail-info-columns {
+display: grid;
+    grid-template-columns: minmax(0, 50fr) minmax(0, 50fr);
+    gap: 12px;
+    width: min(700px, 90%);
+    margin: 0 auto 0;
+    box-sizing: border-box;
+    align-items: start;
+}
+
+.detail-info-left,
+.detail-info-right {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  min-width: 0;
+}
+
+/* ========================================
+   PILLAR IMAGE — LEFT COLUMN
+======================================== */
+
+.detail-pillar-image {
+width: 100%;
+    padding: 10px;
+    background: #FFE2C1;
+    border-radius: 12px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+        border-radius: 6px;
+}
+
+.detail-pillar-image img {
+display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    aspect-ratio: 1;
+}
+
+
+/* ========================================
+   PILLAR DATA — LEFT COLUMN
+======================================== */
+
+.detail-pillar-data {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  width: 100%;
+}
+
+.detail-pillar-data-row {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+
+  width: 100%;
+
+  overflow: hidden;
+
+  background: #5F2F21;
+  border-radius: 8px;
+}
+
+.detail-pillar-data-label {
+    display: flex;
+    align-items: center;
+    padding: 7px 8px;
+    background: #EFB775;
+    color: #A65F40;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.detail-pillar-data-value {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    padding: 5px 10px 5px 9px;
+    color: #EFB775;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* ========================================
+   CATEGORY LIST — RIGHT COLUMN
+======================================== */
+
+.detail-category-list {
+display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding: 10px;
+}
+
+.detail-category-item {
+  display: grid;
+  grid-template-columns:
+    44px
+    minmax(0, 1fr)
+    44px;
+
+  width: 100%;
+  min-height: 44px;
+
+  padding: 2px 1px 1px 0px;
+
+  background: transparent;
+
+  box-sizing: border-box;
+}
+
+/* MIDDLE BLOCK */
+
+.detail-category-middle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-width: 0;
+  padding: 8px 10px;
+  background: #FFE2C1;
+  color: #8E422C;
+  box-sizing: border-box;
+}
+
+.category-detail-middle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-width: 0;
+  padding: 8px 10px;
+  background: #FFE2C1;
+  color: #8E422C;
+  box-sizing: border-box;
+}
+
+/* LEFT AND RIGHT BLOCKS */
+
+.detail-category-side {
+  display: flex;
+  align-items: stretch;
+
+  min-width: 0;
+  min-height: 44px;
+
+  overflow: hidden;
+
+  border-radius: 8px;
+}
+
+.detail-category-item .detail-category-icon:first-child {
+  border-radius: 8px 0 0 8px;
+}
+
+.detail-category-item .detail-category-icon:last-child {
+  border-radius: 0 8px 8px 0;
+}
+
+/* COLOR BLOCKS */
+
+.detail-category-icon {
+  display: block;
+
+  width: 44px;
+  min-height: 44px;
+
+  background: var(--category-color);
+
+  box-sizing: border-box;
+}
+
+/* IMAGE ICON */
+
+.detail-category-icon-left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+}
+
+.detail-category-icon-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+}
+
+.detail-category-icon-image {
+    display: block;
+    width: 29px;
+    height: 29px;
+    object-fit: contain;
+    border-radius: 4px;
+    image-rendering: pixelated;
+}
+
+/* CATEGORY NAME */
+
+.category-detail-name {
+  min-width: 0;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.detail-category-name {
+  min-width: 0;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+/* DEX RANGE */
+
+.detail-category-range {
+  flex-shrink: 0;
+
+  color: #A65F40;
+
+  font-size: 13px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+/* ========================================
+   INFORMATION SECTIONS — RIGHT COLUMN
+======================================== */
+
+.detail-info-section {
+  width: 100%;
+  min-width: 0;
+}
+
+.detail-info-section-title {
+display: table;
+    text-align: left;
+    width: fit-content;
+    padding: 7px 10px;
+    background: #EFB775;
+    color: #A65F40;
+    border-radius: 8px 8px 0px 0px;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 1;
+    justify-items: flex-start;
+    box-sizing: border-box;
+    max-width: 100%;
+}
+
+.detail-info-section-body {
+    width: 100%;
+    min-height: 76px;
+    padding: 10px 12px;
+    background: #5F2F21;
+    color: #EFB775;
+    border-radius: 0 8px 8px 8px;
+    box-sizing: border-box;
+    font-size: 11px;
+    line-height: 1.25;
+}
+
+/* ========================================
+   FULL-WIDTH INFORMATION — BOTTOM
+======================================== */
+
+.detail-info-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  width: min(700px, 90%);
+  margin: 14px auto 25px;
+
+  box-sizing: border-box;
+}
+
+/* ========================================
+   DETAIL CONTENT — SCROLLBAR
+======================================== */
+
+.detail-info-scroll {
+  flex: 1;
+  min-height: 0;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+margin-left: 5px;
+}
+
+
+.detail-info-scroll::-webkit-scrollbar {
+  width: 5px;
+}
+
+.detail-info-scroll::-webkit-scrollbar-track {
+  background: #5F2F21;
+}
+
+.detail-info-scroll::-webkit-scrollbar-thumb {
+  background-color: rgba(239, 183, 117, 0.5);
+
+  border: none;
+  border-radius: 6px;
+
+  transition: background-color 0.25s ease;
+  -webkit-appearance: none;
+}
+
+.detail-info-scroll::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(239, 183, 117, 1);
+  cursor: pointer;
+}
+
+/* ========================================
+   CORE THEME — BULLET LIST
+======================================== */
+
+.detail-core-theme-list {
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+  font-size: 12px;
+}
+
+.detail-core-theme-list li {
+  position: relative;
+
+  margin: 2px 0;
+  padding-left: 10px;
+
+  line-height: 1.31;
+}
+
+.detail-core-theme-list li::before {
+  content: "•";
+
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+/* ========================================
+   DETAIL TABLE OF CONTENTS
+======================================== */
+
+.detail-toc {
+  margin: 0 auto 24px;
+  box-sizing: border-box;
+}
+
+.detail-toc-title {
+  color: #FFE2C1;
+  font-size: 16px;
+  margin-bottom: 6px;
+  font-family: "CreatureFont", sans-serif;
+}
+
+.detail-toc-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.detail-toc-link {
+  background: #411C13;
+  color: #EFB775;
+
+  border: 2px solid #A56243;
+  border-radius: 8px;
+
+  padding: 4px 10px;
+
+  font-family: inherit;
+  font-size: 12px;
+
+  cursor: pointer;
+}
+
+.detail-toc-link:hover {
+  background: #EFB775;
+  color: #773421;
+}
+
+
+/* ========================================
+   DETAIL SECTION TITLE + TOP BUTTON
+======================================== */
+
+.detail-section-title-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+
+  margin-bottom: 0;
+}
+
+.detail-section-title-row .detail-info-section-title {
+  margin-bottom: 0;
+}
+
+.detail-top-btn {
+  opacity: 0;
+  transform: translateY(2px);
+  pointer-events: none;
+  margin-bottom: 5px;
+
+  background: #EFB775;
+  color: #773421;
+
+  border: none;
+  border-radius: 8px;
+  padding: 4px 10px;
+
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease,
+    background 0.12s ease;
+}
+
+.detail-top-btn.active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.detail-top-btn:hover {
+  background: #FFE2C1;
+}
+
+/* ========================================
+   DETAIL LOG CARD — SECTION SPACING
+======================================== */
+
+.detail-log-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.detail-log-section {
+  scroll-margin-top: 2px;
+}
+
+/* ========================================
+   BADGE COLLECTION
+======================================== */
+
+.detail-badge-collection {
+  width: 100%;
+  min-width: 0;
+}
+
+.detail-badge-collection-body {
+  width: 100%;
+  min-height: 76px;
+
+  padding: 10px 12px;
+
+  background: #45281F;
+  color: #EFB775;
+
+  border-radius: 0 8px 8px 8px;
+
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.detail-badge-collection-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  width: 100%;
+}
+
+.detail-badge-collection-image {
+  display: block;
+
+  width: auto;
+  height: auto;
+
+  max-height: 45px;
+
+  object-fit: contain;
+}
+
+.detail-badge-collection-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 5px;
+
+  min-width: 0;
+}
+
+.detail-badge-collection-label {
+  color: #EFB775;
+
+  font-size: 11px;
+  font-weight: bold;
+
+  line-height: 1;
+  text-align: center;
+
+  white-space: nowrap;
+}
+
+@media (max-width: 950px) {
+  .detail-badge-collection-list {
+  flex-wrap: wrap !important;
+    flex-direction: row !important;
+    }
+}

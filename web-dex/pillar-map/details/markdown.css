@@ -1,0 +1,396 @@
+/* ========================================
+   MARKDOWN
+======================================== */
+
+/* **BOLD** */
+
+.detail-info-section-body .md-color {
+  color: #FFE2C1;
+}
+
+
+/* *ITALIC* */
+
+.detail-info-section-body .md-italic {
+  color: #F7CC9B;
+  font-style: italic;
+}
+
+
+/* __UNDERLINE__ */
+
+.detail-info-section-body u {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+
+/* ~~STRIKE~~ */
+
+.detail-info-section-body s {
+  opacity: 0.7;
+}
+
+
+/* LINKS */
+
+.detail-info-section-body .lore-link {
+  color: #F7CC9B;
+
+  text-decoration: underline;
+
+  cursor: pointer;
+
+  transition: color 0.2s ease;
+}
+
+.detail-info-section-body .lore-link:hover {
+  color: #FFFFFF;
+}
+
+
+/* BLOCKQUOTE */
+
+.detail-info-section-body .md-quote {
+  margin: 5px 0 0 10px;
+  padding-left: 10px;
+
+  border-left:
+    2px solid rgba(239, 183, 117, 0.5);
+
+  line-height: 1.3;
+}
+
+
+/* SEPARATOR */
+
+.detail-info-section-body .md-separator {
+  width: 100%;
+  height: 1px;
+
+  margin: 8px 0;
+
+  background: #A56243;
+
+  opacity: 0.7;
+}
+
+
+/* BULLET LIST */
+
+.detail-info-section-body .dex-bullet-list,
+.detail-info-section-body .about-bullet-list {
+  margin: 3px 0;
+  padding-left: 0;
+
+  list-style: none;
+}
+
+.detail-info-section-body
+.dex-bullet-list li,
+.detail-info-section-body
+.about-bullet-list li {
+  position: relative;
+
+  margin: 3px 0;
+  padding-left: 12px;
+
+  line-height: 1.3;
+}
+
+.detail-info-section-body
+.dex-bullet-list li::before,
+.detail-info-section-body
+.about-bullet-list li::before {
+  content: "•";
+
+  position: absolute;
+
+  left: 0;
+  top: 0;
+
+  font-size: 0.9em;
+}
+
+/* SUB-BULLET LIST */
+
+.detail-info-section-body .dex-sub-bullet-list {
+  margin: 3px 0 0;
+  padding-left: 12px;
+
+  list-style: none;
+}
+
+.detail-info-section-body
+.dex-sub-bullet-list li {
+  position: relative;
+
+  margin: 3px 0;
+  padding-left: 12px;
+
+  line-height: 1.3;
+}
+
+.detail-info-section-body
+.dex-sub-bullet-list li::before {
+  content: "▪";
+
+  position: absolute;
+
+  left: 0;
+  top: 0;
+
+  font-size: 0.8em;
+}
+
+/* P */
+
+.detail-info-section-body p {
+  margin: 0;
+}
+
+/* ========================================
+   SPECIAL [md] BLOCK
+======================================== */
+
+.detail-info-section-body .markdown {
+  margin: 7px 0;
+  padding: 10px 14px;
+
+  background: #1B221D;
+  color: #90FF94;
+
+  border: 3px solid #EFB775;
+  border-radius: 10px;
+
+  font-family:
+    "Cascadia Mono",
+    Consolas,
+    monospace;
+
+  font-size: 12px;
+  line-height: 1.3;
+
+  box-shadow:
+    inset 0 0 12px rgba(0, 0, 0, 0.22);
+
+  text-shadow:
+    0 0 2px rgba(180, 255, 180, 0.06);
+}
+
+.detail-info-section-body .markdown a {
+  color: #B8D8BA;
+  text-decoration: underline;
+}
+
+.detail-info-section-body .markdown a:hover {
+  color: #D6F0D7;
+}
+
+.detail-info-section-body .markdown strong {
+  color: #B7FF68;
+  font-weight: bold;
+}
+
+.detail-info-section-body .markdown em {
+  color: #90FF94;
+  font-style: italic;
+}
+
+.detail-info-section-body
+.markdown .md-separator {
+  width: 100%;
+  height: 1px;
+
+  margin: 10px 0;
+
+  background:
+    linear-gradient(
+      to right,
+      transparent,
+      #90FF94,
+      #90FF94,
+      transparent
+    );
+
+  opacity: 0.25;
+}
+
+
+/* ========================================
+   INLINE IMAGES
+======================================== */
+
+.detail-info-section-body .text-image-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+
+  margin: 10px 0;
+}
+
+.detail-info-section-body .text-image {
+  display: block;
+
+  width: auto;
+  height: auto;
+
+  max-width: 100%;
+  max-height: 320px;
+
+  object-fit: contain;
+
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  filter:
+    drop-shadow(
+      0 6px 8px rgba(0, 0, 0, 0.28)
+    );
+}
+
+.detail-info-section-body .text-image-zoom-trigger {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+}
+
+.detail-info-section-body .text-image {
+  transition: filter 0.22s ease;
+}
+
+.detail-info-section-body .text-image:hover,
+.detail-info-section-body .text-image:focus-visible {
+  filter:
+    drop-shadow(0 0 7px #EFB775)
+    drop-shadow(0 6px 8px rgba(0, 0, 0, 0.28));
+}
+
+
+/* ========================================
+   OPTIONAL FULL IMAGE VIEW
+======================================== */
+
+html.markdown-image-popup-open,
+body.markdown-image-popup-open {
+  overflow: hidden;
+}
+
+.markdown-image-popup-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999999;
+
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+  box-sizing: border-box;
+
+  background: rgba(37, 6, 12, 0.55);
+}
+
+.markdown-image-popup-overlay.open {
+  display: flex;
+}
+
+.markdown-image-popup-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  max-height: 90vh;
+  padding: 12px;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  background: #5F2F21;
+  border: 3px solid #EFB775;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px #25060C;
+}
+
+.markdown-image-popup-view {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  min-height: 0;
+  overflow: auto;
+}
+
+.markdown-image-popup-image {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: calc(90vh - 78px);
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+.markdown-image-popup-back {
+  position: relative;
+  flex: 0 0 auto;
+
+  width: fit-content;
+  margin-top: 12px;
+  padding: 7px 18px;
+
+  background: #EFB775;
+  color: #773421;
+  border: none;
+  border-radius: 8px;
+
+  font-family: "CreatureFont", sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+
+  transition: transform 0.12s ease, background 0.12s ease;
+}
+
+.markdown-image-popup-back:hover,
+.markdown-image-popup-back:focus-visible {
+  background: #FFE2C1;
+  transform: scale(1.04);
+}
+
+
+/* ========================================
+   MATSU TEXT COLORS
+======================================== */
+
+.detail-info-section-body .matsu-text {
+  paint-order: stroke fill;
+}
+
+.detail-info-section-body .matsu-text-oso {
+  color: #F8888E;
+}
+
+.detail-info-section-body .matsu-text-kara {
+  color: #8193E4;
+}
+
+.detail-info-section-body .matsu-text-choro {
+  color: #B8EE6E;
+}
+
+.detail-info-section-body .matsu-text-ichi {
+  color: #B09CD2;
+}
+
+.detail-info-section-body .matsu-text-jyushi {
+  color: #F5E66E;
+}
+
+.detail-info-section-body .matsu-text-todo {
+  color: #F8AEE1;
+}
