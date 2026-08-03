@@ -2,8 +2,8 @@ const pillarData = {
   id: "pillar",
   name: "PILLAR",
   image: [
-  "images/systems/pillar1.png",
-  "images/systems/pillar2.png"
+  "system-data/system-images/pillar1.png",
+  "system-data/system-images/pillar2.png"
 ],
 
   description: `

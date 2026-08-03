@@ -81,9 +81,14 @@
   cursor: pointer;
 
   z-index: 2;
+
+    transition:
+    transform 0.12s ease,
+    background 0.12s ease;
 }
 
 .system-page-back-btn:hover {
+    background: #FFE2C1;
   transform: scale(1.04);
 }
 
@@ -123,7 +128,7 @@
 
 .system-page-image {
   max-width: 100%;
-max-height: 360px;
+max-height: 260px;
 
   width: auto;
   height: auto;

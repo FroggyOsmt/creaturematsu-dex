@@ -28,6 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (target === "pillar") openSystemPage(system.pillar);
       if (target === "badge") openSystemPage(system.badge);
       if (target === "matsunian-language") openSystemPage(system.matsunianLanguage);
+      if (target === "creature-icon") openSystemPage(system.creatureIcon);
     });
   });
 });

@@ -2,8 +2,8 @@ const badgeData = {
   id: "badge",
   name: "BADGE",
   image: [
-  "images/systems/badge1.png",
-  "images/systems/badge2.png"
+  "system-data/system-images/badge1.png",
+  "system-data/system-images/badge2.png"
 ],
 
   description: `
@@ -23,7 +23,7 @@ __During this transformation:__
 
 <p>Each creature produced by this process receives an official **number, name, and icon** within the CreatureMatsu classification system.</p>
 
-[img]images/systems/badges.png[/img]
+[img]system-data/system-images/badges.png[/img]
 
 `
     },
@@ -84,7 +84,7 @@ __Syndata enables:__
 
 <p>The Badge acts as the **external trigger** that activates this system.</p>
 
-[img]images/systems/badge-transform-a.png[/img]
+[img]system-data/system-images/badge-transform-a.png[/img]
 `
     },
 
@@ -99,7 +99,7 @@ __Syndata enables:__
 
 <p>Because of this restriction, the Badge system is designed for temporary transformations rather than permanent evolution.</p>
 
-[img]images/systems/badge-transform-b.png[/img]
+[img]system-data/system-images/badge-transform-b.png[/img]
 `
     },
 

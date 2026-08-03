@@ -1,7 +1,8 @@
 const system = {
   pillar: pillarData,
   badge: badgeData,
-  matsunianLanguage: matsunianLanguageData
+  matsunianLanguage: matsunianLanguageData,
+  creatureIcon: creatureIconData
 };
 
 let systemHTMLReady = false;

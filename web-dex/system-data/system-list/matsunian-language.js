@@ -1,7 +1,7 @@
 const matsunianLanguageData = {
   id: "matsunian-language",
   name: "MATSUNIAN LANGUAGE",
-  image: "images/systems/matsunian-language.png",
+  image: "system-data/system-images/matsunian-language.png",
 
   description: `
 The **Matsunian language** is an unusual variation of American English used by the Sextuplets and the creatures created by Dr. Leezar. It often distorts words and sentence structures in a childish and playful way. Sometimes it may sound confusing or even nonsensical, reflecting their emotional and chaotic behavior. Because of this, its grammar is difficult to correct and does not always follow standard English rules.
