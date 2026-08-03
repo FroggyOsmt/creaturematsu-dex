@@ -1,0 +1,295 @@
+html.news-popup-open,
+body.news-popup-open {
+  overflow: hidden;
+}
+
+.news-popup-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+  box-sizing: border-box;
+
+  background: rgba(5, 7, 12, 0.84);
+  backdrop-filter: blur(7px);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition:
+    opacity 0.28s ease,
+    visibility 0s linear 0.28s;
+}
+
+.news-popup-overlay.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+
+  transition:
+    opacity 0.28s ease,
+    visibility 0s linear 0s;
+}
+
+.news-popup-overlay.closing {
+  opacity: 0;
+  visibility: visible;
+  pointer-events: none;
+}
+
+.news-popup {
+  width: min(520px, 100%);
+  max-height: min(680px, 88vh);
+  overflow-y: auto;
+
+  background: #251612ac;
+  border: 2px solid #3D251F;
+  border-radius: 20px;
+
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.6),
+    0 0 40px #EFB77529;
+
+  font-family: inherit;
+  color: #FFE2C1;
+
+  opacity: 0;
+  transform: scale(0.9);
+  transform-origin: center;
+}
+
+.news-popup-overlay.active .news-popup {
+  animation: newsPopupBounceIn 0.52s cubic-bezier(0.22, 0.9, 0.32, 1.15) forwards;
+}
+
+.news-popup-overlay.closing .news-popup {
+  animation: newsPopupZoomOut 0.26s ease-in forwards;
+}
+
+@keyframes newsPopupBounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.84);
+  }
+
+  62% {
+    opacity: 1;
+    transform: scale(1.035);
+  }
+
+  82% {
+    opacity: 1;
+    transform: scale(0.985);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes newsPopupZoomOut {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+}
+
+.news-popup-header {
+  padding: 24px 26px 18px;
+  border-bottom: 2px solid #3d251fa5;
+  text-align: center;
+}
+
+.news-popup-header h2 {
+  margin: 0;
+  color: #EFB775;
+  font-size: 30px;
+  line-height: 1.1;
+}
+
+.news-popup-version {
+  margin-top: 8px;
+  color: #FFE2C1;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.news-popup-content {
+    padding: 12px 20px;
+    background: rgba(0, 0, 0, 0.278);
+    margin: 12px 12px;
+    border-radius: 10px;
+}
+
+.news-popup-markdown {
+  color: #EFB775;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.news-popup-markdown .dex-bullet-list {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.news-popup-markdown .dex-bullet-list > li {
+  position: relative;
+  margin: 0 0 8px;
+  padding-left: 14px;
+  line-height: 1.5;
+}
+
+.news-popup-markdown .dex-bullet-list > li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #EFB775;
+}
+
+.news-popup-markdown .dex-bullet-list > li:last-child {
+  margin-bottom: 0;
+}
+
+.news-popup-markdown .dex-sub-bullet-list {
+  margin: 5px 0 0;
+  padding-left: 14px;
+  list-style: none;
+}
+
+.news-popup-markdown .dex-sub-bullet-list > li {
+  position: relative;
+  margin: 4px 0;
+  padding-left: 13px;
+  line-height: 1.4;
+}
+
+.news-popup-markdown .dex-sub-bullet-list > li::before {
+  content: "▪";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #EFB775;
+  font-size: 0.82em;
+}
+
+.news-popup-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  padding: 18px 26px 24px;
+}
+
+.news-popup-btn {
+  min-width: 118px;
+  padding: 9px 18px;
+
+  border: 2px solid #3D251F;
+  border-radius: 8px;
+
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+
+  transition:
+    transform 0.12s ease,
+    background 0.12s ease,
+    color 0.12s ease;
+}
+
+.news-popup-btn:hover,
+.news-popup-btn:focus-visible {
+  transform: scale(1.1);
+  outline: none;
+}
+
+.news-popup-skip-btn {
+  background: #a5624312;
+  color: #EFB775;
+}
+
+.news-popup-skip-btn:hover,
+.news-popup-skip-btn:focus-visible {
+  background: #EFB775;
+  color: #3A2524;
+}
+
+.news-popup-cancel-btn {
+  background: #a5624312;
+  color: #EFB775;
+}
+
+.news-popup-cancel-btn:hover,
+.news-popup-cancel-btn:focus-visible {
+  background: #EFB775;
+  color: #3A2524;
+}
+
+.news-popup-skip-btn[hidden] {
+  display: none;
+}
+
+@media (max-width: 560px) {
+  .news-popup-overlay {
+    padding: 16px;
+  }
+
+  .news-popup-header {
+    padding: 21px 20px 16px;
+  }
+
+  .news-popup-header h2 {
+    font-size: 26px;
+  }
+
+  .news-popup-markdown {
+    font-size: 13px;
+  }
+
+  .news-popup-actions {
+    padding: 17px 20px 21px;
+  }
+
+  .news-popup-btn {
+    min-width: 104px;
+    font-size: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .news-popup-overlay {
+    transition: none;
+  }
+
+  .news-popup-overlay.active .news-popup,
+  .news-popup-overlay.closing .news-popup {
+    animation: none;
+    transform: none;
+  }
+
+  .news-popup-overlay.active .news-popup {
+    opacity: 1;
+  }
+
+  .news-popup-overlay.closing .news-popup {
+    opacity: 0;
+  }
+
+  .news-popup-btn {
+    transition: none;
+  }
+}

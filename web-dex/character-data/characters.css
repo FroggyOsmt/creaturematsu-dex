@@ -81,9 +81,14 @@
   cursor: pointer;
 
   z-index: 2;
+
+    transition:
+    transform 0.12s ease,
+    background 0.12s ease;
 }
 
 .characters-back-btn:hover {
+  background: #FFE2C1;
   transform: scale(1.04);
 }
 
@@ -395,6 +400,10 @@ padding: 27px 22px 11px;
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
+}
+
+.characters-top-btn:hover {
+  background: #FFE2C1;
 }
 
 /* ===== MOBILE ===== */

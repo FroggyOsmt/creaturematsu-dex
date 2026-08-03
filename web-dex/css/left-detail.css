@@ -146,6 +146,29 @@ transition:
   background: #ffffff;
 }
 
+/* ===== REPORT ===== */
+/* !!! TEMPORAL !!! */
+.left-drawer-content .report-sidebar-btn {
+    display: block;
+    padding: 4px 14px;
+    background: #FFE2C1;
+    color: #773421;
+    border: 2px solid #5F2F21;
+    border-radius: 7px;
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 10px;
+    cursor: pointer;
+}
+
+.left-drawer-content .report-sidebar-btn:hover {
+  background: #ffb0c9;
+}
+
+.left-drawer-content .report-sidebar-btn.news-sidebar-btn:hover {
+  background: #FFFFFF;
+}
+
 /* ===== FOOTER ===== */
 
 .left-footer {
@@ -269,6 +292,46 @@ transition:
     flex-shrink: 0 !important;
   }
 
+  .pillar-map-sidebar-btn {
+    position: relative;
+    overflow: hidden;
+    cursor: default;
+  }
+
+  .pillar-map-sidebar-btn span {
+    display: inline-block;
+    transition: opacity 0.15s ease;
+  }
+
+/* ===== ONLY FOR DESKTOP ===== */
+
+  .pillar-map-sidebar-btn::after {
+    content: "ONLY FOR DESKTOP";
+
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #773421;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+  }
+
+  .pillar-map-sidebar-btn:hover span,
+  .pillar-map-sidebar-btn:focus-visible span,
+  .pillar-map-sidebar-btn.show-desktop-only span {
+    opacity: 0;
+  }
+
+  .pillar-map-sidebar-btn:hover::after,
+  .pillar-map-sidebar-btn:focus-visible::after,
+  .pillar-map-sidebar-btn.show-desktop-only::after {
+    opacity: 1;
+  }
+
   .left-footer {
     margin-top: auto !important;
     gap: 6px !important;
@@ -291,6 +354,10 @@ transition:
 
   .left-tab {
     z-index: 10001 !important;
+  }
+
+  body.creature-detail-open .left-tab {
+    display: none !important;
   }
 
   /* Bloquea la pantalla principal SOLO en móvil */

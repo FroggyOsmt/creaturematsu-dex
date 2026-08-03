@@ -35,11 +35,6 @@ function createAuthorPopup() {
               but the creative ideas, artwork, characters, creature designs, and worldbuilding belong to Froggy.
             </p>
 
-            <p>
-              Please remember that this website is still an early version,
-              so some sections may be incomplete, imperfect, adjusted, or improved over time.
-            </p>
-
             <p class="author-thanks">
               Thank you for visiting and exploring my little buggies!
             </p>

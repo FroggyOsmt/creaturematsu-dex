@@ -52,10 +52,13 @@
 
   font-family: inherit;
   cursor: pointer;
+
+  transition: transform 0.12s ease, background 0.12s ease;
 }
 
 .author-close-btn:hover {
   background: #5F2F21;
+  transform: scale(1.04);
 }
 
 .author-popup-content {
@@ -142,23 +145,4 @@
   .author-card {
     font-size: 14px !important;
   }
-}
-
-/* REPORT */
-/* !!! TEMPORAL !!! */
-.left-drawer-content .report-sidebar-btn {
-    display: block;
-    padding: 4px 5px;
-    background: #FFE2C1;
-    color: #773421;
-    border: 2px solid #5F2F21;
-    border-radius: 5px;
-    font-family: inherit;
-    font-weight: bold;
-    font-size: 9px;
-    cursor: pointer;
-}
-
-.left-drawer-content .report-sidebar-btn:hover {
-  background: #ffb0c9;
 }

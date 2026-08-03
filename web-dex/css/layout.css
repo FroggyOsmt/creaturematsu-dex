@@ -107,8 +107,8 @@ html, body {
     color: #90ff94;
     border: 3px solid #EFB775;
     border-radius: 10px;
-        padding: 5px 20px;
-    padding-bottom: 20px;
+    padding: 15px 20px;
+    padding-bottom: 15px;
     font-family: "Cascadia Mono", Consolas, monospace;
 font-size: 12px;
     line-height: 1.2;
@@ -176,16 +176,6 @@ font-size: 12px;
 @media (max-width: 768px) {
   .home-page {
     width: 100vw !important;
-  }
-
-  .title-text {
-    font-size: 28px !important;
-    padding-left: 10px !important; 
-  }
-
-  .title-icon {
-    width: 40px !important;
-    height: 40px !important;
   }
   
   .slider {

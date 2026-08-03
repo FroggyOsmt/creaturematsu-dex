@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Others | CreatureMatsu Dex</title>
+  <link rel="icon" type="image/png" href="../images/icon.png">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../creature-data/creature-style.css?v=20260802-sub-bullets">
+  <link rel="stylesheet" href="../css/about-popup.css">
+  <link rel="stylesheet" href="../system-data/system.css">
+  <link rel="stylesheet" href="others.css?v=20260726-tba-cursor">
+</head>
+<body class="others-standalone">
+
+  <main class="others-page" id="othersPage" aria-hidden="true">
+    <div class="others-stage">
+      <div class="others-window" aria-label="Others view">
+        <button class="others-back-btn" type="button" data-close-others>
+          BACK
+        </button>
+
+        <div class="others-menu-layout">
+          <div class="others-entry-grid" aria-label="Others content">
+            <button
+              class="others-entry-btn"
+              type="button"
+              data-others-content="rules-of-creaturematsu-universe"
+              aria-controls="othersSidebar"
+              aria-expanded="false"
+            >
+              Rules of the CreatureMatsu Universe
+            </button>
+
+            <button class="others-entry-btn others-entry-btn--disabled" type="button" disabled>TBA</button>
+            <button class="others-entry-btn others-entry-btn--disabled" type="button" disabled>TBA</button>
+            <button class="others-entry-btn others-entry-btn--disabled" type="button" disabled>TBA</button>
+            <button class="others-entry-btn others-entry-btn--disabled" type="button" disabled>TBA</button>
+            <button class="others-entry-btn others-entry-btn--disabled" type="button" disabled>TBA</button>
+            <button class="others-entry-btn others-entry-btn--disabled" type="button" disabled>TBA</button>
+            <button class="others-entry-btn others-entry-btn--disabled" type="button" disabled>TBA</button>
+            <button class="others-entry-btn others-entry-btn--disabled" type="button" disabled>TBA</button>
+            <button class="others-entry-btn others-entry-btn--disabled" type="button" disabled>TBA</button>
+          </div>
+        </div>
+      </div>
+
+      <aside
+        class="detail-content others-sidebar"
+        id="othersSidebar"
+        data-others-sidebar
+        aria-hidden="true"
+        aria-labelledby="othersSidebarTitle"
+      >
+        <button
+          class="others-sidebar-back-btn"
+          type="button"
+          data-close-others-sidebar
+          aria-label="Back to Others menu"
+        >
+          BACK
+        </button>
+
+        <div class="others-sidebar-title-card" id="othersSidebarTitle"></div>
+
+        <div class="system-page-bg others-sidebar-bg">
+          <div class="system-page-content others-sidebar-content">
+            <div class="system-page-toc others-sidebar-toc" data-others-toc></div>
+            <div class="system-page-log-card others-sidebar-sections" data-others-sections></div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../js/markdown.js?v=20260802-sub-bullets"></script>
+  <script src="others-list/rules-of-creaturematsu-universe.js"></script>
+  <script src="others.js?v=20260726-top-contents"></script>
+</body>
+</html>

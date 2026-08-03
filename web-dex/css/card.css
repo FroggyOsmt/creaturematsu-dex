@@ -7,6 +7,11 @@
   width: fit-content;
   box-sizing: border-box;
   position: relative;
+  transition: box-shadow 0.15s;
+}
+
+.card:hover {
+box-shadow: 0 0 5px 3px rgba(255, 226, 193, 0.5);
 }
 
 .card img {

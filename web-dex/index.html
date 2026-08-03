@@ -7,21 +7,23 @@
   <link rel="icon" type="image/png" href="images/icon.png">
 <link rel="stylesheet" href="css/splash-screen.css">
 <link rel="stylesheet" href="css/layout.css">
-<link rel="stylesheet" href="css/sidebar.css">
-<link rel="stylesheet" href="css/left-detail.css">
-<link rel="stylesheet" href="css/grid.css">
-<link rel="stylesheet" href="css/card.css">
+<link rel="stylesheet" href="css/sidebar.css?v=20260730-breakpoint-768">
+<link rel="stylesheet" href="css/left-detail.css?v=20260726-creature-detail-home">
+<link rel="stylesheet" href="css/grid.css?v=20260730-breakpoint-768">
+<link rel="stylesheet" href="css/card.css?v=20260730-breakpoint-768">
 <link rel="stylesheet" href="css/detail.css">
 <link rel="stylesheet" href="css/left-column.css">
 <link rel="stylesheet" href="css/right-column.css">
-<link rel="stylesheet" href="creature-data/creature-style.css">
+<link rel="stylesheet" href="creature-data/creature-style.css?v=20260802-sub-bullets">
 <link rel="stylesheet" href="css/extra-icon.css">
 <link rel="stylesheet" href="css/about-popup.css">
 <link rel="stylesheet" href="character-data/character-popup.css">
 <link rel="stylesheet" href="character-data/characters.css">
 <link rel="stylesheet" href="system-data/system-popup.css">
 <link rel="stylesheet" href="system-data/system.css">
+<link rel="stylesheet" href="others/others.css?v=20260726-tba-cursor">
 <link rel="stylesheet" href="css/author.css">
+<link rel="stylesheet" href="news/news.css?v=20260802-markdown-news">
 </head>
 <body>
 
@@ -62,15 +64,15 @@
 </button>
 
 
-<button class="coming-btn">
+<button
+  class="pillar-map-sidebar-btn"
+  type="button"
+  data-desktop-href="pillar-map/pillar-map.html"
+>
   <span>Pillar Map</span>
 </button>
 
-<!-- <button onclick="window.location.href='pillar-map/pillar-map.html'">
-  <span>Pillar Map</span>
-</button> -->
-
-<button class="coming-btn">
+<button class="others-sidebar-btn" type="button" data-open-others>
   <span>Others</span>
 </button>
 
@@ -107,6 +109,10 @@
 <button class="report-sidebar-btn"
 onclick="window.open('https://forms.gle/jkJUgkrt3kSRptXdA', '_blank')">
   Report a Problem
+</button>
+
+<button class="report-sidebar-btn news-sidebar-btn" type="button" data-open-news>
+  What's New
 </button>
 
       <div class="left-version"></div>
@@ -279,6 +285,8 @@ onclick="window.open('https://forms.gle/jkJUgkrt3kSRptXdA', '_blank')">
 
 <script src="js/splash.js"></script>
 <script src="version.js"></script>
+<script src="news/info.news.js?v=20260802-release-notes"></script>
+<script src="news/news.js?v=20260802-markdown-news"></script>
 <script src="creature-data/sextuplets.js"></script>
 <script src="creature-data/first-pillar/elemental.js"></script>
 <script src="creature-data/first-pillar/status.js"></script>
@@ -286,10 +294,19 @@ onclick="window.open('https://forms.gle/jkJUgkrt3kSRptXdA', '_blank')">
 <script src="creature-data/first-pillar/craft.js"></script>
 <script src="creature-data/first-pillar/combat.js"></script>
 <script src="creature-data/first-pillar/worker.js"></script>
+<script src="creature-data/second-pillar/2P-oso.js"></script>
+<script src="creature-data/second-pillar/2P-kara.js"></script>
+<script src="creature-data/second-pillar/2P-choro.js"></script>
+<script src="creature-data/second-pillar/2P-ichi.js"></script>
+<script src="creature-data/second-pillar/2P-jyushi.js"></script>
+<script src="creature-data/second-pillar/2P-todo.js"></script>
 <script src="creature-data/dex.js"></script>
-<script src="script.js"></script>
+<script src="js/markdown.js?v=20260802-sub-bullets"></script>
+<script src="script.js?v=20260803-extra-card-order"></script>
 <script src="js/extra-detail.js"></script>
 <script src="js/left-side.js"></script>
+<script src="others/others-list/rules-of-creaturematsu-universe.js"></script>
+<script src="others/others.js?v=20260726-top-contents"></script>
 <script src="js/about-popup.js"></script>
 <script src="character-data/character-popup.js"></script>
 <script src="character-data/character-list/sextuplets.js"></script>
@@ -301,6 +318,7 @@ onclick="window.open('https://forms.gle/jkJUgkrt3kSRptXdA', '_blank')">
 <script src="system-data/system-list/pillar.js"></script>
 <script src="system-data/system-list/badge.js"></script>
 <script src="system-data/system-list/matsunian-language.js"></script>
+<script src="system-data/system-list/creature-icon.js"></script>
 <script src="system-data/system.js"></script>
 <script src="link.js"></script>
 <script src="js/author.js"></script>
@@ -340,6 +358,7 @@ onclick="window.open('https://forms.gle/jkJUgkrt3kSRptXdA', '_blank')">
       <button class="system-entry-btn" data-system="pillar">PILLAR</button>
       <button class="system-entry-btn" data-system="badge">BADGE</button>
       <button class="system-entry-btn" data-system="matsunian-language">MATSUNIAN LANGUAGE</button>
+      <button class="system-entry-btn" data-system="creature-icon">CREATURE ICON</button>
     </div>
 
   </div>

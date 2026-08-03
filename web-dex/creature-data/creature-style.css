@@ -44,6 +44,29 @@
   font-size: 0.9em;
 }
 
+/* SUB-BULLET LIST */
+
+.dex-sub-bullet-list {
+  margin: 3px 0 0;
+  padding-left: 12px;
+  list-style: none;
+}
+
+.dex-sub-bullet-list li {
+  margin: 3px 0;
+  line-height: 1.3;
+  position: relative;
+  padding-left: 12px;
+}
+
+.dex-sub-bullet-list li::before {
+  content: "▪";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 0.8em;
+}
+
 /* MATSU COLOR */
 
 .matsu-text {

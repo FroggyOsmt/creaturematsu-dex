@@ -58,6 +58,15 @@
   font-weight: bold;
 
   cursor: pointer;
+
+  transition:
+    transform 0.12s ease,
+    background 0.12s ease;
+}
+
+.character-close-btn:hover {
+  background: #FFE2C1;
+  transform: scale(1.04);
 }
 
 .character-popup-content {

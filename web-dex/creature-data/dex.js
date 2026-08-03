@@ -5,5 +5,11 @@ const creatures = [
   ...tool,
   ...craft,
   ...combat,
-  ...worker
+  ...worker,
+  ...secondPillarOso,
+  ...secondPillarKara,
+  ...secondPillarChoro,
+  ...secondPillarIchi,
+  ...secondPillarJyushi,
+  ...secondPillarTodo
 ];

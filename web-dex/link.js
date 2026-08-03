@@ -27,7 +27,7 @@ function clearInternalRestoreTimers() {
 }
 
 function getPageType(target) {
-  if (target === "pillar" || target === "badge" || target === "matsunian-language") {
+  if (target === "pillar" || target === "badge" || target === "matsunian-language" || target === "creature-icon") {
     return "system";
   }
 
@@ -181,6 +181,12 @@ function openPageByKey(key) {
     return;
   }
 
+  if (key === "system:creature-icon") {
+    openSystemPage(system.creatureIcon);
+    restoreScrollByKey(key);
+    return;
+  }
+
   if (key === "extra:log") {
   openExtraPopup("LOG");
   restoreScrollByKey(key);
@@ -233,6 +239,7 @@ window.backFromInternalLink = function() {
     if (title.includes("badge")) saveScrollByKey("system:badge");
     else if (title.includes("pillar")) saveScrollByKey("system:pillar");
     else if (title.includes("matsunian")) saveScrollByKey("system:matsunian-language");
+    else if (title.includes("creature icon")) saveScrollByKey("system:creature-icon");
   }
 
   if (currentCharacters) {
@@ -345,6 +352,7 @@ function getCurrentActivePageKey() {
     if (title.includes("pillar")) return "system:pillar";
     if (title.includes("badge")) return "system:badge";
     if (title.includes("matsunian")) return "system:matsunian-language";
+    if (title.includes("creature icon")) return "system:creature-icon";
 
     return "system";
   }

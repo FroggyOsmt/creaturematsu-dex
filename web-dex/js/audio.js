@@ -7,6 +7,102 @@ let cmatsuAudioStarted = false;
 let cmatsuBGM = null;
 let audioCtx = null;
 
+const CMATSU_BGM_STATE_KEY = "cmatsu-bgm-position";
+const cmatsuAudioScriptURL =
+  document.currentScript?.src || "";
+
+const cmatsuBGMURL = cmatsuAudioScriptURL
+  ? new URL("../audio/bgm.mp3", cmatsuAudioScriptURL).href
+  : new URL("audio/bgm.mp3", document.baseURI).href;
+
+let cmatsuResumeTime = readSavedBGMTime();
+
+function readSavedBGMTime() {
+  try {
+    const rawState =
+      sessionStorage.getItem(CMATSU_BGM_STATE_KEY);
+
+    if (!rawState) return null;
+
+    const state = JSON.parse(rawState);
+    const savedTime = Number(state.currentTime);
+    const savedAt = Number(state.savedAt);
+
+    if (!Number.isFinite(savedTime)) return null;
+
+    const elapsed = Number.isFinite(savedAt)
+      ? Math.max(0, (Date.now() - savedAt) / 1000)
+      : 0;
+
+    return savedTime + elapsed;
+  } catch (error) {
+    console.log("BGM position could not be restored:", error);
+    return null;
+  }
+}
+
+function saveBGMTime() {
+  if (
+    !cmatsuBGM ||
+    !Number.isFinite(cmatsuBGM.currentTime)
+  ) {
+    return;
+  }
+
+  try {
+    sessionStorage.setItem(
+      CMATSU_BGM_STATE_KEY,
+      JSON.stringify({
+        currentTime: cmatsuBGM.currentTime,
+        savedAt: Date.now()
+      })
+    );
+  } catch (error) {
+    console.log("BGM position could not be saved:", error);
+  }
+}
+
+function restoreBGMTime() {
+  if (
+    !cmatsuBGM ||
+    !Number.isFinite(cmatsuResumeTime)
+  ) {
+    return;
+  }
+
+  const targetTime = cmatsuResumeTime;
+
+  const applyTime = () => {
+    const duration = cmatsuBGM.duration;
+
+    cmatsuBGM.currentTime =
+      Number.isFinite(duration) && duration > 0
+        ? targetTime % duration
+        : targetTime;
+
+    cmatsuResumeTime = null;
+  };
+
+  if (cmatsuBGM.readyState >= 1) {
+    applyTime();
+    return;
+  }
+
+  try {
+    cmatsuBGM.currentTime = targetTime;
+  } catch (error) {
+    console.log("BGM is waiting for metadata:", error);
+  }
+
+  cmatsuBGM.addEventListener(
+    "loadedmetadata",
+    applyTime,
+    {
+      once: true
+    }
+  );
+}
+
 function getAudioContext() {
   if (!audioCtx) {
     audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -18,10 +114,12 @@ function getAudioContext() {
 function createBGM() {
   if (cmatsuBGM) return;
 
-  cmatsuBGM = new Audio("audio/bgm.mp3");
+  cmatsuBGM = new Audio(cmatsuBGMURL);
   cmatsuBGM.loop = true;
   cmatsuBGM.volume = 0.12;
   cmatsuBGM.preload = "auto";
+
+  restoreBGMTime();
 }
 
 function initCreatureMatsuAudio() {
@@ -94,3 +192,8 @@ document.addEventListener("DOMContentLoaded", () => {
     playButtonClickSound();
   });
 });
+
+window.addEventListener(
+  "pagehide",
+  saveBGMTime
+);
