@@ -1,9 +1,12 @@
 //SCRIPT
 
+// SHARED TEXT FORMATTER
+// window.parseMarkdown is loaded from js/markdown.js before this file.
+
 // PIXEL PERFECT IMAGE SIZE BY DPR
 function updateIconSize() {
   const dpr = window.devicePixelRatio || 1;
-  const isMobile = window.innerWidth <= 768;
+  const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
   const setDprSize = (name, physicalPx, minCssPx = 0) => {
     const rawSize = physicalPx / dpr;
@@ -90,6 +93,11 @@ const dexArea = document.querySelector(".dex-area");
 
 let currentCreature = null;
 
+function isSecondPillarInPreparation(creature) {
+  const creatureId = Number(creature?.id);
+  return creatureId >= 43 && creatureId <= 78;
+}
+
 function renderGrid(list = creatures) {
   grid.innerHTML = "";
 
@@ -97,8 +105,22 @@ function renderGrid(list = creatures) {
     const card = document.createElement("div");
     card.className = "card";
     card.dataset.id = c.id;
+    const isInPreparation = isSecondPillarInPreparation(c);
+
+    if (isInPreparation) {
+      card.classList.add("card-in-preparation");
+      card.setAttribute("aria-disabled", "true");
+    }
 
     const img = document.createElement("img");
+
+    if (isInPreparation) {
+      img.onerror = function () {
+        img.onerror = null;
+        img.src = "images/creatures/icon_000.png";
+      };
+    }
+
     img.src = "images/creatures/" + c.icon;
     img.alt = "#" + c.id;
 
@@ -108,9 +130,11 @@ function renderGrid(list = creatures) {
     card.appendChild(img);
     card.appendChild(text);
 
-    card.addEventListener("click", function () {
-      openDetail(c);
-    });
+    if (!isInPreparation) {
+      card.addEventListener("click", function () {
+        openDetail(c);
+      });
+    }
 
     grid.appendChild(card);
   });
@@ -199,6 +223,8 @@ function getExtraButton(c, type, key, iconName) {
 
 function openDetail(c) {
 
+  if (isSecondPillarInPreparation(c)) return;
+
   currentCreature = c;
 
   const isSextuplet = Number(c.id) <= 6;
@@ -213,11 +239,11 @@ function openDetail(c) {
     `;
 
   const rightCards = [
+    !isSextuplet && ["EXTRA", "extra-icons"],
     !isSextuplet && ["FUNCTION", c.functionText],
     !isSextuplet && ["NAME ORIGIN", c.nameOrigin],
     ["GENERAL ORIGIN", c.generalOrigin],
-    !isSextuplet && ["REFERENCE TO OSOMATSU-SAN", c.reference],
-    !isSextuplet && ["EXTRA", "extra-icons"]
+    !isSextuplet && ["REFERENCE TO OSOMATSU-SAN", c.reference]
   ]
     .filter(Boolean)
     .filter(([title, text]) => text && text.trim() !== "")
@@ -229,11 +255,9 @@ function openDetail(c) {
 
         <div class="extra-icon-grid">
   ${getExtraButton(c, "ACTION", "action", "action")}
-  ${getExtraButton(c, "SHEET", "sheet", "sheet")}
-  ${getExtraButton(c, "LOG", "log", "log")}
-  ${getExtraButton(c, "FUN FACT", "funFact", "funfact")}
-</div>
-          </button>
+${getExtraButton(c, "SHEET", "sheet", "sheet")}
+${getExtraButton(c, "LOG", "log", "log")}
+${getExtraButton(c, "FUN FACT", "funFact", "funfact")}
         </div>
       </div>
     `;
@@ -249,8 +273,10 @@ function openDetail(c) {
     .join("");
 
 const currentIndex = creatures.findIndex(item => item.id === c.id);
-const prevCreature = creatures[currentIndex - 1];
-const nextCreature = creatures[currentIndex + 1];
+const prevCandidate = creatures[currentIndex - 1];
+const nextCandidate = creatures[currentIndex + 1];
+const prevCreature = isSecondPillarInPreparation(prevCandidate) ? null : prevCandidate;
+const nextCreature = isSecondPillarInPreparation(nextCandidate) ? null : nextCandidate;
 
 detailContent.innerHTML = `
 <div class="detail-title-card">
@@ -380,6 +406,7 @@ document.querySelectorAll(".lore-link").forEach(link => {
   slider.classList.add("active");
   detailPage.classList.add("active");
   backButtonPC.style.display = "flex";
+  document.body.classList.add("creature-detail-open");
   document.body.style.overflow = "hidden";
 }
 
@@ -388,155 +415,8 @@ function closeDetail() {
     detailPage.classList.remove("active");
     backButtonPC.style.display = "none";
     slider.classList.remove("active");
+	document.body.classList.remove("creature-detail-open");
 	document.body.style.overflow = "auto";
-}
-
-window.parseMarkdown = function(text) {
-  if (!text) return "";
-
-  let parsed = text.trim();
-
-// INTERNAL POPUP LINKS
-parsed = parsed.replace(
-  /\[link:([^:]+):([^:]+):([^:\]]+)(?::([^:\]]+))?\]/g,
-  function(_, label, target, from, returnId) {
-    return `<span class="lore-link" data-open-popup="${target}" data-from-popup="${from}" data-return-id="${returnId || ""}">${label}</span>`;
-  }
-);
-
-// NORMAL LINKS
-parsed = parsed.replace(/\[([^\]]+)\]\(((?:[^()]|\([^)]*\))+)\)/g, function(_, label, link) {
-  if (link.startsWith("http")) {
-    return `<a href="${link}" target="_blank" class="lore-link external-link">${label}</a>`;
-  } else {
-    return `<a href="#" class="lore-link" data-link="${link}">${label}</a>`;
-  }
-});
-
-// SYSTEM / GENERAL INLINE IMAGE
-parsed = parsed.replace(
-  /\[img\](.*?)\[\/img\]/g,
-  `<div class="text-image-wrap">
-    <img src="$1" class="text-image">
-  </div>`
-);
-
-// MATSU COLOR TEXT
-parsed = parsed.replace(/\[m1\](.*?)\[\/m1\]/g, `<span class="matsu-text matsu-text-oso">$1</span>`);
-parsed = parsed.replace(/\[m2\](.*?)\[\/m2\]/g, `<span class="matsu-text matsu-text-kara">$1</span>`);
-parsed = parsed.replace(/\[m3\](.*?)\[\/m3\]/g, `<span class="matsu-text matsu-text-choro">$1</span>`);
-parsed = parsed.replace(/\[m4\](.*?)\[\/m4\]/g, `<span class="matsu-text matsu-text-ichi">$1</span>`);
-parsed = parsed.replace(/\[m5\](.*?)\[\/m5\]/g, `<span class="matsu-text matsu-text-jyushi">$1</span>`);
-parsed = parsed.replace(/\[m6\](.*?)\[\/m6\]/g, `<span class="matsu-text matsu-text-todo">$1</span>`);
-
-
-// MARKDOWN BLOCK [md]
-parsed = parsed.replace(
-  /\[md\]([\s\S]*?)\[\/md\]/g,
-  function(match, content) {
-
-    content = content.replace(/>/g, "&gt;");
-
-    content = content.replace(
-      /\*\*(.*?)\*\*/g,
-      '<strong>$1</strong>'
-    );
-
-    content = content.replace(
-      /\*(.*?)\*/g,
-      '<em>$1</em>'
-    );
-
-    content = content.replace(
-  /^---$/gm,
-  `<div class="md-separator"></div>`
-);
-
-    return `%%MARKDOWN%%${content}%%ENDMARKDOWN%%`;
-  }
-);
-
-// GLOBAL BOLD
-parsed = parsed.replace(
-  /\*\*(.*?)\*\*/g,
-  '<span class="md-color">$1</span>'
-);
-
-// GLOBAL ITALIC
-parsed = parsed.replace(
-  /\*(.*?)\*/g,
-  '<span class="md-italic">$1</span>'
-);
-
-// __underline__
-parsed = parsed.replace(/__(.*?)__/g, "<u>$1</u>");
-
-// ~~strike~~
-parsed = parsed.replace(/~~(.*?)~~/g, "<s>$1</s>");
-
-// BLOCKQUOTE >
-parsed = parsed.replace(/^>\s?(.*)$/gm, `<div class="md-quote">$1</div>`);
-
-// SEPARATOR <->
-parsed = parsed.replace(/<->/g, `<div class="md-separator"></div>`);
-
-// RESTORE MARKDOWN
-parsed = parsed.replace(
-  /%%MARKDOWN%%([\s\S]*?)%%ENDMARKDOWN%%/g,
-  '<div class="markdown">$1</div>'
-);
-  
-// BULLETS
-const lines = parsed.split("\n");
-
-let finalText = "";
-let inList = false;
-
-lines.forEach(line => {
-
-  const trimmed = line.trim();
-
-  // NORMAL BULLET •
-  if (trimmed.startsWith("• ")) {
-
-    if (!inList) {
-      finalText += `<ul class="dex-bullet-list">`;
-      inList = true;
-    }
-
-    finalText += `<li>${trimmed.substring(2)}</li>`;
-
-  // ABOUT BULLET ◦
-  } else if (trimmed.startsWith("◦ ")) {
-
-    if (!inList) {
-      finalText += `<ul class="about-bullet-list">`;
-      inList = true;
-    }
-
-    finalText += `<li>${trimmed.substring(2)}</li>`;
-
-  } else {
-
-    if (inList) {
-      finalText += `</ul>`;
-      inList = false;
-    }
-
-    if (trimmed !== "") {
-      finalText += trimmed + "<br>";
-    }
-
-  }
-
-});
-
-if (inList) {
-  finalText += `</ul>`;
-}
-
-return finalText;
-
 }
 
 // KEYBOARD ARROWS - CREATURE LIST / DETAIL
@@ -555,7 +435,7 @@ document.addEventListener("keydown", (e) => {
     const index = creatures.findIndex(c => c.id === currentCreature.id);
     const next = creatures[index + direction];
 
-    if (next) {
+    if (next && !isSecondPillarInPreparation(next)) {
       openDetail(next);
       flashGridCard(next.id); // <-- Aquí agregas la animación
     }
@@ -588,7 +468,7 @@ function flashGridCard(creatureId) {
 
 function openDetailById(id) {
   const found = creatures.find(c => c.id === id);
-  if (!found) return;
+  if (!found || isSecondPillarInPreparation(found)) return;
 
   openDetail(found);
   flashGridCard(found.id);
