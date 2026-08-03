@@ -68,5 +68,6 @@
             },
             "color": "pink"
         }
-    ]
+    ],
+    "livePreview.defaultPreviewPath": "/index.html"
 }
