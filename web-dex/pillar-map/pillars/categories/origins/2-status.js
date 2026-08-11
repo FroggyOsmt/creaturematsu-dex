@@ -22,7 +22,7 @@ window.pillarCategoryData["1B"] = {
       label: "LAZIOSO",
       dexRange: "#013",
       color: "#F36A6B",
-      icon: "../images/creatures/icon_013.png",
+      icon: "../info-data/creature-data/creature-icon/icon_013.png",
       rightIcon: "pillars/num-letters/one.png"
     },
 
@@ -31,7 +31,7 @@ window.pillarCategoryData["1B"] = {
       label: "PAINKARA",
       dexRange: "#014",
       color: "#738BF2",
-      icon: "../images/creatures/icon_014.png",
+      icon: "../info-data/creature-data/creature-icon/icon_014.png",
       rightIcon: "pillars/num-letters/two.png"
     },
 
@@ -40,7 +40,7 @@ window.pillarCategoryData["1B"] = {
       label: "ORDHORO",
       dexRange: "#015",
       color: "#B1F575",
-      icon: "../images/creatures/icon_015.png",
+      icon: "../info-data/creature-data/creature-icon/icon_015.png",
       rightIcon: "pillars/num-letters/three.png"
     },
 
@@ -49,7 +49,7 @@ window.pillarCategoryData["1B"] = {
       label: "SLEECHI",
       dexRange: "#016",
       color: "#B17CEE",
-      icon: "../images/creatures/icon_016.png",
+      icon: "../info-data/creature-data/creature-icon/icon_016.png",
       rightIcon: "pillars/num-letters/four.png"
     },
 
@@ -58,7 +58,7 @@ window.pillarCategoryData["1B"] = {
       label: "RUNYUSHI",
       dexRange: "#017",
       color: "#FFDC60",
-      icon: "../images/creatures/icon_017.png",
+      icon: "../info-data/creature-data/creature-icon/icon_017.png",
       rightIcon: "pillars/num-letters/five.png"
     },
 
@@ -67,7 +67,7 @@ window.pillarCategoryData["1B"] = {
       label: "STARODO",
       dexRange: "#018",
       color: "#FF94DD",
-      icon: "../images/creatures/icon_018.png",
+      icon: "../info-data/creature-data/creature-icon/icon_018.png",
       rightIcon: "pillars/num-letters/six.png"
     }
   ],

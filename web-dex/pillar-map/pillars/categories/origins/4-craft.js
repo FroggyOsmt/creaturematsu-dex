@@ -22,7 +22,7 @@ window.pillarCategoryData["1D"] = {
       label: "DOODLOSO",
       dexRange: "#025",
       color: "#F36A6B",
-      icon: "../images/creatures/icon_025.png",
+      icon: "../info-data/creature-data/creature-icon/icon_025.png",
       rightIcon: "pillars/num-letters/one.png"
     },
 
@@ -31,7 +31,7 @@ window.pillarCategoryData["1D"] = {
       label: "SCULKARA",
       dexRange: "#026",
       color: "#738BF2",
-      icon: "../images/creatures/icon_026.png",
+      icon: "../info-data/creature-data/creature-icon/icon_026.png",
       rightIcon: "pillars/num-letters/two.png"
     },
 
@@ -40,7 +40,7 @@ window.pillarCategoryData["1D"] = {
       label: "ILLUCHORO",
       dexRange: "#027",
       color: "#B1F575",
-      icon: "../images/creatures/icon_027.png",
+      icon: "../info-data/creature-data/creature-icon/icon_027.png",
       rightIcon: "pillars/num-letters/three.png"
     },
 
@@ -49,7 +49,7 @@ window.pillarCategoryData["1D"] = {
       label: "BRUICHI",
       dexRange: "#028",
       color: "#B17CEE",
-      icon: "../images/creatures/icon_028.png",
+      icon: "../info-data/creature-data/creature-icon/icon_028.png",
       rightIcon: "pillars/num-letters/four.png"
     },
 
@@ -58,7 +58,7 @@ window.pillarCategoryData["1D"] = {
       label: "STAMPSHI",
       dexRange: "#029",
       color: "#FFDC60",
-      icon: "../images/creatures/icon_029.png",
+      icon: "../info-data/creature-data/creature-icon/icon_029.png",
       rightIcon: "pillars/num-letters/five.png"
     },
 
@@ -67,7 +67,7 @@ window.pillarCategoryData["1D"] = {
       label: "GLUETODO",
       dexRange: "#030",
       color: "#FF94DD",
-      icon: "../images/creatures/icon_030.png",
+      icon: "../info-data/creature-data/creature-icon/icon_030.png",
       rightIcon: "pillars/num-letters/six.png"
     }
   ],

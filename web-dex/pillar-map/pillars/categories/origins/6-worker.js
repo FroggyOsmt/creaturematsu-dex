@@ -22,7 +22,7 @@ window.pillarCategoryData["1F"] = {
       label: "HOSEOSO",
       dexRange: "#037",
       color: "#F36A6B",
-      icon: "../images/creatures/icon_037.png",
+      icon: "../info-data/creature-data/creature-icon/icon_037.png",
       rightIcon: "pillars/num-letters/one.png"
     },
 
@@ -31,7 +31,7 @@ window.pillarCategoryData["1F"] = {
       label: "KARALTO",
       dexRange: "#038",
       color: "#738BF2",
-      icon: "../images/creatures/icon_038.png",
+      icon: "../info-data/creature-data/creature-icon/icon_038.png",
       rightIcon: "pillars/num-letters/two.png"
     },
 
@@ -40,7 +40,7 @@ window.pillarCategoryData["1F"] = {
       label: "RECHORO",
       dexRange: "#039",
       color: "#B1F575",
-      icon: "../images/creatures/icon_039.png",
+      icon: "../info-data/creature-data/creature-icon/icon_039.png",
       rightIcon: "pillars/num-letters/three.png"
     },
 
@@ -49,7 +49,7 @@ window.pillarCategoryData["1F"] = {
       label: "COPICHI",
       dexRange: "#040",
       color: "#B17CEE",
-      icon: "../images/creatures/icon_040.png",
+      icon: "../info-data/creature-data/creature-icon/icon_040.png",
       rightIcon: "pillars/num-letters/four.png"
     },
 
@@ -58,7 +58,7 @@ window.pillarCategoryData["1F"] = {
       label: "JYUHOUND",
       dexRange: "#041",
       color: "#FFDC60",
-      icon: "../images/creatures/icon_041.png",
+      icon: "../info-data/creature-data/creature-icon/icon_041.png",
       rightIcon: "pillars/num-letters/five.png"
     },
 
@@ -67,7 +67,7 @@ window.pillarCategoryData["1F"] = {
       label: "PANSETODO",
       dexRange: "#042",
       color: "#FF94DD",
-      icon: "../images/creatures/icon_042.png",
+      icon: "../info-data/creature-data/creature-icon/icon_042.png",
       rightIcon: "pillars/num-letters/six.png"
     }
   ],

@@ -1,7 +1,7 @@
 //SCRIPT
 
 // SHARED TEXT FORMATTER
-// window.parseMarkdown is loaded from js/markdown.js before this file.
+// window.parseMarkdown is loaded from home-data/style/markdown.js before this file.
 
 // PIXEL PERFECT IMAGE SIZE BY DPR
 function updateIconSize() {
@@ -117,11 +117,11 @@ function renderGrid(list = creatures) {
     if (isInPreparation) {
       img.onerror = function () {
         img.onerror = null;
-        img.src = "images/creatures/icon_000.png";
+        img.src = "info-data/creature-data/creature-icon/icon_000.png";
       };
     }
 
-    img.src = "images/creatures/" + c.icon;
+    img.src = "info-data/creature-data/creature-icon/" + c.icon;
     img.alt = "#" + c.id;
 
     const text = document.createElement("p");
@@ -213,7 +213,7 @@ function getExtraButton(c, type, key, iconName) {
       class="extra-icon-btn ${active ? "extra-on" : "extra-off"}"
       ${active ? `onclick="openExtraPopup('${type}')"` : "disabled"}
     >
-      <img src="images/extras/${iconName}-${active ? "on" : "off"}.png">
+      <img src="info-data/extra-data/extra-image/${iconName}-${active ? "on" : "off"}.png">
       <span>${type}</span>
     </button>
   `;
@@ -281,7 +281,7 @@ const nextCreature = isSecondPillarInPreparation(nextCandidate) ? null : nextCan
 detailContent.innerHTML = `
 <div class="detail-title-card">
   <div class="detail-title-main">
-    <img src="images/creatures/${c.icon}" class="detail-title-icon">
+    <img src="info-data/creature-data/creature-icon/${c.icon}" class="detail-title-icon">
     <div class="detail-title-text">#${c.id} - ${c.name}</div>
   </div>
 
@@ -338,7 +338,7 @@ detailContent.innerHTML = `
 
         <div class="detail-image-card">
           <div class="detail-image-inner">
-            <img src="images/creatures/${c.image}" class="detail-creature-image">
+            <img src="info-data/creature-data/creature-image/${c.image}" class="detail-creature-image">
           </div>
         </div>
 

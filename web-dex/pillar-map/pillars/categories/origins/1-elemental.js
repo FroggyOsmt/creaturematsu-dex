@@ -22,7 +22,7 @@ window.pillarCategoryData["1A"] = {
       label: "FLAMOSO",
       dexRange: "#007",
       color: "#F36A6B",
-      icon: "../images/creatures/icon_007.png",
+      icon: "../info-data/creature-data/creature-icon/icon_007.png",
       rightIcon: "pillars/num-letters/one.png"
     },
 
@@ -31,7 +31,7 @@ window.pillarCategoryData["1A"] = {
       label: "AQUAKARA",
       dexRange: "#008",
       color: "#738BF2",
-      icon: "../images/creatures/icon_008.png",
+      icon: "../info-data/creature-data/creature-icon/icon_008.png",
       rightIcon: "pillars/num-letters/two.png"
     },
 
@@ -40,7 +40,7 @@ window.pillarCategoryData["1A"] = {
       label: "VINECHORO",
       dexRange: "#009",
       color: "#B1F575",
-      icon: "../images/creatures/icon_009.png",
+      icon: "../info-data/creature-data/creature-icon/icon_009.png",
       rightIcon: "pillars/num-letters/three.png"
     },
 
@@ -49,7 +49,7 @@ window.pillarCategoryData["1A"] = {
       label: "DUSKICHI",
       dexRange: "#010",
       color: "#B17CEE",
-      icon: "../images/creatures/icon_010.png",
+      icon: "../info-data/creature-data/creature-icon/icon_010.png",
       rightIcon: "pillars/num-letters/four.png"
     },
 
@@ -58,7 +58,7 @@ window.pillarCategoryData["1A"] = {
       label: "ILLUMYUSHI",
       dexRange: "#011",
       color: "#FFDC60",
-      icon: "../images/creatures/icon_011.png",
+      icon: "../info-data/creature-data/creature-icon/icon_011.png",
       rightIcon: "pillars/num-letters/five.png"
     },
 
@@ -67,7 +67,7 @@ window.pillarCategoryData["1A"] = {
       label: "AIRTODO",
       dexRange: "#012",
       color: "#FF94DD",
-      icon: "../images/creatures/icon_012.png",
+      icon: "../info-data/creature-data/creature-icon/icon_012.png",
       rightIcon: "pillars/num-letters/six.png"
     }
   ],

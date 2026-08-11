@@ -22,7 +22,7 @@ window.pillarCategoryData["1C"] = {
       label: "KEYOSO",
       dexRange: "#019",
       color: "#F36A6B",
-      icon: "../images/creatures/icon_019.png",
+      icon: "../info-data/creature-data/creature-icon/icon_019.png",
       rightIcon: "pillars/num-letters/one.png"
     },
 
@@ -31,7 +31,7 @@ window.pillarCategoryData["1C"] = {
       label: "KARASIERRA",
       dexRange: "#020",
       color: "#738BF2",
-      icon: "../images/creatures/icon_020.png",
+      icon: "../info-data/creature-data/creature-icon/icon_020.png",
       rightIcon: "pillars/num-letters/two.png"
     },
 
@@ -40,7 +40,7 @@ window.pillarCategoryData["1C"] = {
       label: "ELECHORO",
       dexRange: "#021",
       color: "#B1F575",
-      icon: "../images/creatures/icon_021.png",
+      icon: "../info-data/creature-data/creature-icon/icon_021.png",
       rightIcon: "pillars/num-letters/three.png"
     },
 
@@ -49,7 +49,7 @@ window.pillarCategoryData["1C"] = {
       label: "HAMMICHI",
       dexRange: "#022",
       color: "#B17CEE",
-      icon: "../images/creatures/icon_022.png",
+      icon: "../info-data/creature-data/creature-icon/icon_022.png",
       rightIcon: "pillars/num-letters/four.png"
     },
 
@@ -58,7 +58,7 @@ window.pillarCategoryData["1C"] = {
       label: "DRILLSHI",
       dexRange: "#023",
       color: "#FFDC60",
-      icon: "../images/creatures/icon_023.png",
+      icon: "../info-data/creature-data/creature-icon/icon_023.png",
       rightIcon: "pillars/num-letters/five.png"
     },
 
@@ -67,7 +67,7 @@ window.pillarCategoryData["1C"] = {
       label: "PINCHTODO",
       dexRange: "#024",
       color: "#FF94DD",
-      icon: "../images/creatures/icon_024.png",
+      icon: "../info-data/creature-data/creature-icon/icon_024.png",
       rightIcon: "pillars/num-letters/six.png"
     }
   ],
