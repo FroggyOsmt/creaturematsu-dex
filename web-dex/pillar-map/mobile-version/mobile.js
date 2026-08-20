@@ -44,6 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let selectedPillar = null;
   let selectedCategory = null;
 
+  const mobileHistoryKey = "creaturematsuPillarMap";
   const pillarFocusPaddingY = 40;
   const pillarFocusVerticalAlign = 0.676;
   const categoryFocusScale = 2.8;
@@ -76,6 +77,44 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function getAvailableDrumCodes() {
     return selectedPillar === "2" ? availableVariations : availableCategories;
+  }
+
+  function getMobileHistoryState(state = window.history.state) {
+    if (!state || typeof state !== "object") return null;
+
+    const mobileState = state[mobileHistoryKey];
+
+    if (
+      !mobileState ||
+      !["welcome", "pillar", "category"].includes(mobileState.view)
+    ) {
+      return null;
+    }
+
+    return mobileState;
+  }
+
+  function writeMobileHistoryState(view, mode = "push") {
+    if (!mobileQuery.matches) return;
+
+    const currentState = window.history.state;
+    const baseState =
+      currentState && typeof currentState === "object" ? currentState : {};
+    const nextState = {
+      ...baseState,
+      [mobileHistoryKey]: {
+        view,
+        pillar: selectedPillar,
+        category: selectedCategory
+      }
+    };
+
+    if (mode === "replace") {
+      window.history.replaceState(nextState, "", window.location.href);
+      return;
+    }
+
+    window.history.pushState(nextState, "", window.location.href);
   }
 
   function resetMobileScrollPosition() {
@@ -576,6 +615,58 @@ document.addEventListener("DOMContentLoaded", () => {
     temple.removeAttribute("aria-hidden");
   }
 
+  function renderMobileHistoryState(mobileState) {
+    if (!mobileQuery.matches || !mobileState) return;
+
+    if (mobileState.view === "welcome") {
+      closeSelectedPillar();
+      return;
+    }
+
+    const pillar = String(mobileState.pillar || "");
+
+    if (!availablePillars.includes(pillar)) {
+      closeSelectedPillar();
+      return;
+    }
+
+    if (mobileState.view === "pillar") {
+      if (selectedCategory) closeSelectedCategory();
+      showSelectedPillar(pillar);
+      return;
+    }
+
+    const category = String(mobileState.category || "");
+
+    showSelectedPillar(pillar);
+    showSelectedCategory(category);
+  }
+
+  function initializeMobileHistory() {
+    if (!mobileQuery.matches) return;
+
+    const mobileState = getMobileHistoryState();
+
+    if (mobileState) {
+      renderMobileHistoryState(mobileState);
+      return;
+    }
+
+    writeMobileHistoryState("welcome", "replace");
+  }
+
+  function navigateBackWithinMobileHistory(currentView, fallbackView, fallback) {
+    const mobileState = getMobileHistoryState();
+
+    if (mobileState?.view === currentView) {
+      window.history.back();
+      return;
+    }
+
+    fallback();
+    writeMobileHistoryState(fallbackView, "replace");
+  }
+
   document
     .querySelectorAll("[data-mobile-pillar]")
     .forEach(button => {
@@ -584,6 +675,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!availablePillars.includes(pillar)) return;
         showSelectedPillar(pillar);
+        writeMobileHistoryState("pillar");
       });
     });
 
@@ -592,20 +684,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!button || !categoryList.contains(button)) return;
     showSelectedCategory(button.dataset.mobileCategory);
+    writeMobileHistoryState("category");
   });
 
   previousButton?.addEventListener("click", () => {
     const selectedIndex = availablePillars.indexOf(selectedPillar);
     const previousPillar = availablePillars[selectedIndex - 1];
 
-    if (previousPillar) showSelectedPillar(previousPillar);
+    if (previousPillar) {
+      showSelectedPillar(previousPillar);
+      writeMobileHistoryState("pillar", "replace");
+    }
   });
 
   nextButton?.addEventListener("click", () => {
     const selectedIndex = availablePillars.indexOf(selectedPillar);
     const nextPillar = availablePillars[selectedIndex + 1];
 
-    if (nextPillar) showSelectedPillar(nextPillar);
+    if (nextPillar) {
+      showSelectedPillar(nextPillar);
+      writeMobileHistoryState("pillar", "replace");
+    }
   });
 
   categoryUpButton?.addEventListener("click", () => {
@@ -613,7 +712,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const selectedIndex = availableDrumCodes.indexOf(selectedCategory);
     const nextCategory = availableDrumCodes[selectedIndex + 1];
 
-    if (nextCategory) showSelectedCategory(nextCategory);
+    if (nextCategory) {
+      showSelectedCategory(nextCategory);
+      writeMobileHistoryState("category", "replace");
+    }
   });
 
   categoryDownButton?.addEventListener("click", () => {
@@ -621,14 +723,37 @@ document.addEventListener("DOMContentLoaded", () => {
     const selectedIndex = availableDrumCodes.indexOf(selectedCategory);
     const previousCategory = availableDrumCodes[selectedIndex - 1];
 
-    if (previousCategory) showSelectedCategory(previousCategory);
+    if (previousCategory) {
+      showSelectedCategory(previousCategory);
+      writeMobileHistoryState("category", "replace");
+    }
   });
 
-  backButton?.addEventListener("click", closeSelectedPillar);
-  categoryBackButton?.addEventListener("click", closeSelectedCategory);
+  backButton?.addEventListener("click", () => {
+    navigateBackWithinMobileHistory(
+      "pillar",
+      "welcome",
+      closeSelectedPillar
+    );
+  });
+  categoryBackButton?.addEventListener("click", () => {
+    navigateBackWithinMobileHistory(
+      "category",
+      "pillar",
+      closeSelectedCategory
+    );
+  });
+
+  window.addEventListener("popstate", event => {
+    renderMobileHistoryState(getMobileHistoryState(event.state));
+  });
 
   syncMobileTempleState();
-  mobileQuery.addEventListener("change", syncMobileTempleState);
+  initializeMobileHistory();
+  mobileQuery.addEventListener("change", () => {
+    syncMobileTempleState();
+    initializeMobileHistory();
+  });
   window.addEventListener("resize", () => {
     if (!mobileQuery.matches) return;
 
