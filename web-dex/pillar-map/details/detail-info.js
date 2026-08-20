@@ -345,6 +345,31 @@ window.renderDetailInfo = function ({
 // DETAIL TOC LINKS
 // ========================================
 
+function scrollDetailTarget(container, target) {
+  const scrollBox = container.querySelector(".detail-info-scroll");
+  const isMobileTransferredInfo = Boolean(
+    container.closest(".mobile-transfer-info-view")
+  );
+
+  if (isMobileTransferredInfo && scrollBox) {
+    const targetTop =
+      target.getBoundingClientRect().top -
+      scrollBox.getBoundingClientRect().top +
+      scrollBox.scrollTop;
+
+    scrollBox.scrollTo({
+      top: targetTop,
+      behavior: "smooth"
+    });
+    return;
+  }
+
+  target.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+}
+
 function initDetailTocLinks(container) {
   const tocLinks =
     container.querySelectorAll(".detail-toc-link");
@@ -356,10 +381,7 @@ function initDetailTocLinks(container) {
 
       if (!target) return;
 
-      target.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
+      scrollDetailTarget(container, target);
     });
   });
 }
@@ -369,10 +391,7 @@ function scrollDetailToContents(container) {
 
   if (!toc) return;
 
-  toc.scrollIntoView({
-    behavior: "smooth",
-    block: "start"
-  });
+  scrollDetailTarget(container, toc);
 }
 
 function initDetailTopButtons(container) {
