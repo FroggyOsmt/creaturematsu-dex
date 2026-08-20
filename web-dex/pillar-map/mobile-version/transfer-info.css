@@ -43,7 +43,7 @@
     height: 100vh;
     height: 100dvh;
     max-height: none;
-    padding-top: calc(8px + env(safe-area-inset-top));
+    padding-top: calc(15px + env(safe-area-inset-top));
 
     overflow: hidden;
     border-radius: 0;
@@ -60,6 +60,14 @@
 
     min-height: 0;
     height: 100%;
+  }
+
+  .mobile-transfer-info-view.mobile-system-info-view:not([hidden]) {
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+
+  .mobile-system-info-view .mobile-transfer-info-dex {
+    display: none !important;
   }
 
   .mobile-transfer-info-header {
@@ -236,6 +244,17 @@
     width: 100%;
     margin: 12px 0 0;
     gap: 10px;
+  }
+
+  .mobile-transfer-info-shared[data-transfer-info-type="system"]
+    .detail-info-bottom {
+    margin-top: 0;
+  }
+
+  .mobile-transfer-info-shared[data-transfer-info-type="system"]
+    .mobile-system-pillar-description
+    .detail-info-section-body {
+    border-radius: 8px;
   }
 
   .mobile-transfer-info-shared .detail-log-card {

@@ -236,9 +236,9 @@
     opacity: 0.72;
   }
 
+  .mobile-what-is-pillar,
   .mobile-pillar-home {
     min-height: 48px;
-    margin-top: 17px;
 
     display: flex;
     align-items: center;
@@ -249,10 +249,37 @@
     border: 3px solid #A5643C;
     border-radius: 12px;
 
+    box-sizing: border-box;
+    font-family: inherit;
     font-size: 18px;
     font-weight: 900;
     text-decoration: none;
     touch-action: manipulation;
+  }
+
+  .mobile-what-is-pillar {
+    width: 100%;
+    margin-top: 14px;
+    padding: 0 14px;
+    cursor: pointer;
+  }
+
+  .mobile-pillar-welcome-separator {
+    width: 100%;
+    height: 1px;
+    margin-top: 8px;
+
+    background: #A5643C;
+  }
+
+  .mobile-pillar-home {
+    margin-top: 8px;
+
+  }
+
+  .mobile-what-is-pillar:active {
+    transform: translateY(2px);
+    background: #FFE2C1;
   }
 
   .mobile-pillar-selected-view,

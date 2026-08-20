@@ -146,6 +146,66 @@ document.addEventListener("DOMContentLoaded", () => {
     return { homeTop, zoneTop, zoneBottom };
   }
 
+  function centerTempleOnWelcome() {
+    if (
+      !mobileQuery.matches ||
+      !temple ||
+      !sheet ||
+      sheet.classList.contains("mobile-transfer-info-open")
+    ) {
+      return;
+    }
+
+    const templeRect = temple.getBoundingClientRect();
+    const currentScale = getCurrentTempleScale();
+    const baseScale = Number.parseFloat(
+      window
+        .getComputedStyle(document.documentElement)
+        .getPropertyValue("--pillar-map-scale")
+    ) || 1;
+    const templeParts = Array.from(temple.children).filter(part =>
+      part.matches(
+        ".pillar-roof, .pillar-deco-top, .pillar-buttons, " +
+        ".pillar-columns, .pillar-wall, .pillar-deco-bottom"
+      )
+    );
+    const partRects = templeParts
+      .map(part => part.getBoundingClientRect())
+      .filter(rect => rect.width > 0 && rect.height > 0);
+
+    if (!partRects.length || currentScale <= 0) return;
+
+    const contentLeft = Math.min(...partRects.map(rect => rect.left));
+    const contentRight = Math.max(...partRects.map(rect => rect.right));
+    const contentTop = Math.min(...partRects.map(rect => rect.top));
+    const contentBottom = Math.max(...partRects.map(rect => rect.bottom));
+    const templeCenterX = templeRect.left + (templeRect.width / 2);
+    const contentCenterX = (contentLeft + contentRight) / 2;
+    const contentCenterY = (contentTop + contentBottom) / 2;
+    const naturalCenterX = (contentCenterX - templeCenterX) / currentScale;
+    const naturalCenterY = (contentCenterY - templeRect.top) / currentScale;
+    const homeRect = temple.closest(".home-page")?.getBoundingClientRect();
+    const { homeTop, zoneTop, zoneBottom } = getTempleFocusZone();
+    const homeCenterX = homeRect
+      ? homeRect.left + (homeRect.width / 2)
+      : window.innerWidth / 2;
+    const zoneCenterY = zoneTop + ((zoneBottom - zoneTop) / 2);
+    const targetX =
+      (window.innerWidth / 2) -
+      homeCenterX -
+      (naturalCenterX * baseScale);
+    const targetY =
+      zoneCenterY -
+      homeTop -
+      (naturalCenterY * baseScale);
+
+    temple.classList.remove("mobile-category-zoom-transition");
+    temple.classList.remove("mobile-temple-focused");
+    temple.style.setProperty("--mobile-temple-x", `${targetX.toFixed(2)}px`);
+    temple.style.setProperty("--mobile-temple-y", `${targetY.toFixed(2)}px`);
+    temple.style.setProperty("--mobile-temple-scale", baseScale.toFixed(4));
+  }
+
   function focusTempleOnPillar(pillar) {
     const column = getPillarColumn(pillar);
 
@@ -246,6 +306,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     temple.classList.remove("mobile-category-zoom-transition");
     temple.classList.remove("mobile-temple-focused");
+
+    if (
+      mobileQuery.matches &&
+      sheet &&
+      !sheet.classList.contains("mobile-transfer-info-open")
+    ) {
+      centerTempleOnWelcome();
+      return;
+    }
+
     temple.style.removeProperty("--mobile-temple-x");
     temple.style.removeProperty("--mobile-temple-y");
     temple.style.removeProperty("--mobile-temple-scale");
@@ -615,6 +685,7 @@ document.addEventListener("DOMContentLoaded", () => {
       resetMobileScrollPosition();
       temple.setAttribute("inert", "");
       temple.setAttribute("aria-hidden", "true");
+      resetTemplePosition();
       return;
     }
 
@@ -764,7 +835,12 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    if (selectedPillar) focusTempleOnPillar(selectedPillar);
+    if (selectedPillar) {
+      focusTempleOnPillar(selectedPillar);
+      return;
+    }
+
+    centerTempleOnWelcome();
   });
 
   syncMobileTempleState();
@@ -774,7 +850,12 @@ document.addEventListener("DOMContentLoaded", () => {
     initializeMobileHistory();
   });
   window.addEventListener("resize", () => {
-    if (!mobileQuery.matches) return;
+    if (
+      !mobileQuery.matches ||
+      sheet?.classList.contains("mobile-transfer-info-open")
+    ) {
+      return;
+    }
 
     if (selectedCategory) {
       focusTempleOnCategory(selectedCategory);
@@ -783,6 +864,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (selectedPillar) {
       focusTempleOnPillar(selectedPillar);
+      return;
     }
+
+    centerTempleOnWelcome();
+  });
+
+  temple
+    ?.querySelector(".pillar-deco-bottom")
+    ?.addEventListener("animationend", () => {
+      if (!selectedPillar) centerTempleOnWelcome();
+    }, { once: true });
+
+  document.fonts?.ready.then(() => {
+    if (!selectedPillar) centerTempleOnWelcome();
   });
 });

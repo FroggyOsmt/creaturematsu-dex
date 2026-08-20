@@ -5,6 +5,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const mobileQuery = window.matchMedia("(max-width: 768px)");
   const sheet = document.querySelector(".mobile-pillar-sheet");
+  const welcomeView = document.querySelector("[data-mobile-pillar-welcome]");
   const pillarView = document.querySelector("[data-mobile-pillar-selected]");
   const categoryView = document.querySelector("[data-mobile-category-selected]");
   const pillarTitle = document.querySelector("[data-mobile-pillar-title]");
@@ -44,6 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const infoTitle = infoView.querySelector("[data-mobile-transfer-info-title]");
   const infoDex = infoView.querySelector("[data-mobile-transfer-info-dex]");
+  const infoDexRow = infoDex?.closest(".mobile-transfer-info-dex");
   const sharedContainer = infoView.querySelector(
     "[data-mobile-transfer-info-shared]"
   );
@@ -58,7 +60,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const infoState = state[transferInfoHistoryKey];
 
-    if (!infoState || !["pillar", "category"].includes(infoState.type)) {
+    if (
+      !infoState ||
+      !["pillar", "category", "system"].includes(infoState.type)
+    ) {
       return null;
     }
 
@@ -107,11 +112,24 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function getTransferredInfo(type) {
+    if (type === "system") {
+      const systemData =
+        typeof pillarData !== "undefined" ? pillarData : null;
+
+      if (!systemData) return null;
+
+      return {
+        type,
+        title: "What is PILLAR?",
+        systemData
+      };
+    }
+
     const pillar = sheet.dataset.mobilePillar || "";
     const drumCode = sheet.dataset.mobileCategory || "";
-    const pillarData = window.pillarMapData?.[pillar] || null;
+    const mapPillarData = window.pillarMapData?.[pillar] || null;
 
-    if (!pillarData) return null;
+    if (!mapPillarData) return null;
 
     if (type === "category") {
       const categoryData = window.pillarCategoryData?.[drumCode] || null;
@@ -133,9 +151,64 @@ document.addEventListener("DOMContentLoaded", () => {
       drumCode: null,
       title:
         pillarTitle?.textContent ||
-        `${pillarData.ordinal || `Pillar ${pillar}`}: ${pillarData.title || ""}`,
-      dexRange: pillarData.matsuDex || ""
+        `${mapPillarData.ordinal || `Pillar ${pillar}`}: ${mapPillarData.title || ""}`,
+      dexRange: mapPillarData.matsuDex || ""
     };
+  }
+
+  function renderTransferredSystemInfo(systemData) {
+    const sections = Array.isArray(systemData?.sections)
+      ? systemData.sections
+      : [];
+    const description =
+      typeof formatDetailText === "function"
+        ? formatDetailText(systemData?.description || "")
+        : String(systemData?.description || "");
+    const toc =
+      typeof buildDetailToc === "function" ? buildDetailToc(sections) : "";
+    const sectionMarkup =
+      typeof buildDetailSections === "function"
+        ? buildDetailSections(sections)
+        : "";
+
+    sharedContainer.dataset.transferInfoType = "system";
+    sharedContainer.innerHTML = `
+      <article class="detail-info mobile-system-pillar-info">
+        <div class="detail-info-scroll">
+          <div class="detail-info-bottom">
+            <div class="detail-log-card">
+              <section class="detail-log-section mobile-system-pillar-description">
+                <div class="detail-info-section-body">
+                  ${description}
+                </div>
+              </section>
+
+              ${toc ? `<div class="detail-toc" id="detailToc">${toc}</div>` : ""}
+              ${sectionMarkup}
+            </div>
+          </div>
+        </div>
+      </article>
+    `;
+
+    const detailInfo = sharedContainer.querySelector(".detail-info");
+    const scrollArea = sharedContainer.querySelector(".detail-info-scroll");
+
+    if (typeof enableSlowWheelScroll === "function") {
+      enableSlowWheelScroll(detailInfo, scrollArea);
+    }
+
+    if (typeof initDetailTocLinks === "function") {
+      initDetailTocLinks(sharedContainer);
+    }
+
+    if (typeof initDetailTopButtons === "function") {
+      initDetailTopButtons(sharedContainer);
+    }
+
+    if (typeof initDetailActiveTopButtons === "function") {
+      initDetailActiveTopButtons(sharedContainer);
+    }
   }
 
   function removeSharedRow(label) {
@@ -200,18 +273,26 @@ document.addEventListener("DOMContentLoaded", () => {
   function renderTransferredInfo(data) {
     if (!infoTitle || !infoDex || !sharedContainer) return;
 
+    const isSystemInfo = data.type === "system";
+
     infoTitle.textContent = data.title;
-    infoDex.textContent = data.dexRange;
+    infoDex.textContent = isSystemInfo ? "" : data.dexRange;
+    if (infoDexRow) infoDexRow.hidden = isSystemInfo;
+    infoView.classList.toggle("mobile-system-info-view", isSystemInfo);
     sharedContainer.replaceChildren();
 
-    window.renderDetailInfo({
-      container: sharedContainer,
-      type: data.type,
-      pillar: data.pillar,
-      drumCode: data.drumCode
-    });
+    if (isSystemInfo) {
+      renderTransferredSystemInfo(data.systemData);
+    } else {
+      window.renderDetailInfo({
+        container: sharedContainer,
+        type: data.type,
+        pillar: data.pillar,
+        drumCode: data.drumCode
+      });
 
-    prepareTransferredMarkup(data.type);
+      prepareTransferredMarkup(data.type);
+    }
 
     const scrollArea = sharedContainer.querySelector(".detail-info-scroll");
 
@@ -225,7 +306,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!data) return;
 
-    returnView = type === "category" ? categoryView : pillarView;
+    returnView =
+      type === "system"
+        ? welcomeView
+        : type === "category"
+          ? categoryView
+          : pillarView;
     renderTransferredInfo(data);
     infoIsOpen = true;
 
@@ -297,7 +383,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const wasInfoOpen = infoIsOpen;
 
-    closeTransferredInfo({ immediate: true });
+    closeTransferredInfo();
 
     if (wasInfoOpen) {
       window.dispatchEvent(new Event("mobile-transfer-info-closed"));
