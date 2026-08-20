@@ -756,6 +756,17 @@ document.addEventListener("DOMContentLoaded", () => {
     renderMobileHistoryState(getMobileHistoryState(event.state));
   });
 
+  window.addEventListener("mobile-transfer-info-closed", () => {
+    if (!mobileQuery.matches) return;
+
+    if (selectedCategory) {
+      focusTempleOnCategory(selectedCategory);
+      return;
+    }
+
+    if (selectedPillar) focusTempleOnPillar(selectedPillar);
+  });
+
   syncMobileTempleState();
   initializeMobileHistory();
   mobileQuery.addEventListener("change", () => {

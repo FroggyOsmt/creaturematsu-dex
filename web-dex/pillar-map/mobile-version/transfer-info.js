@@ -48,9 +48,37 @@ document.addEventListener("DOMContentLoaded", () => {
     "[data-mobile-transfer-info-shared]"
   );
   const infoBack = infoView.querySelector("[data-mobile-transfer-info-back]");
+  const transferInfoHistoryKey = "creaturematsuPillarMapInfo";
 
   let returnView = null;
   let infoIsOpen = false;
+
+  function getTransferredInfoHistoryState(state = window.history.state) {
+    if (!state || typeof state !== "object") return null;
+
+    const infoState = state[transferInfoHistoryKey];
+
+    if (!infoState || !["pillar", "category"].includes(infoState.type)) {
+      return null;
+    }
+
+    return infoState;
+  }
+
+  function writeTransferredInfoHistoryState(type) {
+    const currentState = window.history.state;
+    const baseState =
+      currentState && typeof currentState === "object" ? currentState : {};
+
+    window.history.pushState(
+      {
+        ...baseState,
+        [transferInfoHistoryKey]: { type }
+      },
+      "",
+      window.location.href
+    );
+  }
 
   function transitionSheet(mutate) {
     if (!mobileQuery.matches) {
@@ -191,7 +219,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (scrollArea) scrollArea.scrollTop = 0;
   }
 
-  function openTransferredInfo(type) {
+  function openTransferredInfo(type, { writeHistory = true } = {}) {
     if (!mobileQuery.matches || infoIsOpen) return;
 
     const data = getTransferredInfo(type);
@@ -212,6 +240,8 @@ document.addEventListener("DOMContentLoaded", () => {
       infoView.setAttribute("aria-hidden", "false");
       sheet.classList.add("mobile-transfer-info-open");
     });
+
+    if (writeHistory) writeTransferredInfoHistoryState(type);
   }
 
   function closeTransferredInfo({ immediate = false } = {}) {
@@ -250,10 +280,38 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   infoBack?.addEventListener("click", () => {
+    if (getTransferredInfoHistoryState()) {
+      window.history.back();
+      return;
+    }
+
     closeTransferredInfo();
+  });
+
+  window.addEventListener("popstate", event => {
+    const infoState = getTransferredInfoHistoryState(event.state);
+
+    if (infoState) {
+      openTransferredInfo(infoState.type, { writeHistory: false });
+      return;
+    }
+
+    const wasInfoOpen = infoIsOpen;
+
+    closeTransferredInfo({ immediate: true });
+
+    if (wasInfoOpen) {
+      window.dispatchEvent(new Event("mobile-transfer-info-closed"));
+    }
   });
 
   mobileQuery.addEventListener("change", event => {
     if (!event.matches) closeTransferredInfo({ immediate: true });
   });
+
+  const initialInfoState = getTransferredInfoHistoryState();
+
+  if (initialInfoState) {
+    openTransferredInfo(initialInfoState.type, { writeHistory: false });
+  }
 });
