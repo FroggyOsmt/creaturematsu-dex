@@ -48,7 +48,7 @@ matsuDex: "#043 – #078",
 coreTheme: `
 - discovery
 - strangeness
-- first free mutations.`,
+- first free mutations`,
 representativeColor: "BLUE (Kara)",
 centralSymbol: "GLOWING STAR",
 

@@ -44,13 +44,23 @@ function openMarkdownImagePopup(trigger) {
   const sourceImage = trigger?.querySelector("img");
   if (!sourceImage) return;
 
+  openMarkdownImagePopupFromSource(
+    sourceImage.currentSrc || sourceImage.src,
+    sourceImage.alt || ""
+  );
+}
+
+function openMarkdownImagePopupFromSource(source, alt = "", mode = "") {
+  if (!source) return;
+
   const popup = ensureMarkdownImagePopup();
   const popupImage = popup.querySelector(".markdown-image-popup-image");
   const backButton = popup.querySelector(".markdown-image-popup-back");
 
   markdownImagePopupLastFocusedElement = document.activeElement;
-  popupImage.src = sourceImage.currentSrc || sourceImage.src;
-  popupImage.alt = sourceImage.alt || "";
+  popup.classList.toggle("markdown-image-popup-creature", mode === "creature");
+  popupImage.src = source;
+  popupImage.alt = alt;
 
   popup.classList.add("open");
   popup.setAttribute("aria-hidden", "false");
@@ -60,11 +70,14 @@ function openMarkdownImagePopup(trigger) {
   requestAnimationFrame(() => backButton.focus());
 }
 
+window.openMarkdownImagePopupFromSource = openMarkdownImagePopupFromSource;
+
 function closeMarkdownImagePopup() {
   const popup = document.getElementById("markdownImagePopup");
   if (!popup || !popup.classList.contains("open")) return;
 
   popup.classList.remove("open");
+  popup.classList.remove("markdown-image-popup-creature");
   popup.setAttribute("aria-hidden", "true");
   document.documentElement.classList.remove("markdown-image-popup-open");
   document.body.classList.remove("markdown-image-popup-open");

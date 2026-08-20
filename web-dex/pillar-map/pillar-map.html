@@ -20,8 +20,10 @@
   <link rel="stylesheet" href="pillar-map.css">
   <link rel="stylesheet" href="details/pillar-detail.css">
   <link rel="stylesheet" href="details/detail-info.css">
-  <link rel="stylesheet" href="details/category-detail.css">
-  <link rel="stylesheet" href="details/markdown.css?v=20260803-image-zoom">
+  <link rel="stylesheet" href="details/category-detail.css?v=20260818-creature-image-popup">
+  <link rel="stylesheet" href="details/markdown.css?v=20260818-creature-square-popup">
+  <link rel="stylesheet" href="mobile-version/mobile.css?v=20260818-mobile-pastel-inactive-6">
+  <link rel="stylesheet" href="mobile-version/transfer-info.css?v=20260819-mobile-transfer-info-title-scope">
 </head>
 
 <body class="pillar-page">
@@ -247,6 +249,123 @@
 
      </div>
 
+      <aside class="mobile-pillar-sheet" aria-label="Pillar Map navigation">
+        <div class="mobile-pillar-sheet-handle" aria-hidden="true"></div>
+
+        <div class="mobile-pillar-welcome-view" data-mobile-pillar-welcome>
+          <h1 class="mobile-pillar-welcome">Welcome to Pillar Map</h1>
+
+          <div class="mobile-pillar-label">Pillars</div>
+
+          <nav class="mobile-pillar-buttons" aria-label="Pillars">
+            <button type="button" data-mobile-pillar="1" aria-label="Pillar 1">1</button>
+            <button type="button" data-mobile-pillar="2" aria-label="Pillar 2">2</button>
+            <button type="button" data-mobile-pillar="3" aria-label="Pillar 3" aria-disabled="true">3</button>
+            <button type="button" data-mobile-pillar="4" aria-label="Pillar 4" aria-disabled="true">4</button>
+            <button type="button" data-mobile-pillar="5" aria-label="Pillar 5" aria-disabled="true">5</button>
+            <button type="button" class="mobile-pillar-disabled" aria-label="Pillar 6 unavailable" disabled>6</button>
+          </nav>
+
+          <a class="mobile-pillar-home" href="../index.html">Home</a>
+        </div>
+
+        <section
+          class="mobile-pillar-selected-view"
+          data-mobile-pillar-selected
+          aria-hidden="true"
+          hidden
+        >
+          <h2 class="mobile-pillar-selected-title" data-mobile-pillar-title></h2>
+
+          <div class="mobile-matsu-dex">
+            <span>MATSU DEX:</span>
+            <strong data-mobile-pillar-dex></strong>
+          </div>
+
+          <div class="mobile-pillar-category-heading">
+            <div class="mobile-pillar-category-label">Categories</div>
+
+            <button
+              type="button"
+              class="mobile-pillar-info"
+              data-mobile-transfer-info="pillar"
+              aria-label="Open pillar information"
+            >
+              INFO
+            </button>
+          </div>
+
+          <div
+            class="mobile-pillar-category-list"
+            data-mobile-pillar-categories
+            role="group"
+            aria-label="Categories"
+          ></div>
+
+          <div class="mobile-pillar-selected-actions">
+            <button type="button" class="mobile-pillar-back" data-mobile-pillar-back>
+              BACK
+            </button>
+
+            <div class="mobile-pillar-carousel" aria-label="Pillar carousel">
+              <button type="button" data-mobile-pillar-previous aria-label="Previous pillar">&#10094;</button>
+              <button type="button" data-mobile-pillar-next aria-label="Next pillar">&#10095;</button>
+            </div>
+          </div>
+        </section>
+
+        <section
+          class="mobile-category-selected-view"
+          data-mobile-category-selected
+          aria-hidden="true"
+          hidden
+        >
+          <h2 class="mobile-category-selected-title" data-mobile-category-title></h2>
+
+          <div class="mobile-matsu-dex">
+            <span>MATSU DEX:</span>
+            <strong data-mobile-category-dex></strong>
+          </div>
+
+          <div class="mobile-category-includes-heading">
+            <div class="mobile-category-includes-label">CREATURE INCLUDES</div>
+
+            <button
+              type="button"
+              class="mobile-pillar-info"
+              data-mobile-transfer-info="category"
+              aria-label="Open category information"
+            >
+              INFO
+            </button>
+          </div>
+
+          <div class="mobile-category-content-row">
+            <div
+              class="mobile-category-creature-list"
+              data-mobile-category-creatures
+              role="group"
+              aria-label="Creature includes"
+            ></div>
+
+            <p class="mobile-variation-coming-soon" data-mobile-variation-coming-soon hidden>
+              COMING SOON
+            </p>
+
+            <div class="mobile-category-carousel" aria-label="Category carousel">
+              <button type="button" data-mobile-category-up aria-label="Next category">&#9650;</button>
+              <button type="button" data-mobile-category-down aria-label="Previous category">&#9660;</button>
+            </div>
+          </div>
+
+          <div class="mobile-category-actions">
+            <button type="button" class="mobile-category-back" data-mobile-category-back>
+              BACK
+            </button>
+          </div>
+        </section>
+      </aside>
+
     </section>
 
     <section class="page detail-page" aria-hidden="true">
@@ -279,11 +398,13 @@
 <script src="pillars/categories/origins/5-combat.js"></script>
 <script src="pillars/categories/origins/6-worker.js"></script>
 
-<script src="details/markdown.js?v=20260803-image-zoom"></script>
-<script src="details/category-detail.js"></script>
+<script src="details/markdown.js?v=20260818-creature-square-popup"></script>
+<script src="details/category-detail.js?v=20260818-creature-square-popup"></script>
 <script src="details/detail-info.js"></script>
 <script src="details/pillar-detail.js"></script>
 <script src="../audio/audio.js"></script>
+<script src="mobile-version/mobile.js?v=20260818-mobile-pastel-buttons"></script>
+<script src="mobile-version/transfer-info.js?v=20260819-mobile-transfer-info-adjustments"></script>
 
 </body>
 

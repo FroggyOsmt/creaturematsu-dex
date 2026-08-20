@@ -295,41 +295,11 @@ transition:
   .pillar-map-sidebar-btn {
     position: relative;
     overflow: hidden;
-    cursor: default;
+    cursor: pointer;
   }
 
   .pillar-map-sidebar-btn span {
     display: inline-block;
-    transition: opacity 0.15s ease;
-  }
-
-/* ===== ONLY FOR DESKTOP ===== */
-
-  .pillar-map-sidebar-btn::after {
-    content: "ONLY FOR DESKTOP";
-
-    position: absolute;
-    inset: 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    color: #773421;
-    opacity: 0;
-    transition: opacity 0.15s ease;
-  }
-
-  .pillar-map-sidebar-btn:hover span,
-  .pillar-map-sidebar-btn:focus-visible span,
-  .pillar-map-sidebar-btn.show-desktop-only span {
-    opacity: 0;
-  }
-
-  .pillar-map-sidebar-btn:hover::after,
-  .pillar-map-sidebar-btn:focus-visible::after,
-  .pillar-map-sidebar-btn.show-desktop-only::after {
-    opacity: 1;
   }
 
   .left-footer {

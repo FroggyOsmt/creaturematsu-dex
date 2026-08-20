@@ -1,7 +1,5 @@
 const drawer = document.getElementById("leftDrawer");
 const tab = document.getElementById("leftTab");
-const pillarMapButton = document.querySelector(".pillar-map-sidebar-btn");
-let pillarMapMessageTimer;
 
 function isMobileSidebarMode() {
   return window.matchMedia("(max-width: 768px)").matches;
@@ -33,19 +31,6 @@ function isAllowedPopupScroll(target) {
 tab.addEventListener("click", () => {
   drawer.classList.toggle("open");
   syncDrawerLock();
-});
-
-pillarMapButton?.addEventListener("click", () => {
-  if (!isMobileSidebarMode()) {
-    window.location.href = pillarMapButton.dataset.desktopHref;
-    return;
-  }
-
-  pillarMapButton.classList.add("show-desktop-only");
-  window.clearTimeout(pillarMapMessageTimer);
-  pillarMapMessageTimer = window.setTimeout(() => {
-    pillarMapButton.classList.remove("show-desktop-only");
-  }, 0);
 });
 
 window.addEventListener("resize", syncDrawerLock);

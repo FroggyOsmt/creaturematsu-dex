@@ -2,6 +2,31 @@
 // PILLAR MAP - CATEGORY DETAIL
 // ========================================
 
+function getCategoryCreatureImagePath(item = {}) {
+  if (item.creatureImage) return item.creatureImage;
+
+  const dexValue =
+    item.dexRange ||
+    item.number ||
+    item.value ||
+    "";
+  const dexMatch = String(dexValue).match(/\d{3}/);
+
+  return dexMatch
+    ? `../info-data/creature-data/creature-image/c${dexMatch[0]}.png`
+    : "";
+}
+
+function escapeCategoryDetailAttribute(value) {
+  return String(value || "")
+    .replace(/&/g, "&amp;")
+    .replace(/"/g, "&quot;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+window.getCategoryCreatureImagePath = getCategoryCreatureImagePath;
+
 function createCategoryDetailItems(items = []) {
   if (!Array.isArray(items)) return "";
 
@@ -23,10 +48,23 @@ function createCategoryDetailItems(items = []) {
         currentItem.value ||
         "";
 
+      const creatureImage = getCategoryCreatureImagePath(currentItem);
+      const itemTag = creatureImage ? "button" : "div";
+      const safeLabel = escapeCategoryDetailAttribute(label);
+      const safeImage = escapeCategoryDetailAttribute(creatureImage);
+      const safeImageAlt = escapeCategoryDetailAttribute(
+        `${value} ${label}`.trim()
+      );
+
       return `
-        <div
+        <${itemTag}
           class="category-detail-item"
           style="--category-color: ${currentItem.color || "#6F3022"};"
+          ${
+            creatureImage
+              ? `type="button" data-creature-image="${safeImage}" data-creature-image-alt="${safeImageAlt}" aria-label="Open image of ${safeLabel}"`
+              : ""
+          }
         >
 
           <span class="category-detail-icon category-detail-icon-left">
@@ -43,7 +81,7 @@ function createCategoryDetailItems(items = []) {
             }
           </span>
 
-          <div class="category-detail-middle">
+          <span class="category-detail-middle">
             <span class="category-detail-name">
               ${label}
             </span>
@@ -51,7 +89,7 @@ function createCategoryDetailItems(items = []) {
             <span class="category-detail-value">
               ${value}
             </span>
-          </div>
+          </span>
 
           <span class="category-detail-icon category-detail-icon-right">
             ${
@@ -67,7 +105,7 @@ function createCategoryDetailItems(items = []) {
             }
           </span>
 
-        </div>
+        </${itemTag}>
       `;
     })
     .join("");
@@ -145,3 +183,19 @@ window.createCategoryDetailList = function (data) {
     </section>
   `;
 };
+
+document.addEventListener("click", event => {
+  if (!(event.target instanceof Element)) return;
+
+  const trigger = event.target.closest("[data-creature-image]");
+
+  if (!trigger || typeof window.openMarkdownImagePopupFromSource !== "function") {
+    return;
+  }
+
+  window.openMarkdownImagePopupFromSource(
+    trigger.dataset.creatureImage,
+    trigger.dataset.creatureImageAlt || "",
+    "creature"
+  );
+});
