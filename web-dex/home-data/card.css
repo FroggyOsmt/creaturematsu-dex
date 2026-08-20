@@ -56,6 +56,17 @@ box-shadow: 0 0 5px 3px rgba(255, 226, 193, 0.5);
 
 @media (max-width: 768px) {
 
+  .card {
+    width: 100%;
+    min-width: 0;
+    padding: 4px 5px;
+  }
+
+  .card img {
+    width: 100%;
+    height: auto;
+  }
+
   .card p {
     font-size: 11px;
   }

@@ -76,19 +76,45 @@
 }
 
 @media (max-width: 768px) {
+  .home-page {
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+
+  .home-top-row {
+    grid-row: 1;
+  }
+
+  /* Comparacion Sketchware: acercar las barras a los laterales de la pantalla. */
+  .dex-area {
+    grid-row: 2;
+    min-height: 0;
+    padding: 0 3px !important;
+  }
+
   .grid {
-    max-height: calc(100vh - 85px);
+    width: calc(100vw - 51px) !important;
+    height: 100%;
+    box-sizing: border-box !important;
+    grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+    max-height: none;
     overflow-y: auto;
     overflow-x: hidden;
-    gap: 4px !important;
-            padding: 8px 4px !important;
+    gap: 5px !important;
+    padding: 8px 13px !important;
+  }
+
+  .no-creature-found {
+    grid-row: 2;
   }
 
   .title-card {
-    min-width: 365px !important;
-    max-width: calc(100vw - 24px) !important;
+    width: 100vw !important;
+    min-width: 0 !important;
+    max-width: none !important;
     box-sizing: border-box !important;
-    border-radius: 10px !important;
+    margin-top: 0 !important;
+    border-radius: 0 !important;
     padding: 10px !important;
   }
 
@@ -110,6 +136,7 @@
     min-width: 0 !important;
     max-width: 700px !important;
     box-sizing: border-box !important;
+    margin-top: 8px !important;
     border-radius: 20px !important;
     padding: 10px !important;
   }
