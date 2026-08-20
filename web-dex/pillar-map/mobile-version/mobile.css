@@ -92,7 +92,12 @@
       )
       scale(var(--mobile-temple-scale, var(--pillar-map-scale)));
     transition: transform 0.62s cubic-bezier(.22, 1, .36, 1);
-    will-change: transform;
+        will-change: transform;
+    backface-visibility: hidden;
+  }
+
+  .pillar-map-wrap.mobile-category-zoom-transition {
+    transition-duration: 3s;
   }
 
   .mobile-pillar-sheet {
@@ -606,6 +611,18 @@
       opacity 0.46s cubic-bezier(.22, 1, .36, 1),
       transform 0.2s ease,
       filter 0.3s ease;
+    will-change: opacity, transform;
+    backface-visibility: hidden;
+  }
+
+  .pillar-columns .pillar-drum {
+  will-change: filter;
+  backface-visibility: hidden;
+}
+
+  .pillar-columns.mobile-category-focused
+    .pillar-column:is(.pillar-3, .pillar-4, .pillar-5, .pillar-6) {
+    opacity: 0.1;
   }
 
   .pillar-columns.mobile-category-focused .pillar-drum-btn,
@@ -613,6 +630,12 @@
     opacity: 0.1;
     transform: scale(1) !important;
     z-index: 1 !important;
+  }
+
+  .pillar-columns.mobile-category-focused
+    .pillar-column:is(.pillar-3, .pillar-4, .pillar-5, .pillar-6)
+    .pillar-unknown {
+    opacity: 1;
   }
 
   .pillar-columns.mobile-category-focused
@@ -640,8 +663,8 @@
       drop-shadow(-4px 0 0 #411C13)
       drop-shadow(0 4px 0 #411C13)
       drop-shadow(0 -4px 0 #411C13)
-      drop-shadow(0 0 7px #fff0e0)
-      drop-shadow(0 0 12px #EFB775) !important;
+      drop-shadow(0 0 4px #fff0e0)
+      drop-shadow(0 0 8px #EFB775) !important;
   }
 
   .pillar-columns.mobile-category-focused

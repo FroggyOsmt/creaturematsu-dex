@@ -151,6 +151,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!temple || !sheet || !column) return;
 
+    temple.classList.remove("mobile-category-zoom-transition");
+
     const templeRect = temple.getBoundingClientRect();
     const columnRect = column.getBoundingClientRect();
     const homeRect = temple.closest(".home-page")?.getBoundingClientRect();
@@ -196,10 +198,15 @@ document.addEventListener("DOMContentLoaded", () => {
     temple.classList.add("mobile-temple-focused");
   }
 
-  function focusTempleOnCategory(code) {
+  function focusTempleOnCategory(code, useSlowTransition = false) {
     const drum = getCategoryDrum(code);
 
     if (!temple || !sheet || !drum) return;
+
+    temple.classList.toggle(
+      "mobile-category-zoom-transition",
+      useSlowTransition
+    );
 
     const templeRect = temple.getBoundingClientRect();
     const drumRect = drum.getBoundingClientRect();
@@ -237,6 +244,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function resetTemplePosition() {
     if (!temple) return;
 
+    temple.classList.remove("mobile-category-zoom-transition");
     temple.classList.remove("mobile-temple-focused");
     temple.style.removeProperty("--mobile-temple-x");
     temple.style.removeProperty("--mobile-temple-y");
@@ -505,7 +513,7 @@ document.addEventListener("DOMContentLoaded", () => {
     renderCategoryCreatures(isOriginsCategory ? categoryData : null);
     syncCategoryCarouselButtons();
     highlightCategory(code);
-    focusTempleOnCategory(code);
+    focusTempleOnCategory(code, openingCategoryView);
   }
 
   function closeSelectedCategory() {
