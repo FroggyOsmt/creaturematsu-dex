@@ -170,7 +170,31 @@ document.addEventListener("DOMContentLoaded", () => {
       )
     );
     const partRects = templeParts
-      .map(part => part.getBoundingClientRect())
+      .map(part => {
+        const rect = part.getBoundingClientRect();
+        const transform = window.getComputedStyle(part).transform;
+        const matrixValues = transform && transform !== "none"
+          ? transform
+              .slice(transform.indexOf("(") + 1, -1)
+              .split(",")
+              .map(value => Number.parseFloat(value.trim()))
+          : [];
+        const translateX = matrixValues.length === 6
+          ? matrixValues[4] || 0
+          : matrixValues[12] || 0;
+        const translateY = matrixValues.length === 6
+          ? matrixValues[5] || 0
+          : matrixValues[13] || 0;
+
+        return {
+          left: rect.left - (translateX * currentScale),
+          right: rect.right - (translateX * currentScale),
+          top: rect.top - (translateY * currentScale),
+          bottom: rect.bottom - (translateY * currentScale),
+          width: rect.width,
+          height: rect.height
+        };
+      })
       .filter(rect => rect.width > 0 && rect.height > 0);
 
     if (!partRects.length || currentScale <= 0) return;
@@ -845,6 +869,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   syncMobileTempleState();
   initializeMobileHistory();
+
+  if (temple?.classList.contains("mobile-temple-initial-position")) {
+    temple.getBoundingClientRect();
+    window.requestAnimationFrame(() => {
+      temple.classList.remove("mobile-temple-initial-position");
+    });
+  }
+
   mobileQuery.addEventListener("change", () => {
     syncMobileTempleState();
     initializeMobileHistory();
@@ -870,13 +902,4 @@ document.addEventListener("DOMContentLoaded", () => {
     centerTempleOnWelcome();
   });
 
-  temple
-    ?.querySelector(".pillar-deco-bottom")
-    ?.addEventListener("animationend", () => {
-      if (!selectedPillar) centerTempleOnWelcome();
-    }, { once: true });
-
-  document.fonts?.ready.then(() => {
-    if (!selectedPillar) centerTempleOnWelcome();
-  });
 });
