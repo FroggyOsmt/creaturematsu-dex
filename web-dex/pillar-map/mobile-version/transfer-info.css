@@ -80,6 +80,7 @@
 
     display: flex;
     align-items: center;
+    justify-content: center;
 
     overflow: hidden;
     background: #FFE2C1;
@@ -143,7 +144,6 @@
   }
 
   .mobile-transfer-info-shared .pillar-detail-preview,
-  .mobile-transfer-info-shared .detail-pillar-image,
   .mobile-transfer-info-shared .detail-category-image {
     display: none !important;
   }
@@ -197,7 +197,7 @@
   }
 
   .mobile-transfer-info-shared .detail-pillar-data-row {
-    grid-template-columns: minmax(127px, max-content) minmax(0, 1fr);
+    grid-template-columns: minmax(150px, max-content) minmax(0, 1fr);
   }
 
   .mobile-transfer-info-shared .detail-category-logo-row {

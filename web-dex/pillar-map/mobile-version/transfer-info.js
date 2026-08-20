@@ -175,7 +175,6 @@ document.addEventListener("DOMContentLoaded", () => {
     removeSharedRow("MATSU DEX");
 
     if (type === "pillar") {
-      sharedContainer.querySelector(".detail-pillar-image")?.remove();
       sharedContainer
         .querySelector(".detail-info-right > .detail-info-section")
         ?.remove();
