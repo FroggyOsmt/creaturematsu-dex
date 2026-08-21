@@ -224,6 +224,37 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   }
 
+  function insertMobilePillarAge(pillar) {
+    const mobileAge = String(
+      window.pillarMapData?.[pillar]?.mobileAge || ""
+    ).trim();
+
+    if (!mobileAge || String(pillar) === "1") return;
+
+    const representativeColorRow = Array.from(
+      sharedContainer.querySelectorAll(".detail-pillar-data-row")
+    ).find(row =>
+      row
+        .querySelector(".detail-pillar-data-label")
+        ?.textContent.trim()
+        .toUpperCase() === "REPRESENTATIVE COLOR"
+    );
+
+    if (!representativeColorRow) return;
+
+    const ageRow = document.createElement("div");
+    const ageLabel = document.createElement("div");
+    const ageValue = document.createElement("div");
+
+    ageRow.className = "detail-pillar-data-row";
+    ageLabel.className = "detail-pillar-data-label";
+    ageValue.className = "detail-pillar-data-value";
+    ageLabel.textContent = "AGE";
+    ageValue.textContent = mobileAge;
+    ageRow.append(ageLabel, ageValue);
+    representativeColorRow.before(ageRow);
+  }
+
   function moveContentsAfterSummary(type) {
     const contents = sharedContainer.querySelector(".detail-toc");
     const logCard = sharedContainer.querySelector(".detail-log-card");
@@ -242,12 +273,13 @@ document.addEventListener("DOMContentLoaded", () => {
     description.after(contents);
   }
 
-  function prepareTransferredMarkup(type) {
+  function prepareTransferredMarkup(type, pillar) {
     sharedContainer.dataset.transferInfoType = type;
     sharedContainer.querySelector(".pillar-detail-preview")?.remove();
     removeSharedRow("MATSU DEX");
 
     if (type === "pillar") {
+      insertMobilePillarAge(pillar);
       sharedContainer
         .querySelector(".detail-info-right > .detail-info-section")
         ?.remove();
@@ -291,7 +323,7 @@ document.addEventListener("DOMContentLoaded", () => {
         drumCode: data.drumCode
       });
 
-      prepareTransferredMarkup(data.type);
+      prepareTransferredMarkup(data.type, data.pillar);
     }
 
     const scrollArea = sharedContainer.querySelector(".detail-info-scroll");

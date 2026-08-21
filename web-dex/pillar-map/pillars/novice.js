@@ -10,6 +10,7 @@ window.pillarMapData["2"] = {
   ordinal: "2nd Pillar",
   title: "VARIATIONS",
   age: "2019/2020 – Novice Age",
+  mobileAge: "NOVICE",
 
 badgeIncludes: {
   title: "BADGE INCLUDES",
