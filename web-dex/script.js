@@ -636,8 +636,14 @@ const matchesSearch =
   console.log("Results:", filtered.length);
 }
 
+function setFilterPanelOpen(shouldOpen) {
+  filterPanel.classList.toggle("hidden", !shouldOpen);
+  filterPanel.setAttribute("aria-hidden", String(!shouldOpen));
+  filterBtn.setAttribute("aria-expanded", String(shouldOpen));
+}
+
 filterBtn.addEventListener("click", () => {
-  filterPanel.classList.toggle("hidden");
+  setFilterPanelOpen(filterPanel.classList.contains("hidden"));
 });
 
 document.querySelectorAll(".filter-option input").forEach(input => {
@@ -661,8 +667,124 @@ applyFilterBtn.addEventListener("click", () => {
   applyFilterBtn.classList.add("pop-ok");
 
   setTimeout(() => {
-    filterPanel.classList.add("hidden");
+    setFilterPanelOpen(false);
   }, 180);
 });
 
 searchInput.addEventListener("input", applySearchAndFilters);
+
+/* MOBILE SEARCH + SOFTWARE KEYBOARD */
+
+const mobileSearchQuery = window.matchMedia("(max-width: 768px)");
+const mobileVisualViewport = window.visualViewport;
+const MOBILE_KEYBOARD_THRESHOLD = 120;
+
+let mobileLayoutViewportBaseline = window.innerHeight;
+let mobileVisualViewportBaseline =
+  mobileVisualViewport?.height || window.innerHeight;
+let mobileKeyboardPending = false;
+let mobileKeyboardWasVisible = false;
+
+function isMobileSearchMode() {
+  return mobileSearchQuery.matches;
+}
+
+function setMobileKeyboardOffset(offset) {
+  document.documentElement.style.setProperty(
+    "--mobile-keyboard-offset",
+    `${Math.max(0, Math.round(offset))}px`
+  );
+}
+
+function syncMobileSearchKeyboard() {
+  if (!isMobileSearchMode()) {
+    document.body.classList.remove("mobile-search-keyboard-active");
+    document.documentElement.style.removeProperty("--mobile-keyboard-offset");
+    mobileKeyboardPending = false;
+    mobileKeyboardWasVisible = false;
+    return;
+  }
+
+  const inputFocused = document.activeElement === searchInput;
+  const layoutHeight = window.innerHeight;
+  const visualHeight = mobileVisualViewport?.height || layoutHeight;
+  const heightLoss = Math.max(
+    0,
+    mobileLayoutViewportBaseline - layoutHeight,
+    mobileVisualViewportBaseline - visualHeight
+  );
+  const keyboardVisible =
+    inputFocused && heightLoss >= MOBILE_KEYBOARD_THRESHOLD;
+
+  if (!inputFocused) {
+    mobileLayoutViewportBaseline = Math.max(
+      mobileLayoutViewportBaseline,
+      layoutHeight
+    );
+    mobileVisualViewportBaseline = Math.max(
+      mobileVisualViewportBaseline,
+      visualHeight
+    );
+    mobileKeyboardPending = false;
+    mobileKeyboardWasVisible = false;
+    document.body.classList.remove("mobile-search-keyboard-active");
+    setMobileKeyboardOffset(0);
+    return;
+  }
+
+  if (keyboardVisible) {
+    mobileKeyboardPending = false;
+    mobileKeyboardWasVisible = true;
+  } else if (mobileKeyboardWasVisible) {
+    mobileKeyboardWasVisible = false;
+    mobileKeyboardPending = false;
+  }
+
+  const keyboardOffset = keyboardVisible && mobileVisualViewport
+    ? layoutHeight - visualHeight - mobileVisualViewport.offsetTop
+    : 0;
+
+  document.body.classList.toggle(
+    "mobile-search-keyboard-active",
+    keyboardVisible || mobileKeyboardPending
+  );
+  setMobileKeyboardOffset(keyboardOffset);
+}
+
+function beginMobileSearchInput() {
+  if (!isMobileSearchMode()) return;
+
+  mobileLayoutViewportBaseline = Math.max(
+    mobileLayoutViewportBaseline,
+    window.innerHeight
+  );
+  mobileVisualViewportBaseline = Math.max(
+    mobileVisualViewportBaseline,
+    mobileVisualViewport?.height || window.innerHeight
+  );
+  mobileKeyboardPending = true;
+  setFilterPanelOpen(false);
+  syncMobileSearchKeyboard();
+}
+
+searchInput.addEventListener("pointerdown", beginMobileSearchInput);
+searchInput.addEventListener("focus", beginMobileSearchInput);
+searchInput.addEventListener("blur", () => {
+  window.setTimeout(syncMobileSearchKeyboard, 0);
+});
+
+mobileVisualViewport?.addEventListener("resize", syncMobileSearchKeyboard);
+mobileVisualViewport?.addEventListener("scroll", syncMobileSearchKeyboard);
+window.addEventListener("resize", syncMobileSearchKeyboard);
+
+mobileSearchQuery.addEventListener?.("change", event => {
+  if (event.matches) {
+    mobileLayoutViewportBaseline = window.innerHeight;
+    mobileVisualViewportBaseline =
+      mobileVisualViewport?.height || window.innerHeight;
+  }
+
+  syncMobileSearchKeyboard();
+});
+
+syncMobileSearchKeyboard();

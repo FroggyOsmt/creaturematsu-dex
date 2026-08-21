@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="home-data/style/layout.css">
 <link rel="stylesheet" href="home-data/sidebar.css?v=20260730-breakpoint-768">
 <link rel="stylesheet" href="home-data/left-sidebar/left-detail.css?v=20260820-mobile-logo-others-only">
-<link rel="stylesheet" href="home-data/grid.css?v=20260730-breakpoint-768">
+<link rel="stylesheet" href="home-data/grid.css?v=20260821-mobile-card-height">
 <link rel="stylesheet" href="home-data/card.css?v=20260730-breakpoint-768">
 <link rel="stylesheet" href="home-data/detail.css">
 <link rel="stylesheet" href="home-data/left-sidebar/left-column.css">
@@ -142,13 +142,13 @@ onclick="window.open('https://forms.gle/jkJUgkrt3kSRptXdA', '_blank')">
       </div>
 
       <div class="search-wrapper">
-       <input id="searchInput" class="creature-search" type="text" placeholder="Search creature...">
+       <input id="searchInput" class="creature-search" type="text" placeholder="Search creature..." aria-label="Search creatures" autocomplete="off" autocapitalize="none" spellcheck="false" enterkeyhint="search">
 
-<button id="filterBtn" class="filter-btn">
+<button id="filterBtn" class="filter-btn" type="button" aria-label="Open creature filters" aria-controls="filterPanel" aria-expanded="false">
   <img src="images/filter-icon.png" class="filter-icon" alt="Filter">
 </button>
 
-<div id="filterPanel" class="filter-panel hidden">
+<div id="filterPanel" class="filter-panel hidden" aria-hidden="true">
 
   <div class="filter-section-title">MATSU</div>
 
@@ -306,7 +306,7 @@ onclick="window.open('https://forms.gle/jkJUgkrt3kSRptXdA', '_blank')">
 <script src="info-data/creature-data/second-pillar/2P-todo.js"></script>
 <script src="info-data/creature-data/dex.js"></script>
 <script src="home-data/style/markdown.js?v=20260802-sub-bullets"></script>
-<script src="script.js?v=20260820-mobile-back-final"></script>
+<script src="script.js?v=20260821-mobile-search-bar"></script>
 <script src="info-data/extra-data/extra-detail.js"></script>
 <script src="home-data/left-sidebar/left-side.js?v=20260820-mobile-logo-others-only-final"></script>
 <script src="info-data/other-data/others-list/rules-of-creaturematsu-universe.js"></script>
