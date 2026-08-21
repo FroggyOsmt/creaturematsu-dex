@@ -221,9 +221,11 @@ function getExtraButton(c, type, key, iconName) {
 
 // DETAIL RIGHT
 
-function openDetail(c) {
+function openDetail(c, options = {}) {
 
   if (isSecondPillarInPreparation(c)) return;
+
+  const shouldWriteHistory = options.writeHistory !== false;
 
   currentCreature = c;
 
@@ -408,15 +410,66 @@ document.querySelectorAll(".lore-link").forEach(link => {
   backButtonPC.style.display = "flex";
   document.body.classList.add("creature-detail-open");
   document.body.style.overflow = "hidden";
+
+  const mobileNavigation = window.creatureMatsuMobileNavigation;
+
+  if (shouldWriteHistory && mobileNavigation?.isMobile()) {
+    const detailState = { creatureId: String(c.id) };
+
+    if (mobileNavigation.getState()?.view === "creature") {
+      mobileNavigation.replace("creature", detailState);
+    } else {
+      mobileNavigation.push("creature", detailState);
+    }
+  }
 }
 
-function closeDetail() {
+function closeDetail(options = {}) {
+  const mobileNavigation = window.creatureMatsuMobileNavigation;
+
+  if (
+    options.fromHistory !== true &&
+    mobileNavigation?.backIfCurrent("creature")
+  ) {
+    return;
+  }
+
   currentCreature = null;
     detailPage.classList.remove("active");
     backButtonPC.style.display = "none";
     slider.classList.remove("active");
 	document.body.classList.remove("creature-detail-open");
 	document.body.style.overflow = "auto";
+}
+
+if (window.creatureMatsuMobileNavigation) {
+  const mobileNavigation = window.creatureMatsuMobileNavigation;
+
+  window.addEventListener(mobileNavigation.eventName, event => {
+    const navigationState = event.detail?.state;
+
+    if (navigationState?.view === "creature") {
+      const found = creatures.find(
+        creature => String(creature.id) === String(navigationState.creatureId)
+      );
+
+      if (!found || isSecondPillarInPreparation(found)) return;
+
+      if (
+        currentCreature?.id === found.id &&
+        detailPage.classList.contains("active")
+      ) {
+        return;
+      }
+
+      openDetail(found, { writeHistory: false });
+      return;
+    }
+
+    if (detailPage.classList.contains("active")) {
+      closeDetail({ fromHistory: true });
+    }
+  });
 }
 
 // KEYBOARD ARROWS - CREATURE LIST / DETAIL

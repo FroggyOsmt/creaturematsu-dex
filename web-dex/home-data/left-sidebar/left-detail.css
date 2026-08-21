@@ -28,6 +28,10 @@
   left: 0;
 }
 
+.left-drawer.dragging {
+  transition: none !important;
+}
+
 
 .left-tab {
   position: absolute;
@@ -288,6 +292,56 @@ transition:
     flex-shrink: 0 !important;
   }
 
+  .left-drawer.others-logo-home-active .left-logo {
+    position: relative;
+    pointer-events: auto;
+    cursor: pointer;
+    touch-action: manipulation;
+    border-radius: 12px;
+  }
+
+  .left-drawer.others-logo-home-active .left-logo::after {
+    content: "BACK TO HOME";
+    position: absolute;
+    top: 2px;
+    left: 50%;
+    z-index: 1;
+    transform: translate(-50%, 0) scale(1);
+    padding: 5px 10px;
+    border: 2px solid #5F2F21;
+    border-radius: 999px;
+    background: #FFE2C1;
+    color: #773421;
+    box-shadow: 0 4px 8px rgba(37, 6, 12, 0.35);
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 1;
+    white-space: nowrap;
+    pointer-events: none;
+    animation: left-logo-others-home-bubble 0.2s ease 0.12s both;
+  }
+
+  .left-drawer.others-logo-home-active .left-logo:focus-visible {
+    outline: 3px solid #FFE2C1;
+    outline-offset: 2px;
+  }
+
+  .left-drawer.others-logo-home-active .left-logo:active {
+    filter: brightness(1.08);
+  }
+
+  @keyframes left-logo-others-home-bubble {
+    from {
+      transform: translate(-50%, -5px) scale(0.94);
+      opacity: 0;
+    }
+
+    to {
+      transform: translate(-50%, 0) scale(1);
+      opacity: 1;
+    }
+  }
+
   .left-drawer-content button {
     flex-shrink: 0 !important;
   }
@@ -324,6 +378,16 @@ transition:
 
   .left-tab {
     z-index: 10001 !important;
+    right: -28px !important;
+    top: calc(50% - 70px) !important;
+    width: 28px !important;
+    touch-action: none;
+    cursor: grab;
+    box-shadow: -5px 0 8px -6px #25060C !important;
+  }
+
+  .left-drawer.dragging .left-tab {
+    cursor: grabbing;
   }
 
   body.creature-detail-open .left-tab {
