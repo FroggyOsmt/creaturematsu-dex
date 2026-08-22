@@ -43,7 +43,11 @@ function isAllowedPopupScroll(target) {
     ".character-popup, " +
     ".system-popup, " +
     ".characters-popup-overlay, " +
-    ".system-page-overlay"
+    ".system-page-overlay, " +
+    ".news-popup-overlay, " +
+    ".news-popup, " +
+    ".news-popup-content-wrap, " +
+    ".news-popup-content"
   );
 }
 
