@@ -1,6 +1,6 @@
 window.newsInfo = {
   content: `
-**Pillar Map is now available on mobile devices!!** 🎉
+<center>**Pillar Map is now available on mobile devices!!** 🎉
 <br>Its mobile layout differs slightly from the PC version to make touch navigation easier.</br>
  • For now, the **Category pages in the Second Pillar** are still in development.
  • **Clicking a creature in a Pillar Map list now opens his image**, although no additional creature information is included yet.

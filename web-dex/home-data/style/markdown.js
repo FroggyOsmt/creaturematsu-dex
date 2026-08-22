@@ -131,6 +131,7 @@ window.parseMarkdown = function(text) {
     const trimmed = line.trim();
 
     const isDoubleBreak = trimmed === "<2br>";
+    const alignmentMatch = trimmed.match(/^<(center|right|left)>(.*)$/i);
     const isNormalBullet = trimmed.startsWith("• ");
     const isSubBullet = trimmed.startsWith("▪ ");
     const isAboutBullet = trimmed.startsWith("◦ ");
@@ -138,6 +139,13 @@ window.parseMarkdown = function(text) {
     if (isDoubleBreak) {
       closeList();
       setExactTrailingBreaks(2);
+    } else if (alignmentMatch) {
+      closeList();
+
+      const alignment = alignmentMatch[1].toLowerCase();
+      const content = alignmentMatch[2].trimStart();
+
+      finalText += `<div class="md-align md-align-${alignment}" style="text-align: ${alignment};">${content}</div>`;
     } else if (isNormalBullet) {
       if (currentListClass !== "dex-bullet-list") {
         closeList();
