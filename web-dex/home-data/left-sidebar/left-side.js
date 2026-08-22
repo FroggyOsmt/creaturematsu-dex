@@ -6,6 +6,23 @@ function isMobileSidebarMode() {
   return window.matchMedia("(max-width: 768px)").matches;
 }
 
+function syncMobileDrawerSearchState() {
+  const shouldHideSearch =
+    isMobileSidebarMode() &&
+    (drawer.classList.contains("open") ||
+      drawer.classList.contains("dragging"));
+
+  document.body.classList.toggle(
+    "mobile-drawer-active",
+    shouldHideSearch
+  );
+
+  const searchInput = document.querySelector(".creature-search");
+  if (shouldHideSearch && document.activeElement === searchInput) {
+    searchInput.blur();
+  }
+}
+
 function syncDrawerLock() {
   const shouldLock =
     drawer.classList.contains("open") &&
@@ -13,6 +30,7 @@ function syncDrawerLock() {
 
   document.documentElement.classList.toggle("drawer-locked", shouldLock);
   document.body.classList.toggle("drawer-locked", shouldLock);
+  syncMobileDrawerSearchState();
 }
 
 function isAllowedPopupScroll(target) {
@@ -120,6 +138,7 @@ function beginDrawerGesture(inputId, clientX, usesPointerCapture = false) {
   };
 
   drawer.classList.add("dragging");
+  syncMobileDrawerSearchState();
   drawer.style.left = `${startOpen ? 0 : -drawerWidth}px`;
   return true;
 }
@@ -267,6 +286,7 @@ homeLogo?.addEventListener("keydown", event => {
 });
 
 syncHomeLogoControl();
+syncDrawerLock();
 
 if (window.creatureMatsuMobileNavigation) {
   const mobileNavigation = window.creatureMatsuMobileNavigation;

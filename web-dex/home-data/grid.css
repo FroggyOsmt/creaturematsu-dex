@@ -76,6 +76,11 @@
 }
 
 @media (max-width: 768px) {
+  /* HOME: la barra fija debe anclarse al viewport, no al slider transformado. */
+  body:not(.creature-detail-open):not(.others-view-open) #slider {
+    transform: none;
+  }
+
   .home-page {
     display: grid;
     grid-template-rows: auto minmax(0, 1fr);
@@ -594,6 +599,7 @@
       visibility 0s linear 0.22s !important;
   }
 
+  body.mobile-drawer-active .search-wrapper,
   body.creature-detail-open .search-wrapper,
   body.others-view-open .search-wrapper {
     opacity: 0;
