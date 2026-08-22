@@ -90,8 +90,41 @@ const detailContent = document.getElementById("detailContent");
 const creatureSearch = document.getElementById("creatureSearch");
 const noCreatureFound = document.getElementById("noCreatureFound");
 const dexArea = document.querySelector(".dex-area");
+const mobileGridQuery = window.matchMedia("(max-width: 768px)");
 
 let currentCreature = null;
+let mobileGridStateFrame = 0;
+
+function syncMobileGridScrollState() {
+  mobileGridStateFrame = 0;
+
+  if (!mobileGridQuery.matches) {
+    grid.classList.remove("mobile-grid-static", "mobile-grid-scrollable");
+    return;
+  }
+
+  const canScroll = grid.scrollHeight > grid.clientHeight + 1;
+
+  grid.classList.toggle("mobile-grid-scrollable", canScroll);
+  grid.classList.toggle("mobile-grid-static", !canScroll);
+
+  if (!canScroll) {
+    grid.scrollTop = 0;
+  }
+}
+
+function queueMobileGridScrollState() {
+  if (mobileGridStateFrame) {
+    window.cancelAnimationFrame(mobileGridStateFrame);
+  }
+
+  mobileGridStateFrame = window.requestAnimationFrame(
+    syncMobileGridScrollState
+  );
+}
+
+window.addEventListener("resize", queueMobileGridScrollState);
+mobileGridQuery.addEventListener?.("change", queueMobileGridScrollState);
 
 function isSecondPillarInPreparation(creature) {
   const creatureId = Number(creature?.id);
@@ -138,6 +171,8 @@ function renderGrid(list = creatures) {
 
     grid.appendChild(card);
   });
+
+  queueMobileGridScrollState();
 }
 
 renderGrid();
@@ -642,6 +677,23 @@ function setFilterPanelOpen(shouldOpen) {
   filterBtn.setAttribute("aria-expanded", String(shouldOpen));
 }
 
+function preserveMobileSearchFocusForFilter(event) {
+  const keyboardIsActive = document.body.classList.contains(
+    "mobile-search-keyboard-active"
+  );
+
+  if (
+    isMobileSearchMode() &&
+    keyboardIsActive &&
+    document.activeElement === searchInput
+  ) {
+    event.preventDefault();
+  }
+}
+
+filterBtn.addEventListener("pointerdown", preserveMobileSearchFocusForFilter);
+filterPanel.addEventListener("pointerdown", preserveMobileSearchFocusForFilter);
+
 filterBtn.addEventListener("click", () => {
   setFilterPanelOpen(filterPanel.classList.contains("hidden"));
 });
@@ -696,9 +748,28 @@ function setMobileKeyboardOffset(offset) {
   );
 }
 
+function setMobileSearchKeyboardActive(isActive, viewportHeight = window.innerHeight) {
+  document.body.classList.toggle("mobile-search-keyboard-active", isActive);
+  document.documentElement.classList.toggle(
+    "mobile-search-keyboard-active",
+    isActive
+  );
+
+  if (isActive) {
+    document.documentElement.style.setProperty(
+      "--mobile-home-height",
+      `${Math.max(1, Math.round(viewportHeight))}px`
+    );
+  } else {
+    document.documentElement.style.removeProperty("--mobile-home-height");
+  }
+
+  queueMobileGridScrollState();
+}
+
 function syncMobileSearchKeyboard() {
   if (!isMobileSearchMode()) {
-    document.body.classList.remove("mobile-search-keyboard-active");
+    setMobileSearchKeyboardActive(false);
     document.documentElement.style.removeProperty("--mobile-keyboard-offset");
     mobileKeyboardPending = false;
     mobileKeyboardWasVisible = false;
@@ -708,13 +779,22 @@ function syncMobileSearchKeyboard() {
   const inputFocused = document.activeElement === searchInput;
   const layoutHeight = window.innerHeight;
   const visualHeight = mobileVisualViewport?.height || layoutHeight;
-  const heightLoss = Math.max(
+  const layoutHeightLoss = Math.max(
     0,
-    mobileLayoutViewportBaseline - layoutHeight,
+    mobileLayoutViewportBaseline - layoutHeight
+  );
+  const visualHeightLoss = Math.max(
+    0,
     mobileVisualViewportBaseline - visualHeight
+  );
+  const heightLoss = Math.max(
+    layoutHeightLoss,
+    visualHeightLoss
   );
   const keyboardVisible =
     inputFocused && heightLoss >= MOBILE_KEYBOARD_THRESHOLD;
+  const layoutViewportResized =
+    layoutHeightLoss >= MOBILE_KEYBOARD_THRESHOLD;
 
   if (!inputFocused) {
     mobileLayoutViewportBaseline = Math.max(
@@ -727,7 +807,7 @@ function syncMobileSearchKeyboard() {
     );
     mobileKeyboardPending = false;
     mobileKeyboardWasVisible = false;
-    document.body.classList.remove("mobile-search-keyboard-active");
+    setMobileSearchKeyboardActive(false);
     setMobileKeyboardOffset(0);
     return;
   }
@@ -740,13 +820,14 @@ function syncMobileSearchKeyboard() {
     mobileKeyboardPending = false;
   }
 
-  const keyboardOffset = keyboardVisible && mobileVisualViewport
+  const keyboardOffset =
+    keyboardVisible && mobileVisualViewport && !layoutViewportResized
     ? layoutHeight - visualHeight - mobileVisualViewport.offsetTop
     : 0;
 
-  document.body.classList.toggle(
-    "mobile-search-keyboard-active",
-    keyboardVisible || mobileKeyboardPending
+  setMobileSearchKeyboardActive(
+    keyboardVisible || mobileKeyboardPending,
+    visualHeight
   );
   setMobileKeyboardOffset(keyboardOffset);
 }

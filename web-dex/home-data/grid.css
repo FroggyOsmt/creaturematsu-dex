@@ -79,10 +79,15 @@
   .home-page {
     display: grid;
     grid-template-rows: auto minmax(0, 1fr);
+    height: 100dvh;
+    min-height: 0;
+    overflow: hidden;
   }
 
   .home-top-row {
     grid-row: 1;
+    position: relative;
+    z-index: 100;
   }
 
   /* Comparacion Sketchware: acercar las barras a los laterales de la pantalla. */
@@ -103,8 +108,21 @@
     max-height: none;
     overflow-y: auto;
     overflow-x: hidden;
+    overscroll-behavior-y: contain;
     gap: 5px !important;
     padding: 8px 13px !important;
+  }
+
+  .grid.mobile-grid-static {
+    overflow-y: hidden !important;
+    overscroll-behavior-y: none;
+    touch-action: none;
+  }
+
+  .grid.mobile-grid-scrollable {
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+    touch-action: pan-y;
   }
 
   .no-creature-found {
@@ -130,8 +148,8 @@
   }
 
   .title-icon {
-  width: 40px !important;
-  height: 40px !important;
+  width: 45px !important;
+  height: 45px !important;
   }
 }
 
@@ -451,6 +469,29 @@
 /* MOBILE SEARCH BAR */
 
 @media (max-width: 768px) {
+  html.mobile-search-keyboard-active,
+  body.mobile-search-keyboard-active {
+    width: 100%;
+    height: var(--mobile-home-height, 100dvh);
+    max-height: var(--mobile-home-height, 100dvh);
+    overflow: hidden !important;
+    overscroll-behavior: none;
+  }
+
+  body.mobile-search-keyboard-active {
+    position: fixed;
+    inset: 0;
+  }
+
+  body.mobile-search-keyboard-active .app-container,
+  body.mobile-search-keyboard-active .slider,
+  body.mobile-search-keyboard-active .home-page {
+    height: 100%;
+    min-height: 0;
+    max-height: 100%;
+    overflow: hidden;
+  }
+
   .search-wrapper {
     display: flex !important;
     position: fixed;
@@ -476,7 +517,6 @@
     visibility: visible;
     transform: translateY(0);
     transition:
-      bottom 0.18s ease,
       opacity 0.2s ease,
       transform 0.2s ease,
       visibility 0s linear 0s;
@@ -511,9 +551,17 @@
     bottom: calc(100% + 8px);
     z-index: 4001;
     transform-origin: bottom right;
+    overscroll-behavior-y: contain;
     max-height: min(
       420px,
       calc(100svh - 92px - var(--mobile-keyboard-offset, 0px))
+    );
+  }
+
+  body.mobile-search-keyboard-active .filter-panel {
+    max-height: min(
+      420px,
+      calc(var(--mobile-home-height, 100dvh) - 92px)
     );
   }
 
