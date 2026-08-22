@@ -1,4 +1,4 @@
-const NEWS_VERSION = "0.1.1";
+const NEWS_VERSION = "0.1.1a";
 const NEWS_STORAGE_KEY = "creaturematsu-whats-new-skipped-version";
 const NEWS_AUTO_OPEN_DELAY = 3250;
 const NEWS_CLOSE_ANIMATION_DURATION = 280;
@@ -47,6 +47,9 @@ function createNewsPopup() {
           <button class="news-popup-btn news-popup-cancel-btn" type="button">
             Cancel
           </button>
+          <button class="news-popup-btn news-popup-back-btn" type="button">
+            BACK
+          </button>
         </footer>
       </section>
     </div>
@@ -77,6 +80,10 @@ function openNewsPopup(options = {}) {
   const wasActive = popup.classList.contains("active");
   const skipButton = popup.querySelector(".news-popup-skip-btn");
   const cancelButton = popup.querySelector(".news-popup-cancel-btn");
+  const backButton = popup.querySelector(".news-popup-back-btn");
+  const manualCloseButton = window.matchMedia("(max-width: 768px)").matches
+    ? backButton
+    : cancelButton;
 
   newsPopupLastFocusedElement = document.activeElement;
   skipButton.hidden = manualOpen;
@@ -95,7 +102,7 @@ function openNewsPopup(options = {}) {
   }
 
   requestAnimationFrame(() => {
-    (manualOpen ? cancelButton : skipButton).focus();
+    (manualOpen ? manualCloseButton : skipButton).focus();
   });
 }
 
@@ -144,6 +151,7 @@ function initNewsPopup() {
   const sidebarButton = document.querySelector("[data-open-news]");
   const skipButton = popup.querySelector(".news-popup-skip-btn");
   const cancelButton = popup.querySelector(".news-popup-cancel-btn");
+  const backButton = popup.querySelector(".news-popup-back-btn");
 
   sidebarButton?.addEventListener("click", () => {
     openNewsPopup({ manual: true });
@@ -151,6 +159,7 @@ function initNewsPopup() {
 
   skipButton.addEventListener("click", skipCurrentNews);
   cancelButton.addEventListener("click", closeNewsPopup);
+  backButton.addEventListener("click", closeNewsPopup);
 
   popup.addEventListener("click", event => {
     if (event.target === popup) closeNewsPopup();

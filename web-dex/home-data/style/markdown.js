@@ -122,14 +122,23 @@ window.parseMarkdown = function(text) {
     currentListClass = "";
   }
 
+  function setExactTrailingBreaks(count) {
+    finalText = finalText.replace(/(?:<br>)+$/, "");
+    finalText += "<br>".repeat(count);
+  }
+
   lines.forEach(line => {
     const trimmed = line.trim();
 
+    const isDoubleBreak = trimmed === "<2br>";
     const isNormalBullet = trimmed.startsWith("• ");
     const isSubBullet = trimmed.startsWith("▪ ");
     const isAboutBullet = trimmed.startsWith("◦ ");
 
-    if (isNormalBullet) {
+    if (isDoubleBreak) {
+      closeList();
+      setExactTrailingBreaks(2);
+    } else if (isNormalBullet) {
       if (currentListClass !== "dex-bullet-list") {
         closeList();
         finalText += `<ul class="dex-bullet-list">`;
