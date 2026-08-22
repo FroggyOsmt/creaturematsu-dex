@@ -136,7 +136,33 @@
   min-height: 44px;
   padding: 2px 1px 1px 0;
   background: transparent;
+  border: 0;
+  border-radius: 8px;
   box-sizing: border-box;
+  appearance: none;
+
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  touch-action: manipulation;
+
+  transition:
+    transform 0.12s ease,
+    filter 0.12s ease,
+    box-shadow 0.12s ease;
+}
+
+.category-detail-item:hover,
+.category-detail-item:focus-visible {
+  z-index: 1;
+  transform: scale(1.02);
+  filter: brightness(1.08);
+  outline: none;
+}
+
+.category-detail-item:active {
+  transform: translateY(3px) scale(0.99);
+  box-shadow: 0 1px 0 #25060C;
 }
 
 .category-detail-icon {

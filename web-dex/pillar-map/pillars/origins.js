@@ -47,7 +47,7 @@ matsuDex: "#007 – #042",
 coreTheme: `
 - emotional foundations
 - first transformations
-- basic biological experimentation.`,
+- basic biological experimentation`,
 representativeColor: "RED (Oso)",
 centralSymbol: "SPROUT",
 

@@ -10,6 +10,7 @@ window.pillarMapData["2"] = {
   ordinal: "2nd Pillar",
   title: "VARIATIONS",
   age: "2019/2020 – Novice Age",
+  mobileAge: "NOVICE",
 
 badgeIncludes: {
   title: "BADGE INCLUDES",
@@ -48,7 +49,7 @@ matsuDex: "#043 – #078",
 coreTheme: `
 - discovery
 - strangeness
-- first free mutations.`,
+- first free mutations`,
 representativeColor: "BLUE (Kara)",
 centralSymbol: "GLOWING STAR",
 

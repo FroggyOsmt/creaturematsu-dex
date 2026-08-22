@@ -2,6 +2,7 @@
   const transitionDuration = 340;
   const existingPage = document.getElementById("othersPage");
   const appContainer = document.querySelector(".app-container");
+  const mobileNavigation = window.creatureMatsuMobileNavigation;
 
   function setupBackButton(page, closeAction) {
     const backButton = page.querySelector("[data-close-others]");
@@ -88,8 +89,16 @@
     requestAnimationFrame(updateActiveTopButton);
   }
 
-  function closeOthersSidebar(page) {
+  function closeOthersSidebar(page, options = {}) {
     if (!page) return;
+
+    if (
+      page.classList.contains("others-sidebar-open") &&
+      options.fromHistory !== true &&
+      mobileNavigation?.backIfCurrent("others-detail")
+    ) {
+      return;
+    }
 
     const sidebar = page.querySelector("[data-others-sidebar]");
 
@@ -171,8 +180,10 @@
     return true;
   }
 
-  function openOthersSidebar(page, button) {
-    if (!renderOthersSidebar(page, button.dataset.othersContent)) return;
+  function openOthersSidebar(page, button, options = {}) {
+    const contentId = button.dataset.othersContent;
+
+    if (!renderOthersSidebar(page, contentId)) return;
 
     const sidebar = page.querySelector("[data-others-sidebar]");
     const scrollBox = page.querySelector(".others-sidebar-bg");
@@ -187,6 +198,14 @@
     sidebar?.setAttribute("aria-hidden", "false");
     page.classList.add("others-sidebar-open");
     document.body.classList.add("others-sidebar-detail-open");
+
+    if (options.writeHistory !== false) {
+      if (mobileNavigation?.getState()?.view === "others-detail") {
+        mobileNavigation.replace("others-detail", { contentId });
+      } else {
+        mobileNavigation?.push("others-detail", { contentId });
+      }
+    }
 
     requestAnimationFrame(() => {
       scrollBox?.scrollTo({ top: 0, left: 0, behavior: "auto" });
@@ -271,21 +290,29 @@
     return loadPromise;
   }
 
-  async function openOthersPage() {
+  async function openOthersPage(options = {}) {
     const page = await loadOthersPage();
-    if (!page || page.classList.contains("active")) return;
+    if (!page) return null;
+
+    const wasActive = page.classList.contains("active");
+
+    if (wasActive) return page;
 
     if (
       document.querySelector(".detail-page.active") &&
       typeof window.closeDetail === "function"
     ) {
-      window.closeDetail();
+      window.closeDetail({ fromHistory: true });
     }
 
-    const sidebarDrawer = document.getElementById("leftDrawer");
-    sidebarDrawer?.classList.remove("open");
-    document.documentElement.classList.remove("drawer-locked");
-    document.body.classList.remove("drawer-locked");
+    if (typeof window.setDrawerOpenFromHistory === "function") {
+      window.setDrawerOpenFromHistory(false);
+    } else {
+      const sidebarDrawer = document.getElementById("leftDrawer");
+      sidebarDrawer?.classList.remove("open");
+      document.documentElement.classList.remove("drawer-locked");
+      document.body.classList.remove("drawer-locked");
+    }
 
     page.setAttribute("aria-hidden", "false");
     slider.setAttribute("aria-hidden", "true");
@@ -297,12 +324,25 @@
       slider.classList.add("others-home-hidden");
       page.classList.add("active");
     });
+
+    if (options.writeHistory !== false) {
+      mobileNavigation?.push("others");
+    }
+
+    return page;
   }
 
-  function closeOthersPage() {
+  function closeOthersPage(options = {}) {
     if (!othersPage || !othersPage.classList.contains("active")) return;
 
-    closeOthersSidebar(othersPage);
+    if (
+      options.fromHistory !== true &&
+      mobileNavigation?.backIfCurrent("others")
+    ) {
+      return;
+    }
+
+    closeOthersSidebar(othersPage, { fromHistory: true });
     othersPage.classList.remove("active");
     othersPage.setAttribute("aria-hidden", "true");
     slider.classList.remove("others-home-hidden");
@@ -320,6 +360,49 @@
 
   trigger.setAttribute("aria-pressed", "false");
   trigger.addEventListener("click", openOthersPage);
+
+  if (mobileNavigation) {
+    window.addEventListener(mobileNavigation.eventName, async event => {
+      const navigationState = event.detail?.state;
+
+      if (
+        navigationState?.view === "others" ||
+        navigationState?.view === "others-detail"
+      ) {
+        const page = await openOthersPage({ writeHistory: false });
+
+        if (!page) return;
+
+        const currentState = mobileNavigation.getState();
+
+        if (
+          currentState?.view !== navigationState.view ||
+          currentState?.contentId !== navigationState.contentId
+        ) {
+          return;
+        }
+
+        if (navigationState.view === "others-detail") {
+          const button = Array.from(
+            page.querySelectorAll("[data-others-content]")
+          ).find(entry => (
+            entry.dataset.othersContent === navigationState.contentId
+          ));
+
+          if (button) {
+            openOthersSidebar(page, button, { writeHistory: false });
+          }
+
+          return;
+        }
+
+        closeOthersSidebar(page, { fromHistory: true });
+        return;
+      }
+
+      closeOthersPage({ fromHistory: true });
+    });
+  }
 
   document.addEventListener("keydown", event => {
     if (event.key !== "Escape") return;

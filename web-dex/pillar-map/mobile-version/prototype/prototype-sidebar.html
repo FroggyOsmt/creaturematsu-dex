@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prototype Sidebar</title>
+  <link rel="stylesheet" href="prototype-sidebar.css">
+</head>
+
+<body>
+  <aside class="left-drawer open" id="prototypeSidebar" aria-label="Prototype sidebar">
+    <div
+      class="left-tab"
+      id="prototypeSidebarTab"
+      role="button"
+      tabindex="0"
+      aria-controls="prototypeSidebar"
+      aria-expanded="true"
+    >
+      HOME
+    </div>
+
+    <div class="left-drawer-content">
+      <div class="left-logo" aria-hidden="true"></div>
+
+      <button type="button">About</button>
+      <button type="button">Character</button>
+      <button type="button">System</button>
+
+      <button class="pillar-map-sidebar-btn" type="button">
+        <span>Pillar Map</span>
+      </button>
+
+      <button type="button">
+        <span>Others</span>
+      </button>
+
+      <div class="left-footer">
+        <button class="author-sidebar-btn" type="button">
+          About Author
+        </button>
+
+        <div class="left-socials" aria-label="Social icons">
+          <span class="left-social-btn">
+            <img src="../../../images/socials/discord.png" alt="Discord">
+          </span>
+
+          <span class="left-social-btn">
+            <img src="../../../images/socials/instagram.png" alt="CreatureMatsu Instagram">
+          </span>
+
+          <span class="left-social-btn">
+            <img src="../../../images/socials/frog.png" alt="Froggy Instagram">
+          </span>
+        </div>
+
+        <button class="report-sidebar-btn" type="button">
+          Report a Problem
+        </button>
+
+        <button class="report-sidebar-btn news-sidebar-btn" type="button">
+          What's New
+        </button>
+
+        <div class="left-version">v0.1.1</div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="prototype-stage">
+    <div class="prototype-card">
+      <span>ARCHIVED CONCEPT</span>
+      <h1>Prototype Sidebar</h1>
+      <p>Use the HOME tab to close or reopen the saved sidebar.</p>
+    </div>
+  </main>
+
+  <script src="prototype-sidebar.js"></script>
+</body>
+</html>

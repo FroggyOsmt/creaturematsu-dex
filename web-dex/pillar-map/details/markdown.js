@@ -3,6 +3,48 @@
 // ========================================
 
 let markdownImagePopupLastFocusedElement = null;
+const markdownImagePopupHistoryKey = "creaturematsuPillarMapImage";
+const markdownImagePopupMobileQuery = window.matchMedia("(max-width: 768px)");
+
+function getMarkdownImagePopupHistoryState(state = window.history.state) {
+  if (!state || typeof state !== "object") return null;
+
+  const popupState = state[markdownImagePopupHistoryKey];
+
+  if (
+    !popupState ||
+    popupState.open !== true ||
+    typeof popupState.source !== "string" ||
+    popupState.source === ""
+  ) {
+    return null;
+  }
+
+  return popupState;
+}
+
+function writeMarkdownImagePopupHistoryState(source, alt, mode) {
+  if (!markdownImagePopupMobileQuery.matches) return;
+  if (getMarkdownImagePopupHistoryState()) return;
+
+  const currentState = window.history.state;
+  const baseState =
+    currentState && typeof currentState === "object" ? currentState : {};
+
+  window.history.pushState(
+    {
+      ...baseState,
+      [markdownImagePopupHistoryKey]: {
+        open: true,
+        source: String(source),
+        alt: String(alt || ""),
+        mode: String(mode || "")
+      }
+    },
+    "",
+    window.location.href
+  );
+}
 
 function escapeMarkdownImageAttribute(value) {
   return String(value || "")
@@ -44,27 +86,58 @@ function openMarkdownImagePopup(trigger) {
   const sourceImage = trigger?.querySelector("img");
   if (!sourceImage) return;
 
+  openMarkdownImagePopupFromSource(
+    sourceImage.currentSrc || sourceImage.src,
+    sourceImage.alt || ""
+  );
+}
+
+function openMarkdownImagePopupFromSource(
+  source,
+  alt = "",
+  mode = "",
+  options = {}
+) {
+  if (!source) return;
+
   const popup = ensureMarkdownImagePopup();
   const popupImage = popup.querySelector(".markdown-image-popup-image");
   const backButton = popup.querySelector(".markdown-image-popup-back");
 
   markdownImagePopupLastFocusedElement = document.activeElement;
-  popupImage.src = sourceImage.currentSrc || sourceImage.src;
-  popupImage.alt = sourceImage.alt || "";
+  popup.classList.toggle("markdown-image-popup-creature", mode === "creature");
+  popupImage.src = source;
+  popupImage.alt = alt;
 
   popup.classList.add("open");
   popup.setAttribute("aria-hidden", "false");
   document.documentElement.classList.add("markdown-image-popup-open");
   document.body.classList.add("markdown-image-popup-open");
 
+  if (options.writeHistory !== false) {
+    writeMarkdownImagePopupHistoryState(source, alt, mode);
+  }
+
   requestAnimationFrame(() => backButton.focus());
 }
 
-function closeMarkdownImagePopup() {
+window.openMarkdownImagePopupFromSource = openMarkdownImagePopupFromSource;
+
+function closeMarkdownImagePopup(options = {}) {
   const popup = document.getElementById("markdownImagePopup");
   if (!popup || !popup.classList.contains("open")) return;
 
+  if (
+    options.fromHistory !== true &&
+    markdownImagePopupMobileQuery.matches &&
+    getMarkdownImagePopupHistoryState()
+  ) {
+    window.history.back();
+    return;
+  }
+
   popup.classList.remove("open");
+  popup.classList.remove("markdown-image-popup-creature");
   popup.setAttribute("aria-hidden", "true");
   document.documentElement.classList.remove("markdown-image-popup-open");
   document.body.classList.remove("markdown-image-popup-open");
@@ -85,6 +158,22 @@ document.addEventListener("click", event => {
 
 document.addEventListener("keydown", event => {
   if (event.key === "Escape") closeMarkdownImagePopup();
+});
+
+window.addEventListener("popstate", event => {
+  const popupState = getMarkdownImagePopupHistoryState(event.state);
+
+  if (popupState) {
+    openMarkdownImagePopupFromSource(
+      popupState.source,
+      popupState.alt,
+      popupState.mode,
+      { writeHistory: false }
+    );
+    return;
+  }
+
+  closeMarkdownImagePopup({ fromHistory: true });
 });
 
 window.parseMarkdown = function (text) {

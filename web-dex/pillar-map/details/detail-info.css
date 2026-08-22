@@ -5,7 +5,7 @@
 .pillar-detail-preview {
   width: min(700px, 90%);
       margin: 0px auto;
-    margin-bottom: 20px;
+    margin-bottom: 19px;
   padding: 15px;
 
   background: #FFE2C1;
@@ -419,6 +419,11 @@ margin-left: 5px;
 .detail-toc {
   margin: 0 auto 24px;
   box-sizing: border-box;
+  width: 100%;
+  padding: 9px;
+  background: rgba(95, 47, 33, 0.55);
+  border: 2px solid #A56243;
+  border-radius: 10px;
 }
 
 .detail-toc-title {
@@ -539,7 +544,7 @@ margin-left: 5px;
 
   padding: 10px 12px;
 
-  background: #45281F;
+  background: #25060c7d;
   color: #EFB775;
 
   border-radius: 0 8px 8px 8px;

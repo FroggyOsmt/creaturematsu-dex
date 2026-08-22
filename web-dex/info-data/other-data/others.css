@@ -355,7 +355,7 @@ body.others-standalone {
   }
 
   body.others-view-open .left-tab {
-    top: 40px;
+    top: 40px !important;
     opacity: 1;
     visibility: visible;
     pointer-events: auto;

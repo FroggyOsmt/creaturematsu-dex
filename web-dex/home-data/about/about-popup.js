@@ -73,12 +73,31 @@ document.getElementById("aboutMarkdown").innerHTML = `
     initAboutActiveTopButtons();
   });
 
-function openAboutPopup() {
+function openAboutPopup(options = {}) {
   const popup = document.getElementById("aboutPopup");
 
   if (!popup) return;
 
+  const wasActive = popup.classList.contains("active");
+
   popup.classList.add("active");
+
+  if (
+    !wasActive &&
+    options.writeHistory !== false
+  ) {
+    const mobileNavigation = window.creatureMatsuMobileNavigation;
+    const isOpenedFromOthers =
+      mobileNavigation?.isMobile() &&
+      document.body.classList.contains("others-view-open");
+    const currentView = mobileNavigation?.getState()?.view;
+
+    mobileNavigation?.push("about", {
+      returnStepsToOthers: isOpenedFromOthers
+        ? currentView === "drawer" ? 2 : 1
+        : 0
+    });
+  }
 
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
@@ -96,11 +115,27 @@ function openAboutPopup() {
   });
 }
 
-function closeAboutPopup() {
+function closeAboutPopup(options = {}) {
   const popup = document.getElementById("aboutPopup");
   const aboutBg = document.querySelector(".about-bg");
 
   if (!popup) return;
+
+  if (popup.classList.contains("active") && options.fromHistory !== true) {
+    const mobileNavigation = window.creatureMatsuMobileNavigation;
+    const navigationState = mobileNavigation?.getState();
+    const returnStepsToOthers = navigationState?.returnStepsToOthers;
+
+    if (
+      navigationState?.view === "about" &&
+      (returnStepsToOthers === 1 || returnStepsToOthers === 2)
+    ) {
+      window.history.go(-returnStepsToOthers);
+      return;
+    }
+
+    if (mobileNavigation?.backIfCurrent("about")) return;
+  }
 
   popup.classList.remove("active");
 
@@ -111,6 +146,19 @@ function closeAboutPopup() {
 
   document.querySelectorAll(".about-top-btn").forEach(btn => {
     btn.classList.remove("active");
+  });
+}
+
+if (window.creatureMatsuMobileNavigation) {
+  const mobileNavigation = window.creatureMatsuMobileNavigation;
+
+  window.addEventListener(mobileNavigation.eventName, event => {
+    if (event.detail?.state?.view === "about") {
+      openAboutPopup({ writeHistory: false });
+      return;
+    }
+
+    closeAboutPopup({ fromHistory: true });
   });
 }
 

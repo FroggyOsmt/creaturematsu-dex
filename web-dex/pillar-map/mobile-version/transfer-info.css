@@ -1,0 +1,312 @@
+/* ========================================
+   PILLAR MAP — MOBILE TRANSFERRED INFO
+======================================== */
+
+@keyframes mobileTransferInfoTitleIn {
+  from {
+    opacity: 0.6;
+    transform: translateX(18px);
+    background: #FFE2C1;
+    color: #7A3A25;
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+    background: #FFE2C1;
+    color: #7A3A25;
+  }
+}
+
+@media (max-width: 768px) {
+  .mobile-pillar-info[data-mobile-transfer-info] {
+    background: #EFB775;
+    cursor: pointer;
+    touch-action: manipulation;
+    box-shadow: 0 3px 0 #5F2F21;
+    transition:
+      transform 0.12s ease,
+      background-color 0.12s ease,
+      box-shadow 0.12s ease;
+  }
+
+  .mobile-pillar-info[data-mobile-transfer-info]:active {
+    transform: translateY(2px);
+    background: #FFE2C1;
+    box-shadow: 0 1px 0 #5F2F21;
+  }
+
+  .mobile-pillar-sheet.mobile-transfer-info-open {
+    top: 0;
+    bottom: 0;
+
+    height: 100vh;
+    height: 100dvh;
+    max-height: none;
+    padding-top: calc(15px + env(safe-area-inset-top));
+
+    overflow: hidden;
+    border-radius: 0;
+  }
+
+  .mobile-transfer-info-view[hidden] {
+    display: none !important;
+  }
+
+  .mobile-transfer-info-view:not([hidden]) {
+    display: grid;
+    grid-template-rows: auto auto minmax(0, 1fr);
+    gap: 7px;
+
+    min-height: 0;
+    height: 100%;
+  }
+
+  .mobile-transfer-info-view.mobile-system-info-view:not([hidden]) {
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+
+  .mobile-system-info-view .mobile-transfer-info-dex {
+    display: none !important;
+  }
+
+  .mobile-transfer-info-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: stretch;
+    gap: 8px;
+
+    padding-bottom: 5px;
+    border-bottom: 1px solid transparent;
+  }
+
+  .mobile-transfer-info-title {
+    min-width: 0;
+    min-height: 44px;
+    margin: 0;
+    padding: 7px 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+    background: #FFE2C1;
+    color: #7A3A25;
+    border: 3px solid #A5643C;
+    border-radius: 10px;
+
+    box-sizing: border-box;
+    font-size: clamp(18px, 5.7vw, 24px);
+    font-weight: 900;
+    line-height: 1;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    animation: mobileTransferInfoTitleIn 0.42s cubic-bezier(.22, 1, .36, 1) both;
+  }
+
+  .mobile-transfer-info-back {
+    min-width: 82px;
+    min-height: 44px;
+    padding: 0 13px;
+
+    display: grid;
+    place-items: center;
+
+    background: #EFB775;
+    color: #7A3A25;
+    border: 3px solid #A5643C;
+    border-radius: 10px;
+
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 900;
+    cursor: pointer;
+    touch-action: manipulation;
+
+  }
+
+  .mobile-transfer-info-back:active {
+    transform: translateY(3px);
+    background: #FFE2C1;
+  }
+
+  .mobile-transfer-info-dex {
+    flex: 0 0 auto;
+    margin-top: 0;
+    padding-top: 0;
+    padding-bottom: 10px;
+  }
+
+  .mobile-transfer-info-shared {
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .mobile-transfer-info-shared .detail-info {
+    min-height: 0;
+    height: 100%;
+  }
+
+  .mobile-transfer-info-shared .pillar-detail-preview,
+  .mobile-transfer-info-shared .detail-category-image {
+    display: none !important;
+  }
+
+  .mobile-transfer-info-shared .detail-info-scroll {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    margin-left: 0;
+    padding: 5px 3px calc(10px + env(safe-area-inset-bottom)) 0;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    box-sizing: border-box;
+    scrollbar-gutter: stable;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .mobile-transfer-info-shared .detail-info-scroll::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+
+  .mobile-transfer-info-shared .detail-info-columns,
+  .mobile-transfer-info-shared .detail-category-columns {
+    width: 100%;
+    margin: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .mobile-transfer-info-shared .detail-info-left,
+  .mobile-transfer-info-shared .detail-info-right,
+  .mobile-transfer-info-shared .detail-category-left {
+    width: 100%;
+    gap: 8px;
+  }
+
+  .mobile-transfer-info-shared .detail-pillar-data {
+    width: 100%;
+    gap: 7px;
+  }
+
+  .mobile-transfer-info-shared .detail-pillar-data-row {
+    width: 100%;
+  }
+
+  .mobile-transfer-info-shared .detail-pillar-data-row {
+    grid-template-columns: minmax(150px, max-content) minmax(0, 1fr);
+  }
+
+  .mobile-transfer-info-shared .detail-category-logo-row {
+    grid-template-columns: minmax(112px, max-content) minmax(0, 1fr);
+  }
+
+  .mobile-transfer-info-shared .detail-pillar-data-label {
+    justify-content: center;
+    padding: 7px 8px;
+    font-size: clamp(11px, 2.50vw, 13px);
+  }
+
+  .mobile-transfer-info-shared .detail-category-logo-label {
+    padding: 7px 8px;
+    font-size: clamp(11px, 3.35vw, 13px);
+  }
+
+  .mobile-transfer-info-shared .detail-pillar-data-value {
+    justify-content: center;
+    padding: 7px 9px;
+    font-size: clamp(11px, 2.50vw, 13px);
+  }
+
+
+  .mobile-transfer-info-shared .detail-category-logo-value {
+    padding: 7px 9px;
+    font-size: clamp(11px, 3.35vw, 13px);
+  }
+
+  .mobile-transfer-info-shared .detail-core-theme-list {
+    margin: 0;
+    padding-left: 17px;
+  }
+
+  .mobile-transfer-info-shared .detail-info-bottom {
+    width: 100%;
+    margin: 12px 0 0;
+    gap: 10px;
+  }
+
+  .mobile-transfer-info-shared[data-transfer-info-type="system"]
+    .detail-info-bottom {
+    margin-top: 0;
+  }
+
+  .mobile-transfer-info-shared[data-transfer-info-type="system"]
+    .mobile-system-pillar-description
+    .detail-info-section-body {
+    border-radius: 8px;
+  }
+
+  .mobile-transfer-info-shared .detail-log-card {
+    gap: 12px;
+  }
+
+  .mobile-transfer-info-shared .detail-info-section-body {
+    min-height: 0;
+    line-height: 1.35;
+  }
+
+  .mobile-transfer-info-shared .detail-badge-collection-body {
+    min-height: 0;
+  }
+
+  .mobile-transfer-info-shared .detail-badge-collection-list {
+    width: 85%;
+    display: grid;
+    grid-template-columns: repeat(3, 0.5fr);
+  }
+
+  .mobile-transfer-info-shared .detail-toc {
+    width: 100%;
+    margin: 2px 0 0;
+    padding: 9px;
+
+    background: rgba(95, 47, 33, 0.55);
+    border: 2px solid #A56243;
+    border-radius: 10px;
+  }
+
+  .mobile-transfer-info-shared .detail-toc-links {
+    justify-content: flex-start;
+  }
+
+  .mobile-transfer-info-shared .detail-toc-link {
+     min-height: 25px;
+    padding: 6px 8px;
+    touch-action: manipulation;
+  }
+
+  .mobile-transfer-info-shared .detail-top-btn {
+    flex: 0 0 auto;
+    min-height: 30px;
+    padding: 5px 10px;
+    touch-action: manipulation;
+  }
+}
+
+@media (max-width: 768px) and (prefers-reduced-motion: reduce) {
+  .mobile-transfer-info-title {
+    animation-duration: 0.01ms;
+    animation-delay: 0s;
+  }
+}

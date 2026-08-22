@@ -336,6 +336,30 @@ body.markdown-image-popup-open {
   border-radius: 10px;
 }
 
+.markdown-image-popup-overlay.markdown-image-popup-creature
+  .markdown-image-popup-card {
+  width: min(435px, calc(100vw - 40px), calc(90vh - 64px));
+}
+
+.markdown-image-popup-overlay.markdown-image-popup-creature
+  .markdown-image-popup-view {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 10px;
+}
+
+.markdown-image-popup-overlay.markdown-image-popup-creature
+  .markdown-image-popup-image {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  object-fit: contain;
+  background: #fff;
+  border-radius: 0;
+}
+
 .markdown-image-popup-back {
   position: relative;
   flex: 0 0 auto;
