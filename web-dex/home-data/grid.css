@@ -95,6 +95,12 @@
     z-index: 100;
   }
 
+  /* El detalle debe cubrir por completo el encabezado desplazado de HOME. */
+  body.creature-detail-open .home-top-row {
+    z-index: 0;
+    pointer-events: none;
+  }
+
   /* Comparacion Sketchware: acercar las barras a los laterales de la pantalla. */
   .dex-area {
     grid-row: 2;
