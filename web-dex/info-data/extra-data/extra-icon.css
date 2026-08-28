@@ -212,7 +212,7 @@
     overflow-x: hidden !important;
     overflow-y: hidden !important;
 
-    padding: 10px !important;
+    padding: 10px 20px !important;
   }
   .extra-icon-btn img {
     width: 55 !important;
