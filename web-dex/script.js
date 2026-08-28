@@ -126,11 +126,6 @@ function queueMobileGridScrollState() {
 window.addEventListener("resize", queueMobileGridScrollState);
 mobileGridQuery.addEventListener?.("change", queueMobileGridScrollState);
 
-function isSecondPillarInPreparation(creature) {
-  const creatureId = Number(creature?.id);
-  return creatureId >= 43 && creatureId <= 78;
-}
-
 function renderGrid(list = creatures) {
   grid.innerHTML = "";
 
@@ -138,22 +133,8 @@ function renderGrid(list = creatures) {
     const card = document.createElement("div");
     card.className = "card";
     card.dataset.id = c.id;
-    const isInPreparation = isSecondPillarInPreparation(c);
-
-    if (isInPreparation) {
-      card.classList.add("card-in-preparation");
-      card.setAttribute("aria-disabled", "true");
-    }
 
     const img = document.createElement("img");
-
-    if (isInPreparation) {
-      img.onerror = function () {
-        img.onerror = null;
-        img.src = "info-data/creature-data/creature-icon/icon_000.png";
-      };
-    }
-
     img.src = "info-data/creature-data/creature-icon/" + c.icon;
     img.alt = "#" + c.id;
 
@@ -163,11 +144,9 @@ function renderGrid(list = creatures) {
     card.appendChild(img);
     card.appendChild(text);
 
-    if (!isInPreparation) {
-      card.addEventListener("click", function () {
-        openDetail(c);
-      });
-    }
+    card.addEventListener("click", function () {
+      openDetail(c);
+    });
 
     grid.appendChild(card);
   });
@@ -254,12 +233,32 @@ function getExtraButton(c, type, key, iconName) {
   `;
 }
 
+function getStatusButton(c) {
+  if (c?.pillar !== "VARIATIONS") return "";
+
+  const status = (c?.extras?.status || "").toString().trim().toUpperCase();
+  const statusIcon = status === "S"
+    ? "stable.png"
+    : status === "U"
+      ? "unstable.png"
+      : "";
+
+  if (!statusIcon) return "";
+
+  return `
+    <button
+      class="extra-icon-btn extra-on extra-status-btn"
+      onclick="openExtraPopup('STATUS')"
+    >
+      <img src="info-data/extra-data/extra-image/${statusIcon}">
+      <span>STATUS</span>
+    </button>
+  `;
+}
+
 // DETAIL RIGHT
 
 function openDetail(c, options = {}) {
-
-  if (isSecondPillarInPreparation(c)) return;
-
   const shouldWriteHistory = options.writeHistory !== false;
 
   currentCreature = c;
@@ -290,10 +289,11 @@ function openDetail(c, options = {}) {
       <div class="text-card-row extra-card-row">
         <div class="info-label text-card-label">EXTRA</div>
 
-        <div class="extra-icon-grid">
-  ${getExtraButton(c, "ACTION", "action", "action")}
+        <div class="extra-icon-grid${c.pillar === "VARIATIONS" ? " extra-icon-grid-variations" : ""}">
+${getExtraButton(c, "ACTION", "action", "action")}
 ${getExtraButton(c, "SHEET", "sheet", "sheet")}
 ${getExtraButton(c, "LOG", "log", "log")}
+${getStatusButton(c)}
 ${getExtraButton(c, "FUN FACT", "funFact", "funfact")}
         </div>
       </div>
@@ -310,10 +310,8 @@ ${getExtraButton(c, "FUN FACT", "funFact", "funfact")}
     .join("");
 
 const currentIndex = creatures.findIndex(item => item.id === c.id);
-const prevCandidate = creatures[currentIndex - 1];
-const nextCandidate = creatures[currentIndex + 1];
-const prevCreature = isSecondPillarInPreparation(prevCandidate) ? null : prevCandidate;
-const nextCreature = isSecondPillarInPreparation(nextCandidate) ? null : nextCandidate;
+const prevCreature = creatures[currentIndex - 1];
+const nextCreature = creatures[currentIndex + 1];
 
 detailContent.innerHTML = `
 <div class="detail-title-card">
@@ -488,7 +486,7 @@ if (window.creatureMatsuMobileNavigation) {
         creature => String(creature.id) === String(navigationState.creatureId)
       );
 
-      if (!found || isSecondPillarInPreparation(found)) return;
+      if (!found) return;
 
       if (
         currentCreature?.id === found.id &&
@@ -523,7 +521,7 @@ document.addEventListener("keydown", (e) => {
     const index = creatures.findIndex(c => c.id === currentCreature.id);
     const next = creatures[index + direction];
 
-    if (next && !isSecondPillarInPreparation(next)) {
+    if (next) {
       openDetail(next);
       flashGridCard(next.id); // <-- Aquí agregas la animación
     }
@@ -556,7 +554,7 @@ function flashGridCard(creatureId) {
 
 function openDetailById(id) {
   const found = creatures.find(c => c.id === id);
-  if (!found || isSecondPillarInPreparation(found)) return;
+  if (!found) return;
 
   openDetail(found);
   flashGridCard(found.id);
@@ -616,6 +614,7 @@ function getCreaturePillarKey(c) {
 
 function applySearchAndFilters() {
   const query = searchInput.value.toLowerCase().trim();
+  document.body.classList.toggle("desktop-search-active", query !== "");
 
   const activeMatsuFilters = getCheckedValues(".matsu-filter");
   const activePillarFilters = getCheckedValues(".pillar-filter");

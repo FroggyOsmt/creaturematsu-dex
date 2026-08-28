@@ -29,6 +29,11 @@ const secondPillarKara = [
 `,
 
     extras: {
+      status: "",
+      code: "",
+      responsible: "",
+      description: `
+`,
       action: ["A049-A.png", "A049-B.png"],
       sheet: [
         {
@@ -73,6 +78,11 @@ const secondPillarKara = [
 `,
 
     extras: {
+      status: "",
+      code: "",
+      responsible: "",
+      description: `
+`,
       action: ["A050-A.png", "A050-B.png"],
       sheet: [
         {
@@ -117,6 +127,11 @@ const secondPillarKara = [
 `,
 
     extras: {
+      status: "",
+      code: "",
+      responsible: "",
+      description: `
+`,
       action: ["A051-A.png", "A051-B.png"],
       sheet: [
         {
@@ -161,6 +176,11 @@ const secondPillarKara = [
 `,
 
     extras: {
+      status: "",
+      code: "",
+      responsible: "",
+      description: `
+`,
       action: ["A052-A.png", "A052-B.png"],
       sheet: [
         {
@@ -205,6 +225,11 @@ const secondPillarKara = [
 `,
 
     extras: {
+      status: "",
+      code: "",
+      responsible: "",
+      description: `
+`,
       action: ["A053-A.png", "A053-B.png"],
       sheet: [
         {
@@ -249,6 +274,11 @@ const secondPillarKara = [
 `,
 
     extras: {
+      status: "",
+      code: "",
+      responsible: "",
+      description: `
+`,
       action: ["A054-A.png", "A054-B.png"],
       sheet: [
         {

@@ -29,6 +29,11 @@ const secondPillarJyushi = [
 `,
 
     extras: {
+      status: "",
+      code: "",
+      responsible: "",
+      description: `
+`,
       action: ["A067-A.png", "A067-B.png"],
       sheet: [
         {
@@ -73,6 +78,11 @@ const secondPillarJyushi = [
 `,
 
     extras: {
+      status: "",
+      code: "",
+      responsible: "",
+      description: `
+`,
       action: ["A068-A.png", "A068-B.png"],
       sheet: [
         {
@@ -117,6 +127,11 @@ const secondPillarJyushi = [
 `,
 
     extras: {
+      status: "",
+      code: "",
+      responsible: "",
+      description: `
+`,
       action: ["A069-A.png", "A069-B.png"],
       sheet: [
         {
@@ -161,6 +176,11 @@ const secondPillarJyushi = [
 `,
 
     extras: {
+      status: "",
+      code: "",
+      responsible: "",
+      description: `
+`,
       action: ["A070-A.png", "A070-B.png"],
       sheet: [
         {
@@ -205,6 +225,11 @@ const secondPillarJyushi = [
 `,
 
     extras: {
+      status: "",
+      code: "",
+      responsible: "",
+      description: `
+`,
       action: ["A071-A.png", "A071-B.png"],
       sheet: [
         {
@@ -249,6 +274,11 @@ const secondPillarJyushi = [
 `,
 
     extras: {
+      status: "",
+      code: "",
+      responsible: "",
+      description: `
+`,
       action: ["A072-A.png", "A072-B.png"],
       sheet: [
         {

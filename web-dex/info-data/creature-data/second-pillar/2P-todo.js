@@ -29,6 +29,11 @@ const secondPillarTodo = [
 `,
 
     extras: {
+      status: "",
+      code: "",
+      responsible: "",
+      description: `
+`,
       action: ["A073-A.png", "A073-B.png"],
       sheet: [
         {
@@ -73,6 +78,11 @@ const secondPillarTodo = [
 `,
 
     extras: {
+      status: "",
+      code: "",
+      responsible: "",
+      description: `
+`,
       action: ["A074-A.png", "A074-B.png"],
       sheet: [
         {
@@ -117,6 +127,11 @@ const secondPillarTodo = [
 `,
 
     extras: {
+      status: "",
+      code: "",
+      responsible: "",
+      description: `
+`,
       action: ["A075-A.png", "A075-B.png"],
       sheet: [
         {
@@ -161,6 +176,11 @@ const secondPillarTodo = [
 `,
 
     extras: {
+      status: "",
+      code: "",
+      responsible: "",
+      description: `
+`,
       action: ["A076-A.png", "A076-B.png"],
       sheet: [
         {
@@ -205,6 +225,11 @@ const secondPillarTodo = [
 `,
 
     extras: {
+      status: "",
+      code: "",
+      responsible: "",
+      description: `
+`,
       action: ["A077-A.png", "A077-B.png"],
       sheet: [
         {
@@ -249,6 +274,11 @@ const secondPillarTodo = [
 `,
 
     extras: {
+      status: "",
+      code: "",
+      responsible: "",
+      description: `
+`,
       action: ["A078-A.png", "A078-B.png"],
       sheet: [
         {

@@ -29,6 +29,11 @@ const secondPillarIchi = [
 `,
 
     extras: {
+      status: "",
+      code: "",
+      responsible: "",
+      description: `
+`,
       action: ["A061-A.png", "A061-B.png"],
       sheet: [
         {
@@ -73,6 +78,11 @@ const secondPillarIchi = [
 `,
 
     extras: {
+      status: "",
+      code: "",
+      responsible: "",
+      description: `
+`,
       action: ["A062-A.png", "A062-B.png"],
       sheet: [
         {
@@ -117,6 +127,11 @@ const secondPillarIchi = [
 `,
 
     extras: {
+      status: "",
+      code: "",
+      responsible: "",
+      description: `
+`,
       action: ["A063-A.png", "A063-B.png"],
       sheet: [
         {
@@ -161,6 +176,11 @@ const secondPillarIchi = [
 `,
 
     extras: {
+      status: "",
+      code: "",
+      responsible: "",
+      description: `
+`,
       action: ["A064-A.png", "A064-B.png"],
       sheet: [
         {
@@ -205,6 +225,11 @@ const secondPillarIchi = [
 `,
 
     extras: {
+      status: "",
+      code: "",
+      responsible: "",
+      description: `
+`,
       action: ["A065-A.png", "A065-B.png"],
       sheet: [
         {
@@ -249,6 +274,11 @@ const secondPillarIchi = [
 `,
 
     extras: {
+      status: "",
+      code: "",
+      responsible: "",
+      description: `
+`,
       action: ["A066-A.png", "A066-B.png"],
       sheet: [
         {

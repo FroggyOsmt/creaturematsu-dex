@@ -1,0 +1,27 @@
+{
+  "id": "./matsu-app.html",
+  "name": "Matsu Helper",
+  "short_name": "Matsu Helper",
+  "description": "Editor visual de ayuda para CreatureMatsu Dex.",
+  "lang": "es",
+  "start_url": "./matsu-app.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "landscape",
+  "background_color": "#111216",
+  "theme_color": "#111419",
+  "icons": [
+    {
+      "src": "./icons/pwa-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icons/pwa-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

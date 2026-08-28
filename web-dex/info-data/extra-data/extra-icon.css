@@ -127,7 +127,7 @@
 
 .extra-popup-title {
   background: #A56243;
-  color: #EFB775;
+  color: #FFE2C1;
   border-radius: 10px;
   padding: 8px 10px;
   font-weight: bold;
@@ -216,6 +216,28 @@
   }
   .extra-icon-btn img {
     width: 55 !important;
+  }
+}
+
+.extra-icon-grid.extra-icon-grid-variations {
+  grid-template-columns: repeat(auto-fit, minmax(56px, 68px));
+  gap: 6px;
+}
+
+.extra-icon-grid-variations .extra-icon-btn {
+  width: 100%;
+  min-width: 0;
+}
+
+@media (max-width: 768px) {
+  .extra-icon-grid.extra-icon-grid-variations {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(52px, 68px)) !important;
+    gap: 5px !important;
+  }
+
+  .extra-icon-grid-variations .extra-icon-btn img {
+    width: min(55px, 100%) !important;
   }
 }
 
@@ -443,6 +465,79 @@ z-index: 99999999;
 
 .extra-icon-btn.extra-off span {
   color: #824832;
+}
+
+/* STATUS */
+
+.extra-status-card {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 2px 10px 4px;
+}
+
+.extra-status-field {
+      margin-bottom: 5px;
+    display: grid;
+    grid-auto-flow: column;
+    justify-items: center;
+    align-items: baseline;
+    justify-content: start;
+    gap: 7px;
+}
+
+.extra-status-field:last-child {
+  margin-bottom: 0;
+}
+
+.extra-status-label {
+  margin-bottom: 5px;
+  color: #FFE2C1;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.extra-status-code {
+  display: inline-block;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-wrap: anywhere;
+
+  background: #1B221D;
+  color: #90ff94;
+  border: 2px solid #EFB775;
+  border-radius: 7px;
+  padding: 4px 8px;
+
+  font-family: "Cascadia Mono", Consolas, monospace;
+  font-size: 11px;
+  line-height: 1.2;
+
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.22);
+  text-shadow: 0 0 2px rgba(180, 255, 180, 0.06);
+}
+
+.extra-status-responsible,
+.extra-status-description {
+  color: #EFB775;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.extra-status-separator {
+  width: 100%;
+  height: 1px;
+  margin: 4px 0 10px;
+  background: #A56243;
+  opacity: 0.7;
+}
+
+.extra-status-description a {
+  color: #F7CC9B;
+  text-decoration: underline;
+}
+
+.extra-status-description strong {
+  color: #FFE2C1;
 }
 
 /* DESCRIPCIÓN */

@@ -29,6 +29,11 @@ const secondPillarOso = [
 `,
 
     extras: {
+      status: "S",
+      code: "good luck",
+      responsible: "None. Everything went well.",
+      description: `
+`,
       action: ["A043-A.png", "A043-B.png"],
       sheet: [
         {
@@ -73,6 +78,11 @@ const secondPillarOso = [
 `,
 
     extras: {
+      status: "",
+      code: "",
+      responsible: "",
+      description: `
+`,
       action: ["A044-A.png", "A044-B.png"],
       sheet: [
         {
@@ -117,6 +127,12 @@ const secondPillarOso = [
 `,
 
     extras: {
+      status: "U",
+      code: "rowdy",
+      responsible: "Bio-Computer",
+      description: `
+ORACIÓN DE PRUEBA
+`,
       action: ["A045-A.png", "A045-B.png"],
       sheet: [
         {
@@ -161,6 +177,11 @@ const secondPillarOso = [
 `,
 
     extras: {
+      status: "",
+      code: "",
+      responsible: "",
+      description: `
+`,
       action: ["A046-A.png", "A046-B.png"],
       sheet: [
         {
@@ -205,6 +226,11 @@ const secondPillarOso = [
 `,
 
     extras: {
+      status: "",
+      code: "",
+      responsible: "",
+      description: `
+`,
       action: ["A047-A.png", "A047-B.png"],
       sheet: [
         {
@@ -249,6 +275,11 @@ const secondPillarOso = [
 `,
 
     extras: {
+      status: "",
+      code: "",
+      responsible: "",
+      description: `
+`,
       action: ["A048-A.png", "A048-B.png"],
       sheet: [
         {

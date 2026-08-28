@@ -39,7 +39,9 @@ function openExtraPopup(type) {
   const leftArrow = popup.querySelector(".extra-gallery-arrow.left");
 const rightArrow = popup.querySelector(".extra-gallery-arrow.right");
 
-  document.getElementById("extraPopupTitle").textContent = type;
+  document.getElementById("extraPopupTitle").textContent = type === "STATUS"
+    ? "The Suspect of Creation"
+    : type;
 
   const body = document.getElementById("extraPopupBody");
 
@@ -88,6 +90,9 @@ watchExtraSliderScroll();
 
   // SHEET
 if (type === "SHEET") {
+  leftArrow.style.display = "flex";
+  rightArrow.style.display = "flex";
+
   const images = extras.sheet
     ? (Array.isArray(extras.sheet) ? extras.sheet : [extras.sheet])
     : [];
@@ -157,6 +162,35 @@ if (type === "FUN FACT") {
   body.innerHTML = `
     <div class="extra-funfact-text text-card-value">
       ${parseMarkdown(extras.funFact || "")}
+    </div>
+  `;
+}
+
+if (type === "STATUS") {
+  leftArrow.style.display = "none";
+  rightArrow.style.display = "none";
+
+  const status = (extras.status || "").toString().trim().toUpperCase();
+  const isUnstable = status === "U";
+  const renderStatusText = value =>
+    parseMarkdown((value || "").toString().trim()).replace(/(?:<br>)+$/, "");
+
+  body.innerHTML = `
+    <div class="extra-status-card ${isUnstable ? "extra-status-unstable" : "extra-status-stable"}">
+      <div class="extra-status-field">
+        <div class="extra-status-label">Code:</div>
+        <div class="extra-status-code">${renderStatusText(extras.code)}</div>
+      </div>
+
+      <div class="extra-status-field">
+        <div class="extra-status-label">Responsible:</div>
+        <div class="extra-status-responsible">${renderStatusText(extras.responsible)}</div>
+      </div>
+
+      ${isUnstable ? `
+        <div class="extra-status-separator"></div>
+        <div class="extra-status-description">${renderStatusText(extras.description)}</div>
+      ` : ""}
     </div>
   `;
 }

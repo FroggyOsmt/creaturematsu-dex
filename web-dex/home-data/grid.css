@@ -50,14 +50,16 @@
 
 .grid {
   display: grid;
+  box-sizing: border-box;
   grid-template-columns: repeat(6, auto);
   justify-content: center;
   gap: 8px;
 
   background: #773421;
   padding: 8px;
+  scroll-padding-bottom: 8px;
 
-      max-height: calc(100vh - 110px);
+  max-height: calc(100vh - 110px);
   overflow-y: auto;
   overflow-x: hidden;
 
@@ -72,6 +74,27 @@
   .grid {
     grid-template-columns: repeat(6, 78px);
     width: calc((78px * 6) + (8px * 5) + 16px);
+  }
+
+  body.desktop-search-active .home-page {
+    display: flex;
+    flex-direction: column;
+  }
+
+  body.desktop-search-active .home-top-row {
+    flex: 0 0 auto;
+  }
+
+  body.desktop-search-active .dex-area {
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+
+  body.desktop-search-active .grid {
+    max-height: none;
+    grid-auto-rows: max-content;
+    align-content: start;
+    align-items: start;
   }
 }
 

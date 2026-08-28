@@ -29,6 +29,11 @@ const secondPillarChoro = [
 `,
 
     extras: {
+      status: "",
+      code: "",
+      responsible: "",
+      description: `
+`,
       action: ["A055-A.png", "A055-B.png"],
       sheet: [
         {
@@ -73,6 +78,11 @@ const secondPillarChoro = [
 `,
 
     extras: {
+      status: "",
+      code: "",
+      responsible: "",
+      description: `
+`,
       action: ["A056-A.png", "A056-B.png"],
       sheet: [
         {
@@ -117,6 +127,11 @@ const secondPillarChoro = [
 `,
 
     extras: {
+      status: "",
+      code: "",
+      responsible: "",
+      description: `
+`,
       action: ["A057-A.png", "A057-B.png"],
       sheet: [
         {
@@ -161,6 +176,11 @@ const secondPillarChoro = [
 `,
 
     extras: {
+      status: "",
+      code: "",
+      responsible: "",
+      description: `
+`,
       action: ["A058-A.png", "A058-B.png"],
       sheet: [
         {
@@ -205,6 +225,11 @@ const secondPillarChoro = [
 `,
 
     extras: {
+      status: "",
+      code: "",
+      responsible: "",
+      description: `
+`,
       action: ["A059-A.png", "A059-B.png"],
       sheet: [
         {
@@ -249,6 +274,11 @@ const secondPillarChoro = [
 `,
 
     extras: {
+      status: "",
+      code: "",
+      responsible: "",
+      description: `
+`,
       action: ["A060-A.png", "A060-B.png"],
       sheet: [
         {
