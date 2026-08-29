@@ -1,0 +1,25 @@
+{
+  "id": "./",
+  "name": "CreatureMatsu Dex",
+  "short_name": "CreatureMatsu",
+  "description": "CreatureMatsu Dex",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#101010",
+  "theme_color": "#101010",
+  "icons": [
+    {
+      "src": "images/pwa/pwa-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "images/pwa/pwa-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

@@ -5,8 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, interactive-widget=resizes-content">
   <meta name="color-scheme" content="dark">
   <meta name="theme-color" content="#101010">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="CreatureMatsu">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>CreatureMatsu Dex</title>
-  <link rel="icon" type="image/png" href="images/icon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/png" sizes="48x48" href="images/pwa/favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/pwa/apple-touch-icon.png">
 <link rel="stylesheet" href="home-data/splash/splash-screen.css">
 <link rel="stylesheet" href="home-data/style/layout.css">
 <link rel="stylesheet" href="home-data/sidebar.css?v=20260730-breakpoint-768">
@@ -327,6 +333,7 @@ onclick="window.open('https://forms.gle/jkJUgkrt3kSRptXdA', '_blank')">
 <script src="link.js"></script>
 <script src="home-data/author/author.js"></script>
 <script src="audio/audio.js"></script>
+<script src="pwa.js?v=20260828-install"></script>
 
 <div class="character-popup" id="characterPopup">
   <div class="character-popup-box">
