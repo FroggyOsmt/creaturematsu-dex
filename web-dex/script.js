@@ -88,6 +88,20 @@ const slider = document.getElementById("slider");
 const grid = document.getElementById("grid");
 const detailContent = document.getElementById("detailContent");
 const creatureSearch = document.getElementById("creatureSearch");
+
+// ANALYTICS: report FLAMOSO as a private virtual content page in Vercel.
+function trackFlamosoDetailPageView(c) {
+  if (String(c?.id) !== "007") return;
+
+  window.va = window.va || function () {
+    (window.vaq = window.vaq || []).push(arguments);
+  };
+
+  window.va("pageview", {
+    route: "/creature/[creature]",
+    path: "/creature/007-flamoso"
+  });
+}
 const noCreatureFound = document.getElementById("noCreatureFound");
 const dexArea = document.querySelector(".dex-area");
 const mobileGridQuery = window.matchMedia("(max-width: 768px)");
@@ -457,6 +471,8 @@ document.querySelectorAll(".lore-link").forEach(link => {
       mobileNavigation.push("creature", detailState);
     }
   }
+
+  trackFlamosoDetailPageView(c);
 }
 
 function closeDetail(options = {}) {
