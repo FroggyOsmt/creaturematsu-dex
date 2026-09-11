@@ -29,11 +29,7 @@
 </head>
 <body>
 
-  <script>
-    window.va = window.va || function (...params) {
-      (window.vaq = window.vaq || []).push(params);
-    };
-  </script>
+  <script src="analytics.js?v=20260911-all-content-routes"></script>
   <script defer src="/_vercel/insights/script.js"></script>
  
    <!-- SPLASH SCREEN -->
@@ -58,15 +54,27 @@
 
     <div class="left-logo"></div>
 
-    <button onclick="openAboutPopup()">
+    <button
+      data-analytics-route="/about"
+      data-analytics-path="/about"
+      onclick="openAboutPopup()"
+    >
       About
     </button>
 
-<button onclick="openCharacterPopupFromSidebar()">
+<button
+  data-analytics-route="/character"
+  data-analytics-path="/character"
+  onclick="openCharacterPopupFromSidebar()"
+>
   Character
 </button>
 
-<button onclick="openSystemPopupFromSidebar()">
+<button
+  data-analytics-route="/system"
+  data-analytics-path="/system"
+  onclick="openSystemPopupFromSidebar()"
+>
   System
 </button>
 
@@ -80,7 +88,13 @@
   <span>Pillar Map</span>
 </button>
 
-<button class="others-sidebar-btn" type="button" data-open-others>
+<button
+  class="others-sidebar-btn"
+  type="button"
+  data-open-others
+  data-analytics-route="/others"
+  data-analytics-path="/others"
+>
   <span>Others</span>
 </button>
 
@@ -88,7 +102,12 @@
 <!-- FOOTER -->
     <div class="left-footer">
 
-<button class="author-sidebar-btn" onclick="openAuthorPopup()">
+<button
+  class="author-sidebar-btn"
+  data-analytics-route="/about/author"
+  data-analytics-path="/about/author"
+  onclick="openAuthorPopup()"
+>
   About Author
 </button>
 
@@ -115,6 +134,8 @@
       </div>
 
 <button class="report-sidebar-btn"
+data-analytics-route="/links/[link]"
+data-analytics-path="/links/report-a-problem"
 onclick="window.open('https://forms.gle/jkJUgkrt3kSRptXdA', '_blank')">
   Report a Problem
 </button>
@@ -311,7 +332,7 @@ onclick="window.open('https://forms.gle/jkJUgkrt3kSRptXdA', '_blank')">
 <script src="info-data/creature-data/second-pillar/2P-todo.js"></script>
 <script src="info-data/creature-data/dex.js"></script>
 <script src="home-data/style/markdown.js?v=20260822-align-commands"></script>
-<script src="script.js?v=20260911-flamoso-routes"></script>
+<script src="script.js?v=20260911-all-content-routes"></script>
 <script src="info-data/extra-data/extra-detail.js"></script>
 <script src="home-data/left-sidebar/left-side.js?v=20260822-news-scroll-unlock"></script>
 <script src="info-data/other-data/others-list/rules-of-creaturematsu-universe.js"></script>
