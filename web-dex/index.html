@@ -29,6 +29,11 @@
 </head>
 <body>
 
+  <script>
+    window.va = window.va || function (...params) {
+      (window.vaq = window.vaq || []).push(params);
+    };
+  </script>
   <script defer src="/_vercel/insights/script.js"></script>
  
    <!-- SPLASH SCREEN -->
@@ -306,7 +311,7 @@ onclick="window.open('https://forms.gle/jkJUgkrt3kSRptXdA', '_blank')">
 <script src="info-data/creature-data/second-pillar/2P-todo.js"></script>
 <script src="info-data/creature-data/dex.js"></script>
 <script src="home-data/style/markdown.js?v=20260822-align-commands"></script>
-<script src="script.js?v=20260911-flamoso-analytics"></script>
+<script src="script.js?v=20260911-flamoso-routes"></script>
 <script src="info-data/extra-data/extra-detail.js"></script>
 <script src="home-data/left-sidebar/left-side.js?v=20260822-news-scroll-unlock"></script>
 <script src="info-data/other-data/others-list/rules-of-creaturematsu-universe.js"></script>

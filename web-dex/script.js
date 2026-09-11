@@ -93,8 +93,8 @@ const creatureSearch = document.getElementById("creatureSearch");
 function trackFlamosoDetailPageView(c) {
   if (String(c?.id) !== "007") return;
 
-  window.va = window.va || function () {
-    (window.vaq = window.vaq || []).push(arguments);
+  window.va = window.va || function (...params) {
+    (window.vaq = window.vaq || []).push(params);
   };
 
   window.va("pageview", {
