@@ -89,13 +89,19 @@ const grid = document.getElementById("grid");
 const detailContent = document.getElementById("detailContent");
 const creatureSearch = document.getElementById("creatureSearch");
 
-// ANALYTICS: report FLAMOSO as a private virtual content page in Vercel.
-function trackFlamosoDetailPageView(c) {
-  if (String(c?.id) !== "007") return;
+// ANALYTICS: report every available creature as a private virtual content page in Vercel.
+function trackCreatureDetailPageView(c) {
+  const analytics = window.creatureMatsuAnalytics;
+  const rawCreatureId = String(c?.id || "");
+  const creatureSlug = analytics?.slug(c?.name);
 
-  window.creatureMatsuAnalytics?.pageview({
+  if (!analytics || !rawCreatureId || !creatureSlug) return;
+
+  const creatureId = rawCreatureId.padStart(3, "0");
+
+  analytics.pageview({
     route: "/creature/[creature]",
-    path: "/creature/007-flamoso"
+    path: `/creature/${creatureId}-${creatureSlug}`
   });
 }
 const noCreatureFound = document.getElementById("noCreatureFound");
@@ -468,7 +474,7 @@ document.querySelectorAll(".lore-link").forEach(link => {
     }
   }
 
-  trackFlamosoDetailPageView(c);
+  trackCreatureDetailPageView(c);
 }
 
 function closeDetail(options = {}) {
