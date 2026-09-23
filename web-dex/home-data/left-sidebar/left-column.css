@@ -194,9 +194,6 @@ min-width: 47px;
   
 }
 
-.text-card-value p {
-  margin: 0 0 0;
-}
 
 .detail-text-section {
   display: flex;
@@ -208,7 +205,8 @@ min-width: 47px;
 
 .dr-text {
   font-style: italic;
-    min-height: 40px;
+  min-height: 40px;
+  color: #fee1c0;
 }
 
 .dr-text::before {
@@ -218,3 +216,5 @@ min-width: 47px;
 .dr-text::after {
   content: "”";
 }
+
+

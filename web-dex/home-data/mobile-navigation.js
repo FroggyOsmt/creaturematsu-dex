@@ -1,7 +1,9 @@
 (() => {
   const historyKey = "creatureMatsuMobileNavigation";
   const eventName = "creaturematsu-mobile-navigation";
-  const mobileQuery = window.matchMedia("(max-width: 768px)");
+  const mobileQuery = window.matchMedia(
+    "(max-width: 768px) and (hover: none) and (pointer: coarse)"
+  );
 
   function isMobile() {
     return mobileQuery.matches;

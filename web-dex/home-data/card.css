@@ -54,7 +54,7 @@ box-shadow: 0 0 5px 3px rgba(255, 226, 193, 0.5);
 
 /* ==== MOBILE ==== */
 
-@media (max-width: 768px) {
+@media (max-width: 768px) and (hover: none) and (pointer: coarse) {
 
   .card {
     width: 100%;

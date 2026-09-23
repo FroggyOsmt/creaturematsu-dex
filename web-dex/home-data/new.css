@@ -1,0 +1,141 @@
+.new-creature-badge,
+.update-creature-badge,
+.new-feature-badge,
+.update-feature-badge {
+  position: absolute;
+  z-index: 2;
+
+  min-width: 25px;
+  box-sizing: border-box;
+  padding: 3px 5px 2px;
+
+  border: 2px solid #773421;
+  border-radius: 999px;
+  background: #EF5350;
+  box-shadow: 0 2px 0 #773421, 0 4px 7px rgba(37, 6, 12, 0.35);
+
+  color: #FFF0E0 !important;
+  font-family: inherit;
+  font-size: 9px;
+  font-weight: bold;
+  line-height: 1;
+  text-align: center;
+
+  pointer-events: none;
+  transform-origin: center bottom;
+  animation: newCreatureFloat 1.6s ease-in-out infinite;
+}
+
+.new-creature-badge {
+  top: 3px;
+  right: 3px;
+}
+
+.update-creature-badge,
+.update-feature-badge {
+  top: 3px;
+  right: 3px;
+  background: #42A5F5;
+}
+
+.extra-history-btn {
+  position: relative;
+}
+
+.extra-history-btn .extra-update-badge {
+  top: -9px;
+  right: -7px;
+}
+
+.new-feature-anchor {
+  position: relative;
+}
+
+.new-feature-badge-corner {
+  top: -9px;
+  right: -7px;
+}
+
+.update-feature-badge-corner {
+  top: -9px;
+  right: -7px;
+}
+
+.new-feature-badge-menu {
+  top: 254px;
+  left: calc(100% + 4px);
+}
+
+.update-feature-badge-menu {
+  top: 276px;
+  left: calc(100% + 4px);
+  right: auto;
+}
+
+.pillar-map-sidebar-btn.new-feature-anchor {
+  overflow: visible;
+}
+
+.left-drawer.open > .new-feature-badge-menu,
+.left-drawer.open > .update-feature-badge-menu {
+  display: none;
+}
+
+body.creature-detail-open .new-feature-badge-menu,
+body.creature-detail-open .update-feature-badge-menu {
+  display: none;
+}
+
+@keyframes newCreatureFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+@media (max-width: 768px) {
+.new-creature-badge,
+.update-creature-badge,
+.new-feature-badge,
+.update-feature-badge {
+    min-width: 22px;
+    padding: 2px 4px;
+    border-width: 1px;
+    font-size: 8px;
+  }
+
+  .new-creature-badge {
+    top: 2px;
+    right: 2px;
+  }
+
+  .update-creature-badge {
+    top: 2px;
+    right: 2px;
+  }
+
+  .extra-history-btn .extra-update-badge {
+    top: -7px;
+  }
+
+  .new-feature-badge-menu {
+    top: calc(50% - 109px);
+  }
+
+  .update-feature-badge-menu {
+    top: calc(50% - 90px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .new-creature-badge,
+  .update-creature-badge,
+  .new-feature-badge,
+  .update-feature-badge {
+    animation: none;
+  }
+}

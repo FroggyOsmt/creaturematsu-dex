@@ -7,7 +7,7 @@
   justify-content: space-between;
   align-items: center;
   width: fit-content;
-  min-width: 646px;;
+  min-width: 633px;
 }
 
 /* Colores por Matsu */
@@ -50,14 +50,16 @@
 
 .grid {
   display: grid;
+  box-sizing: border-box;
   grid-template-columns: repeat(6, auto);
   justify-content: center;
   gap: 8px;
 
   background: #773421;
   padding: 8px;
+  scroll-padding-bottom: 8px;
 
-      max-height: calc(100vh - 110px);
+  max-height: calc(100vh - 110px);
   overflow-y: auto;
   overflow-x: hidden;
 
@@ -73,9 +75,30 @@
     grid-template-columns: repeat(6, 78px);
     width: calc((78px * 6) + (8px * 5) + 16px);
   }
+
+  body.desktop-search-active .home-page {
+    display: flex;
+    flex-direction: column;
+  }
+
+  body.desktop-search-active .home-top-row {
+    flex: 0 0 auto;
+  }
+
+  body.desktop-search-active .dex-area {
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+
+  body.desktop-search-active .grid {
+    max-height: none;
+    grid-auto-rows: max-content;
+    align-content: start;
+    align-items: start;
+  }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 768px) and (hover: none) and (pointer: coarse) {
   /* HOME: la barra fija debe anclarse al viewport, no al slider transformado. */
   body:not(.creature-detail-open):not(.others-view-open) #slider {
     transform: none;
@@ -164,29 +187,6 @@
   }
 }
 
-/* Ventana de escritorio estrecha: conservar el encabezado de escritorio. */
-@media (max-width: 768px) and (hover: hover) and (pointer: fine) {
-  .title-card {
-    width: calc(100vw - 24px) !important;
-    min-width: 0 !important;
-    max-width: 700px !important;
-    box-sizing: border-box !important;
-    margin-top: 8px !important;
-    border-radius: 20px !important;
-    padding: 10px !important;
-  }
-
-  .title-text {
-    font-size: 42px !important;
-    padding-left: 20px !important;
-  }
-
-  .title-icon {
-    width: var(--title-icon-size, 96px) !important;
-    height: var(--title-icon-size, 96px) !important;
-  }
-}
-
 /* SEARCH */
 
 .home-top-row {
@@ -212,11 +212,19 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  width: 100%;
+  width: fit-content;
+  max-width: 100%;
   min-width: 0;
   box-sizing: border-box;
   padding-left: 32px;
   padding-right: 8px;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition:
+    opacity 0.18s ease,
+    transform 0.18s ease,
+    visibility 0s linear 0s;
 }
 
 .creature-search {
@@ -262,9 +270,17 @@
   caret-color: #A56243 !important;
 }
 
-@media (max-width: 1050px) {
+@media (max-width: 1050px) and (hover: hover) and (pointer: fine) {
   .search-wrapper {
-    display: none !important;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-6px);
+    overflow: clip;
+    transition:
+      opacity 0.18s ease,
+      transform 0.18s ease,
+      visibility 0s linear 0.18s;
   }
 }
 
@@ -315,13 +331,15 @@
 .filter-panel {
     position: absolute;
     top: 42px;
-    right: 0;
+    right: 8px;
+    width: max-content;
+    max-width: calc(100vw - 16px);
+    box-sizing: border-box;
     background: #FFE2C1;
     border: 3px solid #EFB775;
     border-radius: 12px;
-    padding: 14px 30px;
+    padding: 14px 22px;
     z-index: 50;
-    min-width: 100px;
     display: flex;
     flex-direction: column;
     transform-origin: top right;
@@ -340,6 +358,11 @@
 
 .filter-panel:not(.hidden) {
   animation: filter-panel-pop 0.22s ease;
+}
+
+.filter-panel:not(.hidden).filter-panel-closing {
+  pointer-events: none;
+  animation: filter-panel-fade-out 0.18s ease forwards;
 }
 
 @keyframes filter-panel-pop {
@@ -367,15 +390,48 @@
   font-weight: bold;
 }
 
+@keyframes filter-panel-fade-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+
+.filter-panel-columns {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  align-items: stretch;
+}
+
+.filter-column {
+  min-width: 0;
+}
+
+.filter-column-matsu {
+  padding-right: 20px;
+}
+
+.filter-column-types {
+  padding-left: 20px;
+  border-left: 2.5px solid #EFB775;
+}
+
 .filter-divider {
-    width: 120%;
+    width: 100%;
     height: 2.5px;
     background: #EFB775;
     margin: 7px 0;
     border-radius: 2px;
-    
-    position: relative;
-    right: 10%;
+}
+
+.filter-divider-footer {
+  margin-top: 10px;
+  margin-bottom: 7px;
 }
 
 .filter-section-title {
@@ -411,7 +467,10 @@
 }
 
 .apply-filter-btn {
-    margin-top: 6px;
+    align-self: center;
+    min-width: 60px;
+    margin: 0;
+    padding: 1px 12px;
     background: #FFE2C1;
     border: 2px solid #A56243;
     border-radius: 6px;
@@ -420,9 +479,6 @@
     font-weight: bold;
     cursor: pointer;
     transition: transform 0.12s ease;
-    margin-top: 6px;
-    margin-right: 30px;
-    margin-left: 30px;
 }
 
 .apply-filter-btn:active {
@@ -479,7 +535,7 @@
 
 /* MOBILE SEARCH BAR */
 
-@media (max-width: 768px) {
+@media (max-width: 768px) and (hover: none) and (pointer: coarse) {
   html.mobile-search-keyboard-active,
   body.mobile-search-keyboard-active {
     width: 100%;
@@ -560,6 +616,7 @@
     top: auto;
     right: calc(8px + env(safe-area-inset-right));
     bottom: calc(100% + 8px);
+    padding: 12px;
     z-index: 4001;
     transform-origin: bottom right;
     overscroll-behavior-y: contain;
@@ -567,6 +624,14 @@
       420px,
       calc(100svh - 92px - var(--mobile-keyboard-offset, 0px))
     );
+  }
+
+  .filter-column-matsu {
+    padding-right: 12px;
+  }
+
+  .filter-column-types {
+    padding-left: 12px;
   }
 
   body.mobile-search-keyboard-active .filter-panel {
@@ -633,5 +698,96 @@
   100% {
     opacity: 1;
     transform: scale(1) translateY(0);
+  }
+}
+
+/* Transicion fluida entre el titulo de escritorio normal y el compacto. */
+@media (min-width: 768.01px) and (max-width: 1050px) and (hover: hover) and (pointer: fine) {
+  .title-card {
+    width: clamp(600px, calc(23.404vw + 420.255px), 649px);
+    min-width: 0;
+    box-sizing: border-box;
+  }
+}
+
+/* Escritorio angosto o con zoom: conservar HOME compacto sin activar el modo móvil. */
+@media (max-width: 768px) and (hover: hover) and (pointer: fine) {
+  .home-page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .home-top-row {
+    flex: 0 0 auto;
+  }
+
+  .search-wrapper {
+    display: none;
+  }
+
+  .title-card {
+    width: min(600px, calc(100vw - 24px));
+    min-width: 0;
+    max-width: none;
+    box-sizing: border-box;
+    margin-top: 8px;
+    padding: 8px 10px;
+  }
+
+  .title-text {
+    padding-left: 16px;
+    font-size: 36px;
+  }
+
+  .title-icon {
+    width: 78px;
+    height: 78px;
+  }
+
+  .grid {
+    flex: 0 1 calc((78px * 6) + (8px * 5) + 16px);
+    min-width: 0;
+    width: calc((78px * 6) + (8px * 5) + 16px);
+    max-width: 100%;
+    height: 100%;
+    max-height: none;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-auto-rows: max-content;
+    align-content: start;
+    align-items: start;
+    gap: clamp(3px, 0.8vw, 8px);
+    padding: clamp(4px, 1vw, 8px);
+  }
+
+  .grid .card {
+    width: 100%;
+    min-width: 0;
+    padding: clamp(2px, 0.55vw, 4px);
+    overflow: hidden;
+  }
+
+  .grid .card img {
+    width: 100%;
+    max-width: var(--icon-size, 70px);
+    height: auto;
+  }
+
+  .grid .card p {
+    margin-top: clamp(2px, 0.5vw, 4px);
+    font-size: clamp(11px, 2.2vw, 16px);
+    line-height: 1;
+    white-space: nowrap;
+  }
+}
+
+/* Solo el area del Dex: de 100% a 90% entre 1000px y 400px. */
+@media (max-width: 1000px) and (hover: hover) and (pointer: fine) {
+  .dex-area {
+    width: clamp(90%, calc(106.667vw - 66.667px), 100%);
+    box-sizing: border-box;
+    margin-inline: auto;
   }
 }
