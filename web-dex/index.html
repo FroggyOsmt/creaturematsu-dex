@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DO<!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
@@ -8,24 +8,26 @@
   <title>CreatureMatsu Dex</title>
   <link rel="icon" type="image/png" href="images/icon.png">
 <link rel="stylesheet" href="home-data/splash/splash-screen.css">
-<link rel="stylesheet" href="home-data/style/layout.css">
-<link rel="stylesheet" href="home-data/sidebar.css?v=20260730-breakpoint-768">
+<link rel="stylesheet" href="home-data/style/layout.css?v=20260922-desktop-narrow-home">
+    <link rel="stylesheet" href="home-data/markdown.css?v=20260922-colores-orange-v2">
+<link rel="stylesheet" href="home-data/sidebar.css?v=20260922-desktop-narrow-home">
 <link rel="stylesheet" href="home-data/left-sidebar/left-detail.css?v=20260820-mobile-logo-others-only">
-<link rel="stylesheet" href="home-data/grid.css?v=20260821-mobile-detail-title-layer">
-<link rel="stylesheet" href="home-data/card.css?v=20260730-breakpoint-768">
+<link rel="stylesheet" href="home-data/grid.css?v=20260922-desktop-filter-visible">
+<link rel="stylesheet" href="home-data/card.css?v=20260922-desktop-narrow-home">
+<link rel="stylesheet" href="home-data/new.css?v=20260923-mobile-menu-new-lower">
 <link rel="stylesheet" href="home-data/detail.css">
-<link rel="stylesheet" href="home-data/left-sidebar/left-column.css">
+<link rel="stylesheet" href="home-data/left-sidebar/left-column.css?v=20260920-dr-quote-color">
 <link rel="stylesheet" href="home-data/left-sidebar/right-column.css">
-<link rel="stylesheet" href="info-data/creature-data/creature-style.css?v=20260802-sub-bullets">
-<link rel="stylesheet" href="info-data/extra-data/extra-icon.css">
-<link rel="stylesheet" href="home-data/about/about-popup.css">
+<link rel="stylesheet" href="info-data/extra-data/extra-icon.css?v=20260921-extra-over-protocol">
+<link rel="stylesheet" href="info-data/protocol-data/protocol.css?v=20260916-protocol-separator-spacing">
+<link rel="stylesheet" href="home-data/about/about-popup.css?v=20260922-desktop-scrollbar">
 <link rel="stylesheet" href="info-data/character-data/character-popup.css">
-<link rel="stylesheet" href="info-data/character-data/characters.css">
+<link rel="stylesheet" href="info-data/character-data/characters.css?v=20260922-desktop-scrollbar">
 <link rel="stylesheet" href="info-data/system-data/system-popup.css">
-<link rel="stylesheet" href="info-data/system-data/system.css">
-<link rel="stylesheet" href="info-data/other-data/others.css?v=20260820-menu-animation">
+<link rel="stylesheet" href="info-data/system-data/system.css?v=20260922-tbsa-mobile-lines">
+<link rel="stylesheet" href="info-data/other-data/others.css?v=20260922-desktop-scrollbar">
 <link rel="stylesheet" href="home-data/author/author.css">
-<link rel="stylesheet" href="home-data/news/news.css?v=20260822-desktop-scroll-arrow-final">
+<link rel="stylesheet" href="home-data/news/news.css?v=20260903-global-markdown">
 </head>
 <body>
 
@@ -49,6 +51,8 @@
 <div class="left-drawer" id="leftDrawer">
 
   <div class="left-tab" id="leftTab">MENU</div>
+  <span class="new-feature-badge new-feature-badge-menu" aria-hidden="true">NEW</span>
+  <span class="update-feature-badge update-feature-badge-menu" aria-hidden="true">UPDATE</span>
 
   <div class="left-drawer-content">
 
@@ -71,21 +75,24 @@
 </button>
 
 <button
+  class="new-feature-anchor"
   data-analytics-route="/system"
   data-analytics-path="/system"
   onclick="openSystemPopupFromSidebar()"
 >
   System
+  <span class="new-feature-badge new-feature-badge-corner" aria-hidden="true">NEW</span>
 </button>
 
 
 <button
-  class="pillar-map-sidebar-btn"
+  class="pillar-map-sidebar-btn new-feature-anchor"
   type="button"
   data-desktop-href="pillar-map/pillar-map.html"
   onclick="window.location.href='pillar-map/pillar-map.html'"
 >
   <span>Pillar Map</span>
+  <span class="update-feature-badge update-feature-badge-corner" aria-hidden="true">UPDATE</span>
 </button>
 
 <button
@@ -175,110 +182,113 @@ onclick="window.open('https://forms.gle/jkJUgkrt3kSRptXdA', '_blank')">
 </button>
 
 <div id="filterPanel" class="filter-panel hidden" aria-hidden="true">
+  <div class="filter-panel-columns">
+    <div class="filter-column filter-column-matsu">
+      <div class="filter-section-title">MATSU</div>
 
-  <div class="filter-section-title">MATSU</div>
+      <label class="filter-option">
+        <input type="checkbox" value="oso" class="matsu-filter">
+        <img src="images/mark-off.png" class="check-img" alt="">
+        <span>OSO</span>
+      </label>
 
-  <label class="filter-option">
-    <input type="checkbox" value="oso" class="matsu-filter">
-    <img src="images/mark-off.png" class="check-img" alt="">
-    <span>OSO</span>
-  </label>
+      <label class="filter-option">
+        <input type="checkbox" value="kara" class="matsu-filter">
+        <img src="images/mark-off.png" class="check-img" alt="">
+        <span>KARA</span>
+      </label>
 
-  <label class="filter-option">
-    <input type="checkbox" value="kara" class="matsu-filter">
-    <img src="images/mark-off.png" class="check-img" alt="">
-    <span>KARA</span>
-  </label>
+      <label class="filter-option">
+        <input type="checkbox" value="choro" class="matsu-filter">
+        <img src="images/mark-off.png" class="check-img" alt="">
+        <span>CHORO</span>
+      </label>
 
-  <label class="filter-option">
-    <input type="checkbox" value="choro" class="matsu-filter">
-    <img src="images/mark-off.png" class="check-img" alt="">
-    <span>CHORO</span>
-  </label>
+      <label class="filter-option">
+        <input type="checkbox" value="ichi" class="matsu-filter">
+        <img src="images/mark-off.png" class="check-img" alt="">
+        <span>ICHI</span>
+      </label>
 
-  <label class="filter-option">
-    <input type="checkbox" value="ichi" class="matsu-filter">
-    <img src="images/mark-off.png" class="check-img" alt="">
-    <span>ICHI</span>
-  </label>
+      <label class="filter-option">
+        <input type="checkbox" value="jyushi" class="matsu-filter">
+        <img src="images/mark-off.png" class="check-img" alt="">
+        <span>JYUSHI</span>
+      </label>
 
-  <label class="filter-option">
-    <input type="checkbox" value="jyushi" class="matsu-filter">
-    <img src="images/mark-off.png" class="check-img" alt="">
-    <span>JYUSHI</span>
-  </label>
+      <label class="filter-option">
+        <input type="checkbox" value="todo" class="matsu-filter">
+        <img src="images/mark-off.png" class="check-img" alt="">
+        <span>TODO</span>
+      </label>
+    </div>
 
-  <label class="filter-option">
-    <input type="checkbox" value="todo" class="matsu-filter">
-    <img src="images/mark-off.png" class="check-img" alt="">
-    <span>TODO</span>
-  </label>
+    <div class="filter-column filter-column-types">
+      <div class="filter-section-title">PILLAR</div>
 
-  <div class="filter-divider"></div>
+      <label class="filter-option">
+        <input type="checkbox" value="sextuplets" class="pillar-filter">
+        <img src="images/mark-off.png" class="check-img" alt="">
+        <span>SEXTUPLETS</span>
+      </label>
 
-  <div class="filter-section-title">PILLAR</div>
+      <label class="filter-option">
+        <input type="checkbox" value="origins" class="pillar-filter">
+        <img src="images/mark-off.png" class="check-img" alt="">
+        <span>ORIGINS</span>
+      </label>
 
-  <label class="filter-option">
-    <input type="checkbox" value="sextuplets" class="pillar-filter">
-    <img src="images/mark-off.png" class="check-img" alt="">
-    <span>SEXTUPLETS</span>
-  </label>
+      <label class="filter-option">
+        <input type="checkbox" value="variations" class="pillar-filter">
+        <img src="images/mark-off.png" class="check-img" alt="">
+        <span>VARIATIONS</span>
+      </label>
 
-  <label class="filter-option">
-    <input type="checkbox" value="origins" class="pillar-filter">
-    <img src="images/mark-off.png" class="check-img" alt="">
-    <span>ORIGINS</span>
-  </label>
+      <div class="filter-divider"></div>
 
-  <!--
-  <label class="filter-option">
-    <input type="checkbox" value="variations" class="pillar-filter">
-    <img src="images/mark-off.png" class="check-img" alt="">
-    <span>VARIATIONS</span>
-  </label>
-  -->
+      <div class="filter-section-title">VARIATIONS - STATUS</div>
 
-  <!--
-  <label class="filter-option">
-    <input type="checkbox" value="variations2" class="pillar-filter">
-    <img src="images/mark-off.png" class="check-img" alt="">
-    <span>VARIATIONS 2</span>
-  </label>
-  -->
+      <label class="filter-option">
+        <input type="checkbox" value="s" class="variation-status-filter">
+        <img src="images/mark-off.png" class="check-img" alt="">
+        <span>STABLE</span>
+      </label>
 
-  <!--
-  <label class="filter-option">
-    <input type="checkbox" value="variations3" class="pillar-filter">
-    <img src="images/mark-off.png" class="check-img" alt="">
-    <span>VARIATIONS 3</span>
-  </label>
-  -->
+      <label class="filter-option">
+        <input type="checkbox" value="u" class="variation-status-filter">
+        <img src="images/mark-off.png" class="check-img" alt="">
+        <span>UNSTABLE</span>
+      </label>
 
-    <!--
-  <label class="filter-option">
-    <input type="checkbox" value="variations4" class="pillar-filter">
-    <img src="images/mark-off.png" class="check-img" alt="">
-    <span>VARIATIONS 4</span>
-  </label>
-  -->
+      <div class="filter-divider"></div>
 
-  <!--
-  <label class="filter-option">
-    <input type="checkbox" value="variations5" class="pillar-filter">
-    <img src="images/mark-off.png" class="check-img" alt="">
-    <span>VARIATIONS 5</span>
-  </label>
-  -->
-  
-  <!--
-  <label class="filter-option">
-    <input type="checkbox" value="variations6" class="pillar-filter">
-    <img src="images/mark-off.png" class="check-img" alt="">
-    <span>VARIATIONS 6</span>
-  </label>
-  -->
+      <label class="filter-option">
+        <input type="checkbox" value="sheet" class="extra-type-filter">
+        <img src="images/mark-off.png" class="check-img" alt="">
+        <span>SHEET</span>
+      </label>
 
-  <div class="filter-divider"></div>
+      <label class="filter-option">
+        <input type="checkbox" value="history" class="extra-type-filter">
+        <img src="images/mark-off.png" class="check-img" alt="">
+        <span>HISTORY</span>
+      </label>
+
+      <label class="filter-option">
+        <input type="checkbox" value="log" class="extra-type-filter">
+        <img src="images/mark-off.png" class="check-img" alt="">
+        <span>LOG</span>
+      </label>
+
+      <label class="filter-option">
+        <input type="checkbox" value="past" class="extra-type-filter">
+        <img src="images/mark-off.png" class="check-img" alt="">
+        <span>ABOUT MY PAST</span>
+      </label>
+    </div>
+  </div>
+
+  <div class="filter-divider filter-divider-footer"></div>
 
   <button id="applyFilterBtn" class="apply-filter-btn">OK</button>
 
@@ -313,27 +323,29 @@ onclick="window.open('https://forms.gle/jkJUgkrt3kSRptXdA', '_blank')">
 </div>
 
 <script src="home-data/splash/splash.js"></script>
-<script src="version.js?v=20260911-v011b"></script>
-<script src="home-data/mobile-navigation.js?v=20260820-mobile-logo-home"></script>
+<script src="version.js?v=20260920-v011c"></script>
+<script src="home-data/mobile-navigation.js?v=20260922-desktop-narrow-home"></script>
 <script src="home-data/news/info.news.js?v=20260822-v011a"></script>
 <script src="home-data/news/news.js?v=20260822-v011a-scroll-back"></script>
 <script src="info-data/creature-data/sextuplets.js"></script>
-<script src="info-data/creature-data/first-pillar/elemental.js"></script>
-<script src="info-data/creature-data/first-pillar/status.js"></script>
-<script src="info-data/creature-data/first-pillar/tool.js"></script>
-<script src="info-data/creature-data/first-pillar/craft.js"></script>
-<script src="info-data/creature-data/first-pillar/combat.js"></script>
-<script src="info-data/creature-data/first-pillar/worker.js"></script>
-<script src="info-data/creature-data/second-pillar/2P-oso.js"></script>
-<script src="info-data/creature-data/second-pillar/2P-kara.js"></script>
-<script src="info-data/creature-data/second-pillar/2P-choro.js"></script>
-<script src="info-data/creature-data/second-pillar/2P-ichi.js"></script>
-<script src="info-data/creature-data/second-pillar/2P-jyushi.js"></script>
-<script src="info-data/creature-data/second-pillar/2P-todo.js"></script>
+<script src="info-data/creature-data/first-pillar/elemental.js?v=20260831-trivia-my-past"></script>
+<script src="info-data/creature-data/first-pillar/status.js?v=20260831-trivia-my-past-first-experiment"></script>
+<script src="info-data/creature-data/first-pillar/tool.js?v=20260831-trivia-my-past"></script>
+<script src="info-data/creature-data/first-pillar/craft.js?v=20260831-trivia-my-past"></script>
+<script src="info-data/creature-data/first-pillar/combat.js?v=20260831-trivia-my-past"></script>
+<script src="info-data/creature-data/first-pillar/worker.js?v=20260831-trivia-my-past"></script>
+<script src="info-data/creature-data/second-pillar/2P-oso.js?v=20260831-trivia-my-past"></script>
+<script src="info-data/creature-data/second-pillar/2P-kara.js?v=20260917-protocol-image-spacing"></script>
+<script src="info-data/creature-data/second-pillar/2P-choro.js?v=20260831-trivia-my-past"></script>
+<script src="info-data/creature-data/second-pillar/2P-ichi.js?v=20260920-action-letter-discovery"></script>
+<script src="info-data/creature-data/second-pillar/2P-jyushi.js?v=20260920-action-letter-discovery"></script>
+<script src="info-data/creature-data/second-pillar/2P-todo.js?v=20260921-cutotty-status-link"></script>
 <script src="info-data/creature-data/dex.js"></script>
-<script src="home-data/style/markdown.js?v=20260822-align-commands"></script>
-<script src="script.js?v=20260911-all-content-routes"></script>
-<script src="info-data/extra-data/extra-detail.js"></script>
+    <script src="home-data/markdown.js?v=20260922-colores-orange"></script>
+<script src="home-data/new.js?v=20260922-status-history-update"></script>
+<script src="info-data/protocol-data/protocol.js?v=20260917-compact-separator-image"></script>
+<script src="script.js?v=20260922-status-history-update"></script>
+<script src="info-data/extra-data/extra-detail.js?v=20260922-status-history-update"></script>
 <script src="home-data/left-sidebar/left-side.js?v=20260822-news-scroll-unlock"></script>
 <script src="info-data/other-data/others-list/rules-of-creaturematsu-universe.js"></script>
 <script src="info-data/other-data/others.js?v=20260820-mobile-back-final"></script>
@@ -344,13 +356,14 @@ onclick="window.open('https://forms.gle/jkJUgkrt3kSRptXdA', '_blank')">
 <script src="info-data/character-data/character-list/louise.js"></script>
 <script src="info-data/character-data/character-list/teseo.js"></script>
 <script src="info-data/character-data/characters.js"></script>
-<script src="info-data/system-data/system-popup.js"></script>
+<script src="info-data/system-data/system-popup.js?v=20260922-tbsa-new-seen"></script>
 <script src="info-data/system-data/system-list/pillar.js"></script>
 <script src="info-data/system-data/system-list/badge.js"></script>
 <script src="info-data/system-data/system-list/matsunian-language.js"></script>
 <script src="info-data/system-data/system-list/creature-icon.js"></script>
-<script src="info-data/system-data/system.js"></script>
-<script src="link.js"></script>
+<script src="info-data/system-data/system-list/tbsa.js?v=20260922-tbsa"></script>
+<script src="info-data/system-data/system.js?v=20260922-tbsa-mobile-lines"></script>
+<script src="link.js?v=20260921-protocol-extra-return"></script>
 <script src="home-data/author/author.js"></script>
 <script src="audio/audio.js"></script>
 
@@ -389,6 +402,10 @@ onclick="window.open('https://forms.gle/jkJUgkrt3kSRptXdA', '_blank')">
       <button class="system-entry-btn" data-system="badge">BADGE</button>
       <button class="system-entry-btn" data-system="matsunian-language">MATSUNIAN LANGUAGE</button>
       <button class="system-entry-btn" data-system="creature-icon">CREATURE ICON</button>
+      <button class="system-entry-btn new-feature-anchor" data-system="tbsa">
+        TENDER BODY SELF-AWARENESS
+        <span class="new-feature-badge new-feature-badge-corner" aria-hidden="true">NEW</span>
+      </button>
     </div>
 
   </div>
