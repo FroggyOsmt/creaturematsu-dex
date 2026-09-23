@@ -1,4 +1,4 @@
-const dexVersion = "v0.1.1b";
+const dexVersion = "v0.2.0";
 
 document.querySelector(".left-version").textContent =
   dexVersion;

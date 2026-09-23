@@ -39,6 +39,10 @@ function getPageType(target) {
     return "about";
   }
 
+  if (["action", "sheet", "log", "history", "past", "status", "funfact"].includes(target)) {
+    return "extra";
+  }
+
   return null;
 }
 
@@ -46,6 +50,31 @@ function makePageKey(type, id = "") {
   if (type === "about") return "about";
   if (!id) return type;
   return `${type}:${id}`;
+}
+
+function extraTypeFromReturnId(returnId) {
+  return {
+    action: "ACTION",
+    log: "LOG",
+    funfact: "FUN FACT",
+    status: "STATUS",
+    history: "THE FIRST EXPERIMENT",
+    firstexperiment: "THE FIRST EXPERIMENT",
+    past: "ABOUT MY PAST",
+    sheet: "SHEET"
+  }[String(returnId || "").toLowerCase()] || "";
+}
+
+function extraReturnIdFromTitle(title) {
+  const value = String(title || "").toLowerCase();
+  if (value.includes("action")) return "action";
+  if (value.includes("fun fact")) return "funfact";
+  if (value.includes("first experiment")) return "history";
+  if (value.includes("my past")) return "past";
+  if (value.includes("status")) return "status";
+  if (value.includes("sheet")) return "sheet";
+  if (value.includes("log")) return "log";
+  return "";
 }
 
 function getCurrentSourceKey(from, returnId = "") {
@@ -187,17 +216,30 @@ function openPageByKey(key) {
     return;
   }
 
-  if (key === "extra:log") {
-  openExtraPopup("LOG");
-  restoreScrollByKey(key);
-  return;
-}
+  if (key === "protocol") {
+    const popup = document.getElementById("protocolPopup");
+    if (popup?.classList.contains("open")) {
+      popup.setAttribute("aria-hidden", "false");
+      popup.querySelector(".protocol-popup-back")?.focus();
+    }
+    return;
+  }
 
-if (key === "extra:funfact") {
-  openExtraPopup("FUN FACT");
-  restoreScrollByKey(key);
-  return;
-}
+  if (key.startsWith("extra:")) {
+    const returnId = key.slice("extra:".length);
+    const type = extraTypeFromReturnId(returnId);
+    if (type) {
+      openExtraPopup(type);
+      restoreScrollByKey(key);
+      return;
+    }
+  }
+
+  if (["drDescription", "description", "functionText", "nameOrigin", "generalOrigin", "reference", "trivia"].includes(key)) {
+    // The creature detail stays behind the internal popup, so returning to a
+    // main information card only needs to close that popup.
+    return;
+  }
 
   console.warn("Page key not found:", key);
 }
@@ -255,11 +297,9 @@ window.backFromInternalLink = function() {
   }
 
   if (currentExtra) {
-  const title = document.getElementById("extraPopupTitle")?.textContent?.toLowerCase() || "";
-
-  if (title.includes("log")) saveScrollByKey("extra:log");
-  else if (title.includes("fun fact")) saveScrollByKey("extra:funfact");
-}
+    const returnId = extraReturnIdFromTitle(document.getElementById("extraPopupTitle")?.textContent);
+    if (returnId) saveScrollByKey(`extra:${returnId}`);
+  }
 
 const previousKey = window.internalHistory.pop();
 
@@ -305,6 +345,14 @@ window.handleCharactersBack = function() {
   }
 
   return closeCharactersPage();
+};
+
+window.handleExtraBack = function() {
+  if (window.internalHistory.length > 0) {
+    return backFromInternalLink();
+  }
+
+  return closeExtraPopup();
 };
 
 document.addEventListener("click", (e) => {
@@ -359,12 +407,10 @@ function getCurrentActivePageKey() {
 
   const extraActive = document.getElementById("extraPopup")?.classList.contains("open");
 
-if (extraActive) {
-  const title = document.getElementById("extraPopupTitle")?.textContent?.toLowerCase() || "";
-
-  if (title.includes("log")) return "extra:log";
-  if (title.includes("fun fact")) return "extra:funfact";
-}
+  if (extraActive) {
+    const returnId = extraReturnIdFromTitle(document.getElementById("extraPopupTitle")?.textContent);
+    if (returnId) return `extra:${returnId}`;
+  }
 
   return null;
 }

@@ -1,12 +1,15 @@
 //SCRIPT
 
 // SHARED TEXT FORMATTER
-// window.parseMarkdown is loaded from home-data/style/markdown.js before this file.
+// window.parseMarkdown is loaded from home-data/markdown.js before this file.
+
+const MOBILE_HOME_MEDIA_QUERY =
+  "(max-width: 768px) and (hover: none) and (pointer: coarse)";
 
 // PIXEL PERFECT IMAGE SIZE BY DPR
 function updateIconSize() {
   const dpr = window.devicePixelRatio || 1;
-  const isMobile = window.matchMedia("(max-width: 768px)").matches;
+  const isMobile = window.matchMedia(MOBILE_HOME_MEDIA_QUERY).matches;
 
   const setDprSize = (name, physicalPx, minCssPx = 0) => {
     const rawSize = physicalPx / dpr;
@@ -89,18 +92,46 @@ const grid = document.getElementById("grid");
 const detailContent = document.getElementById("detailContent");
 const creatureSearch = document.getElementById("creatureSearch");
 
-// ANALYTICS: report FLAMOSO as a private virtual content page in Vercel.
-function trackFlamosoDetailPageView(c) {
-  if (String(c?.id) !== "007") return;
+// ANALYTICS: build stable private virtual paths for available creature content.
+function getCreatureAnalyticsPath(c) {
+  const analytics = window.creatureMatsuAnalytics;
+  const rawCreatureId = String(c?.id || "");
+  const creatureSlug = analytics?.slug(c?.name);
 
-  window.creatureMatsuAnalytics?.pageview({
+  if (!analytics || !rawCreatureId || !creatureSlug) return "";
+
+  const creatureId = rawCreatureId.padStart(3, "0");
+
+  return `/creature/${creatureId}-${creatureSlug}`;
+}
+
+function trackCreatureDetailPageView(c) {
+  const path = getCreatureAnalyticsPath(c);
+  if (!path) return;
+
+  window.creatureMatsuAnalytics.pageview({
     route: "/creature/[creature]",
-    path: "/creature/007-flamoso"
+    path
   });
 }
+
+function trackCreatureExtraPageView(c, type) {
+  const analytics = window.creatureMatsuAnalytics;
+  const creaturePath = getCreatureAnalyticsPath(c);
+  const extraSlug = analytics?.slug(type);
+
+  if (!analytics || !creaturePath || !extraSlug) return;
+
+  analytics.pageview({
+    route: "/creature/[creature]/extra/[extra]",
+    path: `${creaturePath}/extra/${extraSlug}`
+  });
+}
+
+window.trackCreatureExtraPageView = trackCreatureExtraPageView;
 const noCreatureFound = document.getElementById("noCreatureFound");
 const dexArea = document.querySelector(".dex-area");
-const mobileGridQuery = window.matchMedia("(max-width: 768px)");
+const mobileGridQuery = window.matchMedia(MOBILE_HOME_MEDIA_QUERY);
 
 let currentCreature = null;
 let mobileGridStateFrame = 0;
@@ -136,11 +167,6 @@ function queueMobileGridScrollState() {
 window.addEventListener("resize", queueMobileGridScrollState);
 mobileGridQuery.addEventListener?.("change", queueMobileGridScrollState);
 
-function isSecondPillarInPreparation(creature) {
-  const creatureId = Number(creature?.id);
-  return creatureId >= 43 && creatureId <= 78;
-}
-
 function renderGrid(list = creatures) {
   grid.innerHTML = "";
 
@@ -148,22 +174,8 @@ function renderGrid(list = creatures) {
     const card = document.createElement("div");
     card.className = "card";
     card.dataset.id = c.id;
-    const isInPreparation = isSecondPillarInPreparation(c);
-
-    if (isInPreparation) {
-      card.classList.add("card-in-preparation");
-      card.setAttribute("aria-disabled", "true");
-    }
 
     const img = document.createElement("img");
-
-    if (isInPreparation) {
-      img.onerror = function () {
-        img.onerror = null;
-        img.src = "info-data/creature-data/creature-icon/icon_000.png";
-      };
-    }
-
     img.src = "info-data/creature-data/creature-icon/" + c.icon;
     img.alt = "#" + c.id;
 
@@ -172,12 +184,11 @@ function renderGrid(list = creatures) {
 
     card.appendChild(img);
     card.appendChild(text);
+    window.creatureNewDiscovery?.decorateCard(card, c);
 
-    if (!isInPreparation) {
-      card.addEventListener("click", function () {
-        openDetail(c);
-      });
-    }
+    card.addEventListener("click", function () {
+      openDetail(c);
+    });
 
     grid.appendChild(card);
   });
@@ -250,7 +261,7 @@ function hasExtraInfo(c, key) {
   return value && value.toString().trim() !== "";
 }
 
-function getExtraButton(c, type, key, iconName) {
+function getExtraButton(c, type, key, iconName, label = type, hideMissingIcon = false) {
   const active = hasExtraInfo(c, key);
 
   return `
@@ -258,8 +269,51 @@ function getExtraButton(c, type, key, iconName) {
       class="extra-icon-btn ${active ? "extra-on" : "extra-off"}"
       ${active ? `onclick="openExtraPopup('${type}')"` : "disabled"}
     >
-      <img src="info-data/extra-data/extra-image/${iconName}-${active ? "on" : "off"}.png">
-      <span>${type}</span>
+      <img src="info-data/extra-data/extra-image/${iconName}-${active ? "on" : "off"}.png"${hideMissingIcon ? ` onerror="this.style.visibility='hidden'"` : ""}>
+      <span>${label}</span>
+    </button>
+  `;
+}
+
+function getStatusButton(c) {
+  if (c?.pillar !== "VARIATIONS") return "";
+
+  const status = (c?.extras?.status || "").toString().trim().toUpperCase();
+  const statusIcon = status === "S"
+    ? "stable.png"
+    : status === "U"
+      ? "unstable.png"
+      : "";
+
+  if (!statusIcon) return "";
+
+  return `
+    <button
+      class="extra-icon-btn extra-on extra-status-btn"
+      onclick="openExtraPopup('STATUS')"
+    >
+      <img src="info-data/extra-data/extra-image/${statusIcon}">
+      <span>STATUS</span>
+    </button>
+  `;
+}
+
+function getFirstExperimentButton(c) {
+  if (c?.category !== "STATUS") return "";
+
+  const active = hasExtraInfo(c, "firstExperiment");
+  const updateBadge = window.creatureNewDiscovery?.hasUnseenUpdate(c)
+    ? '<span class="update-creature-badge extra-update-badge" aria-hidden="true">UPDATE</span>'
+    : "";
+
+  return `
+    <button
+      class="extra-icon-btn extra-history-btn ${active ? "extra-on" : "extra-off"}"
+      ${active ? `onclick="openExtraPopup('THE FIRST EXPERIMENT')"` : "disabled"}
+    >
+      ${updateBadge}
+      <img src="info-data/extra-data/extra-image/history-${active ? "on" : "off"}.png">
+      <span>HISTORY</span>
     </button>
   `;
 }
@@ -267,19 +321,19 @@ function getExtraButton(c, type, key, iconName) {
 // DETAIL RIGHT
 
 function openDetail(c, options = {}) {
-
-  if (isSecondPillarInPreparation(c)) return;
-
   const shouldWriteHistory = options.writeHistory !== false;
 
+  setFilterPanelOpen(false, { animate: true });
+
   currentCreature = c;
+  window.creatureNewDiscovery?.markDiscovered(c);
 
   const isSextuplet = Number(c.id) <= 6;
 
   const descriptionCard = isSextuplet
     ? ""
     : `
-      <div class="text-card-row">
+      <div class="text-card-row" data-detail-priority-card="description">
         <div class="info-label text-card-label">DESCRIPTION</div>
         <div class="info-value text-card-value">${parseMarkdown((c.description || "TBA").trim())}</div>
       </div>
@@ -287,27 +341,42 @@ function openDetail(c, options = {}) {
 
   const rightCards = [
     !isSextuplet && ["EXTRA", "extra-icons"],
+    ["PROTOCOL", "protocol-card"],
     !isSextuplet && ["FUNCTION", c.functionText],
     !isSextuplet && ["NAME ORIGIN", c.nameOrigin],
     ["GENERAL ORIGIN", c.generalOrigin],
-    !isSextuplet && ["REFERENCE TO OSOMATSU-SAN", c.reference]
+    !isSextuplet && ["REFERENCE TO OSOMATSU-SAN", c.reference],
+    !isSextuplet && ["TRIVIA", c.trivia]
   ]
-    .filter(Boolean)
+  .filter(Boolean)
     .filter(([title, text]) => text && text.trim() !== "")
   .map(([title, text]) => {
   if (text === "extra-icons") {
+    const extraGridClass = c.pillar === "VARIATIONS"
+      ? " extra-icon-grid-variations"
+      : c.pillar === "ORIGINS"
+        ? " extra-icon-grid-origins"
+        : "";
+
     return `
-      <div class="text-card-row extra-card-row">
+      <div class="text-card-row extra-card-row" data-detail-priority-card="extra">
         <div class="info-label text-card-label">EXTRA</div>
 
-        <div class="extra-icon-grid">
-  ${getExtraButton(c, "ACTION", "action", "action")}
+        <div class="extra-icon-grid${extraGridClass}">
+${getExtraButton(c, "ACTION", "action", "action")}
 ${getExtraButton(c, "SHEET", "sheet", "sheet")}
 ${getExtraButton(c, "LOG", "log", "log")}
+${getFirstExperimentButton(c)}
+${getExtraButton(c, "ABOUT MY PAST", "past", "my-past", "MY PAST", false)}
+${getStatusButton(c)}
 ${getExtraButton(c, "FUN FACT", "funFact", "funfact")}
         </div>
       </div>
     `;
+  }
+
+  if (text === "protocol-card") {
+    return window.CreatureProtocol?.renderCard(c) || "";
   }
 
   return `
@@ -320,10 +389,8 @@ ${getExtraButton(c, "FUN FACT", "funFact", "funfact")}
     .join("");
 
 const currentIndex = creatures.findIndex(item => item.id === c.id);
-const prevCandidate = creatures[currentIndex - 1];
-const nextCandidate = creatures[currentIndex + 1];
-const prevCreature = isSecondPillarInPreparation(prevCandidate) ? null : prevCandidate;
-const nextCreature = isSecondPillarInPreparation(nextCandidate) ? null : nextCandidate;
+const prevCreature = creatures[currentIndex - 1];
+const nextCreature = creatures[currentIndex + 1];
 
 detailContent.innerHTML = `
 <div class="detail-title-card">
@@ -414,7 +481,7 @@ detailContent.innerHTML = `
         </div>
 
         <div class="detail-text-section">
-          <div class="text-card-row">
+          <div class="text-card-row" data-detail-priority-card="quote">
             <div class="info-label text-card-label">DESCRIPTION ACCORDING TO DR. LEEZAR</div>
             <div class="text-card-value dr-text">${(c.drDescription || "TBA").trim()}</div>
           </div>
@@ -430,25 +497,8 @@ detailContent.innerHTML = `
     </div>
   `;
 
-document.querySelectorAll(".lore-link").forEach(link => {
-  link.addEventListener("click", (e) => {
-
-    const target = link.dataset.link;
-
-    // Si es link externo, no tocar
-    if (!target) return;
-
-    e.preventDefault();
-
-    const found = creatures.find(c =>
-      c.id === target
-    );
-
-    if (found) {
-      openDetail(found);
-    }
-  });
-});
+window.CreatureProtocol?.bindResponsiveDetailCards?.(detailContent);
+window.CreatureProtocol?.bindCard(detailContent, c);
 
   slider.classList.add("active");
   detailPage.classList.add("active");
@@ -468,7 +518,7 @@ document.querySelectorAll(".lore-link").forEach(link => {
     }
   }
 
-  trackFlamosoDetailPageView(c);
+  trackCreatureDetailPageView(c);
 }
 
 function closeDetail(options = {}) {
@@ -500,7 +550,7 @@ if (window.creatureMatsuMobileNavigation) {
         creature => String(creature.id) === String(navigationState.creatureId)
       );
 
-      if (!found || isSecondPillarInPreparation(found)) return;
+      if (!found) return;
 
       if (
         currentCreature?.id === found.id &&
@@ -535,7 +585,7 @@ document.addEventListener("keydown", (e) => {
     const index = creatures.findIndex(c => c.id === currentCreature.id);
     const next = creatures[index + direction];
 
-    if (next && !isSecondPillarInPreparation(next)) {
+    if (next) {
       openDetail(next);
       flashGridCard(next.id); // <-- Aquí agregas la animación
     }
@@ -568,11 +618,23 @@ function flashGridCard(creatureId) {
 
 function openDetailById(id) {
   const found = creatures.find(c => c.id === id);
-  if (!found || isSecondPillarInPreparation(found)) return;
+  if (!found) return;
 
   openDetail(found);
   flashGridCard(found.id);
 }
+
+document.addEventListener("click", (event) => {
+  const link = event.target.closest("a[data-link]");
+  if (!link) return;
+
+  const found = creatures.find(creature => creature.id === link.dataset.link);
+  if (!found) return;
+
+  event.preventDefault();
+  if (link.closest("#extraPopup")) window.closeExtraPopup?.();
+  openDetailById(found.id);
+});
 
 /* SEARCH + FILTER */
 
@@ -580,6 +642,9 @@ const searchInput = document.getElementById("searchInput");
 const filterBtn = document.getElementById("filterBtn");
 const filterPanel = document.getElementById("filterPanel");
 const applyFilterBtn = document.getElementById("applyFilterBtn");
+const FILTER_PANEL_CLOSE_DURATION = 180;
+
+let filterPanelCloseTimer = null;
 
 function getCheckedValues(selector) {
   return [...document.querySelectorAll(selector + ":checked")]
@@ -626,11 +691,48 @@ function getCreaturePillarKey(c) {
   return "";
 }
 
+const extraTypeFilterKeys = {
+  sheet: "sheet",
+  history: "firstExperiment",
+  log: "log",
+  past: "past"
+};
+
+function matchesVariationStatusFilters(c, activeStatusFilters) {
+  if (activeStatusFilters.length === 0) return true;
+  if (getCreaturePillarKey(c) !== "variations") return false;
+
+  const status = (c?.extras?.status || "").toString().trim().toLowerCase();
+  return activeStatusFilters.includes(status);
+}
+
+function matchesExtraTypeFilters(c, activeExtraTypeFilters) {
+  if (activeExtraTypeFilters.length === 0) return true;
+
+  return activeExtraTypeFilters.some(filter => {
+    const key = extraTypeFilterKeys[filter];
+    return key ? hasExtraInfo(c, key) : false;
+  });
+}
+
 function applySearchAndFilters() {
   const query = searchInput.value.toLowerCase().trim();
 
   const activeMatsuFilters = getCheckedValues(".matsu-filter");
   const activePillarFilters = getCheckedValues(".pillar-filter");
+  const activeStatusFilters = getCheckedValues(".variation-status-filter");
+  const activeExtraTypeFilters = getCheckedValues(".extra-type-filter");
+  const hasActiveSearchOrFilters =
+    query !== "" ||
+    activeMatsuFilters.length > 0 ||
+    activePillarFilters.length > 0 ||
+    activeStatusFilters.length > 0 ||
+    activeExtraTypeFilters.length > 0;
+
+  document.body.classList.toggle(
+    "desktop-search-active",
+    hasActiveSearchOrFilters
+  );
 
   const filtered = creatures.filter(c => {
     const searchableText = [
@@ -665,7 +767,23 @@ const matchesSearch =
       activePillarFilters.length === 0 ||
       activePillarFilters.includes(getCreaturePillarKey(c));
 
-    return matchesSearch && matchesMatsu && matchesPillar;
+    const matchesStatus = matchesVariationStatusFilters(
+      c,
+      activeStatusFilters
+    );
+
+    const matchesExtraType = matchesExtraTypeFilters(
+      c,
+      activeExtraTypeFilters
+    );
+
+    return (
+      matchesSearch &&
+      matchesMatsu &&
+      matchesPillar &&
+      matchesStatus &&
+      matchesExtraType
+    );
   });
 
   renderGrid(filtered);
@@ -680,13 +798,42 @@ const matchesSearch =
 
   console.log("Matsu:", activeMatsuFilters);
   console.log("Pillar:", activePillarFilters);
+  console.log("Variation status:", activeStatusFilters);
+  console.log("Extra type:", activeExtraTypeFilters);
   console.log("Results:", filtered.length);
 }
 
-function setFilterPanelOpen(shouldOpen) {
-  filterPanel.classList.toggle("hidden", !shouldOpen);
-  filterPanel.setAttribute("aria-hidden", String(!shouldOpen));
-  filterBtn.setAttribute("aria-expanded", String(shouldOpen));
+function setFilterPanelOpen(shouldOpen, options = {}) {
+  window.clearTimeout(filterPanelCloseTimer);
+  filterPanelCloseTimer = null;
+
+  if (shouldOpen) {
+    filterPanel.classList.remove("filter-panel-closing", "hidden");
+    filterPanel.setAttribute("aria-hidden", "false");
+    filterBtn.setAttribute("aria-expanded", "true");
+    return;
+  }
+
+  filterPanel.setAttribute("aria-hidden", "true");
+  filterBtn.setAttribute("aria-expanded", "false");
+
+  const shouldAnimate =
+    options.animate === true &&
+    !filterPanel.classList.contains("hidden") &&
+    !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (!shouldAnimate) {
+    filterPanel.classList.remove("filter-panel-closing");
+    filterPanel.classList.add("hidden");
+    return;
+  }
+
+  filterPanel.classList.add("filter-panel-closing");
+  filterPanelCloseTimer = window.setTimeout(() => {
+    filterPanel.classList.add("hidden");
+    filterPanel.classList.remove("filter-panel-closing");
+    filterPanelCloseTimer = null;
+  }, FILTER_PANEL_CLOSE_DURATION);
 }
 
 function preserveMobileSearchFocusForFilter(event) {
@@ -739,7 +886,7 @@ searchInput.addEventListener("input", applySearchAndFilters);
 
 /* MOBILE SEARCH + SOFTWARE KEYBOARD */
 
-const mobileSearchQuery = window.matchMedia("(max-width: 768px)");
+const mobileSearchQuery = window.matchMedia(MOBILE_HOME_MEDIA_QUERY);
 const mobileVisualViewport = window.visualViewport;
 const MOBILE_KEYBOARD_THRESHOLD = 120;
 
