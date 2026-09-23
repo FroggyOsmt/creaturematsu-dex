@@ -3,263 +3,258 @@ const secondPillarTodo = [
 // 🩷 CUTOTTY =======================================
 // ==================================================
     {
-    id: "073",
-    name: "CUTOTTY",
-    matsu: "todo",
-    category: "TODO VARIATIONS",
-    pillar: "VARIATIONS",
-
-    size: "",
-
-    image: "c073.png",
-    icon: "icon_073.png",
-
-    drDescription: `
-`,
-    description: `
-`,
-
-    functionText: `
-`,
-    nameOrigin: `
-`,
-    generalOrigin: `
-`,
-    reference: `
-`,
-
-    extras: {
-      action: ["A073-A.png", "A073-B.png"],
-      sheet: [
-        {
-          src: "",
-          caption: ""
-        },
-      ],
-      log: `
-`,
-      funFact: `
-`
-    }
+  "id": "073",
+  "name": "CUTOTTY",
+  "matsu": "todo",
+  "category": "TODO VARIATIONS",
+  "pillar": "VARIATIONS",
+  "size": "",
+  "image": "c073.png",
+  "icon": "icon_073.png",
+  "drDescription": "A mix of ‘cute’ or... no, for his name. He looks pretty cute with his... okay, that’s good! He often looks so innocent and respectful.",
+  "description": "Cutotty is an unusual creature with a very innocent, plush-like appearance, but with a large knife attached above his eyes. He was accidentally designed this way due to a Bio-Computer coding mistake involving the words “[color=#F7CC9B]cut[/color]” and “[color=#F7CC9B]cute[/color],” which were part of his original concept. He can also become very dangerous if someone says certain “forbidden words” that affect him, possibly causing him to become threatening or highly agitated.",
+  "functionText": "Cutotty’s mind is highly unstable, and approaching him is not recommended. His adorable, innocent “kawaii” appearance acts like a deceptive trap, making others want to get closer to him despite the danger. A large, sharp knife is attached above his eyes, so it is best not to touch him, point at him, or stare at the knife absentmindedly.",
+  "nameOrigin": "“**Cutotty**” combines “**cut**,” “**cute**,” and “**Todo**,” his base Matsu. The name reflects the misleading combination behind his creation, mixing an innocent and adorable appearance with a dangerous side.",
+  "generalOrigin": "- Cutotty is inspired by **[mascot horror](https://tvtropes.org/pmwiki/pmwiki.php/Main/MascotHorror)**, a genre commonly associated with indie horror games in which friendly and colorful mascot characters reveal a much darker and more threatening side. The genre became especially popular beginning in the mid-2010s. Cutotty reflects this contrast through his colorful pink body and innocent appearance, while the large knife attached above his eyes serves as an obvious warning that something is wrong. When triggered, his expression changes into his “monster dry” face, resembling the sudden frightening transformations and **[jumpscares](https://en.wikipedia.org/wiki/Jump_scare)** commonly associated with mascot horror.\n- Cutotty’s unstable behavior is also inspired by the Japanese concept of **[yandere](https://en.wikipedia.org/wiki/Yandere)** (ヤンデレ), commonly used for a character who appears sweet and pleasant on the outside but can become hostile or aggressive under certain circumstances. In Cutotty’s case, specific forbidden words can act as emotional triggers that severely disturb his mental state. This behavior is loosely inspired by **[onomatophobia](https://phobia.fandom.com/wiki/Onomatophobia)**, as hearing certain words can cause him intense anxiety and agitation. However, Cutotty is naturally timid and responds better to positive, affectionate language, making careful communication especially important around him.",
+  "reference": "Todomatsu is the only Matsu brother known for having a strongly **“two-faced” personality**, appearing cute and friendly on one side while showing a much more aggressive “monster dry” expression on the other. This side of him can suddenly switch on when his brothers ruin his plans, embarrass him in public, or invade his privacy, acting almost like a trigger activated against them.\n• In **[Season 1, Episode 7](https://osomatsu.fandom.com/wiki/Todomatsu_and_the_Five_Demons)**, one of Todomatsu’s most famous and iconic “[monster dry](<https://m.media-amazon.com/images/M/MV5BODlmNTQ0ZGUtMTJjYS00OTMzLThlZjItYjY1ZjlhNjZjOTFiXkEyXkFqcGc@._V1_FMjpg_UX650_.jpg>)” moments occurs when his brothers shamelessly greet Todomatsu’s coworkers at Sutabaa, completely embarrassing him in front of them.\n• In **[Eiga no Osomatsu-san](https://osomatsu.fandom.com/wiki/Osomatsu-san:_The_Movie)**, during the bar scene, [Atsushi](https://osomatsu.fandom.com/wiki/Atsushi) enters to calm the situation, only to mock the Sextuplets further by referring to them as the “NEET Village,” repeating [Uchikawa](https://osomatsu.fandom.com/wiki/Uchikawa)’s insult. This causes Todomatsu to erupt in anger and attempt to beat him up, with his brothers restraining him. This scene serves as a strong reference for Cutotty’s behavior: just as an insulting word can suddenly trigger Todomatsu into threatening someone, Cutotty can become dangerously agitated after hearing one of his **forbidden words**.",
+  "trivia": "Although Cutotty’s case may sound frightening, [color=#F7CC9B]CreatureMatsu is suitable for all audiences[/color], and his appearances are portrayed through slapstick and comedy. Dr. Leezar’s written protocol may sound very serious, but Cutotty’s actual behavior does not always play out that way. He may shake and twist around wildly while the other person simply stays still and slowly backs away. [color=#F7CC9B]If Cutotty jumps at someone to threaten them, he may even land in the wrong place and hurt himself instead[/color] — ouch! Cutotty is far from coordinated when trying to threaten others; when he goes wild, he often becomes clumsy, distracted, and completely twisty.",
+  "extras": {
+    "status": "U",
+    "code": "cute",
+    "responsible": "Bio-Computer",
+    "description": "This became one of the most controversial cases of the Second Pillar, raising immediate alarm when Cutotty was created despite the seemingly harmless code `cute`.<2br>\nDuring the Wheel of Fortune, Todo was selected and made his first request to Dr. Leezar:\n> *“I’ll be the cutest in the world, and someone will fall in love with me~”*\n<p><br></p>\n<p>Dr. Leezar happily approved the idea, believing that becoming cuter could help Todo be loved even more. Satisfied with the request, he entered the code `cute`.</p>\n<->\nHowever, when **Cutotty was born**, Dr. Leezar, Louise, and Todo’s brothers got goosebumps when they noticed something completely unexpected...\n> *“There was a knife attached above his face?!”*\n<p><br></p>\n<p>Louise reacted in disbelief and pointed out that he really had a knife. **This triggered Cutotty, causing him to become extremely agitated and aggressive.**. Everyone quickly escaped from the laboratory and closed the door behind them, turning what was supposed to be an innocent creation into a nightmare.</p>\n<p>Dr. Leezar became deeply concerned. Louise was frightened and hugged Jyushi, who still had a happy expression, while Todo’s brothers were frightened as well. Cutotty continued making a great deal of noise inside the laboratory. Dr. Leezar told everyone to calm down and leave the laboratory hallway. They returned upstairs to the house, but Louise looked back at the closed door, worried and saddened. Dr. Leezar placed a comforting hand on her shoulder before they left together.</p>\n<->\nA few hours later, Dr. Leezar returned alone and carefully walked down the hallway. He listened near the laboratory door. Cutotty was no longer screaming. When Dr. Leezar opened the door, he found Cutotty sitting on the floor, hugging his legs. He slowly approached him.\n> *“Are you okay?”*\nCutotty looked at him.\n> *“Imma oke.”*\nDr. Leezar sighed.\n> *“I can stay with you if you want.”*\nCutotty then noticed Louise hiding behind the laboratory door, still visibly frightened. Seeing her reaction, Cutotty became sad and apologetic.\n> *“I understand thaaaaa... I have to stay inside uh... a hamster cage?”*\nDr. Leezar looked back at Louise. She slowly nodded, and he agreed.\n> *“Yes, you can stay in the cage (not hamster cage)... and I’ll take you upstairs.”*\n<p><br></p>\n<p>Keeping Cutotty inside a cage made the situation safer, although maintaining some distance from him was still recommended. Later, whenever one of Todo’s brothers mocked him using one of the **forbidden words**, Cutotty became extremely agitated inside the cage. Dr. Leezar carefully documented each incident for the development of Cutotty’s future protocol, while Louise silently watched him with concern.</p>\n<p><br></p>",
+    "action": [
+      "A073-A.png",
+      "A073-B.png",
+      "A073-C.png"
+    ],
+    "sheet": "",
+    "log": "",
+    "past": "",
+    "funFact": "One day, after Dr. Leezar came out of the shower, he was shocked to discover that the bars of Cutotty’s cage had been cut and that Cutotty had apparently escaped. He panicked and hid near the hallway, only to discover Cutotty calmly cutting up some chicken with his knife to put it in the refrigerator while happily singing to himself. Dr. Leezar stared at him in complete confusion and decided not to bother him at all.<2br>\n*...Did Cutotty actually develop some empathy... or not?*",
+    "firstExperiment": ""
   },
+  "protocol": {
+    "entries": [
+      {
+        "title": "Cutotty Protocol - Forbidden List",
+        "text": "[m6]Cutotty[/m6]’s existence is an unfortunate result of a highly unstable creation caused by the Bio-Computer (see [link:The Suspect of Creation:status:protocol]). Because of this, he must be treated with strict safety precautions and limitations. His appearance is extremely cute, with a heart on his chest, pink cheeks, large eyes, a small mouth, and rabbit-like ears. You may want to keep him company, but unfortunately, interacting with him can be difficult. Accidentally saying one or two forbidden words, or making certain gestures, may cause [m6]Cutotty[/m6] to threaten you while showing his **“monster dry” face**.\n<->\n## **__Glossary of Forbidden Words and Gestures__**\nThe following is a list of forbidden words and gestures reported in past cases. These may trigger Cutotty, so they must be read carefully:<2br>\n**__Words:__**\n> [m1]✖[/m1] “**ugly**”; “**weird**”; “**ew**”\n> [m1]✖[/m1] “**cut**”; “**knife**”; “**sharp**”; “**claw**”\n> [m1]✖[/m1] “**danger**”; “**dangerous**”; “**harm**”; “**fatal**”\n> [m1]✖[/m1] “**Tott...uh?**”; “[m6]Cutotty[/m6]”\n**__Phrases and Gestures:__**\n> [m1]✖[/m1] “**there is one on top?**”\n> [m1]✖[/m1] “**why that thing?**”\n> [m1]✖[/m1] (staring at the knife for more than one minute while standing in front of [m6]Cutotty[/m6])\n> [m1]✖[/m1] (pointing at the knife in front of [m6]Cutotty[/m6])\n> [m1]✖[/m1] (touching or petting the knife)\n-# ***__Note:__*** *Do not call him “****Cutotty****” directly when he is in his Cutotty form, as hearing his own name may trigger him.* *Instead, simply call him “****Todo****” or “****Totty****.”*\nThese are some of the challenges involved in taking care of [m6]Cutotty[/m6] respectfully. Please avoid saying these words or phrases, and avoid making any of the listed gestures around him. If a new word, phrase, or gesture causes another trigger, call Dr. Leezar so he can add it to the list."
+      },
+      {
+        "title": "Cutotty’s Traffic-Light Protocol",
+        "text": "## 🟢 **__Safety Protocol__**\n[color=#F7CC9B]When[/color] [m6]Cutotty[/m6] [color=#F7CC9B]accompanies you and remains innocent and calm, he can be very kind to others. However, safety is more important, and taking care of him can be challenging.[/color]\n> • [color=#EFB775]Give him his calming pill in a glass of water to help calm and stabilize his mind.[/color]\n> [color=#EFB775]•[/color] [color=#EFB775]If[/color] [m6]Cutotty[/m6] [color=#EFB775]falls asleep, carefully place a silicone cover over his knife to prevent accidental injuries.[/color]\n> [color=#EFB775]•[/color] [color=#EFB775]Keep safety items nearby: a water spray bottle to discourage[/color] [m6]Cutotty[/m6] [color=#EFB775]when his[/color] [color=#F7CC9B]“monster dry”[/color] [color=#EFB775]behavior becomes mischievous, sunglasses to avoid accidentally looking at his knife, and an aroma diffuser to help him relax and breathe calmly.[/color]\n> [color=#EFB775]•[/color] [color=#EFB775]Pet only his body, head, and tail. Never touch or pet the area around his knife.[/color]\n> [color=#EFB775]•[/color] [color=#EFB775]Hug him carefully.[/color]\n> [color=#EFB775]•[/color] [color=#EFB775]Keep him distracted with games and fun activities, while always respecting the forbidden words and gestures.[/color]\n> [color=#EFB775]•[/color] [color=#EFB775]Avoid giving him a cellphone or tablet, and do not let him watch TV, as he might hear one of the forbidden words.[/color]\n> [color=#EFB775]•[/color] [color=#EFB775]Tell anyone nearby, such as family members inside the house, not to say any of the forbidden words around him.[/color]\n<->\n## 🟡 **__Defense Protocol__**\n[color=#F7CC9B]If[/color] [m6]Cutotty[/m6] [color=#F7CC9B]enters his unstable mode and shows his[/color] [color=#F7CC9B]**“monster dry” face**[/color] [color=#F7CC9B]after you accidentally say or do something forbidden, you must be extremely careful around him and focus on protecting yourself.[/color]\n> • Stay still and stop communicating. Keep your eyes on [m6]Cutotty[/m6] while keeping your arms and legs apart.\n> • If [m6]Cutotty[/m6] bristles and his claws become visible, slowly back away from him until you can gently close a door between you and him.\n> • If [m6]Cutotty[/m6] jumps toward you, protect yourself and move away from him if possible. If someone gets accidentally hurt, call for help.\n> • Keep [m6]Cutotty[/m6]’s calming pill ready for an emergency. Giving it to him may be difficult while he is shaking and highly agitated, so proceed with extreme caution.\n> • Apologize for whatever you accidentally said or did. Use very positive and affectionate phrases such as *“You’re the cutest in the world!”* or *“I’ll give you thousands of candies! I love you so much!”* to help [m6]Cutotty[/m6] calm down a little.\n<->\n## 🔴 **__Emergency Protocol__**\n[color=#F7CC9B]If[/color] [m6]Cutotty[/m6] [color=#F7CC9B]becomes completely uncontrollable and someone gets hurt, do not try to handle the situation alone.[/color]\n> • Call for help from someone nearby.\n> • Contact emergency services if medical assistance is needed.\n> • **Keep a safe distance from** [m6]Cutotty[/m6] until help arrives.\n<->\n### **__Final Note:__**\nMy wish was for [m6]Cutotty[/m6] to be uniquely “[color=#F7CC9B]cute[/color],” but I regret that his faulty creation turned his adorable appearance into a trap, along with the mental instability that can put people at risk. Having [m6]Cutotty[/m6] as a guest in your home or taking him out for a walk is not recommended. He will never be transformed again in the future. That’s how it is. Thanks, Bio-Computer."
+      }
+    ],
+    "safety": "DANGER"
+  }
+},
 
 // ==================================================
 // 🩷 TODALRESEEN ===================================
 // ================================================== 
   {
-    id: "074",
-    name: "TODALRESEEN",
-    matsu: "todo",
-    category: "TODO VARIATIONS",
-    pillar: "VARIATIONS",
-
-    size: "",
-
-    image: "c074.png",
-    icon: "icon_074.png",
-
-    drDescription: `
-`,
-    description: `
-`,
-
-    functionText: `
-`,
-    nameOrigin: `
-`,
-    generalOrigin: `
-`,
-    reference: `
-`,
-
-    extras: {
-      action: ["A074-A.png", "A074-B.png"],
-      sheet: [
-        {
-          src: "",
-          caption: ""
-        },
-      ],
-      log: `
-`,
-      funFact: `
-`
-    }
+  "id": "074",
+  "name": "TODALRESEEN",
+  "matsu": "todo",
+  "category": "TODO VARIATIONS",
+  "pillar": "VARIATIONS",
+  "size": "",
+  "image": "c074.png",
+  "icon": "icon_074.png",
+  "drDescription": "His ability is déjà vu; when the event he previously saw in the future actually happens, he says, ‘I’ve already seen.’",
+  "description": "Todalreseen is an anthropomorphic llama with Todo’s hair. While remaining aware of the present, he can see an exact event that will occur anywhere from less than a minute to three minutes into the future, as if the future were appearing alongside the present. The event he sees cannot be altered. At first, the situation he observes may seem like a simple coincidence or something suspicious, but when the event actually happens shortly afterward, he says, *“****I’ve already seen****,”* confirming that what he had seen belonged to the very near future.",
+  "functionText": "Todalreseen’s mind can perceive a hypothetical three-dimensional simulation of an event in the near future while he observes an everyday situation in the present. These visions may show fortunate or unfortunate events. Whenever Todalreseen perceives one, he takes it seriously and pays close attention, without lying or being sarcastic about what he has seen.<2br>\nFor example, if he sees a person sitting under an apple tree while reading a newspaper, he may perceive a future situation in which an apple falls onto that person’s head. Todalreseen can warn the person and try to make them move away to avoid the outcome; however, despite his intervention, the apple eventually falls onto the person’s head anyway. Todalreseen cannot prevent an event he has already seen, even when he tries to avoid a possible risk.<2br>\n**__The Three Stages of Todalreseen’s Ability:__**<2br>\n**1.** **Foresee** — [color=#F7CC9B]Anticipated Perception[/color]\n> While remaining in the present, Todalreseen perceives a three-dimensional simulation of an event that will occur anywhere from less than a minute to three minutes later. This is not déjà vu yet; he is observing the event in advance.\n**2.** **Event** — [color=#F7CC9B]The Present Catches Up with the Vision[/color]\n> As time passes, the event Todalreseen previously saw actually occurs. Since this future cannot be altered, he may try to react or warn someone, but the event he observed ultimately happens anyway.\n**3.** **Déjà Vu** — [color=#F7CC9B]Recognition[/color]\n> When the event occurs, Todalreseen recognizes the scene because he has genuinely seen it before. This is the final stage of his ability, at which point he says: *“I’ve already seen.”*\n>",
+  "nameOrigin": "“**Todalreseen**” combines “**Todo**,” his base Matsu, with “**alreseen**,” a blend derived from “**already seen**.” The name reflects how Todalreseen may have already seen the chaotic truth of an event in the near future before it actually happens in the present.",
+  "generalOrigin": "• Todalreseen’s ability is connected to the phenomenon of **[déjà vu](https://en.wikipedia.org/wiki/D%C3%A9j%C3%A0_vu)**, a French expression meaning *“already seen.”* It refers to the feeling that something happening in the present has already been experienced before, even when there is no clear memory explaining that sense of familiarity. In Todalreseen’s case, this concept is represented in a fictional and literal way: he actually observes a specific [event](https://en.wikipedia.org/wiki/Event_(philosophy)) from the near future before it occurs. When the present finally catches up with that event, he recognizes it as something he has already seen and says, *“I’ve already seen.”*\n• Todalreseen is a **[llama](https://en.wikipedia.org/wiki/Llama)** as part of an alternative creative choice, without any specific original meaning behind the animal selection. However, his form can also be connected to Andean tradition and mythology. In a traditional story preserved in the [Huarochirí Manuscript](https://en.wikipedia.org/wiki/Huarochir%C3%AD_Manuscript), [color=#F7CC9B]a llama foresees a great flood and warns his owner before it occurs[/color]. This association between a llama and advance knowledge of an event thematically connects with Todalreseen’s ability to perceive events before they reach the present.\n• Todalreseen’s frequent repetition of the phrase *“I’ve already seen,”* sometimes in a cautious and slightly uncertain manner, may resemble [palilalia](https://en.wikipedia.org/wiki/Palilalia), the involuntary repetition of one’s own words or phrases, sometimes with increasing speed. His repeated phrase can occasionally become annoying or interruptive to others, but it should still be treated with respect, as it may serve as an early warning that a troublesome or unfortunate event is about to occur.",
+  "reference": "Todalreseen may be inspired by **[Season 1, Episode 14B](https://osomatsu.fandom.com/wiki/Todomatsu%27s_Line)**, which explores the relationship between Todomatsu and his brothers, particularly the things they do not know about one another and the boundaries Todomatsu maintains around his personal life. This idea can be connected to Todo’s insecurity regarding his brothers in CreatureMatsu. Because of this uncertainty, Todo wishes he could observe in advance what might happen, eventually leading him to ask Dr. Leezar to use the code `foresee` for the creation of Todalreseen.<2br>\nThis reference is [color=#F7CC9B]not directly related to déjà vu or the ability to see the future[/color], but rather to Todo’s motivation for wanting to know what he still does not know about his brothers.",
+  "trivia": "",
+  "extras": {
+    "status": "U",
+    "code": "foresee",
+    "responsible": "Todo",
+    "description": "During the Wheel of Fortune, Todo was selected. However, Todo was unsure about what to request, while Dr. Leezar waited for his answer. Todo simply said that he had no idea, so Dr. Leezar did not pressure him and began spinning the Wheel of Fortune again. Some of Todo’s brothers started cheering as if Todo had already won, even though he still had no request in mind.<2br>\nBut Todo suddenly stopped them when an idea came to him. His brothers immediately reacted with disappointment.\n> **Todo’s brothers:** *“Baaaaad....”*\nDr. Leezar looked at him.\n> *“Tell me your idea, Todo?”*\nTodo hesitated before answering.\n> *“Uhm... I wanna see da future cuz... mah bros make me insecure.”*\nHis brothers immediately protested.\n> **Oso:** *“TOTTY, WE RUH NOT DANGEROUS!”*\n> **Choro:** *“SERIOUSLY?! WHY WE INSECURITY?”*  \n> **Kara:** *“Brotha...” (raises one eyebrow suspiciously)*\n> **Jyushi:** *“Because ahhhh, dark scary when ya go bathroom?” (smiling face)*\n> **Ichi:** *“Respect.”*\nDr. Leezar looked back at Todo.\n> *“Seriously, what did your brothers do to make you feel insecure, Todo?”*\nTodo replied while posing innocently, although he was clearly exaggerating and teasing his brothers:\n> *“Dey humiliated me, kicked me, threw a glass of water at me~...”*\nOso immediately shouted back.\n> **Oso:** *“LIEEE, TOTTY!! I NEVER KICK YA!!”*\n> **Todo:** *“SHADDAP!! I CRY BECAUSE YOU!!”*  \n> **Oso:** *“I NO KICK YA!!”*  \n> **Todo:** *“SHADDAP!!”*\nThe two began fighting, while the other brothers also started fighting among themselves in a ridiculous gag.\n> **Dr. Leezar:** *“Stop, stoooop! Calm down! Please don’t fight, we’re in a meeting!!”*\nDr. Leezar stared at them with wide, worried eyes. Suddenly, Todo’s head popped out of the fighting dust cloud. In a hurry, he shouted at Dr. Leezar:\n> **Todo:** *“WRITE* ***`FORESEE`****!”*\n> **Dr. Leezar:** *“I UNDERSTAND, I UNDERSTAND! UH—”*\nIchi’s hand immediately grabbed Todo by the head and pulled him back into the fight.\n> **Dr. Leezar:** *“...I’LL DO IT LATER!!”*\nA few minutes later, the Sextuplets were lying exhausted on the laboratory floor after the fight. Meanwhile, Dr. Leezar rested his chin on one hand and drummed his fingers on the Bio-Computer desk as the code `foresee` was being processed.\n<->\nThe next day, **Todalreseen was born**. Dr. Leezar looked at him with delight.\n> *“What a cute, fluffy llama you are~!”*\nTodalreseen responded:\n> *“I’ve already seen.”*\nDr. Leezar began to reply:\n> *“I understa—”*\nBut out of nowhere, Oso suddenly leaped into the air and kicked Dr. Leezar in the head, shouting furiously:\n> *“YOU MADE DIS CREATURE AGAINST US!!”*\nTodalreseen replied:\n> *“I saw it before. Careful, lizard...”*",
+    "action": [
+      "A074-A.png",
+      "A074-B.png",
+      "A074-C.png",
+      "A074-D.png",
+      "A074-E.png",
+      "A074-F.png"
+    ],
+    "sheet": "",
+    "log": "",
+    "past": "",
+    "funFact": "<p>One day, Dr. Leezar was sewing his torn laboratory uniform back together, thanks to a certain Matsu. Todalreseen stayed nearby, repeatedly saying,</p>\n\n> <p>*“I’ve already seen.”*</p>\n<p>Dr. Leezar, trying to concentrate, shouted,</p>\n\n> <p>*“Stop, I’m trying to—* *OUCH!”*</p>\n<p>He accidentally pricked his fingertip with the needle. Todalreseen calmly replied,</p>\n\n> <p>*“Careful, lizard.”*</p>\n<p>Dr. Leezar stopped him and said,</p>\n\n> <p>*“Stay away from me, I’m concentrating.”*</p>\n<->\n<p>But Todalreseen repeated,</p>\n\n> <p>*“I’ve already seen.”*</p>\n<p>Dr. Leezar sighed and said,</p>\n\n> <p>*“Stay away, I need to—* *OUCH!”*</p>\n<p>He accidentally pricked his fingertip with the needle again. Todalreseen replied,</p>\n\n> <p>*“Careful, lizard.”*</p>\n<p>Dr. Leezar let out an even heavier sigh and said,</p>\n\n> <p>*“Please, just go away.”*</p>\n<->\n<p>But Todalreseen repeated once again,</p>\n\n> <p>*“I’ve already seen.”*</p>\n<p>Dr. Leezar finally shouted,</p>\n\n> <p>*“Please, I’m begging y—* *AUGH!”*</p>\n<p>He stubbed his little toe against a piece of furniture and cried,</p>\n\n> <p>*“HOLY CROCOH!!”* *(crying in pain)*</p>\n<p>Todalreseen simply replied,</p>\n\n> <p>*“Careful, lizard... Well, Imma leaving, bye.”*</p>",
+    "firstExperiment": ""
   },
+  "protocol": {
+    "entries": [],
+    "safety": "MISCHIEVOUS"
+  }
+},
 
 // ==================================================
 // 🩷 DREAMTY =======================================
 // ================================================== 
   {
-    id: "075",
-    name: "DREAMTY",
-    matsu: "todo",
-    category: "TODO VARIATIONS",
-    pillar: "VARIATIONS",
-
-    size: "",
-
-    image: "c075.png",
-    icon: "icon_075.png",
-
-    drDescription: `
-`,
-    description: `
-`,
-
-    functionText: `
-`,
-    nameOrigin: `
-`,
-    generalOrigin: `
-`,
-    reference: `
-`,
-
-    extras: {
-      action: ["A075-A.png", "A075-B.png"],
-      sheet: [
-        {
-          src: "",
-          caption: ""
-        },
-      ],
-      log: `
-`,
-      funFact: `
-`
-    }
+  "id": "075",
+  "name": "DREAMTY",
+  "matsu": "todo",
+  "category": "TODO VARIATIONS",
+  "pillar": "VARIATIONS",
+  "size": "",
+  "image": "c075.png",
+  "icon": "icon_075.png",
+  "drDescription": "When someone is asleep and this creature vaguely flies through their dream, he is able to travel within that person’s dream.",
+  "description": "Dreamty is a fish-like creature capable of entering the dream of a sleeping person. Once inside, he explores the dream world, searching for unusual events, nightmares, or anything that appears sinister or distorted. He moves through the dream like a small magical fairy, using his magic against disturbing elements he encounters along the way.",
+  "functionText": "According to a hypothetical explanation of Dreamty’s ability, every sleeping person or living being may form an invisible and imaginary dream bubble that cannot normally be seen. Dreamty is the only one capable of perceiving this bubble and using it as a portal to another dimension connected to the sleeper’s mind, known as the “[color=#F7CC9B]dream world[/color].”<2br>\nIf a sleeping person becomes restless or shows signs of fear, there may be a nightmare-affected area within their dream world. Dreamty searches for hostile dream elements, such as monsters, demons, or distorted figures, and uses his magic to purify them by removing their darkness. This can help calm recurring nightmares associated with stress or sleep-paralysis-like experiences.<2br>\nDreamty moves through the dream world like a small fairy, swimming around and using a radar-like field through his vision to locate hostile dream elements and affected areas. Once detected, he approaches and purifies them. His purification does not prevent new nightmares from appearing, so he may need to return. Since he lives freely with Todo, he may not always be available. When accompanying an affected person, Dreamty waits for them to sleep before entering their dream world to locate and purify the affected area.<2br>\nDuring a lucid dream, the sleeper may actually be able to see Dreamty. However, his appearance can differ according to that person’s own dream logic: one person might perceive him as “a fish with Todo’s head,” while another might see “a chubby golden fish.” In these cases, the dreamer’s mind interprets Dreamty through its own oneiric rules. Although his perceived color or form may change, it is still the same Dreamty helping them. The dreamer simply sees an alternative dream version of him.",
+  "nameOrigin": "“**Dreamty**” combines “**dream**” with “**Totty**,” the nickname of his base Matsu. The name also closely resembles the word “**dreamy**,” connecting him to the dreamlike world he travels through. It reflects his journey into the world of dreams and his exploration of its oneiric environments.",
+  "generalOrigin": "- Dreamty is based on the idea of a ***“fish flying through the sky,”*** a metaphor for seeking transcendence and achieving the impossible. It represents a being breaking the laws of the environment around him to reach another reality. In Dreamty’s case, he breaks these boundaries by entering the portal that leads to a person’s **[dream world](https://en.wikipedia.org/wiki/Dream_world_(plot_device))**.\n- Despite this idea, Dreamty does not literally fly. He swims while floating through the dream world, which behaves like a fluid environment similar to the sea. This reflects the **[oneiric](https://systemagicmotives.com/extraordinary-words/oneiric.htm)** nature of the dream world, where physical rules are not rigid and environments, objects, identities, and time may constantly change without following the logic of waking reality.\n- Dreamty’s appearance is inspired by **[Ponyo](https://en.wikipedia.org/wiki/Ponyo)**, a small magical sea creature who wishes to become human after being rescued by a five-year-old boy. [Hayao Miyazaki](https://en.wikipedia.org/wiki/Hayao_Miyazaki) explained that the child naturally accepts Ponyo’s transformations and fantastical events without demanding logical explanations, reflecting childhood innocence and imagination. This acceptance of the impossible inspired Dreamty’s fantastical physics, where reality and dreams can naturally approach and blend together.",
+  "reference": "This creature does not have a direct reference to *Osomatsu-san*.",
+  "trivia": "",
+  "extras": {
+    "status": "S",
+    "code": "dream",
+    "responsible": "None. Everything went well.",
+    "description": "",
+    "action": [
+      "A075-A.png",
+      "A075-B.png"
+    ],
+    "sheet": "",
+    "log": "",
+    "past": "",
+    "funFact": "If a sleeping person shows signs of fear, Dreamty comes to the rescue! He enters the portal to their dream world, ready to search for hostile elements, but finds nothing except an empty, dark space and faint whispers coming from an unknown direction. Confused, Dreamty searches with his radar-like vision but cannot locate any hostile target to purify. Eventually, he gives up on the rescue, returns to the waking world, and leaves the person’s room and house, still wondering what went wrong. Meanwhile, the sleeping person continues screaming and crying from the unseen nightmare...",
+    "firstExperiment": ""
   },
+  "protocol": {
+    "entries": [],
+    "safety": "SAFE"
+  }
+},
 
 // ==================================================
 // 🩷 CALCUTODO =====================================
 // ================================================== 
   {
-    id: "076",
-    name: "CALCUTODO",
-    matsu: "todo",
-    category: "TODO VARIATIONS",
-    pillar: "VARIATIONS",
-
-    size: "",
-
-    image: "c076.png",
-    icon: "icon_076.png",
-
-    drDescription: `
-`,
-    description: `
-`,
-
-    functionText: `
-`,
-    nameOrigin: `
-`,
-    generalOrigin: `
-`,
-    reference: `
-`,
-
-    extras: {
-      action: ["A076-A.png", "A076-B.png"],
-      sheet: [
-        {
-          src: "",
-          caption: ""
-        },
-      ],
-      log: `
-`,
-      funFact: `
-`
-    }
+  "id": "076",
+  "name": "CALCUTODO",
+  "matsu": "todo",
+  "category": "TODO VARIATIONS",
+  "pillar": "VARIATIONS",
+  "size": "",
+  "image": "c076.png",
+  "icon": "icon_076.png",
+  "drDescription": "He explodes intelligence and his brain is a calculator and he solves the calculation and the result is 99.9% correct, that’s amazing!",
+  "description": "Calcutodo is a creature with eyestalks and fur covering the back of his head, back, and tail. His ability is to solve problems using mathematics. He is especially helpful to anyone struggling with difficult math homework, essentially acting as a private tutor in mathematics and physics. However, his expertise is limited to these two subjects, and he has no particular ability to help with other school subjects.",
+  "functionText": "Calcutodo’s brain possesses enhanced intelligence specifically designed to store and process numbers, making it easier for him to solve mathematics and physics problems. Despite his extraordinary ability, he prefers to remain within his own niche and does not want the world to recognize him as something extraordinary or turn him into a famous “most intelligent problem-solver in the world.” That level of attention could cause him considerable stress and paranoia. Instead, Calcutodo prefers to accompany individual students or small groups from different schools and universities, limiting his assistance to those within his own city.<2br>\nCalcutodo can solve mathematical and physics problems ranging from basic to seemingly impossible. When writing numbers, symbols, and mathematical characters, he sometimes gives them a “kawaii” style, such as drawing a zero with a happy face or turning the number three into something resembling =3. It is a very Todo-like touch coming from his highly intelligent mind. Students can sometimes become confused by the way he writes on the blackboard, but Calcutodo will suddenly shout,\n> *“CONCENTRATE AND LOOK AT MAH PASTEL NUMBERS!”*\nThe students then stay quiet and trust him, even if the situation feels rather awkward. Despite this, Calcutodo is very affectionate and wise.<2br>\nIf Calcutodo spends too much time continuously solving calculations, he may become tired, lose interest, and eventually withdraw to take a break. During his free time, he enjoys playing puzzle games, where he can complete more than 200 levels in a single day! If someone calls him during his break because they urgently need help solving a difficult physics problem, such as a calculation involving water measurements, Calcutodo may simply refuse and tell them,\n> *“Mah brain is busy.”*\nUnfortunately for that person, the solution may have to wait.",
+  "nameOrigin": "“**Calcutodo**” combines “**calculator**” with “**Todo**,” his base Matsu. The name reflects his calculator-like brain and his ability to process numbers in order to solve mathematics and physics problems.",
+  "generalOrigin": "- Calcutodo’s head is strongly reminiscent of **[Albert Einstein](https://en.wikipedia.org/wiki/Albert_Einstein)**, particularly because of the messy fur and bald area behind his eyestalks. Einstein was a German-born physicist and scientist who became internationally renowned for revolutionizing physics and permanently changing our understanding of the universe, particularly through the [theory of relativity](https://en.wikipedia.org/wiki/Theory_of_relativity) and the famous equation [E = mc²](https://en.wikipedia.org/wiki/Mass%E2%80%93energy_equivalence). However, Einstein was not particularly known for rapidly solving complex mathematical calculations. Rather, he was extraordinarily intelligent and intuitive.\n- Unlike Einstein, Calcutodo is a creature capable of solving virtually any mathematical or physics calculation. His appearance is also associated with the stereotypical image of a “[mad scientist](https://en.wikipedia.org/wiki/Mad_scientist),” with long, white, disheveled hair. His faded pastel-pink coloration is also inspired by the old, worn sweatshirts associated with Einstein’s famously casual appearance, although Calcutodo himself does not wear clothing. However, Calcutodo is not actually a scientific mastermind. He is primarily a **[mental calculator](https://en.wikipedia.org/wiki/Mental_calculation)**, a term for a person with an extraordinary ability to perform complex mathematical calculations mentally and at remarkable speed.\n- Calcutodo’s limitations are partly inspired by **[mental fatigue](https://en.wikipedia.org/wiki/Fatigue)**, in which prolonged and demanding cognitive activity can leave a person feeling mentally exhausted and less willing or able to concentrate on other tasks. Although high intelligence itself does not prevent someone from performing everyday activities, spending long periods intensely focused on complex problems may contribute to stress and exhaustion. This inspired Calcutodo’s tendency to withdraw after extensive calculations and lose interest in ordinary activities, preferring to rest instead.",
+  "reference": "This creature does not have a direct reference to *Osomatsu-san*.",
+  "trivia": "• When Calcutodo speaks in [link:Matsunian Language:matsunian-language:trivia], the usual distortion is greatly reduced due to the stability of his highly intelligent brain. When writing, he can organize letters, numbers, and symbols more clearly than Todo normally would, making his writing easier for others to understand. However, his grammar and pronunciation are still not 100% perfect. He is still Todo at heart, keeping his cute and carefree way of expressing things without worrying too much about correctness.",
+  "extras": {
+    "status": "S",
+    "code": "smarter",
+    "responsible": "None. Everything went well.",
+    "description": "",
+    "action": [
+      "A076-A.png",
+      "A076-B.png"
+    ],
+    "sheet": "",
+    "log": "",
+    "past": "",
+    "funFact": "After a physics class, five high school students were amazed by Calcutodo because his appearance seemed very familiar to them. They invited him to their school laboratory, but Calcutodo gave an awkward, nervous smile with a sweat drop and said,\n> *“Hahah, I donut know what this place is.”*\nOne of the students asked him to help solve their chemistry experiments, and the group waited anxiously for his answer. Calcutodo began trembling while still smiling and tried experimenting with two test tubes.\n> *“Heheh... so uh, you add... one plus one equals...”*\nHis head suddenly exploded after he mixed the experiment incorrectly, while all five students remained completely silent...",
+    "firstExperiment": ""
   },
+  "protocol": {
+    "entries": [],
+    "safety": "SAFE"
+  }
+},
 
 // ==================================================
 // 🩷 TRAPINTTY =====================================
 // ================================================== 
   {
-    id: "077",
-    name: "TRAPINTTY",
-    matsu: "todo",
-    category: "TODO VARIATIONS",
-    pillar: "VARIATIONS",
-
-    size: "",
-
-    image: "c077.png",
-    icon: "icon_077.png",
-
-    drDescription: `
-`,
-    description: `
-`,
-
-    functionText: `
-`,
-    nameOrigin: `
-`,
-    generalOrigin: `
-`,
-    reference: `
-`,
-
-    extras: {
-      action: ["A077-A.png", "A077-B.png"],
-      sheet: [
-        {
-          src: "",
-          caption: ""
-        },
-      ],
-      log: `
-`,
-      funFact: `
-`
-    }
+  "id": "077",
+  "name": "TRAPINTTY",
+  "matsu": "todo",
+  "category": "TODO VARIATIONS",
+  "pillar": "VARIATIONS",
+  "size": "",
+  "image": "c077.png",
+  "icon": "icon_077.png",
+  "drDescription": "He swims beneath the sea and breathes through his tail above the surface. This creature carries his painful trap, using his terrible claw to pinch someone’s legs as a form of provocation.",
+  "description": "Trapintty is an insectoid creature with a tail that allows him to breathe, as he does not have a nose. His pincers can cause considerable pain when he pinches parts of someone’s legs or even their nose. He deliberately uses this to provoke others, laughing and having fun when someone reacts to the painful pinch. He is somewhat similar to Pinichi, but with an important difference: Trapintty is used as a form of “punishment” for those who are disobedient or fail to fulfill what they were supposed to do. He pinches them to deliver a painful punishment.",
+  "functionText": "Trapintty’s pincers are painful and are used to pinch parts of someone’s legs or nose, similar to the way crabs pinch. However, his pincers are not used defensively. Instead, they act as triggers for his laughter and smug behavior, as though his mindset were, “It doesn’t matter, it only makes them cry and serves as punishment.” Trapintty rarely swims beneath the sea or in a swimming pool, using his tail to breathe above the water while he pinches others to humiliate them. He tends to behave particularly badly around water. Trapintty has two behavioral modes: machiavellian and trigger.<2br>\nTrapintty’s tail has a breathing tube that replaces Todo’s nose, which Trapintty lacks. The tube extends above the surface of the water, allowing him to breathe while swimming in the sea. However, Trapintty is also capable of living and walking on land. He does not spend most of his time underwater, as his insectoid body was created by the Bio-Computer for an ability with a purpose beyond defense: [color=#F7CC9B]punishment[/color].<2br>\nTrapintty’s punishment is unusual and often comes without any explanation. For example, after he pinches someone and causes pain, the person may protest, *“I didn’t do anything!”* Trapintty gives no explanation and simply demands, *“Give me a lollipop.”* If the person refuses, he pinches them again until they can no longer tolerate him and run away. Trapintty then becomes extremely furious and begins pinching other people nearby as his trigger behavior intensifies. The reason behind this behavior remains unknown, although it may be related to an exaggerated aspect of Todo’s personality that makes Trapintty demanding and smug.",
+  "nameOrigin": "“**Trapintty**” combines “**trap**,” “**pinch**,” and “**Totty**,” the nickname of his base Matsu. The name reflects the unexpected “**trap**” of his punishment, as he deliberately pinches and provokes innocent people.",
+  "generalOrigin": "• Trapintty is based on the **[giant water bug](https://en.wikipedia.org/wiki/Belostomatidae)**, a freshwater insect with predatory habits. Its bite can be extremely painful, and when someone attempts to touch or handle one, or accidentally steps on one, the insect may bite defensively using its powerful forelegs. These insects breathe air through a specialized **[respiratory tube](https://en.wikipedia.org/wiki/Siphon_(insect_anatomy))**, similar to Trapintty’s tail. However, Trapintty’s pincers are not directly equivalent to those of a water bug. His body also has a prehistoric appearance, possibly resembling **[Amplectobelua](https://en.wikipedia.org/wiki/Amplectobelua)**, particularly because of his crab-like grasping appendages, repeated body plates, and swimming flaps.\n• Defensive behavior is not Trapintty’s priority, even though his design is inspired by predatory creatures. His ability is instead associated with the concept of a [color=#F7CC9B]trigger[/color], meaning something that provokes or sets off a reaction. Unlike **[punishment](https://en.wikipedia.org/wiki/Punishment)**, which is a negative consequence imposed after someone has performed an action, a trigger is the stimulus or provocation that causes the reaction to begin. Trapintty’s painful pinch acts as this trigger, deliberately provoking an immediate reaction from the person he pinches.",
+  "reference": "- Todomatsu is known for his explosive anger and occasionally satanic-looking expressions. Although he is the youngest brother and usually presents himself as cute, he can suffer extreme outbursts of rage when his brothers ruin his social status, dates, or personal life. This serves as an inspiration for Trapintty’s concept of “punishing” his brothers after they embarrass or interfere with him personally.\n- In a **[skit from Season 3, Episode 15](https://osomatsu.fandom.com/wiki/Cosplaymatsu)**, Choromatsu sues Osomatsu for farting in front of the others. When Todomatsu, acting as the judge, is asked to make a fair decision, he coldly and ruthlessly sentences Osomatsu to death without hesitation. Even after Choromatsu regrets the situation and attempts to withdraw the charges, Todomatsu relentlessly insists that Osomatsu should be executed because “he’ll never change.” Todomatsu’s immediate decision to impose the death penalty, without reconsidering or listening further to those involved, serves as an inspiration for Trapintty’s possible trigger behavior: an exaggerated and impulsive response used to reject and punish his brothers.",
+  "trivia": "",
+  "extras": {
+    "status": "U",
+    "code": "trigger",
+    "responsible": "Todo",
+    "description": "<p>When the Wheel of Fortune was spun, it landed on Todo. The Sextuplets immediately became worried about him once again after what had happened with Cutotty’s `cute` code.</p>\nChoro pleaded with Todo,\n> *“Donut do anything stupid again... please.”*\nTodo reassured him. Todo gently approached Dr. Leezar with a happy expression and told him,\n> *“I have to trigger mah brotrolls~* *:3”*\nHis brothers immediately became furious with him. Dr. Leezar asked everyone to stop as they began arguing over Todo’s troublesome behavior, his traps, and his trickster tendencies, trying to calm the situation down.<2br>\nBut while Dr. Leezar was calmly talking to Todo’s brothers, Todo went over to the Bio-Computer, [color=#F7CC9B]entered the password he already knew[/color], and secretly typed the code `trigger`.\n<->\nTodo then returned to Dr. Leezar and apologized to his brothers.\n> *“Sorry, mah word was insulting... I’ll do it in a cutie way without insulting ya...”*\nDr. Leezar replied,\n> *“It’s okay if you want to change the idea, Todo.”*\nTodo then requested,\n> *“Mah wish is to be a magicaaaaal unicorn. Ya should write the code* `unicorn`. *I want to forget* *’bout being a bunnie with a knife...”*\nhe said with a sad expression. Dr. Leezar agreed,\n> *“That’s a good idea. I’ll make this one much better,”*\nwhile Todo’s brothers remained angry and confused.<2br>\nHowever, when Dr. Leezar sat down in front of the Bio-Computer, he was shocked to discover that the transformation was already in progress. He saw the `trigger` code and yelled at Todo,\n> *“HOW DID YOU WRITE THE CODE WITHOUT PERMISSION—?!”*\nTodo jokingly replied,\n> *“Hehe, I knew your password~* *:3”*\nDr. Leezar stared at him in disbelief.\n> *“HOW, SON?!”*\n<p><br></p>\n<p>Todo’s brothers immediately jumped at him with monstrous, furious expressions. They began fighting Todo and one another inside a huge fight cloud, just like what had happened during Cutotty’s story. Dr. Leezar covered his face in frustration in front of the Bio-Computer, unable to stop the fight while Todo cried out for help.</p>\n\nDr. Leezar’s password for accessing the Bio-Computer is ||123456789||, which is extremely secure! Todo already knew the password after the Tragedy of Choro...\n<->\nWhen **Trapintty was born**, Dr. Leezar was shocked by his terrifying body. Trapintty cheerfully said,\n> *“Whah a pretty unicorn with claws I am~ Imma gonna pinch ya~”*\nHe immediately pinched Dr. Leezar’s leg.\n> *“OUCH, YOU HURT ME!”*  Dr. Leezar screamed.\nTrapintty replied,\n> *“It’s better to stay away from de fight. Just trigger dem and make dem cry bwaa bwaa a lot afterward~”*\nDr. Leezar could only wonder about his creation:\n> *“So... is this what Todo’s punishment for his brothers sounds like?”*",
+    "action": [
+      "A077-A.png",
+      "A077-B.png"
+    ],
+    "sheet": "",
+    "log": "",
+    "past": "",
+    "funFact": "When a thief threatened an elderly woman with a knife and demanded her purse, Trapintty spotted him and pinched the thief’s leg, making him cry in pain. The elderly woman thanked Trapintty, but he immediately pinched her wrinkled leg as well. She cried out and dropped her purse. Trapintty picked it up and said,\n> *“Thank ya for your purse, Imma gonna find some candies~”*\nThe elderly woman screamed for help, but Trapintty could not find any candy inside. He pinched her again and complained,\n> *“Bad! Ya should buy some at de convenience store.”*\nThe thief became angry and confronted Trapintty with his knife, but Trapintty simply pinched his leg again. The thief cried in pain and dropped the knife. Trapintty told him,\n> *“Ya should buy some at de convenience store too~”*\nHe then sat down nearby with a silly expression while both of them cried from the painful pinches.",
+    "firstExperiment": ""
   },
+  "protocol": {
+    "entries": [],
+    "safety": "CAUTION"
+  }
+},
 
 // ==================================================
 // 🩷 BOATOTTY ======================================
 // ================================================== 
   {
-    id: "078",
-    name: "BOATOTTY",
-    matsu: "todo",
-    category: "TODO VARIATIONS",
-    pillar: "VARIATIONS",
-
-    size: "",
-
-    image: "c078.png",
-    icon: "icon_078.png",
-
-    drDescription: `
-`,
-    description: `
-`,
-
-    functionText: `
-`,
-    nameOrigin: `
-`,
-    generalOrigin: `
-`,
-    reference: `
-`,
-
-    extras: {
-      action: ["A078-A.png", "A078-B.png"],
-      sheet: [
-        {
-          src: "",
-          caption: ""
-        },
-      ],
-      log: `
-`,
-      funFact: `
-`
-    }
+  "id": "078",
+  "name": "BOATOTTY",
+  "matsu": "todo",
+  "category": "TODO VARIATIONS",
+  "pillar": "VARIATIONS",
+  "size": "≈2.5 m (≈8.2 ft) long",
+  "image": "c078.png",
+  "icon": "icon_078.png",
+  "drDescription": "He looks delicious because of his pastel candy-like appearance. However, if you want to hug him, be careful, because he can wrap his body tightly around you. It is better to keep a little distance from him.",
+  "description": "Boatotty is a creature with an extremely long body and a pastel-colored aesthetic. His nearly flat, innocent-looking face makes him appear completely harmless and adorable, easily attracting people’s attention. However, when someone approaches him without suspicion, Boatotty wraps his long boa-like body around the person and begins to constrict them.",
+  "functionText": "Boatotty uses his innocent and adorable appearance as a lure, especially toward people who approach him too freely. He can detect whether a human has good or bad intentions. If he recognizes someone as a good person, he remains calm and does not attempt to attack them. However, if he detects a bad person, he wraps his long boa-like body around them and begins to constrict them.<2br>\nBoatotty uses a mapping function that temporarily scans the color of a human’s “**heart**.” This ability only works on humans, not animals. The detected color represents the person’s current state:\n• **💚** [m3]Green **=**[/m3] **Good**. Boatotty remains peaceful and does not constrict the person.\n• **❤️** [m1]Red **=**[/m1] [color=#F7CC9B]**Bad**[/color]. Boatotty identifies the person as a threat and constricts them.\n• **🧡** [color=#FF955D]Orange[/color] **=** **Neutral**. Boatotty becomes cautious and may decide whether or not to constrict the person.\n• **💜** [m4]Purple[/m4] **=** **Emotional distress**, such as depression or an emotional crisis. Instead of constricting the person, Boatotty gently caresses them as a small form of comfort.<2br>\nBoatotty’s body is exceptionally long, measuring approximately [color=#F7CC9B]2.5 m (≈8.2 ft)[/color] and resembling the elongated body of a snake. He has small arms that allow him to manipulate objects, while also contributing to his adorable appearance alongside his nearly flat face.<2br>\nHis appearance works as a visual trick. His body has repeating pastel bands of yellow, lilac, and pink, inspired by candy and kawaii plush toys. This makes Boatotty look overwhelmingly cute and inviting, encouraging someone to approach him without immediately recognizing the danger posed by his powerful constriction.",
+  "nameOrigin": "“**Boatotty**” combines “**boa**” and “**Totty**,” the nickname of his base Matsu. The name reflects his boa-like body and constriction ability, contrasted with his deceptive pastel candy-like appearance, which makes him look delicious and harmless before he begins to constrict someone.",
+  "generalOrigin": "- Boatotty is based on the **[boa constrictor](https://en.wikipedia.org/wiki/Boa_constrictor)**, a non-venomous snake that captures small animals through constriction. Boa constrictors commonly display saddle-like patterns along their bodies. Although Boatotty does not have the same pattern, he has repeated transverse bands similar to those seen in many snakes. His two small arms also mean that he is not anatomically a pure snake or boa. This feature is inspired by the **[Mexican mole lizard](https://en.wikipedia.org/wiki/Mexican_mole_lizard)**, an unusual pink-colored reptile with only two forelimbs, giving him a body structure that can be associated with Todo.\n- The attraction toward Boatotty comes from his **[cute aesthetic](https://en.wikipedia.org/wiki/Kawaii)**, which makes people perceive him as harmless and adorable, encouraging them to approach, pet, or hug him before knowing whether he will attack them. This concept is somewhat comparable to [caudal luring](https://en.wikipedia.org/wiki/Caudal_luring), which is used by some snake species to attract prey. However, Boatotty does not use his tail as a lure. Instead, his “lure” is entirely visual: his adorable appearance attracts people toward him before a possible attack, functioning as a form of **[aggressive mimicry](https://en.wikipedia.org/wiki/Aggressive_mimicry)**.\n- Boatotty’s visual scanning ability is loosely inspired by [infrared sensing](https://en.wikipedia.org/wiki/Infrared_sensing_in_snakes) in snakes, which some species use to perceive warm-blooded animals before hunting them. Unlike this biological ability, Boatotty normally sees the world in a way similar to humans. His special detection only activates when scanning humans, allowing him to visualize their “heart” colors and identify their emotional state.\n- Boatotty’s pastel appearance is inspired by candy, especially twisted marshmallow candies such as [Flumps](https://en.wikipedia.org/wiki/Flumps_(sweet)), giving him an extremely cute and sweet-looking appearance that may even create the imaginary sensation that he looks good enough to eat. This further encourages people to approach him. His extremely long body also resembles a kind of “viral plush toy.” One possible inspiration is **[Squirmles](https://en.wikipedia.org/wiki/Squirmles)**, playful toy worms that appear to come alive as they move between the fingers or hands using an almost invisible string. Another possible influence is the **[Long Furby](https://official-furby.fandom.com/wiki/Unofficial_projects/Long_Furby)**, an internet phenomenon involving modified Furbies with extremely elongated bodies, creating a surreal, comedic, and sometimes slightly unsettling appearance.",
+  "reference": "Todomatsu often introduces himself to the public with the phrase, *“I’m the cutest of all the brothers.”* This cute and innocent image contrasts with the darker and more calculating side of his personality. He uses his charming appearance to attract people and gain popularity, particularly when competing with his former classmate, [Atsushi](https://osomatsu.fandom.com/wiki/Atsushi). This contrast between an adorable outward appearance and hidden intentions serves as an inspiration for Boatotty’s deceptive cute aesthetic.",
+  "trivia": "- Boatotty is the longest creature in CreatureMatsu due to his extremely elongated body, contrasted with his tiny head and two baby-like arms.",
+  "extras": {
+    "status": "U",
+    "code": "cuddle",
+    "responsible": "Todo",
+    "description": "During the Wheel of Fortune, Totty was chosen for his final request, with the Second Pillar almost complete. His brothers were once again tired of his trickster behavior and the humiliation he had caused them. They became angry and decided to leave the laboratory. Dr. Leezar said worriedly,\n> *“Come on, stay with me. It’s time for the meeting.”*\nBut Choro refused.\n> *“Imma tired of dis devil. Bye.”*\nTodo’s brothers left the laboratory and closed the door behind them, leaving Dr. Leezar and Todo alone in a slightly awkward silence. Todo felt shy after being left alone and gave Dr. Leezar a small nervous giggle, pretending that nothing was wrong. He innocently said,\n> *“Uh... I think it’s better to cuddle someone. Imma de cuuuutest of de brotrolls~* *:3”*\nDr. Leezar accepted the idea, relieved that this request seemed much safer and that there would be nothing “serious” or another “trap” intended to humiliate Todo’s brothers. That was good news. He entered the code `cuddle`.\n<->\nA few days later, Dr. Leezar and Louise were excited, while Todo’s brothers remained cautious and annoyed. **Boatotty was born**. Dr. Leezar was delighted by his appearance and exclaimed,\n> *“YOU’RE SO ADORABLE!!”*\nLouise added,\n> *“Ahhhh, how precious! He reminds me of a marshmallow. I want to hug him!!”*\nLouise hugged and petted Boatotty. He became very happy with the success of his fantastic idea. Todo’s brothers watched suspiciously, raising an eyebrow. Ichi asked,\n> *“So we’re really goin’ to approach him? Dere’s no danger?”*\nOso replied,\n> *“Yea, yea, maybe nahthing will happen!”*\nJyushi approached Boatotty for a hug and happily embraced him.\n> *“SO WARMIE, HE’S MAH SCARF—!!”*\nThe brothers began to approve of Boatotty, believing that he was much safer. Kara approached him to pet him and said,\n> *“Heh~ your look is really aesthehic and safe. I’ll stay with ya.”*\n<p><br></p>\nBut then **Boatotty constricted Kara**, immediately putting the entire group on maximum alert. Dr. Leezar exclaimed in shock,\n> *“WHAT DO YOU MEAN HE’S ATTACKING HIM?!”*\nLouise cried,\n> *“WHAT HAPPENED?! YOU SCARED ME!”*\nKara’s brothers screamed in fear and froze. Oso furiously yelled,\n> *“SEEHHHH?! IT’S A DEADLY TOTTRAP, STUPID LIZARD!!”*\nAfter Kara passed out, Boatotty moved on to Oso and constricted him.\n> *“WEEEELP—!!”*\nDr. Leezar grabbed Boatotty and tried to pull his body away.\n> *“ENOUGH! THIS ISN’T NORMAL!!”*\nAfter Oso passed out, Boatotty moved on to Dr. Leezar and constricted him as well.\n> *“HOLY CROCOH—!!”*\n<p><br></p>\nLouise became worried and called out to Boatotty,\n> *“What’s happening to you??”*\nBoatotty smugly replied,\n> *“Heheh~ dey’re useless and have weakie hearts~”*\n\n>",
+    "action": [
+      "A078-A.png",
+      "A078-B.png"
+    ],
+    "sheet": [
+      {
+        "src": "boatotty.png",
+        "caption": "Concept art of Boatotty – Full Body & Detail Sheet."
+      }
+    ],
+    "log": "",
+    "past": "",
+    "funFact": "When Boatotty appeared inside an ice cream shop, his adorable appearance immediately caught the public’s attention. Most of the people around him had “green” hearts, so Boatotty remained peaceful. The ice cream seller gave him a vanilla ice cream, and Boatotty happily thanked him.\n> *“Hehe, thank ya, Imma de cuuuuutest in de world~ Feel free to come closer and take a pic of me~”*\nPeople then took out their phones and began taking pictures of the adorable creature.",
+    "firstExperiment": ""
+  },
+  "protocol": {
+    "entries": [],
+    "safety": "CAUTION"
   }
+}
 ];
