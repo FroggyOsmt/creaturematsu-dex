@@ -34,8 +34,6 @@ popup.innerHTML = `
 }
 
 function openExtraPopup(type) {
-  window.trackCreatureExtraPageView?.(currentCreature, type);
-
   const popup = ensureExtraPopup();
 
   const leftArrow = popup.querySelector(".extra-gallery-arrow.left");

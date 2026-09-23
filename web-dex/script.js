@@ -89,43 +89,15 @@ const grid = document.getElementById("grid");
 const detailContent = document.getElementById("detailContent");
 const creatureSearch = document.getElementById("creatureSearch");
 
-// ANALYTICS: build stable private virtual paths for available creature content.
-function getCreatureAnalyticsPath(c) {
-  const analytics = window.creatureMatsuAnalytics;
-  const rawCreatureId = String(c?.id || "");
-  const creatureSlug = analytics?.slug(c?.name);
+// ANALYTICS: report FLAMOSO as a private virtual content page in Vercel.
+function trackFlamosoDetailPageView(c) {
+  if (String(c?.id) !== "007") return;
 
-  if (!analytics || !rawCreatureId || !creatureSlug) return "";
-
-  const creatureId = rawCreatureId.padStart(3, "0");
-
-  return `/creature/${creatureId}-${creatureSlug}`;
-}
-
-function trackCreatureDetailPageView(c) {
-  const path = getCreatureAnalyticsPath(c);
-  if (!path) return;
-
-  window.creatureMatsuAnalytics.pageview({
+  window.creatureMatsuAnalytics?.pageview({
     route: "/creature/[creature]",
-    path
+    path: "/creature/007-flamoso"
   });
 }
-
-function trackCreatureExtraPageView(c, type) {
-  const analytics = window.creatureMatsuAnalytics;
-  const creaturePath = getCreatureAnalyticsPath(c);
-  const extraSlug = analytics?.slug(type);
-
-  if (!analytics || !creaturePath || !extraSlug) return;
-
-  analytics.pageview({
-    route: "/creature/[creature]/extra/[extra]",
-    path: `${creaturePath}/extra/${extraSlug}`
-  });
-}
-
-window.trackCreatureExtraPageView = trackCreatureExtraPageView;
 const noCreatureFound = document.getElementById("noCreatureFound");
 const dexArea = document.querySelector(".dex-area");
 const mobileGridQuery = window.matchMedia("(max-width: 768px)");
@@ -496,7 +468,7 @@ document.querySelectorAll(".lore-link").forEach(link => {
     }
   }
 
-  trackCreatureDetailPageView(c);
+  trackFlamosoDetailPageView(c);
 }
 
 function closeDetail(options = {}) {
