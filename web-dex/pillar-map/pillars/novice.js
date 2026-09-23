@@ -255,3 +255,122 @@ Because of this, Variations carries a strong feeling of uncertainty, experimenta
 }
   }
 };
+
+
+// ========================================
+// DESKTOP DRUM VISUALS
+// ========================================
+
+window.pillarVariationCategoryData =
+  window.pillarVariationCategoryData || {};
+
+(() => {
+  const numberIcons = [
+    "one",
+    "two",
+    "three",
+    "four",
+    "five",
+    "six"
+  ];
+
+  const groups = {
+    "2A": {
+      label: "OSO VARIATIONS",
+      categoryLogo: "#043 - OSCARAB",
+      color: "#F36A6B",
+      creatures: [
+        ["043", "OSCARAB"],
+        ["044", "OSCAVARE"],
+        ["045", "ROWDYSO"],
+        ["046", "GOOFOSO"],
+        ["047", "OSMOCKERS"],
+        ["048", "SQUIANGSO"]
+      ]
+    },
+    "2B": {
+      label: "KARA VARIATIONS",
+      categoryLogo: "#050 - STRUNKARA",
+      color: "#738BF2",
+      creatures: [
+        ["049", "SEGUARA"],
+        ["050", "STRUNKARA"],
+        ["051", "GULAKARA"],
+        ["052", "SKLYARA"],
+        ["053", "FLASKARA"],
+        ["054", "SHINOKARA"]
+      ]
+    },
+    "2C": {
+      label: "CHORO VARIATIONS",
+      categoryLogo: "#057 - MR. CHOREYES",
+      color: "#B1F575",
+      creatures: [
+        ["055", "JUMPCHORO"],
+        ["056", "CHORYRUS"],
+        ["057", "MR. CHOREYES"],
+        ["058", "THORNSPHORO"],
+        ["059", "SILKHORO"],
+        ["060", "MINTELECH"]
+      ]
+    },
+    "2D": {
+      label: "ICHI VARIATIONS",
+      categoryLogo: "#064 - BIGMOUTHI",
+      color: "#B17CEE",
+      creatures: [
+        ["061", "KITTICHI"],
+        ["062", "SHICHIPPIN"],
+        ["063", "SHADICHI"],
+        ["064", "BIGMOUTHI"],
+        ["065", "TENCLAWCHI"],
+        ["066", "IFRIO"]
+      ]
+    },
+    "2E": {
+      label: "JYUSHI VARIATIONS",
+      categoryLogo: "#071 - HELPASKYUSHI",
+      color: "#FFDC60",
+      creatures: [
+        ["067", "JYALOR"],
+        ["068", "WARNAUGHI"],
+        ["069", "CATTURSHI"],
+        ["070", "UMBAGYUSHI"],
+        ["071", "HELPASKYUSHI"],
+        ["072", "AGITIMESHI"]
+      ]
+    },
+    "2F": {
+      label: "TODO VARIATIONS",
+      categoryLogo: "#078 - BOATOTTY",
+      color: "#FF94DD",
+      creatures: [
+        ["073", "CUTOTTY"],
+        ["074", "TODALRESEEN"],
+        ["075", "DREAMTY"],
+        ["076", "CALCUTODO"],
+        ["077", "TRAPINTTY"],
+        ["078", "BOATOTTY"]
+      ]
+    }
+  };
+
+  Object.entries(groups).forEach(([code, group]) => {
+    window.pillarVariationCategoryData[code] = {
+      pillar: 2,
+      code,
+      color: group.color,
+      image: `pillars/categories/novice/${code}.png`,
+      imageAlt: `${group.label} category logo`,
+      categoryLogo: group.categoryLogo,
+      listTitle: "CREATURE INCLUDES",
+      list: group.creatures.map(([number, name], index) => ({
+        label: name,
+        dexRange: `#${number}`,
+        color: group.color,
+        icon: `../info-data/creature-data/creature-icon/icon_${number}.png`,
+        rightIcon: `pillars/num-letters/${numberIcons[index]}.png`
+      }))
+    };
+  });
+})();

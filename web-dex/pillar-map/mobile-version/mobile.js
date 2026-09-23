@@ -17,6 +17,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const categoryCreatureList = document.querySelector(
     "[data-mobile-category-creatures]"
   );
+  const pillarInfoButton = selectedView?.querySelector(
+    '[data-mobile-transfer-info="pillar"]'
+  );
+  const categoryInfoButton = categoryView?.querySelector(
+    '[data-mobile-transfer-info="category"]'
+  );
   const variationComingSoon = document.querySelector(
     "[data-mobile-variation-coming-soon]"
   );
@@ -550,6 +556,8 @@ document.addEventListener("DOMContentLoaded", () => {
   function showSelectedCategory(code) {
     const categoryData = window.pillarCategoryData?.[code];
     const variationData = window.pillarMapData?.["2"]?.drums?.[code];
+    const variationCategoryData =
+      window.pillarVariationCategoryData?.[code];
     const isOriginsCategory =
       selectedPillar === "1" &&
       availableCategories.includes(code) &&
@@ -558,12 +566,18 @@ document.addEventListener("DOMContentLoaded", () => {
       selectedPillar === "2" &&
       availableVariations.includes(code) &&
       Boolean(variationData);
+    const variationIsComingSoon =
+      isSecondPillarVariation && !variationCategoryData;
 
     if (
       !mobileQuery.matches ||
       (!isOriginsCategory && !isSecondPillarVariation)
     ) {
       return;
+    }
+
+    if (isSecondPillarVariation) {
+      window.pillarDrumUpdates?.markSeen(code);
     }
 
     resetMobileScrollPosition();
@@ -578,11 +592,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     categoryView?.classList.toggle(
       "mobile-variation-coming-soon-view",
+      variationIsComingSoon
+    );
+
+    categoryView?.classList.toggle(
+      "mobile-info-hidden",
       isSecondPillarVariation
     );
 
+    if (categoryInfoButton) {
+      categoryInfoButton.hidden = isSecondPillarVariation;
+    }
+
     if (variationComingSoon) {
-      variationComingSoon.hidden = !isSecondPillarVariation;
+      variationComingSoon.hidden = !variationIsComingSoon;
     }
 
     if (openingCategoryView) {
@@ -604,7 +627,9 @@ document.addEventListener("DOMContentLoaded", () => {
         : variationData.dexRange || "";
     }
 
-    renderCategoryCreatures(isOriginsCategory ? categoryData : null);
+    renderCategoryCreatures(
+      isOriginsCategory ? categoryData : variationCategoryData
+    );
     syncCategoryCarouselButtons();
     highlightCategory(code);
     focusTempleOnCategory(code, openingCategoryView);
@@ -653,6 +678,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     sheet?.classList.add("mobile-pillar-sheet-selected");
+
+    selectedView?.classList.toggle(
+      "mobile-info-hidden",
+      pillar === "2"
+    );
+
+    if (pillarInfoButton) {
+      pillarInfoButton.hidden = pillar === "2";
+    }
 
     if (selectedTitle) {
       selectedTitle.textContent =

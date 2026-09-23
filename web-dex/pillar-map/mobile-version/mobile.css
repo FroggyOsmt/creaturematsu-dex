@@ -357,6 +357,24 @@
     cursor: default;
   }
 
+  .mobile-pillar-info[hidden] {
+    display: none;
+  }
+
+  .mobile-pillar-selected-view.mobile-info-hidden
+    .mobile-pillar-category-heading,
+  .mobile-category-selected-view.mobile-info-hidden
+    .mobile-category-includes-heading {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .mobile-pillar-selected-view.mobile-info-hidden
+    .mobile-pillar-category-heading::before,
+  .mobile-category-selected-view.mobile-info-hidden
+    .mobile-category-includes-heading::before {
+    display: none;
+  }
+
   .mobile-pillar-category-label {
     color: #EFB775;
     font-size: 17px;

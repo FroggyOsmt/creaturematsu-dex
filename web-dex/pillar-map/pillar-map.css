@@ -358,6 +358,28 @@ animation: slideBottom 1s ease forwards;
   transition: filter 0.2s ease;
 }
 
+.update-feature-badge.pillar-drum-update-badge {
+  top: -7px;
+  right: -12px;
+  z-index: 3;
+  opacity: 0;
+  animation:
+    pillarDrumUpdateReveal 0.3s ease calc(var(--delay, 0s) + 0.5s) forwards,
+    newCreatureFloat 1.6s ease-in-out calc(var(--delay, 0s) + 0.8s) infinite;
+}
+
+@keyframes pillarDrumUpdateReveal {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .update-feature-badge.pillar-drum-update-badge {
+    opacity: 1;
+    animation: none;
+  }
+}
+
 .pillar-drum-btn:hover,
 .pillar-drum-btn.drum-zoom-paused {
   transform: scale(1.1);

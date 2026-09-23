@@ -334,10 +334,17 @@ window.renderDetailInfo = function ({
     ? window.pillarCategoryData?.[drumCode] || null
     : null;
 
+  const desktopVariationData =
+    isCategory &&
+    window.matchMedia("(min-width: 768.01px)").matches
+      ? window.pillarVariationCategoryData?.[drumCode] || null
+      : null;
+
   const drumData = isCategory
     ? {
         ...(drumSummary || {}),
-        ...(categoryData || {})
+        ...(categoryData || {}),
+        ...(desktopVariationData || {})
       }
     : null;
 
