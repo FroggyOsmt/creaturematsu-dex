@@ -3,7 +3,6 @@ const pillarData = {
   name: "PILLAR",
   image: [
   "info-data/system-data/system-images/pillar1.png",
-  "info-data/system-data/system-images/pillar2.png"
 ],
 
   description: `
@@ -31,6 +30,12 @@ __Example of the system:__
       title: "Concept",
       text: `
 <p>Another way to understand a Pillar is like a **puzzle structure**. Each creature added to a Pillar works like a piece that gradually completes the larger picture of that creative stage.</p>
+`
+    },
+            {
+      title: "Quote",
+      text: `
+~[img]info-data/system-data/system-images/pillar2.png[/img]~
 `
     }
   ]

@@ -2,7 +2,8 @@ const system = {
   pillar: pillarData,
   badge: badgeData,
   matsunianLanguage: matsunianLanguageData,
-  creatureIcon: creatureIconData
+  creatureIcon: creatureIconData,
+  tbsa: tbsaData
 };
 
 let systemHTMLReady = false;
@@ -26,7 +27,24 @@ function openSystemPage(systemData) {
 
   const data = normalizeSystemData(systemData);
 
-  document.getElementById("systemTitle").textContent = data.name || "SYSTEM";
+  const systemTitle = document.getElementById("systemTitle");
+  const systemTitleText = data.name || "SYSTEM";
+
+  systemTitle.textContent = "";
+  systemTitle.classList.toggle("system-page-title-tbsa", data.id === "tbsa");
+
+  if (data.id === "tbsa") {
+    const firstLine = document.createElement("span");
+    const secondLine = document.createElement("span");
+
+    firstLine.textContent = "TENDER BODY";
+    secondLine.className = "system-page-title-mobile-line";
+    secondLine.textContent = "SELF-AWARENESS";
+
+    systemTitle.append(firstLine, " ", secondLine);
+  } else {
+    systemTitle.textContent = systemTitleText;
+  }
 
   renderSystemMainImages(data.image, data.name || "System");
 
@@ -82,6 +100,7 @@ function normalizeSystemData(systemData) {
   if (!data) return {};
 
   return {
+    id: data.id || "",
     name: data.name || data.title || "SYSTEM",
     image: data.image || data.img || data.fullImage || data.icon || "",
     description: data.description || "TBA",

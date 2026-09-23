@@ -3,7 +3,6 @@ const badgeData = {
   name: "BADGE",
   image: [
   "info-data/system-data/system-images/badge1.png",
-  "info-data/system-data/system-images/badge2.png"
 ],
 
   description: `
@@ -16,13 +15,11 @@ The **Badge** is a transformation device used in the *CreatureMatsu* universe. I
       text: `
 <p>In their base form, the six Matsu ([m1]Oso[/m1], [m2]Kara[/m2], [m3]Choro[/m3], [m4]Ichi[/m4], [m5]Jyushi[/m5], and [m6]Todo[/m6]) have simple cartoon-like bodies with no special abilities. When a **Badge** is activated, the Matsu undergo a biological transformation that produces a creature with a unique design, name, and symbolic function.</p>
 
-__During this transformation:__
+**__During this transformation:__**
 ◦ The body changes into a new anatomical structure.
 ◦ The Matsu temporarily develops a different mindset associated with the creature form.
 ◦ The transformation disappears once the process ends, returning the Matsu to their base form.
-
 <p>Each creature produced by this process receives an official **number, name, and icon** within the CreatureMatsu classification system.</p>
-
 [img]info-data/system-data/system-images/badges.png[/img]
 
 `
@@ -44,25 +41,23 @@ __During this transformation:__
         {
       title: "Appearance",
       text: `
-<p>- The **Badge** is a small device designed to be worn like an emblem. It usually hangs from the uniform of the Matsu using a small attachment.
-- The badge typically measures **about 8 cm in diameter**, making it large enough to be easily recognized and handled.
-- Its design is based on **simple geometric shapes**, most commonly: **circle** and **square**.</p>
-
+◦ The **Badge** is a small device designed to be worn like an emblem. It usually hangs from the uniform of the Matsu using a small attachment.
+◦ The badge typically measures **about 8 cm in diameter**, making it large enough to be easily recognized and handled.
+◦ Its design is based on **simple geometric shapes**, most commonly: **circle** and **square**.
 Each badge is visually organized to represent the identity of a specific creature transformation. The design elements include:
 ◦ **Name** of the creature
 ◦ **Number** within the CreatureMatsu classification
 ◦ **Color scheme** associated with the creature
 ◦ **Geometric shape** used as its symbolic frame
-
 <p>Because of this, the badge acts not only as a transformation device but also as a **visual identity marker** for each creature form. The device also contains a **small activation button**, which the Matsu presses before the transformation process begins.</p>
 `
     },
             {
       title: "How It Works",
       text: `
-<p>- Each **Badge** contains a small activation button that the Matsu must press before the transformation begins. Once the button is pressed, the badge triggers the **Syndata system**, which initiates the creature transformation. During the process, the **Badge is not attached to the body**. It usually falls near the Matsu and becomes temporarily inactive while the transformation remains active.
-- The Badge itself is built with **extremely durable materials** to prevent accidental damage during use. If a Badge becomes lost, **Dr. Leezar uses a special radar device** designed to locate missing badges in the surrounding area.
-- Inside the laboratory, the Badges are normally stored in **containers within a large cabinet**. Each container is labeled with the corresponding **creature number and category** for organization. However, problems sometimes occur because **some Matsu secretly take Badges without permission** just for fun. This behavior is considered disobedience toward Dr. Leezar, since unauthorized transformations could potentially cause trouble or chaos in the city.</p>
+◦ Each **Badge** contains a small activation button that the Matsu must press before the transformation begins. Once the button is pressed, the badge triggers the **Syndata system**, which initiates the creature transformation. During the process, the **Badge is not attached to the body**. It usually falls near the Matsu and becomes temporarily inactive while the transformation remains active.
+◦ The Badge itself is built with **extremely durable materials** to prevent accidental damage during use. If a Badge becomes lost, **Dr. Leezar uses a special radar device** designed to locate missing badges in the surrounding area.
+◦ Inside the laboratory, the Badges are normally stored in **containers within a large cabinet**. Each container is labeled with the corresponding **creature number and category** for organization. However, problems sometimes occur because **some Matsu secretly take Badges without permission** just for fun. This behavior is considered disobedience toward Dr. Leezar, since unauthorized transformations could potentially cause trouble or chaos in the city.
 `
 
     },
@@ -77,13 +72,11 @@ Each badge is visually organized to represent the identity of a specific creatur
 --> **OUTPUT:** Creature Transformation
 [/md]
 
-__Syndata enables:__
+**__Syndata enables:__**
 ◦ Temporary consciousness shifts during transformation.
 ◦ The creation of unusual body structures.
 ◦ In some cases, division of mind or dual consciousness in certain creatures.
-
 <p>The Badge acts as the **external trigger** that activates this system.</p>
-
 [img]info-data/system-data/system-images/badge-transform-a.png[/img]
 `
     },
@@ -109,6 +102,12 @@ __Syndata enables:__
 <p>The Badge is a fundamental tool that allowed Dr. Leezar to begin the CreatureMatsu project. Without it, the transformation from Matsu to creature would not occur.</p>
 
 <p>Because of this, the badge represents the **starting point of the entire creature system**, bridging the original Sextuplets and the many creature forms that appear across the different pillars.</p>
+`
+    },
+              {
+      title: "Quote",
+      text: `
+~[img]info-data/system-data/system-images/badge2.png[/img]~
 `
     }
   ]
