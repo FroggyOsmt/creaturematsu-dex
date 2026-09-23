@@ -149,6 +149,10 @@ function openDrumDetail(button) {
 
   if (!pillarNumber || !drumCode) return;
 
+  if (pillarNumber === "2") {
+    window.pillarDrumUpdates?.markSeen(drumCode);
+  }
+
   // Si había una columna completa seleccionada,
   // vuelve a su tamaño normal.
   pausedPillarColumn?.classList.remove(
@@ -322,6 +326,47 @@ document
       openDrumDetail(button);
     });
   });
+
+
+  // ========================================
+  // SECOND PILLAR DRUMS — DESKTOP ONLY
+  // ========================================
+
+  const desktopSecondPillarQuery =
+    window.matchMedia("(min-width: 768.01px)");
+
+  const secondPillarDrums = document.querySelectorAll(
+    ".pillar-2 .pillar-drum-btn[data-drum-code]"
+  );
+
+  function syncSecondPillarDrums() {
+    const desktopIsActive = desktopSecondPillarQuery.matches;
+
+    secondPillarDrums.forEach(button => {
+      if (desktopIsActive) {
+        button.removeAttribute("aria-disabled");
+        button.removeAttribute("tabindex");
+        return;
+      }
+
+      button.setAttribute("aria-disabled", "true");
+      button.setAttribute("tabindex", "-1");
+    });
+  }
+
+  secondPillarDrums.forEach(button => {
+    button.addEventListener("click", () => {
+      if (!desktopSecondPillarQuery.matches) return;
+
+      openDrumDetail(button);
+    });
+  });
+
+  syncSecondPillarDrums();
+  desktopSecondPillarQuery.addEventListener(
+    "change",
+    syncSecondPillarDrums
+  );
 
 
   // ========================================
