@@ -118,7 +118,11 @@ function trackCreatureDetailPageView(c) {
 function trackCreatureExtraPageView(c, type) {
   const analytics = window.creatureMatsuAnalytics;
   const creaturePath = getCreatureAnalyticsPath(c);
-  const extraSlug = analytics?.slug(type);
+  const normalizedType = String(type || "").trim().toUpperCase();
+  const analyticsType = normalizedType === "THE FIRST EXPERIMENT"
+    ? "history"
+    : type;
+  const extraSlug = analytics?.slug(analyticsType);
 
   if (!analytics || !creaturePath || !extraSlug) return;
 
@@ -128,7 +132,24 @@ function trackCreatureExtraPageView(c, type) {
   });
 }
 
+function trackCreatureProtocolPageView(c, title, entryIndex) {
+  const analytics = window.creatureMatsuAnalytics;
+  const creaturePath = getCreatureAnalyticsPath(c);
+  const protocolSlug = analytics?.slug(title || "protocol");
+  const protocolNumber = Number.isInteger(entryIndex)
+    ? String(entryIndex + 1).padStart(2, "0")
+    : "01";
+
+  if (!analytics || !creaturePath || !protocolSlug) return;
+
+  analytics.pageview({
+    route: "/creature/[creature]/protocol/[protocol]",
+    path: `${creaturePath}/protocol/${protocolNumber}-${protocolSlug}`
+  });
+}
+
 window.trackCreatureExtraPageView = trackCreatureExtraPageView;
+window.trackCreatureProtocolPageView = trackCreatureProtocolPageView;
 const noCreatureFound = document.getElementById("noCreatureFound");
 const dexArea = document.querySelector(".dex-area");
 const mobileGridQuery = window.matchMedia(MOBILE_HOME_MEDIA_QUERY);

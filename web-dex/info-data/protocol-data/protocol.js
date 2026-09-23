@@ -219,6 +219,12 @@
     const entry = protocolData.entries[entryIndex];
     if (!entry) return;
 
+    window.trackCreatureProtocolPageView?.(
+      creature,
+      entry.title,
+      entryIndex
+    );
+
     const popup = ensurePopup();
     const title = popup.querySelector("#protocolPopupTitle");
     const body = popup.querySelector("#protocolPopupBody");
