@@ -1,4 +1,4 @@
-const NEWS_VERSION = "0.1.1a";
+const NEWS_VERSION = "0.2.0";
 const NEWS_STORAGE_KEY = "creaturematsu-whats-new-skipped-version";
 const NEWS_AUTO_OPEN_DELAY = 3250;
 const NEWS_CLOSE_ANIMATION_DURATION = 280;

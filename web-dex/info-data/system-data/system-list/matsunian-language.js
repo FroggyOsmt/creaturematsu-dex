@@ -39,7 +39,7 @@ The **Matsunian language** is an unusual variation of American English used by t
 
 <p>They are like this because their personalities evolved from a parallel version of the universe of *Osomatsu-san*. Dr. Leezar does not fully understand where they originally came from, but their behaviors reflect that unknown origin. They were not created from nothing... they came from somewhere else.</p>
 
-__**When the Sextuplets speak in Matsunian…**__
+**__When the Sextuplets speak in Matsunian...__**
 ◦ [m1]Oso[/m1] - He tends to joke around, using unusual or made-up words that make others laugh without any embarrassment.
 ◦ [m2]Kara[/m2] - He tries to sound cool and attractive, but sometimes his English comes out wrong or exaggerated, like saying things like "burazzah".
 ◦ [m3]Choro[/m3] - He is the most intelligent of the Sextuplets, but when he gets nervous, he breaks his formal tone and ends up speaking in a distorted or awkward way.

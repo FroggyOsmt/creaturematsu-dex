@@ -45,6 +45,12 @@ function renderActionImageGallery(body, images) {
   watchExtraSliderScroll();
 }
 
+function setExtraGalleryArrows(popup, visible) {
+  popup.querySelectorAll(".extra-gallery-arrow").forEach(arrow => {
+    arrow.style.display = visible ? "flex" : "none";
+  });
+}
+
 function ensureExtraPopup() {
   let popup = document.getElementById("extraPopup");
 
@@ -92,9 +98,12 @@ function openExtraPopup(type) {
 
   const popup = ensureExtraPopup();
   const actionLoadToken = ++extraPopupActionLoadToken;
-
   const leftArrow = popup.querySelector(".extra-gallery-arrow.left");
-const rightArrow = popup.querySelector(".extra-gallery-arrow.right");
+  const rightArrow = popup.querySelector(".extra-gallery-arrow.right");
+
+  // Every EXTRA must calculate its own gallery controls. Starting hidden
+  // prevents SHEET/ACTION from inheriting the previous popup's arrow state.
+  setExtraGalleryArrows(popup, false);
 
   const title = document.getElementById("extraPopupTitle");
   if (currentCreature?.id === "057" && type === "FUN FACT") {
@@ -124,9 +133,6 @@ popup.classList.add("open");
 
   // ACTION
   if (type === "ACTION") {
-
-    leftArrow.style.display = "flex";
-  rightArrow.style.display = "flex";
     const creature = currentCreature;
     body.innerHTML = '<div class="extra-image-gallery-loading">LOADING ACTION...</div>';
     discoverActionImageNames(creature).then(images => {
@@ -136,6 +142,7 @@ popup.classList.add("open");
         !popup.classList.contains("open")
       ) return;
       renderActionImageGallery(body, images);
+      setExtraGalleryArrows(popup, images.length > 1);
     });
 
   }
@@ -170,6 +177,7 @@ if (type === "SHEET") {
     </div>
   `;
 
+  setExtraGalleryArrows(popup, images.length > 1);
   watchExtraSliderScroll(images);
 }
 

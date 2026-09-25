@@ -36,7 +36,7 @@ const secondPillarJyushi = [
     "entries": [
       {
         "title": "Heat Zone Safety Protocol",
-        "text": "<center>*Heat Zone Safety Protocol of Jyalor – Temperature Zones & Safety Guidelines.*\n~[img]jyalor-heat.png[/img]~"
+        "text": "<center>*Heat Zone Safety Protocol of Jyalor – Temperature Zones & Safety Guidelines.*\n~[img]info-data/extra-data/extra-image/sheet/jyalor-heat.png[/img]~"
       }
     ],
     "safety": "CAUTION"
@@ -163,9 +163,9 @@ const secondPillarJyushi = [
     ],
     "sheet": [
       {
-        "src": "umbagyushi size.png",
+        "src": "umbagyushi-size.png",
         "caption": "Concept art of Umbagyushi – Umbrella Mode Size Comparison."
-      }
+      },
     ],
     "log": "",
     "past": "",

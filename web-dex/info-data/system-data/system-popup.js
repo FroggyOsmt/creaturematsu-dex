@@ -2,6 +2,12 @@ const TBSA_NEW_STORAGE_KEY = "creaturematsu-tbsa-seen-v0.2.0";
 
 function hideTbsaNewBadge(button) {
   button?.querySelector(".new-feature-badge")?.remove();
+  document
+    .querySelector(
+      '[data-analytics-route="/system"] .new-feature-badge-corner'
+    )
+    ?.remove();
+  document.querySelector(".new-feature-badge-menu")?.remove();
 }
 
 function rememberTbsaAsSeen(button) {
@@ -12,6 +18,8 @@ function rememberTbsaAsSeen(button) {
   } catch (error) {
     // La insignia desaparece igualmente si localStorage no está disponible.
   }
+
+  window.creatureFeatureBadges?.sync();
 }
 
 function openSystemPopup() {

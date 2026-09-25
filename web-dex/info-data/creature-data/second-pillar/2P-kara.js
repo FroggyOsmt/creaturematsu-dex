@@ -37,7 +37,7 @@ const secondPillarKara = [
     "entries": [
       {
         "title": "Seguara Safety Protocol",
-        "text": "~[img]chart seguara.png[/img]~"
+        "text": "~[img]info-data/extra-data/extra-image/sheet/chart seguara.png[/img]~"
       }
     ],
     "safety": "DANGER"

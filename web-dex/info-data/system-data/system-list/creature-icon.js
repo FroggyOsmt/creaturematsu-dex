@@ -29,7 +29,6 @@ __Creature icons are normally limited to four mandatory colors:__
 ◦ **Brown** (#A56243) – background areas, negative shapes, and visual illusion elements.
 ◦ **Yellow** (#EFB775) – mixed-tone areas and intermediate details.
 ◦ **Light Yellow** (#FFE3C2) – highlights and the brightest visible parts.
-
 <p>Some icons may use an alternative palette, replacing the standard yellow tones with other colors such as blue, green, or different thematic variations. However, the four-color structure remains the same.</p>
 <p>The use of background and negative shapes is intentional. In some cases, portions of a creature are suggested through visual illusion rather than direct drawing, allowing recognizable forms to emerge despite the limited pixel count.</p>
 <->
@@ -41,7 +40,7 @@ __Creature icons are normally limited to four mandatory colors:__
       title: "On the Bio-Computer Screen",
       text: `
 <p>The screen is designed with a green display used by Dr. Leezar. It is very large, similar to a large television display, allowing creature information, medium-sized text, and icons to be viewed comfortably.</p>
-__There are four different icon display modes:__
+**__There are four different icon display modes:__**
 ◦ **CRT-Preview:** A preview version similar to the official icon (Sealed), but without the border wall. It is used to build creature grids and numbered lists.
 ◦ **CRT-Info:** An enlarged icon used to display information about the creature's appearance alongside its official number and name assigned by Dr. Leezar. It is shown together with saved data and logs in the sidebar. In some cases, visual elements may be adjusted for readability, such as changing the pupil color to a darker shade for better contrast.
 ◦ **Terminal:** A conceptual display mode that has not yet appeared in the terminal system. Its exact purpose remains unknown.

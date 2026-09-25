@@ -511,13 +511,26 @@ window.addEventListener("popstate", event => {
         }
         continue;
       }
+      if (/^<p>\s*<\/p>$/i.test(line)) {
+        closeList();
+        html += "<p></p>";
+        continue;
+      }
       if (line === "\uE000DOUBLEBR\uE001") { closeList(); breaks(2); continue; }
       const alignment = line.match(/^<(center|right|left)>(.*)$/i);
       if (alignment) {
         closeList();
         const direction = alignment[1].toLowerCase();
+        const alignedSource = alignment[2]
+          .replace(new RegExp("</" + direction + ">\\s*$", "i"), "")
+          .trimStart();
+        const alignedHeading = alignedSource.match(/^(#{1,3})\s+(.+)$/);
+        const alignedHtml = alignedHeading
+          ? "<h" + alignedHeading[1].length + ' class="md-heading">' +
+            inline(alignedHeading[2]) + "</h" + alignedHeading[1].length + ">"
+          : inline(alignedSource);
         html += '<div class="md-align md-align-' + direction + '">' +
-          inline(alignment[2].replace(new RegExp("</" + direction + ">\\s*$", "i"), "").trimStart()) + "</div>";
+          alignedHtml + "</div>";
         continue;
       }
       if (line === "<->") {
