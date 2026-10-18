@@ -10,6 +10,13 @@ const newsPopupDesktopQuery = window.matchMedia("(min-width: 769px)");
 const newsPopupMobileQuery = window.matchMedia("(max-width: 768px)");
 const NEWS_FALLBACK_HISTORY_KEY = "creatureMatsuNewsPopup";
 
+function isMaintenanceModeActive() {
+  return (
+    document.documentElement.classList.contains("maintenance-mode") ||
+    Boolean(document.getElementById("maintenanceScreen"))
+  );
+}
+
 function renderNewsMarkdown() {
   const content = window.newsInfo?.content || "";
 
@@ -149,6 +156,8 @@ function rememberSkippedCurrentNews() {
 }
 
 function openNewsPopup(options = {}) {
+  if (isMaintenanceModeActive()) return;
+
   const popup = document.getElementById("newsPopup");
   if (!popup) return;
 

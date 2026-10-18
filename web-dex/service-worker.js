@@ -1,10 +1,10 @@
 const CACHE_PREFIX = "creaturematsu-dex-";
-const CACHE_NAME = `${CACHE_PREFIX}v054-all-list-spacing`;
+const CACHE_NAME = `${CACHE_PREFIX}v077-maintenance-overlay`;
 const APP_SHELL = [
   "./",
   "./index.html",
-  "./home-data/markdown.js?v=20260925-empty-paragraph",
-  "./home-data/markdown.css?v=20260922-colores-orange-v2",
+  "./home-data/markdown.js?v=20261018-image-popup-scale",
+  "./home-data/markdown.css?v=20261018-image-popup-scale",
   "./link.js?v=20260921-protocol-extra-return",
   "./info-data/extra-data/extra-image/history-off.png",
   "./info-data/extra-data/extra-image/history-on.png"
