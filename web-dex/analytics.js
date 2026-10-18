@@ -196,6 +196,13 @@
   }, true);
 
   document.addEventListener("DOMContentLoaded", () => {
+    if (document.body.classList.contains("matsu-quiz-page")) {
+      analytics.pageview({
+        route: "/games/matsu-quiz",
+        path: "/games/matsu-quiz"
+      });
+    }
+
     if (document.body.classList.contains("pillar-page")) {
       analytics.pageview({ route: "/pillar-map", path: "/pillar-map" });
     }
