@@ -28,6 +28,7 @@
   width: 320px;
   max-width: 68vw;
   height: auto;
+  transform: translateY(-5px);
 }
 
 .maintenance-message {
@@ -41,7 +42,7 @@
 
   color: #FFE2C1;
   font-family: inherit;
-  font-size: clamp(14px, 2.2vw, 19px);
+  font-size: 16px;
   font-weight: 600;
   line-height: 1.35;
 }
@@ -66,4 +67,5 @@ html.maintenance-mode body {
     max-width: 82vw;
     padding: 10px 16px;
   }
+
 }
