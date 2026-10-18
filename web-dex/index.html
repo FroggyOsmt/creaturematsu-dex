@@ -8,15 +8,16 @@
   <title>CreatureMatsu Dex</title>
   <link rel="icon" type="image/png" href="images/icon.png">
 <link rel="stylesheet" href="home-data/splash/splash-screen.css">
-<link rel="stylesheet" href="home-data/maintenance/maintenance.css?v=20260923-maintenance-toggle">
+<link rel="stylesheet" href="home-data/maintenance/maintenance.css?v=20261005-petting-oso">
+<link rel="stylesheet" href="home-data/maintenance/petting-oso/petting-oso.css?v=20261006-tickle-zone">
 <link rel="stylesheet" href="home-data/style/layout.css?v=20260922-desktop-narrow-home">
-    <link rel="stylesheet" href="home-data/markdown.css?v=20260922-colores-orange-v2">
+    <link rel="stylesheet" href="home-data/markdown.css?v=20261018-image-popup-scale">
 <link rel="stylesheet" href="home-data/sidebar.css?v=20260922-desktop-narrow-home">
-<link rel="stylesheet" href="home-data/left-sidebar/left-detail.css?v=20260820-mobile-logo-others-only">
-<link rel="stylesheet" href="home-data/grid.css?v=20260922-desktop-filter-visible">
+<link rel="stylesheet" href="home-data/left-sidebar/left-detail.css?v=20260927-games-separated">
+<link rel="stylesheet" href="home-data/grid.css?v=20260926-games-view">
 <link rel="stylesheet" href="home-data/card.css?v=20260922-desktop-narrow-home">
-<link rel="stylesheet" href="home-data/new.css?v=20260923-mobile-menu-new-lower">
-<link rel="stylesheet" href="home-data/detail.css">
+<link rel="stylesheet" href="home-data/new.css?v=20261009-matsu-quiz-new">
+<link rel="stylesheet" href="home-data/detail.css?v=20260925-mobile-title-safari">
 <link rel="stylesheet" href="home-data/left-sidebar/left-column.css?v=20260920-dr-quote-color">
 <link rel="stylesheet" href="home-data/left-sidebar/right-column.css">
 <link rel="stylesheet" href="info-data/extra-data/extra-icon.css?v=20260921-extra-over-protocol">
@@ -27,6 +28,8 @@
 <link rel="stylesheet" href="info-data/system-data/system-popup.css">
 <link rel="stylesheet" href="info-data/system-data/system.css?v=20260922-tbsa-mobile-lines">
 <link rel="stylesheet" href="info-data/other-data/others.css?v=20260922-desktop-scrollbar">
+<link rel="stylesheet" href="games/games.css?v=20261012-palettes-front">
+<link rel="stylesheet" href="games/games-layering.css?v=20261012-stars-close-arc">
 <link rel="stylesheet" href="home-data/author/author.css">
 <link rel="stylesheet" href="home-data/news/news.css?v=20260903-global-markdown">
 </head>
@@ -94,6 +97,17 @@
 >
   <span>Pillar Map</span>
   <span class="update-feature-badge update-feature-badge-corner" aria-hidden="true">UPDATE</span>
+</button>
+
+<button
+  class="games-sidebar-btn new-feature-anchor"
+  type="button"
+  data-open-games
+  data-analytics-route="/games"
+  data-analytics-path="/games"
+>
+  <span>Games</span>
+  <span class="new-feature-badge new-feature-badge-corner matsu-quiz-new-badge" aria-hidden="true">NEW</span>
 </button>
 
 <button
@@ -323,9 +337,10 @@ onclick="window.open('https://forms.gle/jkJUgkrt3kSRptXdA', '_blank')">
   </div>
 </div>
 
-<script src="home-data/maintenance/maintenance.js?v=20260923-maintenance-toggle"></script>
+<script src="home-data/maintenance/maintenance.js?v=20261005-petting-oso"></script>
+<script src="home-data/maintenance/petting-oso/petting-oso.js?v=20261006-tickle-zone"></script>
 <script src="home-data/splash/splash.js"></script>
-<script src="version.js?v=20260920-v011c"></script>
+<script src="version.js?v=20261009-v021"></script>
 <script src="home-data/mobile-navigation.js?v=20260922-desktop-narrow-home"></script>
 <script src="home-data/news/info.news.js?v=20260925-all-list-spacing"></script>
 <script src="home-data/news/news.js?v=20260822-v011a-scroll-back"></script>
@@ -343,14 +358,15 @@ onclick="window.open('https://forms.gle/jkJUgkrt3kSRptXdA', '_blank')">
 <script src="info-data/creature-data/second-pillar/2P-jyushi.js?v=20260920-action-letter-discovery"></script>
 <script src="info-data/creature-data/second-pillar/2P-todo.js?v=20260921-cutotty-status-link"></script>
 <script src="info-data/creature-data/dex.js"></script>
-    <script src="home-data/markdown.js?v=20260925-empty-paragraph"></script>
-<script src="home-data/new.js?v=20260923-feature-badges-seen"></script>
+    <script src="home-data/markdown.js?v=20261018-image-popup-scale"></script>
+<script src="home-data/new.js?v=20261009-matsu-quiz-new"></script>
 <script src="info-data/protocol-data/protocol.js?v=20260923-analytics-history-protocol"></script>
 <script src="script.js?v=20260923-analytics-history-protocol"></script>
 <script src="info-data/extra-data/extra-detail.js?v=20260923-gallery-arrow-reset"></script>
-<script src="home-data/left-sidebar/left-side.js?v=20260822-news-scroll-unlock"></script>
+<script src="home-data/left-sidebar/left-side.js?v=20260927-games-separated"></script>
 <script src="info-data/other-data/others-list/rules-of-creaturematsu-universe.js"></script>
 <script src="info-data/other-data/others.js?v=20260820-mobile-back-final"></script>
+  <script src="games/games.js?v=20261010-matsu-quiz-palette-path"></script>
 <script src="home-data/about/about-popup.js?v=20260820-about-return-others-final"></script>
 <script src="info-data/character-data/character-popup.js"></script>
 <script src="info-data/character-data/character-list/sextuplets.js"></script>
@@ -358,7 +374,7 @@ onclick="window.open('https://forms.gle/jkJUgkrt3kSRptXdA', '_blank')">
 <script src="info-data/character-data/character-list/louise.js"></script>
 <script src="info-data/character-data/character-list/teseo.js"></script>
 <script src="info-data/character-data/characters.js"></script>
-<script src="info-data/system-data/system-popup.js?v=20260923-feature-badges-seen"></script>
+<script src="info-data/system-data/system-popup.js?v=20261009-matsu-quiz-new"></script>
 <script src="info-data/system-data/system-list/pillar.js"></script>
 <script src="info-data/system-data/system-list/badge.js"></script>
 <script src="info-data/system-data/system-list/matsunian-language.js"></script>
