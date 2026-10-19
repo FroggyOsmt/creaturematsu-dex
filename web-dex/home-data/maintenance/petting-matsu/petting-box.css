@@ -1,0 +1,27 @@
+/*
+ * CreatureMatsu Petting Box
+ *
+ * Storage-only scaffold for future development.
+ * This stylesheet is intentionally not linked from index.html.
+ */
+
+.petting-box {
+  --petting-box-x: 0px;
+  --petting-box-y: 0px;
+  --petting-box-scale: 1;
+
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translate3d(
+      var(--petting-box-x),
+      var(--petting-box-y),
+      0
+    )
+    scale(var(--petting-box-scale));
+  transform-origin: top left;
+}
+
+.petting-box[hidden] {
+  display: none !important;
+}
