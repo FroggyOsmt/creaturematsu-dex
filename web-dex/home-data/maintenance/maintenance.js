@@ -1,4 +1,5 @@
-const MAINTENANCE_MODE = true;
+const maintenanceQuery = new URLSearchParams(window.location.search);
+const MAINTENANCE_MODE = maintenanceQuery.get("evershow2") !== "off";
 
 (() => {
   if (!MAINTENANCE_MODE) return;
