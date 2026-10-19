@@ -1,10 +1,11 @@
 // CREATUREMATSU DEX - AUDIO SYSTEM
 // Intenta autoaudio al abrir.
-// Si el navegador bloquea, el primer click/tap activa la BGM.
+// Si el navegador bloquea, los clicks/taps siguen intentando activar la BGM.
 // Click normal de botones/cards reproduce sonido corto.
 
 let cmatsuAudioStarted = false;
 let cmatsuBGM = null;
+let cmatsuBGMStartPromise = null;
 let audioCtx = null;
 
 const CMATSU_BGM_STATE_KEY = "cmatsu-bgm-position";
@@ -122,20 +123,86 @@ function createBGM() {
   restoreBGMTime();
 }
 
+function handleCreatureMatsuAudioInteraction() {
+  initCreatureMatsuAudio();
+}
+
+function waitForCreatureMatsuAudioInteraction() {
+  window.addEventListener(
+    "pointerdown",
+    handleCreatureMatsuAudioInteraction,
+    true
+  );
+  window.addEventListener(
+    "click",
+    handleCreatureMatsuAudioInteraction,
+    true
+  );
+  window.addEventListener(
+    "touchend",
+    handleCreatureMatsuAudioInteraction,
+    {
+      capture: true,
+      passive: true
+    }
+  );
+  window.addEventListener(
+    "keydown",
+    handleCreatureMatsuAudioInteraction,
+    true
+  );
+}
+
+function stopWaitingForCreatureMatsuAudioInteraction() {
+  window.removeEventListener(
+    "pointerdown",
+    handleCreatureMatsuAudioInteraction,
+    true
+  );
+  window.removeEventListener(
+    "click",
+    handleCreatureMatsuAudioInteraction,
+    true
+  );
+  window.removeEventListener(
+    "touchend",
+    handleCreatureMatsuAudioInteraction,
+    true
+  );
+  window.removeEventListener(
+    "keydown",
+    handleCreatureMatsuAudioInteraction,
+    true
+  );
+}
+
 function initCreatureMatsuAudio() {
   createBGM();
 
-  if (cmatsuAudioStarted && !cmatsuBGM.paused) return;
+  if (cmatsuAudioStarted && !cmatsuBGM.paused) {
+    stopWaitingForCreatureMatsuAudioInteraction();
+    return Promise.resolve(true);
+  }
 
-  cmatsuBGM.play()
+  if (cmatsuBGMStartPromise) return cmatsuBGMStartPromise;
+
+  cmatsuBGMStartPromise = cmatsuBGM.play()
     .then(() => {
       cmatsuAudioStarted = true;
+      stopWaitingForCreatureMatsuAudioInteraction();
       console.log("BGM started.");
+      return true;
     })
     .catch((error) => {
       cmatsuAudioStarted = false;
-      console.log("BGM autoplay blocked, waiting for first click:", error);
+      console.log("BGM blocked, waiting for another interaction:", error);
+      return false;
+    })
+    .finally(() => {
+      cmatsuBGMStartPromise = null;
     });
+
+  return cmatsuBGMStartPromise;
 }
 
 function playButtonClickSound() {
@@ -164,24 +231,11 @@ function playButtonClickSound() {
 document.addEventListener("DOMContentLoaded", () => {
   createBGM();
 
+  // Mantiene varios tipos de interacción activos hasta que la BGM comienza.
+  waitForCreatureMatsuAudioInteraction();
+
   // Intenta autoaudio al abrir
   initCreatureMatsuAudio();
-
-  // Si autoplay fue bloqueado, el primer click/tap intenta iniciar BGM
-  window.addEventListener("pointerdown", () => {
-    initCreatureMatsuAudio();
-  }, {
-    once: true,
-    capture: true
-  });
-
-  // También sirve con teclado
-  window.addEventListener("keydown", () => {
-    initCreatureMatsuAudio();
-  }, {
-    once: true,
-    capture: true
-  });
 
   // Sonido corto de botones/cards
   document.addEventListener("click", (event) => {
