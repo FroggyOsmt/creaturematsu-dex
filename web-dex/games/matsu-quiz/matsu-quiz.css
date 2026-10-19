@@ -539,7 +539,7 @@ html[data-quiz-effective-theme="dark"] .quiz-menu-sound {
     translate 320ms ease;
 }
 
-.quiz-start:hover {
+.quiz-start:hover:not(:disabled) {
   background: #FFF1CF;
   scale: 1.025;
 }
@@ -550,7 +550,47 @@ html[data-quiz-effective-theme="dark"] .quiz-menu-sound {
 }
 
 .quiz-start:disabled {
+  opacity: 0.58;
   cursor: default;
+}
+
+.quiz-start.has-retry-actions {
+  bottom: 82px;
+}
+
+.quiz-retry-countdown {
+  position: absolute;
+  bottom: 143px;
+  left: 50%;
+  z-index: 9;
+  box-sizing: border-box;
+  width: max-content;
+  max-width: min(280px, calc(100vw - 44px));
+  padding: 7px 11px;
+  border: 2px solid #6f332c;
+  border-radius: 10px;
+  background: #4b211e;
+  color: #fff5df;
+  font-size: 12px;
+  line-height: 1;
+  letter-spacing: 0.035em;
+  white-space: nowrap;
+  box-shadow: 0 4px 0 rgba(75, 33, 30, 0.3);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 5px);
+  transition:
+    opacity 160ms ease,
+    transform 160ms ease;
+}
+
+.quiz-retry-countdown[hidden] {
+  display: none;
+}
+
+.quiz-start.has-retry-actions:hover + .quiz-retry-countdown {
+  opacity: 1;
+  transform: translate(-50%, 0);
 }
 
 .quiz-start.is-leaving {
@@ -567,6 +607,62 @@ html[data-quiz-effective-theme="dark"] .quiz-menu-sound {
 
 .quiz-start[hidden] {
   display: none;
+}
+
+.quiz-intro-resume-actions {
+  position: absolute;
+  right: 0;
+  bottom: 28px;
+  left: 0;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.quiz-intro-resume-actions[hidden] {
+  display: none;
+}
+
+.quiz-intro-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-height: 34px;
+  padding: 6px 13px;
+  border: 3px solid #6f332c;
+  border-radius: 999px;
+  background: #F3C68C;
+  color: #3c201d;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 4px 0 #6f332c;
+  transition:
+    background-color 200ms ease,
+    transform 200ms ease;
+}
+
+.quiz-intro-action:hover {
+  background: #FFF1CF;
+  transform: scale(1.025);
+}
+
+.quiz-intro-action:focus-visible {
+  outline: 4px solid #ffffff;
+  outline-offset: 3px;
+}
+
+.quiz-intro-action--capture {
+  background: #F58F84;
+}
+
+.quiz-intro-action--capture:hover {
+  background: #FCBCA7;
 }
 
 .quiz-score-view {

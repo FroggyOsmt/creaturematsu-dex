@@ -2,6 +2,10 @@
   const quizCard = document.getElementById("quizCard");
   const introView = document.getElementById("quizIntro");
   const startButton = document.getElementById("quizStartButton");
+  const retryCountdown = document.getElementById("quizRetryCountdown");
+  const introResumeActions = document.getElementById("quizIntroResumeActions");
+  const introCapture = document.getElementById("quizIntroCapture");
+  const introHome = document.getElementById("quizIntroHome");
   const quizHeader = document.getElementById("quizHeader");
   const questionView = document.getElementById("quizQuestionView");
   const callButton = document.getElementById("quizNextButton");
@@ -31,6 +35,10 @@
     !quizCard ||
     !introView ||
     !startButton ||
+    !retryCountdown ||
+    !introResumeActions ||
+    !introCapture ||
+    !introHome ||
     !quizHeader ||
     !questionView ||
     !callButton ||
@@ -68,7 +76,12 @@
   let capturePreviewFileName = "";
   let captureCloseTimer = 0;
   let captureRequestId = 0;
+  let captureReturnFocus = scoreCapture;
   let rankSealRotation = 0;
+  let retryLockTimer = 0;
+  const retryLockDuration = 24 * 60 * 60 * 1000;
+  const retryLockKey = "creaturematsu-matsu-quiz-retry-until";
+  const savedResultKey = "creaturematsu-matsu-quiz-last-result";
   const captureRankSeal = new Image();
   const captureDoctorSticker = new Image();
   const captureSealSources = window.MATSU_QUIZ_RANK_SEALS || {};
@@ -131,10 +144,14 @@
   const getScoreResult = nextScore =>
     scoreResults.find(result => nextScore >= result.minimum) || scoreResults.at(-1);
 
-  const updateScoreResult = nextScore => {
+  const updateScoreResult = (nextScore, savedRotation = null) => {
     const result = getScoreResult(nextScore);
-    const rotationDirection = Math.random() < 0.5 ? -1 : 1;
-    rankSealRotation = rotationDirection * (2.5 + Math.random() * 4.5);
+    if (Number.isFinite(savedRotation)) {
+      rankSealRotation = savedRotation;
+    } else {
+      const rotationDirection = Math.random() < 0.5 ? -1 : 1;
+      rankSealRotation = rotationDirection * (2.5 + Math.random() * 4.5);
+    }
     scoreRankSeal.src = result.seal;
     scoreRankSeal.alt = result.rank;
     scoreRankSeal.style.setProperty("--rank-seal-rotation", `${rankSealRotation.toFixed(2)}deg`);
@@ -323,8 +340,109 @@
       capturePreviewStatus.textContent = "CREATING PREVIEW...";
       captureSave.disabled = true;
       releaseCapturePreview();
-      if (restoreFocus) scoreCapture.focus();
+      if (restoreFocus) captureReturnFocus?.focus();
     }, 260);
+  };
+
+  const readStoredNumber = key => {
+    try {
+      const value = Number(window.localStorage.getItem(key));
+      return Number.isFinite(value) ? value : 0;
+    } catch (error) {
+      return 0;
+    }
+  };
+
+  const readSavedResult = () => {
+    try {
+      const result = JSON.parse(window.localStorage.getItem(savedResultKey) || "null");
+      const savedScore = Number(result?.score);
+      const savedRotation = Number(result?.rankSealRotation);
+      if (!Number.isFinite(savedScore) || savedScore < 0 || savedScore > 100) return null;
+      return {
+        score: savedScore,
+        rankSealRotation: Number.isFinite(savedRotation) ? savedRotation : null
+      };
+    } catch (error) {
+      return null;
+    }
+  };
+
+  const saveCurrentResult = () => {
+    try {
+      window.localStorage.setItem(savedResultKey, JSON.stringify({
+        score,
+        rankSealRotation,
+        savedAt: Date.now()
+      }));
+    } catch (error) {
+      // The result still works for the current visit if storage is unavailable.
+    }
+  };
+
+  const setRetryLock = () => {
+    const retryAt = Date.now() + retryLockDuration;
+    try {
+      window.localStorage.setItem(retryLockKey, String(retryAt));
+    } catch (error) {
+      // Browsers can block localStorage; keep the current-page lock in memory.
+    }
+    return retryAt;
+  };
+
+  const formatRetryCountdown = remaining => {
+    const totalSeconds = Math.max(0, Math.ceil(remaining / 1000));
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor(totalSeconds % 3600 / 60);
+    const seconds = totalSeconds % 60;
+    const twoDigits = value => String(value).padStart(2, "0");
+
+    return `RESET IN ${twoDigits(hours)}H ${twoDigits(minutes)}M ${twoDigits(seconds)}S`;
+  };
+
+  const refreshRetryLockControls = (retryAt = readStoredNumber(retryLockKey)) => {
+    window.clearTimeout(retryLockTimer);
+    const remaining = retryAt - Date.now();
+    const isLocked = remaining > 0;
+    const hasSavedResult = Boolean(readSavedResult());
+    const countdown = isLocked ? formatRetryCountdown(remaining) : "";
+
+    startButton.disabled = isLocked;
+    startButton.classList.toggle("has-retry-actions", isLocked && hasSavedResult);
+    retryCountdown.textContent = countdown;
+    retryCountdown.hidden = !(isLocked && hasSavedResult);
+    startButton.setAttribute(
+      "aria-label",
+      isLocked ? `Start quiz disabled. ${countdown}` : "Start quiz"
+    );
+    introResumeActions.hidden = !(isLocked && hasSavedResult);
+
+    if (isLocked) {
+      retryLockTimer = window.setTimeout(
+        () => refreshRetryLockControls(),
+        Math.min(1000, remaining + 50)
+      );
+    } else if (retryAt) {
+      try {
+        window.localStorage.removeItem(retryLockKey);
+      } catch (error) {
+        // Expired state is harmless if storage cannot be changed.
+      }
+    }
+  };
+
+  const restoreSavedResultForCapture = () => {
+    const savedResult = readSavedResult();
+    if (!savedResult) return false;
+
+    score = savedResult.score;
+    displayedScore = savedResult.score;
+    setScoreColor(score);
+    scoreFill.style.clipPath = `inset(${100 - score}% 0 0 0)`;
+    scorePercentage.textContent = `${score}%`;
+    scoreMeter.setAttribute("aria-valuenow", String(score));
+    updateScoreResult(score, savedResult.rankSealRotation);
+    return true;
   };
 
   const hideScoreTestControls = () => {
@@ -502,6 +620,8 @@
   };
 
   scoreTryAgain.addEventListener("click", () => {
+    saveCurrentResult();
+    const retryAt = setRetryLock();
     closeCapturePreview(false);
     scoreTryAgain.blur();
     scoreTryAgain.disabled = true;
@@ -526,7 +646,7 @@
       startButton.classList.remove("is-leaving");
       startButton.classList.add("is-returning");
       startButton.hidden = false;
-      startButton.disabled = false;
+      refreshRetryLockControls(retryAt);
       scoreTryAgain.disabled = false;
       scoreCapture.disabled = false;
       quizCard.setAttribute("aria-labelledby", "quizIntroTitle");
@@ -822,9 +942,10 @@
     }
   };
 
-  const openResultCapture = async () => {
+  const openResultCapture = async (triggerButton = scoreCapture) => {
     const requestId = ++captureRequestId;
-    scoreCapture.disabled = true;
+    captureReturnFocus = triggerButton;
+    triggerButton.disabled = true;
     window.clearTimeout(captureCloseTimer);
     releaseCapturePreview();
     capturePreviewStatus.textContent = "CREATING PREVIEW...";
@@ -886,7 +1007,7 @@
         capturePreviewModal.removeAttribute("aria-busy");
       }
     } finally {
-      if (requestId === captureRequestId) scoreCapture.disabled = false;
+      if (requestId === captureRequestId) triggerButton.disabled = false;
     }
   };
 
@@ -900,7 +1021,13 @@
     window.setTimeout(() => closeCapturePreview(), 120);
   };
 
-  scoreCapture.addEventListener("click", openResultCapture);
+  scoreCapture.addEventListener("click", () => openResultCapture(scoreCapture));
+  introCapture.addEventListener("click", () => {
+    if (restoreSavedResultForCapture()) openResultCapture(introCapture);
+  });
+  introHome.addEventListener("click", () => {
+    window.location.href = "../../index.html";
+  });
   captureBack.addEventListener("click", () => closeCapturePreview());
   captureSave.addEventListener("click", saveResultCapture);
   capturePreviewModal.addEventListener("click", event => {
@@ -934,4 +1061,5 @@
   document.addEventListener("matsuquiz:show-score", event => {
     showQuestionScoreResult(event.detail?.percentage);
   });
+  refreshRetryLockControls();
 })();

@@ -271,7 +271,8 @@ html[data-quiz-effective-theme="dark"] .quiz-start,
 html[data-quiz-effective-theme="dark"] .quiz-menu,
 html[data-quiz-effective-theme="dark"] .quiz-result-next,
 html[data-quiz-effective-theme="dark"] .quiz-answer,
-html[data-quiz-effective-theme="dark"] .quiz-score-action {
+html[data-quiz-effective-theme="dark"] .quiz-score-action,
+html[data-quiz-effective-theme="dark"] .quiz-intro-action {
 border: 3px solid #251d22;
 box-shadow: 0 6px 0 #1c151a;
 }
@@ -316,6 +317,13 @@ html[data-quiz-effective-theme="dark"] .quiz-intro-title {
 html[data-quiz-effective-theme="dark"] .quiz-score-title,
 html[data-quiz-effective-theme="dark"] .quiz-score-points {
   text-shadow: 0 3px 0 rgba(15, 7, 11, 0.82);
+}
+
+html[data-quiz-effective-theme="dark"] .quiz-retry-countdown {
+  border-color: #251d22;
+  background: #fff5df;
+  color: #2b2228;
+  box-shadow: 0 4px 0 #1c151a;
 }
 
 html[data-quiz-effective-theme="dark"] .quiz-result-status {

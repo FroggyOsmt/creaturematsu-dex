@@ -18,8 +18,8 @@
   <link rel="stylesheet" href="../../home-data/style/layout.css">
   <link rel="stylesheet" href="bg-quiz.css?v=20261010-geometric-background">
   <link rel="stylesheet" href="splash.css?v=20261012-paddle-close">
-  <link rel="stylesheet" href="matsu-quiz.css?v=20261016-menu-popup-v3">
-  <link rel="stylesheet" href="matsu-menu.css?v=20261016-reference-dark-background-v3">
+  <link rel="stylesheet" href="matsu-quiz.css?v=20261019-retry-countdown-separated">
+  <link rel="stylesheet" href="matsu-menu.css?v=20261019-retry-countdown-separated-dark">
 </head>
 <body class="home-page matsu-quiz-page">
   <script src="../../analytics.js?v=20261012-matsu-quiz-route"></script>
@@ -212,6 +212,14 @@
       <button id="quizStartButton" class="quiz-start" type="button" aria-label="Start quiz">
         START QUIZ!
       </button>
+      <span id="quizRetryCountdown" class="quiz-retry-countdown" aria-hidden="true" hidden></span>
+
+      <div id="quizIntroResumeActions" class="quiz-intro-resume-actions" aria-label="Saved result actions" hidden>
+        <button id="quizIntroCapture" class="quiz-intro-action quiz-intro-action--capture" type="button">
+          CAPTURE RESULT
+        </button>
+        <button id="quizIntroHome" class="quiz-intro-action" type="button">HOME</button>
+      </div>
 
       <section
         id="quizScoreView"
@@ -292,7 +300,7 @@
 
         <div class="quiz-score-actions" aria-label="Result actions">
           <button id="quizScoreCapture" class="quiz-score-action" type="button">CAPTURE RESULT</button>
-          <button id="quizScoreTryAgain" class="quiz-score-action" type="button">TRY AGAIN</button>
+          <button id="quizScoreTryAgain" class="quiz-score-action" type="button">BACK</button>
         </div>
 
         <div id="quizScoreTestAdjust" class="quiz-score-test-adjust" aria-label="Temporary score adjustment" hidden>
@@ -421,9 +429,9 @@
   <script src="qa/qa-5.js?v=20261009-normal-question-pool"></script>
   <script src="qa/qa-10.js?v=20261009-difficult-question-pool"></script>
   <script src="matsu-questions.js?v=20261009-split-question-pools"></script>
-  <script src="matsu-quiz-audio.js?v=20261019-music-fade-fix"></script>
+  <script src="matsu-quiz-audio.js?v=20261019-loop-fade-floor"></script>
   <script src="matsu-quiz-sounds.js?v=20261016-sound-switch"></script>
-  <script src="matsu-pre-quiz.js?v=20261016-amateur-capture-seal"></script>
+  <script src="matsu-pre-quiz.js?v=20261019-retry-countdown-separated"></script>
   <script src="matsu-quiz.js?v=20261009-discovery-state"></script>
   <script src="matsu-hint.js?v=20261001-two-stage-hints"></script>
   <script src="matsu-result.js?v=20261008-multi-question-flow"></script>
