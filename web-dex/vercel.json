@@ -1,5 +1,11 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [
+    {
+      "source": "/games/matsu-quiz",
+      "destination": "/games/matsu-quiz/matsu-quiz.html"
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",

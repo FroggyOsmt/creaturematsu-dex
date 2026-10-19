@@ -9,7 +9,7 @@
     if (backButton) backButton.onclick = () => closeAction();
   }
 
-  function setupGameButtons(page, isStandalone) {
+  function setupGameButtons(page) {
     const matsuQuizButton = page.querySelector(
       '[data-game-content="matsu-quiz"]'
     );
@@ -18,9 +18,7 @@
 
     matsuQuizButton.addEventListener("click", () => {
       window.creatureFeatureBadges?.markMatsuQuizSeen();
-      window.location.href = isStandalone
-        ? "matsu-quiz/matsu-quiz.html"
-        : "games/matsu-quiz/matsu-quiz.html";
+      window.location.href = "/games/matsu-quiz";
     });
   }
 
@@ -39,7 +37,7 @@
         window.location.href = "../index.html";
       }, transitionDuration);
     });
-    setupGameButtons(page, true);
+    setupGameButtons(page);
     window.creatureFeatureBadges?.sync();
   }
 
@@ -79,7 +77,7 @@
         gamesPage = document.importNode(sourcePage, true);
         appContainer.appendChild(gamesPage);
         setupBackButton(gamesPage, closeGamesPage);
-        setupGameButtons(gamesPage, false);
+        setupGameButtons(gamesPage);
         window.creatureFeatureBadges?.sync();
 
         return gamesPage;
