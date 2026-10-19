@@ -2,10 +2,11 @@
   const backgroundMusic = document.getElementById("matsuQuizBackgroundMusic");
   if (!backgroundMusic) return;
 
-  const targetVolume = 0.045;
+  const targetVolume = 0.12;
   const fadeDuration = 1800;
   let fadeFrame = 0;
   let hasStarted = false;
+  let startPromise = null;
 
   backgroundMusic.volume = 0;
 
@@ -28,34 +29,44 @@
     fadeFrame = window.requestAnimationFrame(updateVolume);
   };
 
-  const startMusic = () => {
-    if (!backgroundMusic.paused) return;
+  const stopWaitingForInteraction = () => {
+    window.removeEventListener("pointerdown", startAfterInteraction, true);
+    window.removeEventListener("keydown", startAfterInteraction, true);
+  };
 
-    backgroundMusic.play()
+  const startMusic = () => {
+    if (!backgroundMusic.paused) {
+      hasStarted = true;
+      stopWaitingForInteraction();
+      return Promise.resolve();
+    }
+
+    if (startPromise) return startPromise;
+
+    startPromise = backgroundMusic.play()
       .then(() => {
         hasStarted = true;
+        stopWaitingForInteraction();
         fadeIn();
       })
       .catch(() => {
         hasStarted = false;
+      })
+      .finally(() => {
+        startPromise = null;
       });
-  };
 
-  startMusic();
+    return startPromise;
+  };
 
   const startAfterInteraction = () => {
     if (!hasStarted || backgroundMusic.paused) startMusic();
   };
 
-  window.addEventListener("pointerdown", startAfterInteraction, {
-    once: true,
-    capture: true
-  });
+  window.addEventListener("pointerdown", startAfterInteraction, true);
+  window.addEventListener("keydown", startAfterInteraction, true);
 
-  window.addEventListener("keydown", startAfterInteraction, {
-    once: true,
-    capture: true
-  });
+  startMusic();
 
   window.addEventListener("pagehide", () => {
     window.cancelAnimationFrame(fadeFrame);
