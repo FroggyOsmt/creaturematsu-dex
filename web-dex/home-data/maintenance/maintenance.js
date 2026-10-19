@@ -1,8 +1,10 @@
+const MAINTENANCE_MODE = false;
+
 const maintenanceQuery = new URLSearchParams(window.location.search);
-const MAINTENANCE_MODE = maintenanceQuery.get("evershow2") !== "off";
+const MAINTENANCE_BYPASS = maintenanceQuery.get("evershow2") === "off";
 
 (() => {
-  if (!MAINTENANCE_MODE) return;
+  if (!MAINTENANCE_MODE || MAINTENANCE_BYPASS) return;
   if (document.getElementById("maintenanceScreen")) return;
 
   const screen = document.createElement("main");
