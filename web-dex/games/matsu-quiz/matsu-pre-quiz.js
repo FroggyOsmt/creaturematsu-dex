@@ -1053,6 +1053,10 @@
     if (startButton.disabled) return;
 
     startButton.disabled = true;
+    window.creatureMatsuAnalytics?.pageview({
+      route: "/games/matsu-quiz/play",
+      path: "/games/matsu-quiz/play"
+    });
     startButton.blur();
     introView.classList.add("is-leaving");
     startButton.classList.add("is-leaving");

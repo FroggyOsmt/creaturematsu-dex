@@ -4,6 +4,10 @@
     {
       "source": "/games/matsu-quiz",
       "destination": "/games/matsu-quiz/matsu-quiz.html"
+    },
+    {
+      "source": "/games/matsu-quiz/play",
+      "destination": "/games/matsu-quiz/matsu-quiz.html"
     }
   ],
   "headers": [
