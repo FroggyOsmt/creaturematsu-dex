@@ -2,7 +2,7 @@
   const backgroundMusic = document.getElementById("matsuQuizBackgroundMusic");
   if (!backgroundMusic) return;
 
-  const targetVolume = 0.12;
+  const targetVolume = 0.045;
   const fadeDuration = 1800;
   let fadeFrame = 0;
   let hasStarted = false;
