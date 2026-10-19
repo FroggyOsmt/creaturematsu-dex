@@ -67,6 +67,7 @@
   let isTickleMoving = false;
   let lastMouthStretchAt = 0;
   let tickleLaughTimer;
+  let tickleOpenMouthTimer;
   let tickleMouthIdleTimer;
 
   const interactionIsBusy = () => isPetting || isTickling || isTickleResetting || isLaughDebugLocked;
@@ -115,7 +116,7 @@
     tickleMouthIdleTimer = window.setTimeout(pauseLaughMouth, 120);
   };
 
-  for (const file of [...bodyFrames, ...blinkFrames, "pet.png", "laugh.png", "laugh-mouth.png", "tickle-body.png", "tickle-to-idle-body.png"]) {
+  for (const file of [...bodyFrames, ...blinkFrames, "pet.png", "laugh-1.png", "laugh.png", "laugh-mouth.png", "tickle-body.png", "tickle-to-idle-body.png"]) {
     const preload = new Image();
     preload.src = `${assetPath}${file}`;
   }
@@ -365,14 +366,19 @@
 
         tickleLaughTimer = window.setTimeout(() => {
           if (!isTickling || !isTicklingActive) return;
-          head.src = `${assetPath}laugh.png`;
-          oso.classList.add("is-tickle-laughing");
-          oso.style.setProperty("--laugh-mouth-scale-y", "0.8");
-          if (isTickleMoving) {
-            animateLaughMouth();
-            lastMouthStretchAt = performance.now();
-            playLoopingAudio(laughAudio);
-          }
+          head.src = `${assetPath}laugh-1.png`;
+
+          tickleOpenMouthTimer = window.setTimeout(() => {
+            if (!isTickling || !isTicklingActive) return;
+            head.src = `${assetPath}laugh.png`;
+            oso.classList.add("is-tickle-laughing");
+            oso.style.setProperty("--laugh-mouth-scale-y", "0.8");
+            if (isTickleMoving) {
+              animateLaughMouth();
+              lastMouthStretchAt = performance.now();
+              playLoopingAudio(laughAudio);
+            }
+          }, 80);
         }, 220);
       }
 
@@ -403,6 +409,7 @@
     if (event?.pointerId !== undefined && event.pointerId !== ticklingPointerId) return;
 
     window.clearTimeout(tickleLaughTimer);
+    window.clearTimeout(tickleOpenMouthTimer);
     window.clearTimeout(tickleMouthIdleTimer);
     const didTickle = isTicklingActive;
     const capturedPointerId = ticklingPointerId;
