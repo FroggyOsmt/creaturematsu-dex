@@ -1,4 +1,4 @@
-const MAINTENANCE_MODE = false;
+const MAINTENANCE_MODE = true;
 
 (() => {
   if (!MAINTENANCE_MODE) return;
