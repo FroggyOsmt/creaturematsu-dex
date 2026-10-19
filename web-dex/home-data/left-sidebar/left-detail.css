@@ -292,7 +292,8 @@ transition:
     flex-shrink: 0 !important;
   }
 
-  .left-drawer.others-logo-home-active .left-logo {
+  .left-drawer.others-logo-home-active .left-logo,
+  .left-drawer.games-logo-home-active .left-logo {
     position: relative;
     pointer-events: auto;
     cursor: pointer;
@@ -300,7 +301,8 @@ transition:
     border-radius: 12px;
   }
 
-  .left-drawer.others-logo-home-active .left-logo::after {
+  .left-drawer.others-logo-home-active .left-logo::after,
+  .left-drawer.games-logo-home-active .left-logo::after {
     content: "BACK TO HOME";
     position: absolute;
     top: 2px;
@@ -321,12 +323,14 @@ transition:
     animation: left-logo-others-home-bubble 0.2s ease 0.12s both;
   }
 
-  .left-drawer.others-logo-home-active .left-logo:focus-visible {
+  .left-drawer.others-logo-home-active .left-logo:focus-visible,
+  .left-drawer.games-logo-home-active .left-logo:focus-visible {
     outline: 3px solid #FFE2C1;
     outline-offset: 2px;
   }
 
-  .left-drawer.others-logo-home-active .left-logo:active {
+  .left-drawer.others-logo-home-active .left-logo:active,
+  .left-drawer.games-logo-home-active .left-logo:active {
     filter: brightness(1.08);
   }
 

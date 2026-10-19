@@ -64,14 +64,21 @@ function applyDrawerOpen(shouldOpen) {
 function syncHomeLogoControl() {
   if (!homeLogo) return;
 
-  const isOthersHomeControl =
+  const isMobileDrawerOpen =
     isMobileSidebarMode() &&
-    drawer.classList.contains("open") &&
+    drawer.classList.contains("open");
+  const isOthersHomeControl =
+    isMobileDrawerOpen &&
     document.body.classList.contains("others-view-open");
+  const isGamesHomeControl =
+    isMobileDrawerOpen &&
+    document.body.classList.contains("games-view-open");
+  const isSectionHomeControl = isOthersHomeControl || isGamesHomeControl;
 
   drawer.classList.toggle("others-logo-home-active", isOthersHomeControl);
+  drawer.classList.toggle("games-logo-home-active", isGamesHomeControl);
 
-  if (isOthersHomeControl) {
+  if (isSectionHomeControl) {
     homeLogo.setAttribute("role", "button");
     homeLogo.setAttribute("tabindex", "0");
     homeLogo.setAttribute("aria-label", "BACK TO HOME");
@@ -88,7 +95,8 @@ function syncHomeLogoControl() {
 function goHomeFromLogo() {
   if (
     !isMobileSidebarMode() ||
-    !drawer.classList.contains("others-logo-home-active")
+    !drawer.classList.contains("others-logo-home-active") &&
+    !drawer.classList.contains("games-logo-home-active")
   ) {
     return;
   }

@@ -3,8 +3,11 @@
 // ========================================
 
 let markdownImagePopupLastFocusedElement = null;
+let markdownImagePopupCloseTimer = null;
+let markdownImagePopupCloseAnimationHandler = null;
 const markdownImagePopupHistoryKey = "creaturematsuPillarMapImage";
 const markdownImagePopupMobileQuery = window.matchMedia("(max-width: 768px)");
+const markdownImagePopupReducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 function getMarkdownImagePopupHistoryState(state = window.history.state) {
   if (!state || typeof state !== "object") return null;
@@ -109,11 +112,15 @@ function openMarkdownImagePopupFromSource(
   const popupImage = popup.querySelector(".markdown-image-popup-image");
   const backButton = popup.querySelector(".markdown-image-popup-back");
 
+  cancelPendingMarkdownImagePopupClose(popup);
+
   markdownImagePopupLastFocusedElement = document.activeElement;
   popup.classList.toggle("markdown-image-popup-creature", mode === "creature");
   popupImage.src = source;
   popupImage.alt = alt;
 
+  popup.classList.remove("open");
+  void popup.offsetWidth;
   popup.classList.add("open");
   popup.setAttribute("aria-hidden", "false");
   document.documentElement.classList.add("markdown-image-popup-open");
@@ -128,9 +135,42 @@ function openMarkdownImagePopupFromSource(
 
 window.openMarkdownImagePopupFromSource = openMarkdownImagePopupFromSource;
 
+function cancelPendingMarkdownImagePopupClose(popup) {
+  if (markdownImagePopupCloseTimer !== null) {
+    window.clearTimeout(markdownImagePopupCloseTimer);
+    markdownImagePopupCloseTimer = null;
+  }
+
+  const popupCard = popup?.querySelector(".markdown-image-popup-card");
+  if (popupCard && markdownImagePopupCloseAnimationHandler) {
+    popupCard.removeEventListener("animationend", markdownImagePopupCloseAnimationHandler);
+  }
+
+  markdownImagePopupCloseAnimationHandler = null;
+  popup?.classList.remove("closing");
+}
+
+function finishMarkdownImagePopupClose(popup) {
+  cancelPendingMarkdownImagePopupClose(popup);
+  popup.classList.remove("open", "markdown-image-popup-creature");
+  popup.setAttribute("aria-hidden", "true");
+  document.documentElement.classList.remove("markdown-image-popup-open");
+  document.body.classList.remove("markdown-image-popup-open");
+
+  if (markdownImagePopupLastFocusedElement?.focus) {
+    markdownImagePopupLastFocusedElement.focus();
+  }
+
+  markdownImagePopupLastFocusedElement = null;
+}
+
 function closeMarkdownImagePopup(options = {}) {
   const popup = document.getElementById("markdownImagePopup");
-  if (!popup || !popup.classList.contains("open")) return;
+  if (
+    !popup ||
+    !popup.classList.contains("open") ||
+    popup.classList.contains("closing")
+  ) return;
 
   if (
     options.fromHistory !== true &&
@@ -141,17 +181,28 @@ function closeMarkdownImagePopup(options = {}) {
     return;
   }
 
-  popup.classList.remove("open");
-  popup.classList.remove("markdown-image-popup-creature");
-  popup.setAttribute("aria-hidden", "true");
-  document.documentElement.classList.remove("markdown-image-popup-open");
-  document.body.classList.remove("markdown-image-popup-open");
+  const popupCard = popup.querySelector(".markdown-image-popup-card");
+  popup.classList.add("closing");
 
-  if (markdownImagePopupLastFocusedElement?.focus) {
-    markdownImagePopupLastFocusedElement.focus();
+  if (!popupCard || markdownImagePopupReducedMotionQuery.matches) {
+    finishMarkdownImagePopupClose(popup);
+    return;
   }
 
-  markdownImagePopupLastFocusedElement = null;
+  markdownImagePopupCloseAnimationHandler = event => {
+    if (
+      event.target !== popupCard ||
+      event.animationName !== "markdownImagePopupShrink"
+    ) return;
+
+    finishMarkdownImagePopupClose(popup);
+  };
+
+  popupCard.addEventListener("animationend", markdownImagePopupCloseAnimationHandler);
+  markdownImagePopupCloseTimer = window.setTimeout(
+    () => finishMarkdownImagePopupClose(popup),
+    260
+  );
 }
 
 function setMarkdownImageSpoilerState(trigger, revealed) {

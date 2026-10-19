@@ -2,6 +2,8 @@
   const NEW_STORAGE_KEY = "creaturematsu-new-variations-v0.1.2";
   const UPDATE_STORAGE_KEY = "creaturematsu-updated-status-history-v0.2.0";
   const TBSA_NEW_STORAGE_KEY = "creaturematsu-tbsa-seen-v0.2.0";
+  const MATSU_QUIZ_NEW_STORAGE_KEY =
+    "creaturematsu-matsu-quiz-seen-v0.2.x";
   const PILLAR_DRUM_UPDATE_STORAGE_KEY =
     "creaturematsu-second-pillar-drums-seen-v0.2.0";
   const PILLAR_DRUM_CODES = new Set([
@@ -84,6 +86,14 @@
     }
   }
 
+  function readMatsuQuizSeen() {
+    try {
+      return localStorage.getItem(MATSU_QUIZ_NEW_STORAGE_KEY) === "true";
+    } catch (error) {
+      return false;
+    }
+  }
+
   function readSeenPillarDrums() {
     try {
       const storedCodes = JSON.parse(
@@ -103,12 +113,24 @@
   }
 
   function syncFeatureBadges() {
-    if (readTbsaSeen()) {
+    const tbsaSeen = readTbsaSeen();
+    const matsuQuizSeen = readMatsuQuizSeen();
+
+    if (tbsaSeen) {
       document
         .querySelector(
           '[data-analytics-route="/system"] .new-feature-badge-corner'
         )
         ?.remove();
+    }
+
+    if (matsuQuizSeen) {
+      document
+        .querySelectorAll(".matsu-quiz-new-badge")
+        .forEach(badge => badge.remove());
+    }
+
+    if (tbsaSeen && matsuQuizSeen) {
       document.querySelector(".new-feature-badge-menu")?.remove();
     }
 
@@ -120,6 +142,12 @@
         ?.remove();
       document.querySelector(".update-feature-badge-menu")?.remove();
     }
+
+    const drawer = document.getElementById("leftDrawer");
+    drawer?.classList.toggle(
+      "feature-update-badge-hidden",
+      !drawer.querySelector(":scope > .update-feature-badge-menu")
+    );
   }
 
   function saveStoredCreatures(storageKey, creatures) {
@@ -129,6 +157,16 @@
     } catch (error) {
       // La ficha sigue funcionando aunque el navegador bloquee localStorage.
     }
+  }
+
+  function markMatsuQuizSeen() {
+    try {
+      localStorage.setItem(MATSU_QUIZ_NEW_STORAGE_KEY, "true");
+    } catch (error) {
+      // La navegación sigue funcionando aunque el navegador bloquee localStorage.
+    }
+
+    syncFeatureBadges();
   }
 
   function appendBadge(card, className, text, label) {
@@ -204,6 +242,7 @@
   window.addEventListener("storage", event => {
     if (
       event.key === TBSA_NEW_STORAGE_KEY ||
+      event.key === MATSU_QUIZ_NEW_STORAGE_KEY ||
       event.key === PILLAR_DRUM_UPDATE_STORAGE_KEY
     ) {
       syncFeatureBadges();
@@ -211,6 +250,7 @@
   });
 
   window.creatureFeatureBadges = {
-    sync: syncFeatureBadges
+    sync: syncFeatureBadges,
+    markMatsuQuizSeen
   };
 })();

@@ -7,7 +7,6 @@ function hideTbsaNewBadge(button) {
       '[data-analytics-route="/system"] .new-feature-badge-corner'
     )
     ?.remove();
-  document.querySelector(".new-feature-badge-menu")?.remove();
 }
 
 function rememberTbsaAsSeen(button) {

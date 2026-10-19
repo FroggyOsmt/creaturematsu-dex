@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8f3ef">
+  <title>Matsu Quiz | CreatureMatsu</title>
+  <script src="matsu-menu.js?v=20261016-menu-english-dark-background"></script>
+  <link rel="icon" href="../../images/icon.png">
+  <link rel="preload" as="image" href="../../images/bg.png">
+  <link rel="preload" as="image" href="quiz-images/Oso O.png">
+  <link rel="preload" as="image" href="quiz-images/Oso X.png">
+  <link rel="preload" as="image" href="quiz-images/star.png">
+  <link rel="preload" as="image" href="quiz-images/light-off.png">
+  <link rel="preload" as="image" href="quiz-images/light-on.png">
+  <link rel="preload" as="image" href="quiz-images/O.png">
+  <link rel="preload" as="image" href="quiz-images/X.png">
+  <link rel="stylesheet" href="../../home-data/style/layout.css">
+  <link rel="stylesheet" href="bg-quiz.css?v=20261010-geometric-background">
+  <link rel="stylesheet" href="splash.css?v=20261012-paddle-close">
+  <link rel="stylesheet" href="matsu-quiz.css?v=20261016-menu-popup-v3">
+  <link rel="stylesheet" href="matsu-menu.css?v=20261016-reference-dark-background-v3">
+</head>
+<body class="home-page matsu-quiz-page">
+  <script src="../../analytics.js?v=20261012-matsu-quiz-route"></script>
+  <script defer data-disable-auto-track="true" src="/_vercel/insights/script.js"></script>
+
+  <audio
+    id="matsuQuizBackgroundMusic"
+    src="audio/Curious Critters.mp3"
+    preload="auto"
+    loop
+    autoplay
+    aria-hidden="true"
+  ></audio>
+
+  <div id="quizBackground" class="quiz-background" aria-hidden="true">
+    <svg class="quiz-background__pc" viewBox="0 0 640 360" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" focusable="false">
+      <defs>
+        <pattern id="quiz-grid-pc" width="24" height="24" patternUnits="userSpaceOnUse">
+          <path d="M24 0H0V24" fill="none" stroke="#a6adbd" stroke-width="0.9" stroke-dasharray="3 4" opacity="0.55"/>
+        </pattern>
+      </defs>
+      <rect width="640" height="360" fill="#f8f3ef"/>
+      <rect width="640" height="360" fill="url(#quiz-grid-pc)"/>
+      <circle cx="-10" cy="-15" r="92" fill="#f2b8ad" opacity="0.94"/>
+      <circle cx="562" cy="92" r="36" fill="#d9d0ef" opacity="0.82"/>
+      <rect x="579" y="35" width="140" height="50" rx="25" fill="#f4df9d" transform="rotate(-32 579 35)"/>
+      <rect x="36" y="161" width="56" height="80" rx="19" fill="#e4dff2" transform="rotate(24 36 161)"/>
+      <path d="M-32 330 A78 78 0 0 1 123 340" fill="none" stroke="#cec4e8" stroke-width="12"/>
+      <rect x="535" y="223" width="72" height="72" rx="18" fill="none" stroke="#bfd3ee" stroke-width="9" transform="rotate(19 571 259)"/>
+      <circle cx="527" cy="380" r="62" fill="#b9e3d2"/>
+      <path d="M605 292 A43 43 0 0 1 557 347" fill="none" stroke="#d2dfd5" stroke-width="8"/>
+      <path d="M138 356 A60 60 0 0 1 245 331 L138 356" fill="#f3c9bd"/>
+      <path d="M18 111 L130 68 M280 35 L365 57 M165 267 L130 317 M422 302 L500 351" fill="none" stroke="#18233f" stroke-width="2" opacity="0.18"/>
+    </svg>
+
+    <svg class="quiz-background__tablet-landscape" viewBox="0 0 640 480" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" focusable="false">
+      <defs>
+        <pattern id="quiz-grid-tablet-landscape" width="24" height="24" patternUnits="userSpaceOnUse">
+          <path d="M24 0H0V24" fill="none" stroke="#a6adbd" stroke-width="0.9" stroke-dasharray="3 4" opacity="0.55"/>
+        </pattern>
+      </defs>
+      <rect width="640" height="480" fill="#f8f3ef"/>
+      <rect width="640" height="480" fill="url(#quiz-grid-tablet-landscape)"/>
+      <circle cx="-10" cy="-15" r="92" fill="#f2b8ad" opacity="0.94"/>
+      <circle cx="562" cy="112" r="36" fill="#d9d0ef" opacity="0.82"/>
+      <rect x="579" y="45" width="140" height="50" rx="25" fill="#f4df9d" transform="rotate(-32 579 45)"/>
+      <rect x="42" y="212" width="56" height="80" rx="19" fill="#e4dff2" transform="rotate(24 42 212)"/>
+      <path d="M-32 420 A78 78 0 0 1 123 430" fill="none" stroke="#cec4e8" stroke-width="12"/>
+      <rect x="529" y="290" width="72" height="72" rx="18" fill="none" stroke="#bfd3ee" stroke-width="9" transform="rotate(19 565 326)"/>
+      <circle cx="500" cy="500" r="62" fill="#b9e3d2"/>
+      <path d="M606 392 A43 43 0 0 1 558 447" fill="none" stroke="#d2dfd5" stroke-width="8"/>
+      <path d="M145 476 A60 60 0 0 1 252 451 L145 476" fill="#f3c9bd"/>
+      <path d="M18 141 L130 98 M280 55 L365 77 M165 337 L130 387 M422 382 L500 431" fill="none" stroke="#18233f" stroke-width="2" opacity="0.18"/>
+    </svg>
+
+    <svg class="quiz-background__tablet-portrait" viewBox="0 0 480 640" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" focusable="false">
+      <defs>
+        <pattern id="quiz-grid-tablet-portrait" width="24" height="24" patternUnits="userSpaceOnUse">
+          <path d="M24 0H0V24" fill="none" stroke="#a6adbd" stroke-width="0.9" stroke-dasharray="3 4" opacity="0.55"/>
+        </pattern>
+      </defs>
+      <rect width="480" height="640" fill="#f8f3ef"/>
+      <rect width="480" height="640" fill="url(#quiz-grid-tablet-portrait)"/>
+      <circle cx="0" cy="0" r="82" fill="#f2b8ad" opacity="0.94"/>
+      <rect x="402" y="54" width="130" height="44" rx="22" fill="#f4df9d" transform="rotate(-32 402 54)"/>
+      <circle cx="404" cy="181" r="32" fill="#d9d0ef" opacity="0.82"/>
+      <rect x="38" y="270" width="46" height="68" rx="16" fill="#e4dff2" transform="rotate(24 38 270)"/>
+      <path d="M-25 574 A76 76 0 0 1 122 590" fill="none" stroke="#cec4e8" stroke-width="12"/>
+      <rect x="385" y="410" width="64" height="64" rx="15" fill="none" stroke="#bfd3ee" stroke-width="9" transform="rotate(19 417 442)"/>
+      <circle cx="336" cy="678" r="56" fill="#b9e3d2"/>
+      <path d="M449 545 A38 38 0 0 1 406 592" fill="none" stroke="#d2dfd5" stroke-width="8"/>
+      <path d="M94 620 A54 54 0 0 1 192 600 L94 620" fill="#f3c9bd"/>
+      <path d="M75 145 L166 101 M210 52 L270 70 M187 420 L151 478 M300 514 L365 575" fill="none" stroke="#18233f" stroke-width="2" opacity="0.18"/>
+    </svg>
+
+    <svg class="quiz-background__mobile" viewBox="0 0 360 640" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" focusable="false">
+      <defs>
+        <pattern id="quiz-grid-mobile" width="24" height="24" patternUnits="userSpaceOnUse">
+          <path d="M24 0H0V24" fill="none" stroke="#a6adbd" stroke-width="0.9" stroke-dasharray="3 4" opacity="0.55"/>
+        </pattern>
+      </defs>
+      <rect width="360" height="640" fill="#f8f3ef"/>
+      <rect width="360" height="640" fill="url(#quiz-grid-mobile)"/>
+      <circle cx="0" cy="0" r="62" fill="#f2b8ad"/>
+      <rect x="286" y="54" width="111" height="36" rx="18" fill="#f4df9d" transform="rotate(-32 286 54)"/>
+      <circle cx="301" cy="218" r="25" fill="#d9d0ef"/>
+      <rect x="26" y="287" width="32" height="53" rx="13" fill="#e4dff2" transform="rotate(24 26 287)"/>
+      <path d="M-20 574 A69 69 0 0 1 113 587" fill="none" stroke="#cec4e8" stroke-width="11"/>
+      <rect x="276" y="425" width="57" height="57" rx="13" fill="none" stroke="#bfd3ee" stroke-width="8" transform="rotate(19 304 453)"/>
+      <circle cx="249" cy="676" r="47" fill="#b9e3d2"/>
+      <path d="M325 553 A32 32 0 0 1 293 585" fill="none" stroke="#d2dfd5" stroke-width="7"/>
+      <path d="M74 141 L143 92 M150 49 L191 79 M176 492 L223 591" fill="none" stroke="#18233f" stroke-width="2" opacity="0.18"/>
+    </svg>
+  </div>
+
+  <section id="matsuSplash" class="page home-page matsu-splash" aria-label="Preparing Matsu Quiz">
+    <div id="matsuSplashTip" class="matsu-splash-tip" aria-live="polite"></div>
+    <div class="matsu-splash-paddles" aria-hidden="true">
+      <img class="matsu-splash-paddle matsu-splash-paddle--correct" src="quiz-images/O.png" alt="" draggable="false">
+      <img class="matsu-splash-paddle matsu-splash-paddle--incorrect" src="quiz-images/X.png" alt="" draggable="false">
+    </div>
+  </section>
+
+  <main id="matsu-game" class="page home-page matsu-quiz" aria-label="Matsu Quiz" aria-hidden="true">
+    <div class="quiz-stage">
+      <button
+        id="quizMenuButton"
+        class="quiz-menu"
+        type="button"
+        aria-haspopup="dialog"
+        aria-expanded="false"
+        aria-controls="quizMenuPopup"
+      >MENU</button>
+
+      <section
+        id="quizMenuPopup"
+        class="quiz-menu-popup"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Quiz settings"
+        aria-hidden="true"
+        hidden
+      >
+        <div class="quiz-menu-popup-panel">
+          <button
+            id="quizMenuClose"
+            class="quiz-menu-close"
+            type="button"
+            aria-label="Close settings"
+          >×</button>
+
+          <fieldset class="quiz-menu-theme">
+            <legend>THEME</legend>
+            <div class="quiz-menu-theme-options">
+              <label class="quiz-menu-theme-option">
+                <input type="radio" name="quiz-theme" value="system" checked>
+                <span>System</span>
+              </label>
+              <label class="quiz-menu-theme-option">
+                <input type="radio" name="quiz-theme" value="light">
+                <span>Light</span>
+              </label>
+              <label class="quiz-menu-theme-option">
+                <input type="radio" name="quiz-theme" value="dark">
+                <span>Dark</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <div class="quiz-menu-sound">
+            <div class="quiz-menu-sound-copy">
+              <span class="quiz-menu-sound-title">SOUND</span>
+              <span id="quizSoundState" class="quiz-menu-sound-state">Enabled</span>
+            </div>
+            <button
+              id="quizSoundSwitch"
+              class="quiz-menu-switch"
+              type="button"
+              role="switch"
+              aria-checked="true"
+              aria-label="Disable sound effects"
+            >
+              <span class="quiz-menu-switch-thumb" aria-hidden="true"></span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section id="quizCard" class="quiz-card" aria-labelledby="quizIntroTitle">
+      <div class="quiz-card-decoration quiz-card-decoration--left" aria-hidden="true"></div>
+      <div class="quiz-card-decoration quiz-card-decoration--right" aria-hidden="true"></div>
+
+      <section id="quizIntro" class="quiz-intro" aria-labelledby="quizIntroTitle">
+        <h1 id="quizIntroTitle" class="quiz-intro-title">HOW TO PLAY</h1>
+        <div class="quiz-intro-rule" aria-hidden="true"></div>
+
+        <div class="quiz-intro-copy">
+          <p>Test your knowledge of <strong>Matsu creatures~</strong>!</p>
+          <p>
+            Answer each question correctly to increase your
+            <strong>CreatureMatsu Knowledge Score Bar</strong>!
+          </p>
+          <p>
+            <strong>The Sextuplets will let you know if your answer is correct or incorrect!</strong>
+          </p>
+        </div>
+
+      </section>
+
+      <button id="quizStartButton" class="quiz-start" type="button" aria-label="Start quiz">
+        START QUIZ!
+      </button>
+
+      <section
+        id="quizScoreView"
+        class="quiz-score-view"
+        aria-labelledby="quizScoreTitle"
+        hidden
+      >
+        <h1 id="quizScoreTitle" class="quiz-score-title">The Result</h1>
+        <div id="quizScoreCelebration" class="quiz-score-celebration" aria-hidden="true">
+          <span class="quiz-score-firework"></span>
+          <span class="quiz-score-firework"></span>
+          <span class="quiz-score-firework"></span>
+        </div>
+
+        <div class="quiz-score-content">
+          <div id="quizScoreSummary" class="quiz-score-summary">
+            <div
+              id="quizScoreMeter"
+              class="quiz-score-meter"
+              role="progressbar"
+              aria-label="CreatureMatsu Knowledge Score"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-valuenow="0"
+            >
+              <div class="quiz-score-chamber">
+                <div id="quizScoreFill" class="quiz-score-fill quiz-score-fill--red" aria-hidden="true"></div>
+                <div class="quiz-score-segments" aria-hidden="true">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+            </div>
+
+            <p id="quizScorePercentage" class="quiz-score-points">0%</p>
+          </div>
+
+          <section id="quizScoreResult" class="quiz-score-result" aria-live="polite" aria-label="Result">
+            <h2 id="quizScoreRank" class="quiz-score-rank">
+              <img
+                id="quizScoreRankSeal"
+                class="quiz-score-rank-seal"
+                src="rank-seal-images/void.png"
+                width="180"
+                height="89"
+                alt="VOID"
+                draggable="false"
+              >
+            </h2>
+            <div class="quiz-score-dialogue-wrap">
+              <div class="quiz-score-dialogue">
+                <p class="quiz-score-speaker">Dr. Leezar</p>
+                <p id="quizScoreMessage" class="quiz-score-message">
+                  “Okay... try again, and read the whole book one more time. Take your time!”
+                </p>
+              </div>
+              <img
+                id="quizScoreDoctorSticker"
+                class="quiz-score-doctor-sticker"
+                src="rank-seal-images/void-dr.png"
+                width="337"
+                height="337"
+                alt=""
+                aria-hidden="true"
+                draggable="false"
+              >
+            </div>
+          </section>
+        </div>
+
+        <div class="quiz-score-actions" aria-label="Result actions">
+          <button id="quizScoreCapture" class="quiz-score-action" type="button">CAPTURE RESULT</button>
+          <button id="quizScoreTryAgain" class="quiz-score-action" type="button">TRY AGAIN</button>
+        </div>
+
+        <div id="quizScoreTestAdjust" class="quiz-score-test-adjust" aria-label="Temporary score adjustment" hidden>
+          <button id="quizScoreTestMinus" class="quiz-score-test-step" type="button" aria-label="Decrease score by 10 percent">−</button>
+          <button id="quizScoreTestPlus" class="quiz-score-test-step" type="button" aria-label="Increase score by 10 percent">+</button>
+        </div>
+      </section>
+
+      <header id="quizHeader" class="quiz-header" hidden>
+        <span class="quiz-step">QUESTION 1</span>
+        <span class="quiz-progress" aria-label="Question 1 of 10">1 / 10</span>
+      </header>
+
+      <div id="quizQuestionView" class="quiz-question-view" data-correct-answer="A" hidden>
+        <h1 id="quizQuestion" class="quiz-question">Your question will appear here!</h1>
+
+        <fieldset class="quiz-answers" aria-label="Choose one answer">
+          <legend class="visually-hidden">Possible answers</legend>
+
+          <button class="quiz-answer quiz-answer--coral" type="button" data-answer="A" aria-pressed="false">
+            <span class="quiz-answer-letter">A</span>
+            <span class="quiz-answer-text">Answer</span>
+          </button>
+
+          <button class="quiz-answer quiz-answer--mint" type="button" data-answer="B" aria-pressed="false">
+            <span class="quiz-answer-letter">B</span>
+            <span class="quiz-answer-text">Answer</span>
+          </button>
+
+          <button class="quiz-answer quiz-answer--violet" type="button" data-answer="C" aria-pressed="false">
+            <span class="quiz-answer-letter">C</span>
+            <span class="quiz-answer-text">Answer</span>
+          </button>
+        </fieldset>
+
+      </div>
+
+      <button
+        id="quizHintButton"
+        class="quiz-hint"
+        type="button"
+        aria-label="Hint available in 10 seconds"
+        disabled
+        hidden
+      >
+        <svg class="quiz-hint-progress" viewBox="0 0 100 100" aria-hidden="true">
+          <circle class="quiz-hint-progress-track" cx="50" cy="50" r="44" pathLength="100"></circle>
+          <circle
+            id="quizHintProgressValue"
+            class="quiz-hint-progress-value"
+            cx="50"
+            cy="50"
+            r="44"
+            pathLength="100"
+          ></circle>
+        </svg>
+        <img
+          id="quizHintImage"
+          class="quiz-hint-image"
+          src="quiz-images/light-off.png"
+          alt=""
+          draggable="false"
+        >
+        <span id="quizHintStars" class="quiz-hint-stars" aria-hidden="true"></span>
+      </button>
+
+      <button id="quizNextButton" class="quiz-next" type="button" disabled hidden>
+        <span>Call a Matsu!</span>
+        <img class="quiz-next-arrow" src="../../images/arrow-right.png" alt="">
+      </button>
+
+      <section
+        id="quizResult"
+        class="quiz-result quiz-result--correct"
+        aria-labelledby="quizResultTitle"
+        aria-hidden="true"
+        hidden
+      >
+        <div class="quiz-result-visual">
+          <img id="quizResultMatsu" class="quiz-result-matsu" src="quiz-images/Oso O.png" alt="Oso">
+        </div>
+        <p id="quizResultTitle" class="quiz-result-status">CORRECT</p>
+        <p id="quizResultAnswer" class="quiz-result-answer">The answer is (CREATURE)</p>
+        <p id="quizResultPhrase" class="quiz-result-phrase">
+          <strong id="quizResultSpeaker" class="quiz-result-speaker">Oso:</strong>
+          <span id="quizResultDialogue">This is Oso's example phrase!</span>
+        </p>
+      </section>
+
+      <button id="quizResultNext" class="quiz-result-next" type="button" hidden>
+        NEXT
+        <img class="quiz-next-arrow" src="../../images/arrow-right.png" alt="">
+      </button>
+      </section>
+    </div>
+
+  </main>
+
+  <section
+    id="quizCapturePreviewModal"
+    class="quiz-capture-preview"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="quizCapturePreviewTitle"
+    aria-hidden="true"
+    hidden
+  >
+    <div class="quiz-capture-preview-panel">
+      <h2 id="quizCapturePreviewTitle" class="visually-hidden">Result image preview</h2>
+      <div class="quiz-capture-preview-stage">
+        <img id="quizCapturePreviewImage" class="quiz-capture-preview-image" alt="Matsu Quiz result preview">
+        <p id="quizCapturePreviewStatus" class="quiz-capture-preview-status" role="status">
+          CREATING PREVIEW...
+        </p>
+      </div>
+      <div class="quiz-capture-preview-actions">
+        <button id="quizCaptureBack" class="quiz-capture-preview-button quiz-capture-preview-button--back" type="button">BACK</button>
+        <button id="quizCaptureSave" class="quiz-capture-preview-button quiz-capture-preview-button--save" type="button" disabled>SAVE</button>
+      </div>
+    </div>
+  </section>
+
+  <script src="bg-quiz.js?v=20261010-geometric-background"></script>
+  <script src="splash.js?v=20260927-tip-layout"></script>
+  <script src="rank-seals-data.js?v=20260928-capture-safe-seals"></script>
+  <script src="qa/qa-5.js?v=20261009-normal-question-pool"></script>
+  <script src="qa/qa-10.js?v=20261009-difficult-question-pool"></script>
+  <script src="matsu-questions.js?v=20261009-split-question-pools"></script>
+  <script src="matsu-quiz-audio.js?v=20261012-curious-critters"></script>
+  <script src="matsu-quiz-sounds.js?v=20261016-sound-switch"></script>
+  <script src="matsu-pre-quiz.js?v=20261016-amateur-capture-seal"></script>
+  <script src="matsu-quiz.js?v=20261009-discovery-state"></script>
+  <script src="matsu-hint.js?v=20261001-two-stage-hints"></script>
+  <script src="matsu-result.js?v=20261008-multi-question-flow"></script>
+</body>
+</html>

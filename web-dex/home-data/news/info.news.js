@@ -1,5 +1,17 @@
 window.newsInfo = {
   content: `
+• Added a new game called **“Matsu Quiz”**! Make sure to check out the new **GAME** button in the Menu panel to play!
+• During website maintenance, **Oso made a special appearance**, allowing visitors to spend some time petting him.
+• Made some improvements to the user interface (UI).
+• Fixed some bugs and errors.
+  `
+};
+
+/* ------------
+/* v0.2.0
+/* ------------
+/*
+  content: `
 <center>## 🎉 **Welcome to the Second Pillar!!** 🎉
 <br>This is a major milestone, bringing many new discoveries and a huge amount of new content. Check out the list below to see what’s new:</br>
 <p></p>
@@ -24,7 +36,7 @@ window.newsInfo = {
 <br><-></br>Fixed many bugs and several issues found in hidden code.
 <br>This is a very large update, so there may still be unexpected errors or bugs. If you encounter an error or bug on your device, please open the sidebar and select **“Report a Problem.”** A form will open where you can describe the issue and optionally attach a screenshot.</br>
   `
-};
+*/
 
 /* ------------
 /* v0.1.1a

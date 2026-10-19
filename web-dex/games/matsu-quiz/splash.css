@@ -1,0 +1,134 @@
+.matsu-splash {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 45px;
+  padding: 24px;
+  opacity: 0;
+  visibility: visible;
+  transition:
+    opacity 0.7s ease,
+    visibility 0s linear 0s;
+}
+
+.matsu-splash.show {
+  opacity: 1;
+}
+
+.matsu-splash.hide {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 0.7s ease,
+    visibility 0s linear 0.7s;
+}
+
+.matsu-splash-tip {
+  box-sizing: border-box;
+  display: grid;
+  justify-items: center;
+  gap: 11px;
+  width: fit-content;
+  max-width: min(700px, calc(100vw - 48px));
+  text-align: center;
+}
+
+.matsu-splash-tip-label {
+  color: #414958;
+  font-size: 25px;
+  font-weight: 700;
+  line-height: 1;
+  text-shadow: 0 2px 0 rgba(255, 255, 255, 0.9);
+}
+
+.matsu-splash-tip-text {
+  box-sizing: border-box;
+  width: fit-content;
+  max-width: 100%;
+  min-height: 48px;
+  padding: 12px 20px;
+  border: 2px solid rgba(166, 173, 189, 0.68);
+  border-radius: 14px;
+  background: rgba(248, 243, 239, 0.88);
+  color: #414958;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.3;
+  box-shadow: 0 7px 18px rgba(24, 35, 63, 0.12);
+  backdrop-filter: blur(3px);
+}
+
+.matsu-splash-paddles {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 12px;
+  min-height: 112px;
+}
+
+.matsu-splash-paddle {
+  display: block;
+  width: 70px;
+  height: auto;
+  transform-origin: 50% 86%;
+  filter: drop-shadow(0 7px 5px rgba(24, 35, 63, 0.18));
+  user-select: none;
+  -webkit-user-drag: none;
+  will-change: transform;
+  animation: matsu-splash-paddle-dance 720ms linear infinite alternate;
+}
+
+@keyframes matsu-splash-paddle-dance {
+  0% {
+    transform: translateY(0) rotate(-25deg) scaleX(1.06) scaleY(0.94);
+    animation-timing-function: cubic-bezier(0.33, 1, 0.68, 1);
+  }
+
+  50% {
+    transform: translateY(-14px) rotate(0deg) scaleX(0.98) scaleY(1.03);
+    animation-timing-function: cubic-bezier(0.32, 0, 0.67, 0);
+  }
+
+  100% {
+    transform: translateY(0) rotate(25deg) scaleX(1.06) scaleY(0.94);
+  }
+}
+
+@media (max-width: 520px) {
+  .matsu-splash-tip {
+    max-width: calc(100vw - 32px);
+    gap: 9px;
+  }
+
+  .matsu-splash-tip-label {
+    font-size: 23px;
+  }
+
+  .matsu-splash-tip-text {
+    min-height: 0;
+    padding: 11px 15px;
+    font-size: 17px;
+  }
+
+  .matsu-splash-paddles {
+    gap: 8px;
+    min-height: 96px;
+  }
+
+  .matsu-splash-paddle {
+    width: 60px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .matsu-splash-paddle {
+    animation: none;
+    transform: rotate(-10deg);
+  }
+}

@@ -100,7 +100,7 @@
 
 @media (max-width: 768px) and (hover: none) and (pointer: coarse) {
   /* HOME: la barra fija debe anclarse al viewport, no al slider transformado. */
-  body:not(.creature-detail-open):not(.others-view-open) #slider {
+  body:not(.creature-detail-open):not(.others-view-open):not(.games-view-open) #slider {
     transform: none;
   }
 
@@ -672,7 +672,8 @@
 
   body.mobile-drawer-active .search-wrapper,
   body.creature-detail-open .search-wrapper,
-  body.others-view-open .search-wrapper {
+  body.others-view-open .search-wrapper,
+  body.games-view-open .search-wrapper {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;

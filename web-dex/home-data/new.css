@@ -72,6 +72,17 @@
   right: auto;
 }
 
+.left-drawer.feature-update-badge-hidden > .new-feature-badge-menu {
+  top: 276px;
+}
+
+.new-feature-badge-menu,
+.update-feature-badge-menu {
+  transition:
+    opacity 0.22s ease,
+    visibility 0s linear 0s;
+}
+
 .pillar-map-sidebar-btn.new-feature-anchor {
   overflow: visible;
 }
@@ -128,6 +139,21 @@ body.creature-detail-open .update-feature-badge-menu {
 
   .update-feature-badge-menu {
     top: calc(50% - 90px);
+  }
+
+  .left-drawer.feature-update-badge-hidden > .new-feature-badge-menu {
+    top: calc(50% - 90px);
+  }
+
+  body.others-view-open .new-feature-badge-menu,
+  body.others-view-open .update-feature-badge-menu,
+  body.games-view-open .new-feature-badge-menu,
+  body.games-view-open .update-feature-badge-menu {
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0.22s ease,
+      visibility 0s linear 0.22s;
   }
 }
 

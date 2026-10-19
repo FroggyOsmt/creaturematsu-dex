@@ -1,0 +1,80 @@
+:root {
+  --quiz-background-height: 100dvh;
+}
+
+html {
+  background: #f8f3ef;
+  color-scheme: light;
+}
+
+body.matsu-quiz-page.home-page {
+  overflow: hidden;
+  background: #f8f3ef;
+}
+
+.matsu-quiz-page > .matsu-splash,
+.matsu-quiz-page > .matsu-quiz {
+  background: transparent;
+}
+
+.quiz-background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100vw;
+  height: 100vh;
+  height: var(--quiz-background-height, 100dvh);
+  overflow: hidden;
+  isolation: isolate;
+  background: #f8f3ef;
+  pointer-events: none;
+}
+
+.quiz-background svg {
+  position: absolute;
+  inset: 0;
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+
+.quiz-background__pc {
+  display: block !important;
+}
+
+.matsu-quiz {
+  z-index: 1;
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .quiz-background__pc {
+    display: none !important;
+  }
+
+  .quiz-background__tablet-landscape {
+    display: block !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) and (orientation: portrait) {
+  .quiz-background__tablet-landscape {
+    display: none !important;
+  }
+
+  .quiz-background__tablet-portrait {
+    display: block !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .quiz-background__pc,
+  .quiz-background__tablet-landscape,
+  .quiz-background__tablet-portrait {
+    display: none !important;
+  }
+
+  .quiz-background__mobile {
+    display: block !important;
+  }
+}
+
