@@ -93,7 +93,6 @@
 
     menuButton.addEventListener("click", () => {
       if (menuPopup.hidden) openMenu();
-      else closeMenu();
     });
 
     soundSwitch.addEventListener("click", () => {
@@ -109,15 +108,6 @@
       closeMenu({ restoreFocus: true });
     });
 
-    menuPopup.addEventListener("pointerdown", event => {
-      if (event.target === menuPopup) closeMenu({ restoreFocus: true });
-    });
-
-    document.addEventListener("keydown", event => {
-      if (event.key === "Escape" && !menuPopup.hidden) {
-        closeMenu({ restoreFocus: true });
-      }
-    });
   };
 
   if (document.readyState === "loading") {
