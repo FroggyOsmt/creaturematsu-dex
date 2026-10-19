@@ -370,7 +370,6 @@
 
           tickleOpenMouthTimer = window.setTimeout(() => {
             if (!isTickling || !isTicklingActive) return;
-            head.src = `${assetPath}laugh.png`;
             oso.classList.add("is-tickle-laughing");
             oso.style.setProperty("--laugh-mouth-scale-y", "0.8");
             if (isTickleMoving) {
@@ -474,7 +473,7 @@
     headTiltMotion.classList.remove("is-tilting");
     oso.classList.add("is-tickling", "is-tickle-laughing", "is-laugh-debug-locked");
     body.src = `${assetPath}tickle-body.png`;
-    head.src = `${assetPath}laugh.png`;
+    head.src = `${assetPath}laugh-1.png`;
     oso.style.setProperty("--laugh-mouth-scale-y", "1");
     return true;
   };
