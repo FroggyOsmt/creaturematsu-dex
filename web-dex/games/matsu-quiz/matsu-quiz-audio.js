@@ -38,6 +38,7 @@
     if (!backgroundMusic.paused) {
       hasStarted = true;
       stopWaitingForInteraction();
+      fadeIn();
       return Promise.resolve();
     }
 
