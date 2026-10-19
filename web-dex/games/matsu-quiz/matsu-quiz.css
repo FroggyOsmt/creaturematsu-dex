@@ -1953,10 +1953,27 @@ html[data-quiz-effective-theme="dark"] .quiz-menu-sound {
     padding: 10px 13px;
   }
 
+  .quiz-answer.is-selected,
+  .quiz-answer.is-selected:hover {
+    background: #FCBCA7;
+    transform: translateY(4px);
+    box-shadow: 0 1px 0 #6f332c;
+  }
+
   .quiz-answer-letter {
     width: 34px;
     height: 34px;
     border-radius: 10px;
+  }
+
+  .quiz-next:not(:disabled) {
+    background: #FFF1CF;
+    transform: scale(1.025);
+  }
+
+  .quiz-next:not(:disabled)::before {
+    opacity: 1;
+    animation: quiz-call-rainbow-left 6s linear infinite;
   }
 
   .quiz-hint {
