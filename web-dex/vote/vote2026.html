@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Top of the Favorite Creature 2026 | CreatureMatsu</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --vote-page-gap: 40px;
+      --vote-panel-radius: 36px;
+    }
+
+    @font-face {
+      font-family: "CreatureFont";
+      src: url("../fonts/hp_simplified_rg.ttf") format("truetype");
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+      margin: 0;
+      background: #A56243;
+      font-family: "CreatureFont", sans-serif;
+    }
+
+    .vote-background {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .vote-background svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .vote-background-mobile {
+      display: none !important;
+    }
+
+    .vote-page {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      padding: 40px 290px;
+    }
+
+    .vote-dialog {
+      width: 100%;
+      min-height: calc(100vh - (2 * var(--vote-page-gap)));
+      min-height: calc(100dvh - (2 * var(--vote-page-gap)));
+      margin: auto;
+      padding: 10px;
+      display: flex;
+      overflow: hidden;
+      background: #FFE2C1;
+      border: 6px solid #773421;
+      border-radius: var(--vote-panel-radius);
+      box-shadow: 0 12px 34px rgba(70, 28, 16, 0.3);
+    }
+
+    .vote-dialog-inner {
+      flex: 1;
+      min-width: 0;
+      min-height: 100%;
+      padding: 20px 10px 10px;
+      border: 2px dashed rgba(119, 52, 33, 0.5);
+      border-radius: calc(var(--vote-panel-radius) - 12px);
+    }
+
+    .vote-header {
+      max-width: 900px;
+      margin: 0 auto 10px;
+      text-align: center;
+      color: #773421;
+    }
+
+    .vote-title {
+      margin: 0;
+      font-family: "CreatureFont", sans-serif;
+      font-size: 40px;
+      line-height: 0.98;
+      text-wrap: balance;
+    }
+
+    .vote-description {
+      margin: 14px auto 0;
+      font-family: "CreatureFont", sans-serif;
+      font-size: 16px;
+      color: #a36042;
+    }
+
+    .vote-panels {
+      display: grid;
+      grid-template-columns: minmax(100px, 0.7fr) minmax(0, 1.8fr) minmax(100px, 0.7fr);
+      align-items: stretch;
+      gap: 10px;
+    }
+
+    .vote-section {
+      width: 100%;
+      min-width: 0;
+      height: 100%;
+      overflow: hidden;
+      color: #FFE2C1;
+      background: #773421;
+      border-radius: 24px;
+      box-shadow: 0 8px 20px rgba(70, 28, 16, 0.18);
+    }
+
+    .vote-section-title {
+      margin: 0;
+      padding: 10px 14px;
+      color: #FFE2C1;
+      background: #A56243;
+      border: 0;
+      border-radius: 0;
+      font-family: "CreatureFont", sans-serif;
+      font-size: 18px;
+      letter-spacing: 0.04em;
+      text-align: center;
+    }
+
+    .vote-pillar-buttons {
+      display: grid;
+      gap: 6px;
+      margin: 12px;
+    }
+
+    .vote-pillar-button,
+    .vote-category-button,
+    .vote-action-button,
+    .vote-creature-card {
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .vote-pillar-button {
+      padding: 10px 16px;
+      color: #a56243;
+      background: #5F2F21;
+      border: 3px solid transparent;
+      border-radius: 10px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      transition: transform 0.12s ease, background-color 160ms ease, border-color 160ms ease;
+    }
+
+    .vote-pillar-button:hover,
+    .vote-pillar-button:focus-visible,
+    .vote-category-button:hover,
+    .vote-category-button:focus-visible {
+
+      background: #EFB775;
+      color: #773421;
+
+    }
+
+    .vote-pillar-button[aria-pressed="true"] {
+      background: #EFB775;
+      color: #773421;
+    }
+
+    .vote-category-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 6px;
+      margin: 0 12px 12px;
+    }
+
+    .vote-category-button {
+    padding: 8px;
+    color: #a56243;
+    background: #5f2f21;
+    border: 2px;
+    border-radius: 10px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+      transition: transform 0.12s ease, background-color 160ms ease, border-color 160ms ease;
+    }
+
+    .vote-category-button[aria-pressed="true"] {
+      color: #773421;
+      background: #FFE2C1;
+    }
+
+    .vote-creature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      padding: 12px;
+      background-color:#4E2A20;
+    }
+
+    .vote-creature-card {
+      position: relative;
+      min-width: 0;
+      padding: 5px;
+      color: #773421;
+      background: var(--vote-card-color, #EFB775);
+      border: 3px solid transparent;
+      border-radius: 15px;
+      text-align: center;
+      transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+    }
+
+    .vote-creature-card:hover,
+    .vote-creature-card:focus-visible {
+      transform: translateY(-3px);
+      box-shadow:
+        0 0 6px 3px rgba(255, 255, 255, 0.5);
+    }
+
+    .vote-creature-card[aria-pressed="true"] {
+      border-color: #EFB775;
+      background: #FFE2C1;
+      box-shadow: 0 0 0 2px #773421 inset;
+    }
+
+    .vote-creature-card[aria-pressed="true"]:hover,
+    .vote-creature-card[aria-pressed="true"]:focus-visible {
+      box-shadow:
+        0 0 18px rgba(255, 255, 255, 0.9),
+        0 7px 14px rgba(35, 13, 7, 0.28),
+        0 0 0 2px #773421 inset;
+    }
+
+    .vote-creature-image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+    background-color: #ffffff;
+    border-radius: 10px;
+    }
+
+    .vote-creature-id {
+      display: block;
+      margin-top: 7px;
+      color: #ffffff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      opacity: 0.72;
+      transition: color 160ms ease;
+      letter-spacing: 0.08em;
+    }
+
+    .vote-creature-card:hover .vote-creature-id,
+    .vote-creature-card:focus-visible .vote-creature-id {
+      color: #FFFFFF;
+    }
+
+    .vote-creature-card[aria-pressed="true"] .vote-creature-id {
+      color: #A56243;
+    }
+
+    .vote-creature-name {
+      display: block;
+      margin-top: 3px;
+      overflow-wrap: anywhere;
+      color: #FFFFFF;
+      font-size: 14px;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: 0.08em;
+      transition: color 160ms ease;
+    }
+
+    .vote-creature-card:hover .vote-creature-name,
+    .vote-creature-card:focus-visible .vote-creature-name {
+      color: #FFFFFF;
+    }
+
+    .vote-creature-card[aria-pressed="true"] .vote-creature-name {
+      color: #773421;
+    }
+
+    .vote-card-check {
+      position: absolute;
+      top: 7px;
+      right: 7px;
+      width: 27px;
+      height: 27px;
+      display: grid;
+      place-items: center;
+      color: #773421;
+      background: #75ef83;
+      border: 2px solid #773421;
+      border-radius: 50%;
+      font-weight: 900;
+      opacity: 0;
+      transform: scale(0.65);
+      transition: opacity 150ms ease, transform 150ms ease;
+    }
+
+    .vote-creature-card[aria-pressed="true"] .vote-card-check {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .vote-selection-list {
+      display: grid;
+      gap: 9px;
+      margin: 12px 12px 12px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .vote-selection-item {
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      color: #773421;
+      background: var(--vote-selection-color, #FFE2C1);
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 15px;
+    }
+
+    .vote-selection-check {
+      width: 24px;
+      height: 24px;
+      flex: 0 0 24px;
+      display: grid;
+      place-items: center;
+      color: #ffffff;
+      background: #773421;
+      border-radius: 50%;
+      font-size: 0.85rem;
+    }
+
+    .vote-selection-item.is-empty {
+      color: rgba(119, 52, 33, 0.62);
+      font-style: italic;
+    }
+
+    .vote-selection-item.is-empty .vote-selection-check {
+      color: #773421;
+      background: rgba(119, 52, 33, 0.12);
+    }
+
+    .vote-actions {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 100px));
+      justify-content: center;
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    .vote-action-button {
+      max-width: 100px;
+      padding: 10px 20px;
+      border: 3px;
+      border-radius: 12px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      transition: transform 160ms ease, border-color 160ms ease, background-color 160ms ease;
+    }
+
+    .vote-reset-button {
+      color: #773421;
+      background: #ffa6a6;
+
+    }
+
+    .vote-submit-button {
+      color: #FFE2C1;
+      background: #773421;
+    }
+
+    .vote-action-button:disabled {
+      cursor: not-allowed;
+      opacity: 0.45;
+    }
+
+    .vote-action-button:not(:disabled):hover,
+    .vote-action-button:not(:disabled):focus-visible {
+      color: #773421;
+      background: #EFB775;
+      transform: scale(1.05);
+    }
+
+    @media (max-aspect-ratio: 1/1) {
+      .vote-background-desktop {
+        display: none !important;
+      }
+
+      .vote-background-mobile {
+        display: block !important;
+      }
+    }
+
+    @media (max-width: 600px) {
+      :root {
+        --vote-page-gap: 14px;
+        --vote-panel-radius: 24px;
+      }
+
+      .vote-page {
+        padding: var(--vote-page-gap);
+      }
+
+      .vote-dialog {
+        padding: 7px;
+        border-width: 4px;
+      }
+
+      .vote-dialog-inner {
+        padding: 16px 12px 12px;
+        border-radius: 16px;
+      }
+
+      .vote-header {
+        margin-bottom: 20px;
+      }
+
+      .vote-panels {
+        gap: 14px;
+      }
+
+      .vote-section {
+        border-radius: 18px;
+      }
+
+      .vote-creature-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .vote-creature-name {
+        font-size: 12px;
+      }
+
+      .vote-actions {
+        margin-top: 16px;
+      }
+    }
+
+    @media (min-width: 601px) and (max-width: 980px) {
+      .vote-creature-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 800px) {
+      .vote-panels {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="vote-background" aria-hidden="true">
+    <!-- Escritorio: 1600 x 900 -->
+    <svg
+      class="vote-background-desktop"
+      viewBox="0 0 1600 900"
+      preserveAspectRatio="xMidYMid slice"
+      focusable="false"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <defs>
+        <pattern id="gridDesk" width="60" height="60" patternUnits="userSpaceOnUse">
+          <path
+            d="M60 0H0V60"
+            fill="none"
+            stroke="#EFB775"
+            stroke-width="1.5"
+            stroke-dasharray="4 9"
+            opacity=".7"
+          />
+        </pattern>
+      </defs>
+
+      <!-- Fondo y grilla -->
+      <rect width="1600" height="900" fill="#A56243"/>
+      <rect width="1600" height="900" fill="url(#gridDesk)"/>
+
+      <!-- Esquina superior izquierda -->
+      <rect x="-32" y="-28" width="145" height="145" rx="39" fill="#773421" transform="rotate(-12 40.5 44.5)"/>
+      <rect x="110" y="30" width="95" height="95" rx="26" fill="#EFB775" transform="rotate(14 157.5 77.5)"/>
+      <rect x="15" y="140" width="85" height="85" rx="24" fill="#FFE2C1" transform="rotate(-8 57.5 182.5)"/>
+
+      <!-- Esquina superior derecha -->
+      <rect x="1485" y="-25" width="145" height="145" rx="40" fill="#FFE2C1" transform="rotate(16 1557.5 47.5)"/>
+      <rect x="1380" y="55" width="100" height="100" rx="28" fill="#773421" transform="rotate(-13 1430 105)"/>
+      <rect x="1520" y="160" width="85" height="85" rx="25" fill="#EFB775" transform="rotate(12 1562.5 202.5)"/>
+
+      <!-- Esquina inferior izquierda -->
+      <rect x="-35" y="790" width="145" height="145" rx="40" fill="#FFE2C1" transform="rotate(15 37.5 862.5)"/>
+      <rect x="120" y="820" width="100" height="100" rx="28" fill="#773421" transform="rotate(-12 170 870)"/>
+      <rect x="30" y="695" width="85" height="85" rx="24" fill="#EFB775" transform="rotate(9 72.5 737.5)"/>
+
+      <!-- Esquina inferior derecha -->
+      <rect x="1490" y="790" width="145" height="145" rx="40" fill="#773421" transform="rotate(-16 1562.5 862.5)"/>
+      <rect x="1375" y="820" width="100" height="100" rx="28" fill="#EFB775" transform="rotate(12 1425 870)"/>
+      <rect x="1510" y="690" width="90" height="90" rx="25" fill="#FFE2C1" transform="rotate(-10 1555 735)"/>
+
+      <!-- Borde superior -->
+      <rect x="310" y="-12" width="48" height="48" rx="13" fill="#F7CDA0" transform="rotate(13 334 12)"/>
+      <rect x="515" y="8" width="38" height="38" rx="11" fill="#965038" transform="rotate(-15 534 27)"/>
+      <rect x="740" y="-8" width="54" height="54" rx="15" fill="#FBD6AC" transform="rotate(9 767 19)"/>
+      <rect x="960" y="12" width="42" height="42" rx="12" fill="#87412E" transform="rotate(-12 981 33)"/>
+      <rect x="1190" y="-10" width="49" height="49" rx="14" fill="#E9AD7B" transform="rotate(17 1214.5 14.5)"/>
+
+      <!-- Borde derecho -->
+      <rect x="1550" y="330" width="45" height="45" rx="13" fill="#F7CDA0" transform="rotate(14 1572.5 352.5)"/>
+      <rect x="1535" y="485" width="56" height="56" rx="16" fill="#965038" transform="rotate(-12 1563 513)"/>
+      <rect x="1555" y="610" width="40" height="40" rx="12" fill="#FBD6AC" transform="rotate(15 1575 630)"/>
+
+      <!-- Borde inferior -->
+      <rect x="1190" y="850" width="48" height="48" rx="14" fill="#87412E" transform="rotate(-14 1214 874)"/>
+      <rect x="980" y="835" width="55" height="55" rx="16" fill="#F7CDA0" transform="rotate(12 1007.5 862.5)"/>
+      <rect x="760" y="860" width="42" height="42" rx="12" fill="#965038" transform="rotate(-9 781 881)"/>
+      <rect x="540" y="835" width="52" height="52" rx="15" fill="#FBD6AC" transform="rotate(15 566 861)"/>
+      <rect x="320" y="860" width="43" height="43" rx="12" fill="#87412E" transform="rotate(-12 341.5 881.5)"/>
+
+      <!-- Borde izquierdo -->
+      <rect x="-15" y="320" width="46" height="46" rx="13" fill="#F7CDA0" transform="rotate(11 8 343)"/>
+      <rect x="15" y="480" width="55" height="55" rx="16" fill="#965038" transform="rotate(-14 42.5 507.5)"/>
+      <rect x="-20" y="590" width="42" height="42" rx="12" fill="#FBD6AC" transform="rotate(12 1 611)"/>
+    </svg>
+
+    <!-- Móvil: 900 x 1600 -->
+    <svg
+      class="vote-background-mobile"
+      viewBox="0 0 900 1600"
+      preserveAspectRatio="xMidYMid slice"
+      focusable="false"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <defs>
+        <pattern id="gridMobile" width="56" height="56" patternUnits="userSpaceOnUse">
+          <path
+            d="M56 0H0V56"
+            fill="none"
+            stroke="#EFB775"
+            stroke-width="1.5"
+            stroke-dasharray="4 9"
+            opacity=".7"
+          />
+        </pattern>
+      </defs>
+
+      <!-- Fondo y grilla -->
+      <rect width="900" height="1600" fill="#A56243"/>
+      <rect width="900" height="1600" fill="url(#gridMobile)"/>
+
+      <!-- Esquina superior izquierda -->
+      <rect x="-30" y="-30" width="135" height="135" rx="36" fill="#773421" transform="rotate(-12 37.5 37.5)"/>
+      <rect x="100" y="35" width="90" height="90" rx="25" fill="#EFB775" transform="rotate(15 145 80)"/>
+      <rect x="15" y="145" width="80" height="80" rx="23" fill="#FFE2C1" transform="rotate(-9 55 185)"/>
+
+      <!-- Esquina superior derecha -->
+      <rect x="790" y="-25" width="135" height="135" rx="38" fill="#FFE2C1" transform="rotate(16 857.5 42.5)"/>
+      <rect x="690" y="55" width="95" height="95" rx="27" fill="#773421" transform="rotate(-13 737.5 102.5)"/>
+      <rect x="815" y="155" width="80" height="80" rx="23" fill="#EFB775" transform="rotate(12 855 195)"/>
+
+      <!-- Esquina inferior izquierda -->
+      <rect x="-30" y="1495" width="135" height="135" rx="38" fill="#FFE2C1" transform="rotate(15 37.5 1562.5)"/>
+      <rect x="110" y="1520" width="95" height="95" rx="27" fill="#773421" transform="rotate(-12 157.5 1567.5)"/>
+      <rect x="20" y="1395" width="80" height="80" rx="23" fill="#EFB775" transform="rotate(9 60 1435)"/>
+
+      <!-- Esquina inferior derecha -->
+      <rect x="790" y="1495" width="135" height="135" rx="38" fill="#773421" transform="rotate(-16 857.5 1562.5)"/>
+      <rect x="675" y="1520" width="95" height="95" rx="27" fill="#EFB775" transform="rotate(12 722.5 1567.5)"/>
+      <rect x="805" y="1395" width="85" height="85" rx="24" fill="#FFE2C1" transform="rotate(-10 847.5 1437.5)"/>
+
+      <!-- Borde superior -->
+      <rect x="300" y="-12" width="44" height="44" rx="13" fill="#F7CDA0" transform="rotate(14 322 10)"/>
+      <rect x="505" y="8" width="40" height="40" rx="12" fill="#87412E" transform="rotate(-12 525 28)"/>
+
+      <!-- Borde derecho -->
+      <rect x="825" y="320" width="43" height="43" rx="12" fill="#FBD6AC" transform="rotate(14 846.5 341.5)"/>
+      <rect x="845" y="490" width="52" height="52" rx="15" fill="#965038" transform="rotate(-13 871 516)"/>
+      <rect x="815" y="675" width="40" height="40" rx="12" fill="#F7CDA0" transform="rotate(11 835 695)"/>
+      <rect x="840" y="860" width="50" height="50" rx="14" fill="#87412E" transform="rotate(-14 865 885)"/>
+      <rect x="820" y="1050" width="42" height="42" rx="12" fill="#FBD6AC" transform="rotate(15 841 1071)"/>
+      <rect x="840" y="1240" width="46" height="46" rx="13" fill="#965038" transform="rotate(-12 863 1263)"/>
+
+      <!-- Borde inferior -->
+      <rect x="520" y="1545" width="43" height="43" rx="12" fill="#F7CDA0" transform="rotate(14 541.5 1566.5)"/>
+      <rect x="330" y="1525" width="50" height="50" rx="14" fill="#87412E" transform="rotate(-13 355 1550)"/>
+
+      <!-- Borde izquierdo -->
+      <rect x="-12" y="1210" width="45" height="45" rx="13" fill="#FBD6AC" transform="rotate(12 10.5 1232.5)"/>
+      <rect x="12" y="1030" width="52" height="52" rx="15" fill="#965038" transform="rotate(-14 38 1056)"/>
+      <rect x="-20" y="845" width="42" height="42" rx="12" fill="#F7CDA0" transform="rotate(12 1 866)"/>
+      <rect x="15" y="650" width="49" height="49" rx="14" fill="#87412E" transform="rotate(-13 39.5 674.5)"/>
+      <rect x="-15" y="440" width="43" height="43" rx="12" fill="#FBD6AC" transform="rotate(15 6.5 461.5)"/>
+    </svg>
+  </div>
+
+  <main class="vote-page" id="votePage">
+    <section class="vote-dialog" aria-label="Top of the Favorite Creature 2026">
+      <div class="vote-dialog-inner">
+        <header class="vote-header">
+          <h1 class="vote-title">Top of the Favorite Creature</h1>
+          <p class="vote-description"><em>Choose one, two, or three different creatures. You can submit only one confirmed vote.</em></p>
+        </header>
+
+        <div class="vote-panels">
+          <section class="vote-section" aria-labelledby="votePillarTitle">
+            <h2 class="vote-section-title" id="votePillarTitle">Pillar / Category</h2>
+            <div class="vote-pillar-buttons" role="group" aria-label="Pillars">
+              <button class="vote-pillar-button" type="button" data-vote-pillar="ORIGINS" aria-pressed="true">ORIGINS</button>
+              <button class="vote-pillar-button" type="button" data-vote-pillar="VARIATIONS" aria-pressed="false">VARIATIONS</button>
+            </div>
+            <div class="vote-category-list" id="voteCategoryList" aria-label="Categories"></div>
+          </section>
+
+          <section class="vote-section" aria-labelledby="voteCreaturesTitle">
+            <h2 class="vote-section-title" id="voteCreaturesTitle">Choose your Creatures</h2>
+            <div class="vote-creature-grid" id="voteCreatureGrid"></div>
+          </section>
+
+          <section class="vote-section" aria-labelledby="voteSelectionTitle">
+            <h2 class="vote-section-title" id="voteSelectionTitle">Your Vote</h2>
+            <ol class="vote-selection-list" id="voteSelectionList"></ol>
+          </section>
+        </div>
+
+        <div class="vote-actions">
+          <button class="vote-action-button vote-reset-button" id="voteResetButton" type="button">RESET</button>
+          <button class="vote-action-button vote-submit-button" id="voteSubmitButton" type="button" disabled>VOTE</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="../info-data/creature-data/first-pillar/worker.js"></script>
+  <script src="../info-data/creature-data/first-pillar/combat.js"></script>
+  <script src="../info-data/creature-data/first-pillar/craft.js"></script>
+  <script src="../info-data/creature-data/first-pillar/tool.js"></script>
+  <script src="../info-data/creature-data/first-pillar/status.js"></script>
+  <script src="../info-data/creature-data/first-pillar/elemental.js"></script>
+  <script src="../info-data/creature-data/second-pillar/2P-oso.js"></script>
+  <script src="../info-data/creature-data/second-pillar/2P-kara.js"></script>
+  <script src="../info-data/creature-data/second-pillar/2P-choro.js"></script>
+  <script src="../info-data/creature-data/second-pillar/2P-ichi.js"></script>
+  <script src="../info-data/creature-data/second-pillar/2P-jyushi.js"></script>
+  <script src="../info-data/creature-data/second-pillar/2P-todo.js"></script>
+  <script src="vote2026.js"></script>
+</body>
+</html>

@@ -2,6 +2,10 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [
     {
+      "source": "/vote2026",
+      "destination": "/vote/vote2026.html"
+    },
+    {
       "source": "/games/matsu-quiz",
       "destination": "/games/matsu-quiz/matsu-quiz.html"
     },
