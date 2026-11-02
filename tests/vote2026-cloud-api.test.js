@@ -83,8 +83,8 @@ test("keeps aggregate results private and returns only scores", async () => {
     ok: true,
     async json() {
       return [
-        { result: ["1793000000000", "1793604800000", "2"] },
-        { result: ["069", "1", "051", "1", "018", "2"] }
+        { result: ["1793000000000", "1793604800000", "3"] },
+        { result: ["009", "2", "007", "1", "008", "1", "011", "1", "018", "1", "042", "1", "063", "1"] }
       ];
     }
   });
@@ -102,9 +102,11 @@ test("keeps aggregate results private and returns only scores", async () => {
     const payload = JSON.parse(authorizedResponse.body);
 
     assert.equal(authorizedResponse.statusCode, 200);
-    assert.equal(payload.summary.totalBallots, 2);
-    assert.equal(payload.summary.totalPoints, 4);
-    assert.deepEqual(payload.top.map(entry => entry.candidateId), ["018", "051", "069"]);
+    assert.equal(payload.summary.totalBallots, 3);
+    assert.equal(payload.summary.totalPoints, 8);
+    assert.deepEqual(payload.top.map(entry => entry.candidateId), ["009"]);
+    assert.deepEqual(payload.ties.map(entry => entry.candidateId), ["007", "008", "011", "018", "042", "063"]);
+    assert.deepEqual(payload.remaining, []);
     assert.equal("voters" in payload, false);
     assert.equal("ballots" in payload, false);
   } finally {

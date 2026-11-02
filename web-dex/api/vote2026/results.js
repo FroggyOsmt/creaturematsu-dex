@@ -12,6 +12,31 @@ const {
   sendJson
 } = require("./_shared");
 
+function classifyScores(scores) {
+  const top = [];
+  const ties = [];
+  const remaining = [];
+
+  for (let index = 0; index < scores.length;) {
+    const points = scores[index].points;
+    let groupEnd = index + 1;
+    while (groupEnd < scores.length && scores[groupEnd].points === points) groupEnd += 1;
+
+    const position = index + 1;
+    const group = scores.slice(index, groupEnd).map(entry => ({ ...entry, position }));
+    if (group.length > 1) {
+      ties.push(...group);
+    } else if (position <= TOP_LIMIT) {
+      top.push(group[0]);
+    } else {
+      remaining.push(group[0]);
+    }
+    index = groupEnd;
+  }
+
+  return { top, ties, remaining };
+}
+
 module.exports = async function vote2026Results(request, response) {
   if (request.method !== "GET") {
     response.setHeader("Allow", "GET");
@@ -45,6 +70,7 @@ module.exports = async function vote2026Results(request, response) {
     }
 
     scores.sort((left, right) => right.points - left.points || left.candidateId.localeCompare(right.candidateId));
+    const ranking = classifyScores(scores);
 
     sendJson(response, 200, {
       meta: {
@@ -65,10 +91,9 @@ module.exports = async function vote2026Results(request, response) {
         totalBallots,
         totalPoints: scores.reduce((total, entry) => total + entry.points, 0)
       },
-      top: scores.slice(0, TOP_LIMIT).map((entry, index) => ({
-        ...entry,
-        position: index + 1
-      }))
+      top: ranking.top,
+      ties: ranking.ties,
+      remaining: ranking.remaining
     });
   } catch (error) {
     handleEndpointError(response, error);
