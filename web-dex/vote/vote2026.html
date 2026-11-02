@@ -1,11 +1,38 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="vote-loading">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow, noarchive">
   <title>Top of the Favorite Creature 2026 | CreatureMatsu</title>
   <link rel="icon" type="image/png" href="/images/icon.png">
+
+  <script>
+    (() => {
+      const normalizedPath = window.location.pathname.replace(/\/+$/, "");
+      if (
+        normalizedPath === "/vote2026/confirm" ||
+        normalizedPath === "/vote2026/thanks"
+      ) {
+        document.documentElement.classList.add("vote-confirmation-loading");
+      }
+      if (normalizedPath === "/vote2026") {
+        document.documentElement.classList.add("vote-status-loading");
+      }
+
+      window.addEventListener("load", () => {
+        const fontsReady = document.fonts?.ready || Promise.resolve();
+        Promise.resolve(fontsReady).finally(() => {
+          requestAnimationFrame(() => {
+            document.documentElement.classList.remove(
+              "vote-loading",
+              "vote-confirmation-loading"
+            );
+          });
+        });
+      }, { once: true });
+    })();
+  </script>
 
   <style>
     * {
@@ -73,6 +100,18 @@
       border: 6px solid #773421;
       border-radius: var(--vote-panel-radius);
       box-shadow: 0 12px 34px rgba(70, 28, 16, 0.3);
+    }
+
+    html.vote-loading .vote-dialog {
+      visibility: hidden;
+    }
+
+    html.vote-status-loading .vote-dialog {
+      visibility: hidden;
+    }
+
+    html.vote-loading.vote-confirmation-loading body {
+      visibility: hidden;
     }
 
     .vote-dialog-inner {
@@ -399,6 +438,155 @@
       transform: scale(1.05);
     }
 
+    .vote-confirmation,
+    .vote-thanks {
+    max-width: 900px;
+    margin: 0 auto 10px;
+    text-align: center;
+    color: #773421;
+    }
+
+    body.vote-confirmation-view .vote-page {
+      align-items: center;
+      justify-content: center;
+    }
+
+    body.vote-confirmation-view .vote-dialog {
+      min-height: 0;
+      margin: auto;
+    }
+
+    body.vote-confirmation-view .vote-dialog-inner {
+      min-height: 0;
+    }
+
+    body.vote-confirmation-view .vote-confirmation {
+      min-height: 0;
+    }
+
+    body.vote-thanks-view .vote-page {
+      align-items: center;
+      justify-content: center;
+    }
+
+    body.vote-thanks-view .vote-dialog {
+      width: 100%;
+      max-width: 560px;
+      min-height: 0;
+      margin: auto;
+    }
+
+    body.vote-thanks-view .vote-dialog-inner {
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    body.vote-thanks-view .vote-thanks {
+      width: 100%;
+      max-width: 520px;
+      min-height: 0;
+      margin: 0 auto;
+      padding: 28px 24px 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    body.vote-thanks-view .vote-thanks-title,
+    body.vote-thanks-view .vote-thanks-text {
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+
+    body.vote-already-voted-view .vote-already-voted {
+      padding: 32px 24px;
+    }
+
+    body.vote-already-voted-view .vote-thanks-text {
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .vote-confirmation-title,
+    .vote-thanks-title {
+      margin: 0;
+      font-size: 40px;
+      line-height: 1;
+    }
+
+    .vote-confirmation-text,
+    .vote-thanks-text {
+      max-width: 720px;
+      margin: 16px auto 28px;
+      color: #a36042;
+      font-size: 16px;
+      font-style: italic;
+      line-height: 1.3;
+    }
+
+    .vote-confirmation-cards {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .vote-confirmation-card {
+      min-width: 0;
+      padding: 12px;
+      display: grid;
+      grid-template-rows: minmax(0, 1fr) auto auto;
+      gap: 8px;
+      color: #773421;
+      background: var(--vote-card-color, #EFB775);
+      border: 6px solid #ffffff;
+      border-radius: 24px;
+      box-shadow: 0 10px 22px rgba(70, 28, 16, 0.22);
+    }
+
+    .vote-confirmation-image {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: contain;
+      background: #fff;
+      border-radius: 14px;
+    }
+
+    .vote-confirmation-id {
+    font-size: 18px;
+    font-weight: 700;
+    color: #ffffff;
+    opacity: 0.72;
+    letter-spacing: 0.08em;
+    }
+
+    .vote-confirmation-name {
+    overflow-wrap: anywhere;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1;
+    color: #ffffff;
+    letter-spacing: 0.08em;
+    }
+
+    .vote-confirmation-actions {
+      margin-top: 28px;
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .vote-thanks {
+      max-width: 760px;
+    }
+
     @media (max-aspect-ratio: 1/1) {
       .vote-background-desktop {
         display: none !important;
@@ -463,6 +651,36 @@
     @media (max-width: 800px) {
       .vote-panels {
         grid-template-columns: minmax(0, 1fr);
+      }
+
+      .vote-confirmation-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .vote-confirmation-card {
+        grid-template-columns: 110px minmax(0, 1fr);
+        grid-template-rows: auto auto;
+        align-items: center;
+      }
+
+      .vote-confirmation-name {
+        align-self: self-start;
+      }
+
+      .vote-confirmation-id {
+        align-self: self-end;
+      }
+
+      .vote-confirmation-image {
+        grid-row: 1 / 3;
+      }
+
+      .vote-confirmation-actions {
+        width: 100%;
+      }
+
+      .vote-confirmation-actions .vote-action-button {
+        flex: 1;
       }
     }
   </style>
@@ -615,7 +833,7 @@
       <div class="vote-dialog-inner">
         <header class="vote-header">
           <h1 class="vote-title">Top of the Favorite Creature</h1>
-          <p class="vote-description"><em>Choose one, two, or three different creatures. You can submit only one confirmed vote.</em></p>
+          <p class="vote-description"><em>Choose exactly three different creatures. You can submit only one confirmed vote.</em></p>
         </header>
 
         <div class="vote-panels">
