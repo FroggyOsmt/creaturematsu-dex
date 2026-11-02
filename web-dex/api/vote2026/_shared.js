@@ -3,7 +3,8 @@ const crypto = require("crypto");
 const EVENT_ID = "top-favorite-creature-2026";
 const EVENT_DURATION_DAYS = 7;
 const EVENT_DURATION_MS = EVENT_DURATION_DAYS * 24 * 60 * 60 * 1_000;
-const BALLOT_SIZE = 3;
+const BALLOT_MIN_SIZE = 1;
+const BALLOT_MAX_SIZE = 3;
 const TOP_LIMIT = 6;
 const KEY_PREFIX = "creaturematsu:vote2026";
 const REDIS_KEYS = {
@@ -108,8 +109,9 @@ function normalizeCandidateIds(value) {
 
 function isValidBallot(candidateIds) {
   return (
-    candidateIds.length === BALLOT_SIZE &&
-    new Set(candidateIds).size === BALLOT_SIZE &&
+    candidateIds.length >= BALLOT_MIN_SIZE &&
+    candidateIds.length <= BALLOT_MAX_SIZE &&
+    new Set(candidateIds).size === candidateIds.length &&
     candidateIds.every(isCandidateId)
   );
 }
@@ -218,7 +220,8 @@ function handleEndpointError(response, error) {
 }
 
 module.exports = {
-  BALLOT_SIZE,
+  BALLOT_MAX_SIZE,
+  BALLOT_MIN_SIZE,
   EVENT_DURATION_DAYS,
   EVENT_DURATION_MS,
   EVENT_ID,

@@ -33,7 +33,7 @@ module.exports = async function vote2026Ballots(request, response) {
     if (!isValidBallot(candidateIds)) {
       sendJson(response, 400, {
         ok: false,
-        message: "Choose exactly three different creatures."
+        message: "Choose one, two, or three different creatures."
       });
       return;
     }

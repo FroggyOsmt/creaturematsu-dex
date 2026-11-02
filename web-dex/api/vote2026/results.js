@@ -1,5 +1,6 @@
 const {
-  BALLOT_SIZE,
+  BALLOT_MAX_SIZE,
+  BALLOT_MIN_SIZE,
   EVENT_DURATION_DAYS,
   EVENT_ID,
   REDIS_KEYS,
@@ -54,13 +55,15 @@ module.exports = async function vote2026Results(request, response) {
         startsAt: isoFromMilliseconds(startsAtMs),
         endsAt,
         durationDays: EVENT_DURATION_DAYS,
-        ballotSize: BALLOT_SIZE,
+        ballotSize: BALLOT_MAX_SIZE,
+        ballotMinSize: BALLOT_MIN_SIZE,
+        ballotMaxSize: BALLOT_MAX_SIZE,
         topLimit: TOP_LIMIT,
         source: "vercel-cloud-api"
       },
       summary: {
         totalBallots,
-        totalPoints: totalBallots * BALLOT_SIZE
+        totalPoints: scores.reduce((total, entry) => total + entry.points, 0)
       },
       top: scores.slice(0, TOP_LIMIT).map((entry, index) => ({
         ...entry,

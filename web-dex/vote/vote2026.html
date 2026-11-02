@@ -533,12 +533,15 @@
 
     .vote-confirmation-cards {
       width: 100%;
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      flex-wrap: wrap;
       gap: 18px;
     }
 
     .vote-confirmation-card {
+      flex: 0 1 calc((100% - 36px) / 3);
       min-width: 0;
       padding: 12px;
       display: grid;
@@ -654,10 +657,12 @@
       }
 
       .vote-confirmation-cards {
-        grid-template-columns: 1fr;
+        flex-direction: column;
       }
 
       .vote-confirmation-card {
+        width: 100%;
+        flex-basis: auto;
         grid-template-columns: 110px minmax(0, 1fr);
         grid-template-rows: auto auto;
         align-items: center;
@@ -833,7 +838,7 @@
       <div class="vote-dialog-inner">
         <header class="vote-header">
           <h1 class="vote-title">Top of the Favorite Creature</h1>
-          <p class="vote-description"><em>Choose exactly three different creatures. You can submit only one confirmed vote.</em></p>
+          <p class="vote-description"><em>Choose one, two, or three different creatures. You can submit only one confirmed vote.</em></p>
         </header>
 
         <div class="vote-panels">

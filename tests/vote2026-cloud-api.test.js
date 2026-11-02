@@ -28,13 +28,17 @@ function setTestEnvironment() {
   process.env.VOTE2026_RESULTS_TOKEN = "results-token-for-tests-only-123456";
 }
 
-test("validates the fixed 72-candidate range and exactly three choices", () => {
+test("validates the fixed 72-candidate range and one to three choices", () => {
   assert.equal(shared.isCandidateId("007"), true);
   assert.equal(shared.isCandidateId("078"), true);
   assert.equal(shared.isCandidateId("006"), false);
   assert.equal(shared.isCandidateId("079"), false);
+  assert.equal(shared.isValidBallot(["007"]), true);
+  assert.equal(shared.isValidBallot(["007", "042"]), true);
   assert.equal(shared.isValidBallot(["007", "042", "078"]), true);
   assert.equal(shared.isValidBallot(["007", "007", "078"]), false);
+  assert.equal(shared.isValidBallot([]), false);
+  assert.equal(shared.isValidBallot(["007", "042", "051", "078"]), false);
 });
 
 test("submits only an anonymous hash and aggregate candidate IDs", async () => {
@@ -99,7 +103,7 @@ test("keeps aggregate results private and returns only scores", async () => {
 
     assert.equal(authorizedResponse.statusCode, 200);
     assert.equal(payload.summary.totalBallots, 2);
-    assert.equal(payload.summary.totalPoints, 6);
+    assert.equal(payload.summary.totalPoints, 4);
     assert.deepEqual(payload.top.map(entry => entry.candidateId), ["018", "051", "069"]);
     assert.equal("voters" in payload, false);
     assert.equal("ballots" in payload, false);

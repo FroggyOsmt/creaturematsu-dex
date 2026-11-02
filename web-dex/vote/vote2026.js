@@ -185,7 +185,7 @@
       .map(id => creaturesById.get(id))
       .filter(Boolean);
 
-    if (selectedCreatures.length !== 3) {
+    if (selectedCreatures.length < 1 || selectedCreatures.length > 3) {
       window.location.replace("/vote2026");
       return;
     }
@@ -441,7 +441,7 @@
       selectionList.appendChild(item);
     }
 
-    submitButton.disabled = selectedCreatures.length !== 3;
+    submitButton.disabled = selectedCreatures.length < 1;
     saveDraft(selectedCreatures);
   }
 
@@ -482,7 +482,7 @@
   });
 
   submitButton.addEventListener("click", () => {
-    if (selectedCreatures.length !== 3) return;
+    if (selectedCreatures.length < 1 || selectedCreatures.length > 3) return;
     saveDraft(selectedCreatures);
     window.location.assign(CONFIRM_PATH);
   });
