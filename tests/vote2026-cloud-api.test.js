@@ -1,0 +1,109 @@
+const test = require("node:test");
+const assert = require("node:assert/strict");
+
+const shared = require("../web-dex/api/vote2026/_shared");
+const ballotsHandler = require("../web-dex/api/vote2026/ballots");
+const resultsHandler = require("../web-dex/api/vote2026/results");
+
+function createResponse() {
+  return {
+    headers: {},
+    statusCode: 200,
+    body: "",
+    setHeader(name, value) {
+      this.headers[String(name).toLowerCase()] = value;
+    },
+    end(value = "") {
+      this.body = String(value);
+    }
+  };
+}
+
+function setTestEnvironment() {
+  delete process.env.VOTE2026_REDIS_REST_URL;
+  delete process.env.VOTE2026_REDIS_REST_TOKEN;
+  process.env.UPSTASH_REDIS_REST_KV_REST_API_URL = "https://redis.example.test";
+  process.env.UPSTASH_REDIS_REST_KV_REST_API_TOKEN = "redis-token-for-tests-only-123456789";
+  process.env.VOTE2026_HASH_SECRET = "hash-secret-for-tests-only-123456789";
+  process.env.VOTE2026_RESULTS_TOKEN = "results-token-for-tests-only-123456";
+}
+
+test("validates the fixed 72-candidate range and exactly three choices", () => {
+  assert.equal(shared.isCandidateId("007"), true);
+  assert.equal(shared.isCandidateId("078"), true);
+  assert.equal(shared.isCandidateId("006"), false);
+  assert.equal(shared.isCandidateId("079"), false);
+  assert.equal(shared.isValidBallot(["007", "042", "078"]), true);
+  assert.equal(shared.isValidBallot(["007", "007", "078"]), false);
+});
+
+test("submits only an anonymous hash and aggregate candidate IDs", async () => {
+  setTestEnvironment();
+  const originalFetch = global.fetch;
+  let redisCommand = null;
+  global.fetch = async (_url, options) => {
+    redisCommand = JSON.parse(options.body);
+    return {
+      ok: true,
+      async json() {
+        return { result: ["accepted", "1", "1793500000000"] };
+      }
+    };
+  };
+
+  try {
+    const localId = "browser-local-id-that-must-not-be-stored";
+    const request = {
+      method: "POST",
+      headers: {},
+      body: { localId, candidateIds: ["018", "051", "069"] }
+    };
+    const response = createResponse();
+    await ballotsHandler(request, response);
+
+    assert.equal(response.statusCode, 201);
+    assert.equal(JSON.parse(response.body).totalBallots, 1);
+    assert.equal(JSON.stringify(redisCommand).includes(localId), false);
+    assert.equal(redisCommand.includes("018"), true);
+    assert.equal(redisCommand.includes("051"), true);
+    assert.equal(redisCommand.includes("069"), true);
+  } finally {
+    global.fetch = originalFetch;
+  }
+});
+
+test("keeps aggregate results private and returns only scores", async () => {
+  setTestEnvironment();
+  const originalFetch = global.fetch;
+  global.fetch = async (_url, _options) => ({
+    ok: true,
+    async json() {
+      return [
+        { result: ["1793000000000", "1793604800000", "2"] },
+        { result: ["069", "1", "051", "1", "018", "2"] }
+      ];
+    }
+  });
+
+  try {
+    const unauthorizedResponse = createResponse();
+    await resultsHandler({ method: "GET", headers: {} }, unauthorizedResponse);
+    assert.equal(unauthorizedResponse.statusCode, 401);
+
+    const authorizedResponse = createResponse();
+    await resultsHandler({
+      method: "GET",
+      headers: { authorization: `Bearer ${process.env.VOTE2026_RESULTS_TOKEN}` }
+    }, authorizedResponse);
+    const payload = JSON.parse(authorizedResponse.body);
+
+    assert.equal(authorizedResponse.statusCode, 200);
+    assert.equal(payload.summary.totalBallots, 2);
+    assert.equal(payload.summary.totalPoints, 6);
+    assert.deepEqual(payload.top.map(entry => entry.candidateId), ["018", "051", "069"]);
+    assert.equal("voters" in payload, false);
+    assert.equal("ballots" in payload, false);
+  } finally {
+    global.fetch = originalFetch;
+  }
+});

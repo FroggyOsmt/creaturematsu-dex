@@ -14,3 +14,6 @@ web-dex/.vscode/
 /recovery/
 web-dex/app/
 web-dex/matsu-help/app
+.env
+.env.*
+!.env.example
