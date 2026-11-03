@@ -16,6 +16,7 @@ function classifyScores(scores) {
   const top = [];
   const ties = [];
   const remaining = [];
+  let topClosed = false;
 
   for (let index = 0; index < scores.length;) {
     const points = scores[index].points;
@@ -24,11 +25,13 @@ function classifyScores(scores) {
 
     const position = index + 1;
     const group = scores.slice(index, groupEnd).map(entry => ({ ...entry, position }));
-    if (group.length > 1) {
+    if (!topClosed && top.length + group.length <= TOP_LIMIT) {
+      top.push(...group);
+    } else if (group.length > 1) {
+      topClosed = true;
       ties.push(...group);
-    } else if (position <= TOP_LIMIT) {
-      top.push(group[0]);
     } else {
+      topClosed = true;
       remaining.push(group[0]);
     }
     index = groupEnd;
