@@ -4,6 +4,7 @@ const {
   handleEndpointError,
   hashLocalId,
   isValidLocalId,
+  isVote2026ManuallyClosed,
   isoFromMilliseconds,
   parseJsonBody,
   sendJson
@@ -13,6 +14,16 @@ module.exports = async function vote2026Status(request, response) {
   if (request.method !== "POST") {
     response.setHeader("Allow", "POST");
     sendJson(response, 405, { ok: false, message: "Method not allowed." });
+    return;
+  }
+
+  if (isVote2026ManuallyClosed()) {
+    sendJson(response, 200, {
+      ok: true,
+      hasVoted: false,
+      closed: true,
+      endsAt: null
+    });
     return;
   }
 
@@ -35,6 +46,7 @@ module.exports = async function vote2026Status(request, response) {
     sendJson(response, 200, {
       ok: true,
       hasVoted,
+      closed: false,
       endsAt: hasVoted ? isoFromMilliseconds(endsAtMs) : null
     });
   } catch (error) {

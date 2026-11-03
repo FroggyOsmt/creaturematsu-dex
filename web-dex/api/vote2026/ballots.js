@@ -8,6 +8,7 @@ const {
   hashLocalId,
   isValidBallot,
   isValidLocalId,
+  isVote2026ManuallyClosed,
   isoFromMilliseconds,
   normalizeCandidateIds,
   parseJsonBody,
@@ -18,6 +19,15 @@ module.exports = async function vote2026Ballots(request, response) {
   if (request.method !== "POST") {
     response.setHeader("Allow", "POST");
     sendJson(response, 405, { ok: false, message: "Method not allowed." });
+    return;
+  }
+
+  if (isVote2026ManuallyClosed()) {
+    sendJson(response, 410, {
+      ok: false,
+      code: "voting-closed",
+      message: "Top of the Favorite Creature 2026 voting is currently closed."
+    });
     return;
   }
 

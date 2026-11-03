@@ -4,6 +4,7 @@ const assert = require("node:assert/strict");
 const shared = require("../web-dex/api/vote2026/_shared");
 const ballotsHandler = require("../web-dex/api/vote2026/ballots");
 const resultsHandler = require("../web-dex/api/vote2026/results");
+const close2026Config = require("../web-dex/vote/vote2026/close2026");
 
 function createResponse() {
   return {
@@ -39,6 +40,17 @@ test("validates the fixed 72-candidate range and one to three choices", () => {
   assert.equal(shared.isValidBallot(["007", "007", "078"]), false);
   assert.equal(shared.isValidBallot([]), false);
   assert.equal(shared.isValidBallot(["007", "042", "051", "078"]), false);
+});
+
+test("keeps the year-specific manual close switch ready but inactive", () => {
+  assert.equal(close2026Config.active, false);
+  assert.equal(close2026Config.year, 2026);
+  assert.equal(
+    close2026Config.message,
+    "Top of the Favorite Creature 2026 voting is currently closed."
+  );
+  assert.equal(shared.isVote2026ManuallyClosed(close2026Config), false);
+  assert.equal(shared.isVote2026ManuallyClosed({ active: true }), true);
 });
 
 test("submits only an anonymous hash and aggregate candidate IDs", async () => {

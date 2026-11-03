@@ -8,6 +8,7 @@ const {
   callRedisTransaction,
   handleEndpointError,
   hasResultsAccess,
+  isVote2026ManuallyClosed,
   isoFromMilliseconds,
   sendJson
 } = require("./_shared");
@@ -61,7 +62,7 @@ module.exports = async function vote2026Results(request, response) {
     const totalBallots = Math.max(0, Number(totalBallotsValue) || 0);
     const now = new Date();
     const endsAt = isoFromMilliseconds(endsAtMs);
-    const isClosed = endsAt && now.getTime() >= Date.parse(endsAt);
+    const isClosed = isVote2026ManuallyClosed() || (endsAt && now.getTime() >= Date.parse(endsAt));
     const scores = [];
 
     if (Array.isArray(scoreValues)) {

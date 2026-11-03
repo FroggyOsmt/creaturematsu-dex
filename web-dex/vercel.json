@@ -3,15 +3,15 @@
   "rewrites": [
     {
       "source": "/vote2026",
-      "destination": "/vote/vote2026.html"
+      "destination": "/vote/vote2026/vote2026.html"
     },
     {
       "source": "/vote2026/confirm",
-      "destination": "/vote/vote2026.html"
+      "destination": "/vote/vote2026/vote2026.html"
     },
     {
       "source": "/vote2026/thanks",
-      "destination": "/vote/vote2026.html"
+      "destination": "/vote/vote2026/vote2026.html"
     },
     {
       "source": "/games/matsu-quiz",
@@ -23,6 +23,15 @@
     }
   ],
   "headers": [
+    {
+      "source": "/vote/vote2026/close2026.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store, max-age=0"
+        }
+      ]
+    },
     {
       "source": "/(.*)",
       "headers": [

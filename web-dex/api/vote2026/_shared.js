@@ -1,4 +1,5 @@
 const crypto = require("crypto");
+const CLOSE2026_CONFIG = require("../../vote/vote2026/close2026");
 
 const EVENT_ID = "top-favorite-creature-2026";
 const EVENT_DURATION_DAYS = 7;
@@ -120,6 +121,10 @@ function isValidLocalId(localId) {
   return typeof localId === "string" && localId.length >= 16 && localId.length <= 200;
 }
 
+function isVote2026ManuallyClosed(config = CLOSE2026_CONFIG) {
+  return config?.active === true;
+}
+
 function hashLocalId(localId, environment = process.env) {
   return crypto
     .createHmac("sha256", getHashSecret(environment))
@@ -236,6 +241,7 @@ module.exports = {
   isCandidateId,
   isValidBallot,
   isValidLocalId,
+  isVote2026ManuallyClosed,
   isoFromMilliseconds,
   normalizeCandidateIds,
   parseJsonBody,

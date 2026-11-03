@@ -5,6 +5,11 @@
   const VOTED_STORAGE_KEY = "creaturematsu-vote2026-voted-v1";
   const CONFIRM_PATH = "/vote2026/confirm";
   const THANKS_PATH = "/vote2026/thanks";
+  const closeConfig = globalThis.CLOSE2026_CONFIG || {
+    active: false,
+    year: 2026,
+    message: "Top of the Favorite Creature 2026 voting is currently closed."
+  };
 
   const pillarCategories = {
     ORIGINS: [
@@ -307,7 +312,35 @@
     replaceDialogContent(page);
   }
 
+  function renderClosedPage() {
+    document.body.classList.add(
+      "vote-thanks-view",
+      "vote-already-voted-view",
+      "vote-closed-view"
+    );
+
+    const page = document.createElement("section");
+    const text = document.createElement("p");
+
+    page.className = "vote-thanks vote-already-voted vote-closed";
+    page.setAttribute("aria-label", `Voting closed for ${closeConfig.year}`);
+    text.className = "vote-thanks-text";
+    text.textContent = closeConfig.message;
+
+    page.append(text);
+    replaceDialogContent(page);
+  }
+
   const normalizedPath = window.location.pathname.replace(/\/+$/, "");
+  if (closeConfig.active) {
+    document.documentElement.classList.remove(
+      "vote-status-loading",
+      "vote-confirmation-loading"
+    );
+    renderClosedPage();
+    return;
+  }
+
   if (normalizedPath === CONFIRM_PATH) {
     renderConfirmationPage();
     return;
