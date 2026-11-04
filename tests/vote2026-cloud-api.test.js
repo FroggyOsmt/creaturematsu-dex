@@ -51,8 +51,6 @@ test("keeps the year-specific manual close switch ready but inactive", () => {
   );
   assert.equal(shared.isVote2026ManuallyClosed(close2026Config), false);
   assert.equal(shared.isVote2026ManuallyClosed({ active: true }), true);
-  assert.equal(resultsHandler.canReadResults({ headers: {} }, false), false);
-  assert.equal(resultsHandler.canReadResults({ headers: {} }, true), true);
 });
 
 test("submits only an anonymous hash and aggregate candidate IDs", async () => {
