@@ -125,6 +125,7 @@
     }
 
     .vote-header {
+      position: relative;
       max-width: 900px;
       margin: 0 auto 10px;
       text-align: center;
@@ -139,8 +140,52 @@
       text-wrap: balance;
     }
 
+    .vote-title-row {
+      display: block;
+    }
+
+    .vote-home-link {
+      position: absolute;
+      top: 0;
+      right: 0;
+      min-height: 40px;
+      padding: 0 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+      color: #FFE2C1;
+      background: #A56243;
+      border: 3px solid #773421;
+      border-radius: 14px;
+      font-family: "CreatureFont", sans-serif;
+      font-size: 14px;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      transition: transform 160ms ease, background-color 160ms ease;
+      margin-right: 10px;
+    }
+
+    .vote-home-link:hover,
+    .vote-home-link:focus-visible {
+      transform: translateY(-2px);
+      background: #773421;
+    }
+    @media (min-width: 1101px) {
+      .vote-header {
+        max-width: none;
+      }
+    }
+
+    @media (max-width: 1100px) {
+      .vote-home-link {
+        position: static;
+        margin-top: 12px;
+        margin-right: 0;
+      }
+    }
     .vote-description {
-      margin: 14px auto 0;
+      margin: 5px auto 0;
       font-family: "CreatureFont", sans-serif;
       font-size: 16px;
       color: #a36042;
@@ -161,7 +206,6 @@
       color: #FFE2C1;
       background: #773421;
       border-radius: 24px;
-      box-shadow: 0 8px 20px rgba(70, 28, 16, 0.18);
     }
 
     .vote-section-title {
@@ -249,6 +293,39 @@
       background-color:#4E2A20;
     }
 
+    @media (min-width: 801px) {
+      .vote-panels {
+        height: 465px;
+      }
+
+      .vote-creatures-section {
+        display: grid;
+        grid-template-rows: auto minmax(0, 1fr);
+      }
+
+      .vote-creature-grid {
+        min-height: 0;
+        height: 100%;
+        overflow: hidden;
+        grid-template-rows: repeat(2, minmax(0, 1fr));
+        align-content: stretch;
+      }
+
+      .vote-creature-card {
+        display: grid;
+        min-height: 0;
+        height: 100%;
+        overflow: hidden;
+        grid-template-rows: minmax(0, 1fr) auto auto;
+        align-items: stretch;
+      }
+
+      .vote-creature-image {
+        min-height: 0;
+        height: 100%;
+        aspect-ratio: auto;
+      }
+    }
     .vote-creature-card {
       position: relative;
       min-width: 0;
@@ -688,6 +765,10 @@
       .vote-confirmation-actions .vote-action-button {
         flex: 1;
       }
+
+      .vote-description {
+        margin-top: 14px;
+      }
     }
   </style>
 </head>
@@ -838,7 +919,10 @@
     <section class="vote-dialog" aria-label="Top of the Favorite Creature 2026">
       <div class="vote-dialog-inner">
         <header class="vote-header">
-          <h1 class="vote-title">Top of the Favorite Creature</h1>
+          <div class="vote-title-row">
+            <h1 class="vote-title">Top of the Favorite Creature</h1>
+            <a class="vote-home-link" href="https://creaturematsu.vercel.app/" target="_blank" rel="noopener noreferrer">VISIT CREATUREMATSU</a>
+          </div>
           <p class="vote-description"><em>Choose one, two, or three different creatures. You can only submit your vote once.</em></p>
         </header>
 
@@ -852,7 +936,7 @@
             <div class="vote-category-list" id="voteCategoryList" aria-label="Categories"></div>
           </section>
 
-          <section class="vote-section" aria-labelledby="voteCreaturesTitle">
+          <section class="vote-section vote-creatures-section" aria-labelledby="voteCreaturesTitle">
             <h2 class="vote-section-title" id="voteCreaturesTitle">Choose your Creatures</h2>
             <div class="vote-creature-grid" id="voteCreatureGrid"></div>
           </section>
