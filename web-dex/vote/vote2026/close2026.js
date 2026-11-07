@@ -1,5 +1,5 @@
 // Change only this value to true when the 2026 voting period closes.
-const CLOSE2026_ACTIVE = false;
+const CLOSE2026_ACTIVE = true;
 
 const CLOSE2026_CONFIG = Object.freeze({
   active: CLOSE2026_ACTIVE,
