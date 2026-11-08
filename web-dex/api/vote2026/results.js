@@ -41,7 +41,11 @@ function classifyScores(scores) {
   return { top, ties, remaining };
 }
 
-module.exports = async function vote2026Results(request, response) {
+function canReadResults(request, manuallyClosed = isVote2026ManuallyClosed()) {
+  return manuallyClosed || hasResultsAccess(request);
+}
+
+async function vote2026Results(request, response) {
   if (request.method !== "GET") {
     response.setHeader("Allow", "GET");
     sendJson(response, 405, { ok: false, message: "Method not allowed." });
@@ -49,7 +53,8 @@ module.exports = async function vote2026Results(request, response) {
   }
 
   try {
-    if (!hasResultsAccess(request)) {
+    const manuallyClosed = isVote2026ManuallyClosed();
+    if (!canReadResults(request, manuallyClosed)) {
       sendJson(response, 401, { ok: false, message: "Unauthorized." });
       return;
     }
@@ -62,7 +67,7 @@ module.exports = async function vote2026Results(request, response) {
     const totalBallots = Math.max(0, Number(totalBallotsValue) || 0);
     const now = new Date();
     const endsAt = isoFromMilliseconds(endsAtMs);
-    const isClosed = isVote2026ManuallyClosed() || (endsAt && now.getTime() >= Date.parse(endsAt));
+    const isClosed = manuallyClosed || (endsAt && now.getTime() >= Date.parse(endsAt));
     const scores = [];
 
     if (Array.isArray(scoreValues)) {
@@ -102,4 +107,7 @@ module.exports = async function vote2026Results(request, response) {
   } catch (error) {
     handleEndpointError(response, error);
   }
-};
+}
+
+module.exports = vote2026Results;
+module.exports.canReadResults = canReadResults;

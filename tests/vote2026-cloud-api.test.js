@@ -42,29 +42,24 @@ test("validates the fixed 72-candidate range and one to three choices", () => {
   assert.equal(shared.isValidBallot(["007", "042", "051", "078"]), false);
 });
 
-test("keeps the year-specific manual close switch ready but inactive", () => {
-  assert.equal(close2026Config.active, false);
+test("keeps the year-specific manual close switch active", () => {
+  assert.equal(close2026Config.active, true);
   assert.equal(close2026Config.year, 2026);
   assert.equal(
     close2026Config.message,
     "Top of the Favorite Creature 2026 voting is currently closed."
   );
-  assert.equal(shared.isVote2026ManuallyClosed(close2026Config), false);
+  assert.equal(shared.isVote2026ManuallyClosed(close2026Config), true);
   assert.equal(shared.isVote2026ManuallyClosed({ active: true }), true);
 });
 
-test("submits only an anonymous hash and aggregate candidate IDs", async () => {
+test("rejects new ballots after closing without exposing the local ID", async () => {
   setTestEnvironment();
   const originalFetch = global.fetch;
-  let redisCommand = null;
-  global.fetch = async (_url, options) => {
-    redisCommand = JSON.parse(options.body);
-    return {
-      ok: true,
-      async json() {
-        return { result: ["accepted", "1", "1793500000000"] };
-      }
-    };
+  let fetchCalled = false;
+  global.fetch = async () => {
+    fetchCalled = true;
+    throw new Error("Closed voting must not contact storage.");
   };
 
   try {
@@ -77,18 +72,16 @@ test("submits only an anonymous hash and aggregate candidate IDs", async () => {
     const response = createResponse();
     await ballotsHandler(request, response);
 
-    assert.equal(response.statusCode, 201);
-    assert.equal(JSON.parse(response.body).totalBallots, 1);
-    assert.equal(JSON.stringify(redisCommand).includes(localId), false);
-    assert.equal(redisCommand.includes("018"), true);
-    assert.equal(redisCommand.includes("051"), true);
-    assert.equal(redisCommand.includes("069"), true);
+    assert.equal(response.statusCode, 410);
+    assert.equal(JSON.parse(response.body).code, "voting-closed");
+    assert.equal(response.body.includes(localId), false);
+    assert.equal(fetchCalled, false);
   } finally {
     global.fetch = originalFetch;
   }
 });
 
-test("keeps aggregate results private and returns only scores", async () => {
+test("publishes only aggregate scores after closing", async () => {
   setTestEnvironment();
   const originalFetch = global.fetch;
   global.fetch = async (_url, _options) => ({
@@ -102,18 +95,15 @@ test("keeps aggregate results private and returns only scores", async () => {
   });
 
   try {
-    const unauthorizedResponse = createResponse();
-    await resultsHandler({ method: "GET", headers: {} }, unauthorizedResponse);
-    assert.equal(unauthorizedResponse.statusCode, 401);
-
-    const authorizedResponse = createResponse();
+    const publicResponse = createResponse();
     await resultsHandler({
       method: "GET",
-      headers: { authorization: `Bearer ${process.env.VOTE2026_RESULTS_TOKEN}` }
-    }, authorizedResponse);
-    const payload = JSON.parse(authorizedResponse.body);
+      headers: {}
+    }, publicResponse);
+    const payload = JSON.parse(publicResponse.body);
 
-    assert.equal(authorizedResponse.statusCode, 200);
+    assert.equal(publicResponse.statusCode, 200);
+    assert.equal(payload.meta.mode, "closed");
     assert.equal(payload.summary.totalBallots, 4);
     assert.equal(payload.summary.totalPoints, 10);
     assert.deepEqual(payload.top.map(entry => entry.candidateId), ["007", "009"]);

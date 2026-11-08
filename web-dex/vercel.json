@@ -14,6 +14,10 @@
       "destination": "/vote/vote2026/vote2026.html"
     },
     {
+      "source": "/result2026",
+      "destination": "/vote/vote2026/result2026.html"
+    },
+    {
       "source": "/games/matsu-quiz",
       "destination": "/games/matsu-quiz/matsu-quiz.html"
     },
