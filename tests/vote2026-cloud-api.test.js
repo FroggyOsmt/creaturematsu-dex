@@ -107,7 +107,9 @@ test("publishes only aggregate scores after closing", async () => {
     assert.equal(payload.summary.totalBallots, 4);
     assert.equal(payload.summary.totalPoints, 10);
     assert.deepEqual(payload.top.map(entry => entry.candidateId), ["007", "009"]);
+    assert.deepEqual(payload.top.map(entry => entry.position), [1, 1]);
     assert.deepEqual(payload.ties.map(entry => entry.candidateId), ["008", "011", "018", "042", "063", "069"]);
+    assert.deepEqual(payload.ties.map(entry => entry.position), [2, 2, 2, 2, 2, 2]);
     assert.deepEqual(payload.remaining, []);
     assert.equal("voters" in payload, false);
     assert.equal("ballots" in payload, false);

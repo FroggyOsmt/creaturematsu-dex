@@ -18,13 +18,14 @@ function classifyScores(scores) {
   const ties = [];
   const remaining = [];
   let topClosed = false;
+  let densePosition = 1;
 
   for (let index = 0; index < scores.length;) {
     const points = scores[index].points;
     let groupEnd = index + 1;
     while (groupEnd < scores.length && scores[groupEnd].points === points) groupEnd += 1;
 
-    const position = index + 1;
+    const position = densePosition;
     const group = scores.slice(index, groupEnd).map(entry => ({ ...entry, position }));
     if (!topClosed && top.length + group.length <= TOP_LIMIT) {
       top.push(...group);
@@ -36,6 +37,7 @@ function classifyScores(scores) {
       remaining.push(group[0]);
     }
     index = groupEnd;
+    densePosition += 1;
   }
 
   return { top, ties, remaining };
